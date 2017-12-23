@@ -1,0 +1,54 @@
+{
+  "name": "@aureooms/js-grammar",
+  "description": "Grammar compilation toolkit for JavaScript",
+  "version": "0.0.0",
+  "author": "aureooms",
+  "ava": {
+    "require": [
+      "babel-polyfill",
+      "babel-register"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/aureooms/js-grammar/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "codeclimate-test-reporter": "^0.5.0",
+    "coveralls": "^3.0.0",
+    "esdoc": "^1.0.3",
+    "esdoc-inject-script-plugin": "^1.0.0",
+    "esdoc-inject-style-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "nyc": "^11.2.1"
+  },
+  "homepage": "https://aureooms.github.io/js-grammar",
+  "keywords": ["compilation", "grammar", "language"],
+  "license": "AGPL-3.0",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aureooms/js-grammar"
+  },
+  "scripts": {
+    "build": "rm -rf lib && babel src -d lib",
+    "cover": "nyc --reporter=lcov npm test",
+    "esdoc": "esdoc",
+    "prepublish": "npm run build",
+    "test": "ava ./test/src"
+  }
+}
