@@ -1,7 +1,7 @@
 {
   "name": "@aureooms/js-grammar",
   "description": "Grammar compilation toolkit for JavaScript",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "author": "aureooms",
   "ava": {
     "require": [
@@ -24,20 +24,26 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^0.23.0",
+    "@aureooms/js-compare": "^1.4.5",
+    "@aureooms/js-itertools": "^3.4.0",
+    "ava": "^0.24.0",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.0",
-    "esdoc": "^1.0.3",
+    "esdoc": "^1.0.4",
     "esdoc-inject-script-plugin": "^1.0.0",
     "esdoc-inject-style-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "nyc": "^11.2.1"
+    "nyc": "^11.4.1"
   },
   "homepage": "https://aureooms.github.io/js-grammar",
-  "keywords": ["compilation", "grammar", "language"],
+  "keywords": [
+    "compilation",
+    "grammar",
+    "language"
+  ],
   "license": "AGPL-3.0",
   "main": "lib/index.js",
   "repository": {
