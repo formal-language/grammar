@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import { _first , first , follow , EOF } from '../../src' ;
+import { _first , first , follow , EOF , EW } from '../../src' ;
 
 import { sorted } from '@aureooms/js-itertools' ;
 
@@ -65,10 +65,10 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 	FIRST(0, ['(' , 'id']);
 
 	// 2.
-	FIRST(1, ['+' , '']);
+	FIRST(1, ['+' , EW]);
 
 	// 3.
-	FIRST(3, ['*' , '']);
+	FIRST(3, ['*' , EW]);
 
 	// 4.
 	FOLLOW(0, [')' , EOF]);
