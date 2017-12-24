@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import { _first , first , follow } from '../../src' ;
+import { _first , first , follow , EOF } from '../../src' ;
 
 import { sorted } from '@aureooms/js-itertools' ;
 
@@ -27,6 +27,61 @@ test( 'Dragon Book (2006) page 65' , t => {
 	t.deepEqual( sorted(increasing, first(phi, [ 'expr', ';' ])) , [ 'expr' ] ) ;
 
 }) ;
+
+test( 'Dragon Book (2006) Example 4.30' , t => {
+
+	const G = [
+		[ // E
+			[ 2 , 1 ] ,
+		] ,
+		[ // E'
+			[ '+' , 2 , 1 ] ,
+			[ ] ,
+		] ,
+		[ // T
+			[ 4 , 3 ] ,
+		] ,
+		[ // T'
+			[ '*' , 4 , 3 ] ,
+			[ ] ,
+		] ,
+		[ // F
+			[ '(' , 0 , ')' ] ,
+			[ 'id' ] ,
+		] ,
+	] ;
+
+	const phi = _first(G);
+
+	const FIRST = ( i , e ) => t.deepEqual( sorted(increasing, first(phi, [i])) , sorted(increasing, e) ) ;
+
+	const pho = follow(phi, 0, G);
+
+	const FOLLOW = (i , e) => t.deepEqual( sorted(increasing, pho[i]) , sorted(increasing, e) ) ;
+
+	// 1.
+	FIRST(4, ['(' , 'id']);
+	FIRST(2, ['(' , 'id']);
+	FIRST(0, ['(' , 'id']);
+
+	// 2.
+	FIRST(1, ['+' , '']);
+
+	// 3.
+	FIRST(3, ['*' , '']);
+
+	// 4.
+	FOLLOW(0, [')' , EOF]);
+	FOLLOW(1, [')' , EOF]);
+
+	// 5.
+	FOLLOW(2, ['+' , ')' , EOF]);
+	FOLLOW(3, ['+' , ')' , EOF]);
+
+	// 5.
+	FOLLOW(4, [ '*' , '+' , ')' , EOF]);
+
+});
 
 
 //function resolve ( rules ) {

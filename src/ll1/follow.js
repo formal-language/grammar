@@ -1,4 +1,4 @@
-import { list , map , filter } from '@aureooms/js-itertools' ;
+import { list , map , filter , enumerate } from '@aureooms/js-itertools' ;
 
 import { setaddall } from '../util' ;
 
