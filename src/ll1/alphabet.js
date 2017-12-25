@@ -1,6 +1,6 @@
-import { EW } from './constants' ;
+import EW from './EW' ;
 
-export function alphabet ( grammar ) {
+export default function alphabet ( grammar ) {
 
 	const abc = new Set();
 

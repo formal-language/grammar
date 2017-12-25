@@ -2,9 +2,10 @@ import { list , map , filter , enumerate } from '@aureooms/js-itertools' ;
 
 import { setaddall } from '../util' ;
 
-import { first } from './first' ;
+import first from './first' ;
 
-import { EW , EOF } from './constants' ;
+import EW from './EW' ;
+import EOF from './EOF' ;
 
 /**
  * Computes the FOLLOW table for all nonterminals.
@@ -14,7 +15,7 @@ import { EW , EOF } from './constants' ;
  * @param {Array} grammar
  * @returns {Array}
  */
-export function follow ( FIRST , start , grammar ) {
+export default function follow ( FIRST , start , grammar ) {
 
 	const FOLLOW = list( map( _ => new Set() , grammar ) ) ;
 

@@ -5,7 +5,7 @@
  * @param {Object} element - The element to add to the set.
  * @returns {Boolean} Whether <code>set</code> has changed.
  */
-export function setadd ( set , element ) {
+export default function setadd ( set , element ) {
 	if ( set.has(element) ) return false ;
 	set.add(element);
 	return true;

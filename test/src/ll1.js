@@ -1,6 +1,12 @@
 import test from 'ava' ;
 
-import {
+import { sorted , list , map } from '@aureooms/js-itertools' ;
+
+import { increasing } from '@aureooms/js-compare' ;
+
+import { ll1 } from '../../src' ;
+
+const {
 	StreamFromIterable ,
 	compile ,
 	parse ,
@@ -10,19 +16,15 @@ import {
 	follow ,
 	EOF ,
 	EW ,
-} from '../../src' ;
-
-import { sorted } from '@aureooms/js-itertools' ;
-
-import { increasing } from '@aureooms/js-compare' ;
-
+} = ll1 ;
 
 const ALPHABET = ( t , abc , e ) => t.deepEqual( sorted(increasing, abc) , sorted(increasing, e ) );
 const FIRST = ( t , phi , i , e ) => t.deepEqual( sorted(increasing, first(phi, i)) , sorted(increasing, e) ) ;
 const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, pho[i]) , sorted(increasing, e) ) ;
 
+test( 'Dragon Book (2006) page 62 & 65' , t => {
 
-test( 'Dragon Book (2006) page 65' , t => {
+	const start = 0;
 
 	const G = [ // page 62
 		[ // stmt : 0 (start)
@@ -37,6 +39,10 @@ test( 'Dragon Book (2006) page 65' , t => {
 		] ,
 	] ;
 
+	t.true(ll1.is(start, G));
+
+	// page 65
+
 	const abc = alphabet(G);
 
 	ALPHABET( t , abc , ['expr' , ';' , 'if' , '(' , ')' , 'for' , 'other' , EW] ) ;
@@ -46,9 +52,78 @@ test( 'Dragon Book (2006) page 65' , t => {
 	FIRST(t , phi , [0], [ 'expr', 'for', 'if', 'other' ]) ;
 	FIRST(t , phi , [ 'expr', ';' ], [ 'expr' ]) ;
 
+	// page 62
+
+	const table = compile(start, G);
+
+	const stream = new StreamFromIterable('for ( ; expr ; expr ) other'.split(' '));
+
+	const tree = parse(G, table, start, stream);
+
+	t.deepEqual( tree ,
+		{
+			'nonterminal' : -1 ,
+			'production' : {
+				'id' : 0 ,
+				'rule' : [ start , EOF ] ,
+			} ,
+			'children' : [
+				{
+					'nonterminal' : 0 ,
+					'production': {
+						'id' : 2 ,
+						'rule' : G[0][2] ,
+					} ,
+					'children' : [
+						"for" ,
+						"(" ,
+						{
+							'nonterminal' : 1 ,
+							'production' : {
+								'id' : 0 ,
+								'rule' : [] ,
+							} ,
+							'children' : [] ,
+						} ,
+						';' ,
+						{
+							'nonterminal' : 1 ,
+							'production' : {
+								'id' : 1 ,
+								'rule' : G[1][1] ,
+							} ,
+							'children' : G[1][1] ,
+						} ,
+						';' ,
+						{
+							'nonterminal' : 1 ,
+							'production' : {
+								'id' : 1 ,
+								'rule' : G[1][1] ,
+							} ,
+							'children' : G[1][1] ,
+						} ,
+						')' ,
+						{
+							'nonterminal' : 0 ,
+							'production' : {
+								'id' : 3 ,
+								'rule' : G[0][3] ,
+							} ,
+							'children' : G[0][3] ,
+						} ,
+					]
+				}
+				, EOF
+			]
+		}
+	) ;
+
 }) ;
 
 test( 'Dragon Book (2006) Example 4.30' , t => {
+
+	const start = 0;
 
 	const G = [
 		[ // E : 0 (start)
@@ -71,12 +146,14 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 		] ,
 	] ;
 
+	t.true(ll1.is(start, G));
+
 	const abc = alphabet(G);
 
 	ALPHABET( t , abc , ['+' , '*' , '(' , ')' , 'id' , EW] ) ;
 
 	const phi = _first(G);
-	const pho = follow(phi, 0, G);
+	const pho = follow(phi, start, G);
 
 	// 1.
 	FIRST(t, phi, [4], ['(' , 'id']);
@@ -104,6 +181,8 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 
 test( 'Dragon Book (2006) page 71' , t => {
 
+	const start = 0;
+
 	const G = [
 		[ // expr : 0 (start)
 			[ 2 , 1 ] ,
@@ -113,47 +192,114 @@ test( 'Dragon Book (2006) page 71' , t => {
 			[ '-' , 2 , 1 ] ,
 			[ ] ,
 		],
-		[ // term : 2
-			[ '0' ] ,
-			[ '1' ] ,
-			[ '2' ] ,
-			[ '3' ] ,
-			[ '4' ] ,
-			[ '5' ] ,
-			[ '6' ] ,
-			[ '7' ] ,
-			[ '8' ] ,
-			[ '9' ] ,
-		],
+		list( map( list , '0123456789' ) ) , // term : 2
 	] ;
 
-	const start = 0;
+	t.true(ll1.is(start, G));
 
-	const prog = compile(G, start);
+	const table = compile(start, G);
 
 	const stream = new StreamFromIterable('9-5+2');
 
-	const tree = parse(prog, start, stream);
+	const tree = parse(G, table, start, stream);
 
 	t.deepEqual( tree ,
-		[
-			[
-				["9"],
-				[
-					"-",
-					["5"],
-					[
-						"+",
-						["2"],
-						[]
+		{
+			'nonterminal' : -1 ,
+			'production' : {
+				'id' : 0 ,
+				'rule' : [ start , EOF ] ,
+			} ,
+			'children' : [
+				{
+					'nonterminal' : 0 ,
+					'production': {
+						'id' : 0 ,
+						'rule' : G[0][0] ,
+					} ,
+					'children' : [
+						{
+							'nonterminal' : 2 ,
+							'production': {
+								'id' : 9 ,
+								'rule' : G[2][9] ,
+							} ,
+							'children' : ["9"]
+						} ,
+						{
+							'nonterminal' : 1 ,
+							'production': {
+								'id' : 1 ,
+								'rule' : G[1][1] ,
+							} ,
+							'children' : [
+								"-",
+								{
+									'nonterminal' : 2 ,
+									'production': {
+										'id' : 5 ,
+										'rule' : G[2][5] ,
+									} ,
+									'children' : ["5"]
+								} ,
+								{
+									'nonterminal' : 1 ,
+									'production': {
+										'id' : 0 ,
+										'rule' : G[1][0] ,
+									} ,
+									'children' : [
+										"+",
+										{
+											'nonterminal' : 2 ,
+											'production': {
+												'id' : 2 ,
+												'rule' : G[2][2] ,
+											} ,
+											'children' : ["2"]
+										} ,
+										{
+											'nonterminal' : 1 ,
+											'production': {
+												'id' : 2 ,
+												'rule' : G[1][2] ,
+											} ,
+											'children' : []
+										}
+									]
+								}
+							]
+						}
 					]
-				]
-			],
-			EOF
-		]
+				}
+				, EOF
+			]
+		}
 	) ;
 
 });
+
+test( 'Dragon Book (2006) page 49' , t => {
+
+	const start = 0;
+
+	const G = [
+		[ // right : 0 (start)
+			[ 1 , '=' , 0 ] ,
+			[ 1 ] ,
+		] ,
+		list( map( list , 'abcdefghijklmnopqrstuvwxyz' ) ) , // letter : 1
+	] ;
+
+	t.false(ll1.is(start, G));
+
+	//const table = compile(start, G);
+
+	//const stream = new StreamFromIterable('9-5+2');
+
+	//const tree = parse(G, table, start, stream);
+
+}) ;
 
 
 //function resolve ( rules ) {
@@ -199,18 +345,5 @@ test( 'Dragon Book (2006) page 71' , t => {
 
 
 	//const G = resolve(rules);
-
-	//console.log('GRAMMAR' , G);
-
-	//const _FIRST = _first(G);
-	//const FI = first(_FIRST, G);
-
-	//console.log('_FIRST' , _FIRST);
-	//console.log('FIRST' , FI);
-
-	//const FO = follow(_FIRST, G.length - 1, G);
-
-	//console.log('GRAMMAR' , G);
-	//console.log('FOLLOW', FO);
 
 //});

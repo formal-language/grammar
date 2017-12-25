@@ -1,7 +1,42 @@
-export * from './StreamFromIterable' ;
-export * from './alphabet' ;
-export * from './compile' ;
-export * from './constants' ;
-export * from './first' ;
-export * from './follow' ;
-export * from './parse' ;
+import EOF from './EOF' ;
+import EW from './EW' ;
+import StreamFromIterable from './StreamFromIterable' ;
+import _compile from './_compile' ;
+import _first from './_first' ;
+import _parse from './_parse' ;
+import alphabet from './alphabet' ;
+import compile from './compile' ;
+import first from './first' ;
+import follow from './follow' ;
+import is from './is' ;
+import parse from './parse' ;
+
+export default {
+	EOF ,
+	EW ,
+	StreamFromIterable ,
+	_compile ,
+	_first ,
+	_parse ,
+	alphabet ,
+	compile ,
+	first ,
+	follow ,
+	is ,
+	parse ,
+} ;
+
+export {
+	EOF ,
+	EW ,
+	StreamFromIterable ,
+	_compile ,
+	_first ,
+	_parse ,
+	alphabet ,
+	compile ,
+	first ,
+	follow ,
+	is ,
+	parse ,
+} ;

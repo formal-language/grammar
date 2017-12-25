@@ -1,7 +1,7 @@
 import { iter , next } from '@aureooms/js-itertools' ;
-import { EOF } from './constants' ;
+import EOF from './EOF' ;
 
-export class StreamFromIterable {
+export default class StreamFromIterable {
 
 	constructor ( iterable ) {
 
