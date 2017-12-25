@@ -1,6 +1,5 @@
 import EOF from './EOF' ;
 import EW from './EW' ;
-import StreamFromIterable from './StreamFromIterable' ;
 import _compile from './_compile' ;
 import _first from './_first' ;
 import _parse from './_parse' ;
@@ -14,7 +13,6 @@ import parse from './parse' ;
 export default {
 	EOF ,
 	EW ,
-	StreamFromIterable ,
 	_compile ,
 	_first ,
 	_parse ,
@@ -29,7 +27,6 @@ export default {
 export {
 	EOF ,
 	EW ,
-	StreamFromIterable ,
 	_compile ,
 	_first ,
 	_parse ,

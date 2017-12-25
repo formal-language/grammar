@@ -4,6 +4,19 @@
 Grammar compilation toolkit for JavaScript.
 See [docs](https://aureooms.github.io/js-grammar/index.html).
 
+```js
+	import * as stream from '@aureooms/js-stream' ;
+	import { ll1 } from '@aureooms/js-grammar' ;
+
+	const G = [ [ [ '0' , '1' ] ] ] ;
+
+	const table = ll1.compile(0, G);
+
+	const tokens = stream.fromstring('010101');
+
+	const tree = ll1.parse(0, G, table, tokens);
+```
+
 [![License](https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)
 [![NPM version](https://img.shields.io/npm/v/@aureooms/js-grammar.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-grammar)
 [![Build status](https://img.shields.io/travis/aureooms/js-grammar.svg?style=flat)](https://travis-ci.org/aureooms/js-grammar)

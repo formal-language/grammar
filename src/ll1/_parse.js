@@ -1,3 +1,5 @@
+import EOF from './EOF' ;
+
 /**
  * Table-driven predictive parsing.
  *
@@ -6,13 +8,15 @@
  * @param stream
  * @returns {Array}
  */
-export default function _parse ( grammar , table , rule , stream , nonterminal , production ) {
+export default function _parse ( grammar , table , rule , stream , nonterminal , productionid ) {
 
 	const children = [];
 
 	for (const x of rule) {
 
-		const t = stream.read();
+		const lookahead = stream.read();
+
+		const t = lookahead === stream.eof ? EOF : lookahead ;
 
 		if (typeof x === 'string') {
 			if (t === x) { children.push(x); continue; }
@@ -32,7 +36,7 @@ export default function _parse ( grammar , table , rule , stream , nonterminal ,
 	return {
 		nonterminal ,
 		'production' : {
-			'id' : production ,
+			'id' : productionid ,
 			rule ,
 		} ,
 		children

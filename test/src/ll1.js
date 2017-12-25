@@ -1,5 +1,7 @@
 import test from 'ava' ;
 
+import * as stream from '@aureooms/js-stream' ;
+
 import { sorted , list , map } from '@aureooms/js-itertools' ;
 
 import { increasing } from '@aureooms/js-compare' ;
@@ -7,7 +9,6 @@ import { increasing } from '@aureooms/js-compare' ;
 import { ll1 } from '../../src' ;
 
 const {
-	StreamFromIterable ,
 	compile ,
 	parse ,
 	alphabet ,
@@ -56,9 +57,9 @@ test( 'Dragon Book (2006) page 62 & 65' , t => {
 
 	const table = compile(start, G);
 
-	const stream = new StreamFromIterable('for ( ; expr ; expr ) other'.split(' '));
+	const tokens = stream.fromiterable('for ( ; expr ; expr ) other'.split(' '));
 
-	const tree = parse(G, table, start, stream);
+	const tree = parse(start, G, table, tokens);
 
 	t.deepEqual( tree ,
 		{
@@ -199,9 +200,9 @@ test( 'Dragon Book (2006) page 71' , t => {
 
 	const table = compile(start, G);
 
-	const stream = new StreamFromIterable('9-5+2');
+	const tokens = stream.fromstring('9-5+2');
 
-	const tree = parse(G, table, start, stream);
+	const tree = parse(start, G, table, tokens);
 
 	t.deepEqual( tree ,
 		{
@@ -295,9 +296,9 @@ test( 'Dragon Book (2006) page 49' , t => {
 
 	//const table = compile(start, G);
 
-	//const stream = new StreamFromIterable('9-5+2');
+	//const tokens = stream.fromstring('a=b=c');
 
-	//const tree = parse(G, table, start, stream);
+	//const tree = parse(start, G, table, tokens);
 
 }) ;
 
