@@ -1,0 +1,1374 @@
+[
+  {
+    "__docId__": 1,
+    "kind": "external",
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Infinity",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 2,
+    "kind": "external",
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~NaN",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 3,
+    "kind": "external",
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~undefined",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 4,
+    "kind": "external",
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~null",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 5,
+    "kind": "external",
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 6,
+    "kind": "external",
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~object",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 7,
+    "kind": "external",
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 8,
+    "kind": "external",
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~function",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 9,
+    "kind": "external",
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 10,
+    "kind": "external",
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~boolean",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 11,
+    "kind": "external",
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Symbol",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 12,
+    "kind": "external",
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Error",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 13,
+    "kind": "external",
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~EvalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 14,
+    "kind": "external",
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~InternalError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 15,
+    "kind": "external",
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RangeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 16,
+    "kind": "external",
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ReferenceError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 17,
+    "kind": "external",
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~SyntaxError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 18,
+    "kind": "external",
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~TypeError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 19,
+    "kind": "external",
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~URIError",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 20,
+    "kind": "external",
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 21,
+    "kind": "external",
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~number",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 22,
+    "kind": "external",
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Date",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 23,
+    "kind": "external",
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~String",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 24,
+    "kind": "external",
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~string",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 25,
+    "kind": "external",
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~RegExp",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 26,
+    "kind": "external",
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 27,
+    "kind": "external",
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 28,
+    "kind": "external",
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 29,
+    "kind": "external",
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint8ClampedArray",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 30,
+    "kind": "external",
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 31,
+    "kind": "external",
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint16Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 32,
+    "kind": "external",
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Int32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 33,
+    "kind": "external",
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Uint32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 34,
+    "kind": "external",
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float32Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 35,
+    "kind": "external",
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Float64Array",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 36,
+    "kind": "external",
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Map",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 37,
+    "kind": "external",
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Set",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 38,
+    "kind": "external",
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakMap",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 39,
+    "kind": "external",
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~WeakSet",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 40,
+    "kind": "external",
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~ArrayBuffer",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 41,
+    "kind": "external",
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~DataView",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 42,
+    "kind": "external",
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~JSON",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 43,
+    "kind": "external",
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Promise",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 44,
+    "kind": "external",
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Generator",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 45,
+    "kind": "external",
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~GeneratorFunction",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 46,
+    "kind": "external",
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Reflect",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 47,
+    "kind": "external",
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "src/.external-ecmascript.js",
+    "static": true,
+    "longname": "src/.external-ecmascript.js~Proxy",
+    "access": "public",
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import ll1 from './ll1' ;\nimport util from './util' ;\n\nexport default {\n\tll1 ,\n\tutil ,\n} ;\n\nexport {\n\tll1 ,\n\tutil ,\n} ;\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 49,
+    "kind": "file",
+    "name": "src/ll1/EOF.js",
+    "content": "const EOF = '$';\nexport default EOF;\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/EOF.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "name": "EOF",
+    "memberof": "src/ll1/EOF.js",
+    "static": true,
+    "longname": "src/ll1/EOF.js~EOF",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/EOF.js",
+    "importStyle": "EOF",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 51,
+    "kind": "file",
+    "name": "src/ll1/EW.js",
+    "content": "const EW = '';\nexport default EW;\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/EW.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 52,
+    "kind": "variable",
+    "name": "EW",
+    "memberof": "src/ll1/EW.js",
+    "static": true,
+    "longname": "src/ll1/EW.js~EW",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/EW.js",
+    "importStyle": "EW",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "file",
+    "name": "src/ll1/_compile.js",
+    "content": "import {\n\tenumerate ,\n\tmap ,\n\tfilter ,\n\tchain ,\n\tnext ,\n\titer ,\n\trange ,\n} from '@aureooms/js-itertools' ;\n\nimport first from './first' ;\nimport _first from './_first' ;\nimport follow from './follow' ;\nimport alphabet from './alphabet' ;\nimport EW from './EW' ;\nimport EOF from './EOF' ;\n\n/**\n * Generates the lines of the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * TODO handle translation\n *\n * @param grammar\n * @param start\n * @returns {undefined}\n */\nexport default function* _compile ( start , grammar ) {\n\n\tconst abc = alphabet(grammar);\n\n\tconst phi = _first(grammar);\n\tconst pho = follow(phi, start, grammar);\n\n\tconst FIRST = rule => first(phi, rule) ;\n\n\tconst dflt = {}; // dummy object\n\n\tfor (const [A, rules] of enumerate(grammar)) {\n\n\t\tconst m = map(\n\t\t\ta => [\n\t\t\t\ta ,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter(r => rules[r].length === 0, range(rules.length))),\n\t\t\t\t\tdflt,\n\t\t\t\t) ,\n\t\t\t] ,\n\t\t\tfilter( a => pho[A].has(a) && !phi[A].has(a), chain([abc,[EOF]]))\n\t\t);\n\n\t\tconst n = map(\n\t\t\ta => [\n\t\t\t\ta ,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter(r => FIRST(rules[r]).has(a), range(rules.length))),\n\t\t\t\t\tdflt,\n\t\t\t\t) ,\n\t\t\t] ,\n\t\t\tfilter( a => a != EW , abc )\n\t\t);\n\n\t\tyield new Map(filter(([k,v]) => v !== dflt, chain([m,n])));\n\n\t}\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/_compile.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 54,
+    "kind": "function",
+    "name": "_compile",
+    "memberof": "src/ll1/_compile.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/_compile.js~_compile",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/_compile.js",
+    "importStyle": "_compile",
+    "description": "Generates the lines of the predictive parsing table for a grammar.\nCorresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n\nTODO handle translation",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{undefined}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "start",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "undefined"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "name": "src/ll1/_first.js",
+    "content": "import { enumerate , list , map , filter , any } from '@aureooms/js-itertools' ;\n\nimport { setadd , setaddall } from '../util' ;\n\nimport EW from './EW';\n\n/**\n * Computes FIRST table for grammar nonterminals.\n *\n * @param grammar\n * @returns {Array}\n */\nexport default function _first ( grammar ) {\n\n\tconst FIRST = list( map( _ => new Set() , grammar ) ) ;\n\n\tlet updated = true;\n\n\twhile (updated) {\n\n\t\tupdated = false;\n\n\t\tfor (const [i, rules] of enumerate(grammar)) {\n\n\t\t\tfor (const rule of rules) {\n\n\t\t\t\tlet read = true;\n\n\t\t\t\tfor ( const x of rule ) {\n\n\t\t\t\t\tif (!read) break; read = false;\n\n\t\t\t\t\tif ( typeof x === 'string' ) updated |= setadd( FIRST[i], x);\n\t\t\t\t\telse {\n\t\t\t\t\t\tupdated |= setaddall(FIRST[i], filter(y => y !== EW, FIRST[x]));\n\t\t\t\t\t\tread |= any(map(y => y === EW, FIRST[x]));\n\t\t\t\t\t}\n\n\t\t\t\t}\n\n\t\t\t\tif (read) updated |= setadd(FIRST[i], EW);\n\t\t\t}\n\n\t\t}\n\n\t}\n\n\treturn FIRST;\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/_first.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 56,
+    "kind": "function",
+    "name": "_first",
+    "memberof": "src/ll1/_first.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/_first.js~_first",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/_first.js",
+    "importStyle": "_first",
+    "description": "Computes FIRST table for grammar nonterminals.",
+    "lineNumber": 13,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "file",
+    "name": "src/ll1/_parse.js",
+    "content": "import EOF from './EOF' ;\n\n/**\n * Table-driven predictive parsing.\n *\n * @param table\n * @param rule\n * @param stream\n * @returns {Array}\n */\nexport default function _parse ( grammar , table , rule , stream , nonterminal , productionid ) {\n\n\tconst children = [];\n\n\tfor (const x of rule) {\n\n\t\tconst lookahead = stream.read();\n\n\t\tconst t = lookahead === stream.eof ? EOF : lookahead ;\n\n\t\tif (typeof x === 'string') {\n\t\t\tif (t === x) { children.push(x); continue; }\n\t\t\telse throw new Error(`Syntax error at token '${t}', expected '${x}'.`) ;\n\t\t}\n\n\t\tstream.unread(t);\n\n\t\tconst next = table[x].get(t) ;\n\n\t\tif ( next === undefined ) throw new Error(`Syntax error at token '${t}', expected one of '${[...table[x].keys()]}'.`) ;\n\n\t\telse children.push(_parse(grammar, table, grammar[x][next], stream , x , next));\n\n\t}\n\n\treturn {\n\t\tnonterminal ,\n\t\t'production' : {\n\t\t\t'id' : productionid ,\n\t\t\trule ,\n\t\t} ,\n\t\tchildren\n\t} ;\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/_parse.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 58,
+    "kind": "function",
+    "name": "_parse",
+    "memberof": "src/ll1/_parse.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/_parse.js~_parse",
+    "access": "private",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/_parse.js",
+    "importStyle": "_parse",
+    "description": "Table-driven predictive parsing.",
+    "lineNumber": 11,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "table",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "rule",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "stream",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "file",
+    "name": "src/ll1/alphabet.js",
+    "content": "import EW from './EW' ;\n\nexport default function alphabet ( grammar ) {\n\n\tconst abc = new Set();\n\n\tfor (const unit of grammar) {\n\t\tfor (const rule of unit) {\n\t\t\tif (rule.length === 0) {\n\t\t\t\tabc.add(EW);\n\t\t\t\tcontinue;\n\t\t\t}\n\t\t\tfor (const part of rule) {\n\t\t\t\tif (typeof part === 'string') abc.add(part);\n\t\t\t}\n\t\t}\n\t}\n\n\treturn abc;\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/alphabet.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 60,
+    "kind": "function",
+    "name": "alphabet",
+    "memberof": "src/ll1/alphabet.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/alphabet.js~alphabet",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/alphabet.js",
+    "importStyle": "alphabet",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "grammar",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "name": "src/ll1/compile.js",
+    "content": "import { list } from '@aureooms/js-itertools' ;\n\nimport _compile from './_compile' ;\n\n/**\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n */\nexport default function compile (start, grammar) {\n\treturn list(_compile(start, grammar));\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/compile.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 62,
+    "kind": "function",
+    "name": "compile",
+    "memberof": "src/ll1/compile.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/compile.js~compile",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/compile.js",
+    "importStyle": "compile",
+    "description": "Compiles the predictive parsing table for a grammar.\nCorresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.",
+    "lineNumber": 12,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{undefined}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "undefined"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "file",
+    "name": "src/ll1/first.js",
+    "content": "import { map , filter , any } from '@aureooms/js-itertools' ;\n\nimport { setaddall } from '../util' ;\n\nimport EW from './EW';\n\n/**\n * Generate FIRST set for any rule given the FIRST sets for the nonterminals.\n *\n * @param {Array} FIRST\n * @param {Array} rule\n * @returns {Set}\n */\nexport default function first ( FIRST , rule ) {\n\n\tconst terminals = new Set();\n\tlet read = true;\n\tfor (const x of rule) {\n\t\tif (!read) break; read = false;\n\t\tif (typeof x === 'string') {\n\t\t\tterminals.add(x);\n\t\t\tbreak;\n\t\t}\n\t\tsetaddall(terminals, filter(y => y !== EW, FIRST[x]));\n\t\tread |= any(map(y => y === EW, FIRST[x]));\n\t}\n\n\tif (read) terminals.add(EW);\n\n\treturn terminals;\n\n}\n\n///**\n// * Computes FIRST table for grammar entire rules. Needed?\n// *\n// * @param _FIRST\n// * @param grammar\n// * @returns {undefined}\n// */\n//function __first ( _FIRST , grammar ) {\n\n\t//const F = [];\n\n\t//for (const unit of grammar) {\n\n\t\t//const forrules = [];\n\n\t\t//for (const rule of unit) {\n\t\t\t//const f = first( _FIRST , rule);\n\t\t\t//forrules.push(f);\n\t\t//}\n\n\t\t//F.push(forrules);\n\t//}\n\n\t//return F;\n\n//}\n\n\n///**\n//* Computes dependency graph for faster updates. Needed?\n//*\n//* @param grammar\n//* @returns {undefined}\n//*/\n//function getfirstgraph ( grammar ) {\n\n\t//const n = grammar.length;\n\n\t//const graph = [];\n\n\t//for (let i = 0; i < n; ++i) graph.push(new Set());\n\n\t//for (let i = 0; i < n; ++i) {\n\t\t//const rules = grammar[i];\n\t\t//for ( const rule of rules ) {\n\t\t\t//for ( const x of rule ) {\n\t\t\t\t//if (typeof x === 'string') break;\n\t\t\t\t//graph[x].add(i);\n\t\t\t//}\n\t\t//}\n\t//}\n\n\t//return graph;\n\n//}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/first.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 64,
+    "kind": "function",
+    "name": "first",
+    "memberof": "src/ll1/first.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/first.js~first",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/first.js",
+    "importStyle": "first",
+    "description": "Generate FIRST set for any rule given the FIRST sets for the nonterminals.",
+    "lineNumber": 14,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Set}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "FIRST",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "rule",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Set"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 65,
+    "kind": "file",
+    "name": "src/ll1/follow.js",
+    "content": "import { list , map , filter , enumerate } from '@aureooms/js-itertools' ;\n\nimport { setaddall } from '../util' ;\n\nimport first from './first' ;\n\nimport EW from './EW' ;\nimport EOF from './EOF' ;\n\n/**\n * Computes the FOLLOW table for all nonterminals.\n *\n * @param {Array} FIRST\n * @param {Number} start\n * @param {Array} grammar\n * @returns {Array}\n */\nexport default function follow ( FIRST , start , grammar ) {\n\n\tconst FOLLOW = list( map( _ => new Set() , grammar ) ) ;\n\n\tFOLLOW[start].add(EOF);\n\n\tlet updated = true;\n\n\twhile (updated) {\n\t\tupdated = false;\n\t\tfor (const [ A , rules ] of enumerate(grammar)) {\n\t\t\tfor (const rule of rules) {\n\t\t\t\tfor (const [ pos , B ] of enumerate(rule)) {\n\t\t\t\t\tif (typeof B === 'string') continue ;\n\t\t\t\t\tconst fi = first(FIRST, rule.slice(pos+1));\n\t\t\t\t\tif (fi.has(EW)) updated |= setaddall(FOLLOW[B], FOLLOW[A]);\n\t\t\t\t\tupdated |= setaddall(FOLLOW[B], filter( x => x !== EW , fi));\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\n\treturn FOLLOW;\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/follow.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 66,
+    "kind": "function",
+    "name": "follow",
+    "memberof": "src/ll1/follow.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/follow.js~follow",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/follow.js",
+    "importStyle": "follow",
+    "description": "Computes the FOLLOW table for all nonterminals.",
+    "lineNumber": 18,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "FIRST",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "start",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 67,
+    "kind": "file",
+    "name": "src/ll1/index.js",
+    "content": "import EOF from './EOF' ;\nimport EW from './EW' ;\nimport _compile from './_compile' ;\nimport _first from './_first' ;\nimport _parse from './_parse' ;\nimport alphabet from './alphabet' ;\nimport compile from './compile' ;\nimport first from './first' ;\nimport follow from './follow' ;\nimport is from './is' ;\nimport parse from './parse' ;\n\nexport default {\n\tEOF ,\n\tEW ,\n\t_compile ,\n\t_first ,\n\t_parse ,\n\talphabet ,\n\tcompile ,\n\tfirst ,\n\tfollow ,\n\tis ,\n\tparse ,\n} ;\n\nexport {\n\tEOF ,\n\tEW ,\n\t_compile ,\n\t_first ,\n\t_parse ,\n\talphabet ,\n\tcompile ,\n\tfirst ,\n\tfollow ,\n\tis ,\n\tparse ,\n} ;\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 68,
+    "kind": "file",
+    "name": "src/ll1/is.js",
+    "content": "import {\n\tany ,\n\tmap ,\n\tlist ,\n\tchain ,\n\tenumerate ,\n\tnext ,\n\titer ,\n\tfilter ,\n} from '@aureooms/js-itertools' ;\n\nimport follow from './follow' ;\nimport first from './first' ;\nimport _first from './_first' ;\nimport EW from './EW' ;\n\n/**\n * Check if grammar is ll(1).\n *\n * @param {Array} grammar\n * @returns {Boolean}\n */\nexport default function is ( start , grammar ) {\n\n\tconst phi = _first(grammar);\n\n\tconst FIRST = rule => first(phi, rule);\n\n\t// TODO this is stupid\n\tconst containsduplicates = array => (new Set(array)).size !== array.length;\n\n\t// Dragon Book (2006) page 224: For every A, a, b such that A => a | b\n\t// ``... FIRST(a) and FIRST(b) are disjoint sets.''\n\n\tif ( any(\n\t\tmap(\n\t\t\trules => containsduplicates(\n\t\t\t\tlist( chain( map( FIRST , rules ) ) )\n\t\t\t) ,\n\t\t\tgrammar\n\t\t)\n\t) ) return false ;\n\n\t//   and ``... if the empty\n\t//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,\n\t//   and likewise if the empty word is in FIRST(a).''\n\n\tconst pho = follow(phi, start, grammar);\n\n\tconst FOLLOW = A => pho[A];\n\n\tconst dflt = {}; // dummy object\n\n\tfor ( const [A, rules] of enumerate(grammar) ) {\n\n\t\tconst yieldsEW = next( iter( filter( rule => FIRST(rule).has(EW), rules ) ) , dflt );\n\n\t\tif (yieldsEW === dflt) continue;\n\n\t\tif ( any (\n\t\t\tmap (\n\t\t\t\trule => containsduplicates(\n\t\t\t\t\tlist( chain( [ FIRST(rule) , FOLLOW(A) ] ) )\n\t\t\t\t) ,\n\t\t\t\tfilter(rule => rule !== yieldsEW, rules)\n\t\t\t)\n\t\t) ) return false ;\n\n\t}\n\n\treturn true;\n\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/is.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 69,
+    "kind": "function",
+    "name": "is",
+    "memberof": "src/ll1/is.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/is.js~is",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/is.js",
+    "importStyle": "is",
+    "description": "Check if grammar is ll(1).",
+    "lineNumber": 23,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Array"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 70,
+    "kind": "file",
+    "name": "src/ll1/parse.js",
+    "content": "import EOF from './EOF' ;\nimport _parse from './_parse' ;\n\nexport default function parse ( start , grammar, table , stream ) {\n\treturn _parse( grammar, table , [ start , EOF ] , stream , -1 , 0 ) ;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/ll1/parse.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 71,
+    "kind": "function",
+    "name": "parse",
+    "memberof": "src/ll1/parse.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/parse.js~parse",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/ll1/parse.js",
+    "importStyle": "parse",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "start",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "grammar",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "table",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "stream",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 72,
+    "kind": "file",
+    "name": "src/util/index.js",
+    "content": "import setadd from './setadd' ;\nimport setaddall from './setaddall' ;\n\nexport default {\n\tsetadd ,\n\tsetaddall ,\n} ;\n\nexport {\n\tsetadd ,\n\tsetaddall ,\n} ;\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/util/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/util/setadd.js",
+    "content": "/**\n * Adds an element to a set and returns true if the set has changed.\n *\n * @param {Set} set - The set to add to.\n * @param {Object} element - The element to add to the set.\n * @returns {Boolean} Whether <code>set</code> has changed.\n */\nexport default function setadd ( set , element ) {\n\tif ( set.has(element) ) return false ;\n\tset.add(element);\n\treturn true;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/util/setadd.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "function",
+    "name": "setadd",
+    "memberof": "src/util/setadd.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/util/setadd.js~setadd",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/util/setadd.js",
+    "importStyle": "setadd",
+    "description": "Adds an element to a set and returns true if the set has changed.",
+    "lineNumber": 8,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} Whether <code>set</code> has changed."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Set"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "set",
+        "description": "The set to add to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "element",
+        "description": "The element to add to the set."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether <code>set</code> has changed."
+    }
+  },
+  {
+    "__docId__": 75,
+    "kind": "file",
+    "name": "src/util/setaddall.js",
+    "content": "import setadd from './setadd' ;\n\n/**\n * Adds all elements of an iterable to a set and returns true if the set has\n * changed.\n *\n * @param {Set} set - The set to add to.\n * @param {Iterable} iterable - The iterable of elements to add to the set.\n * @returns {Boolean} Whether <code>set</code> has changed.\n */\nexport default function setaddall ( set , iterable ) {\n\tlet changed = false;\n\tfor (const element of iterable) changed |= setadd(set, element);\n\treturn changed;\n}\n",
+    "static": true,
+    "longname": "/home/aureooms/dev/js/js-grammar/src/util/setaddall.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 76,
+    "kind": "function",
+    "name": "setaddall",
+    "memberof": "src/util/setaddall.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/util/setaddall.js~setaddall",
+    "access": "public",
+    "export": true,
+    "importPath": "@aureooms/js-grammar/src/util/setaddall.js",
+    "importStyle": "setaddall",
+    "description": "Adds all elements of an iterable to a set and returns true if the set has\nchanged.",
+    "lineNumber": 11,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} Whether <code>set</code> has changed."
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Set"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "set",
+        "description": "The set to add to."
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Iterable"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "iterable",
+        "description": "The iterable of elements to add to the set."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Whether <code>set</code> has changed."
+    }
+  },
+  {
+    "kind": "index",
+    "content": "[@aureooms/js-grammar](https://aureooms.github.io/js-grammar)\n==\n\nGrammar compilation toolkit for JavaScript.\nSee [docs](https://aureooms.github.io/js-grammar/index.html).\n\n```js\n\timport * as stream from '@aureooms/js-stream' ;\n\timport { ll1 } from '@aureooms/js-grammar' ;\n\n\tconst G = [ [ [ '0' , '1' ] ] ] ;\n\n\tconst table = ll1.compile(0, G);\n\n\tconst tokens = stream.fromstring('010101');\n\n\tconst tree = ll1.parse(0, G, table, tokens);\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)\n[![NPM version](https://img.shields.io/npm/v/@aureooms/js-grammar.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-grammar)\n[![Build status](https://img.shields.io/travis/aureooms/js-grammar.svg?style=flat)](https://travis-ci.org/aureooms/js-grammar)\n[![Coverage status](https://img.shields.io/coveralls/aureooms/js-grammar.svg?style=flat)](https://coveralls.io/r/aureooms/js-grammar)\n[![Dependencies status](https://img.shields.io/david/aureooms/js-grammar.svg?style=flat)](https://david-dm.org/aureooms/js-grammar)\n[![Dev dependencies status](https://img.shields.io/david/dev/aureooms/js-grammar.svg?style=flat)](https://david-dm.org/aureooms/js-grammar?type=dev)\n[![Code Climate](https://img.shields.io/codeclimate/github/aureooms/js-grammar.svg?style=flat)](https://codeclimate.com/github/aureooms/js-grammar)\n[![NPM downloads per month](https://img.shields.io/npm/dm/@aureooms/js-grammar.svg?style=flat)](https://www.npmjs.org/package/@aureooms/js-grammar)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-grammar.svg?style=flat)](https://github.com/aureooms/js-grammar/issues)\n[![Documentation](https://aureooms.github.io/js-grammar/badge.svg)](https://aureooms.github.io/js-grammar/source.html)\n",
+    "longname": "/home/aureooms/dev/js/js-grammar/README.md",
+    "name": "./README.md",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "packageJSON",
+    "content": "{\n  \"name\": \"@aureooms/js-grammar\",\n  \"description\": \"Grammar compilation toolkit for JavaScript\",\n  \"version\": \"2.0.0\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"require\": [\n      \"babel-polyfill\",\n      \"babel-register\"\n    ]\n  },\n  \"babel\": {\n    \"presets\": [\n      \"env\"\n    ],\n    \"env\": {\n      \"development\": {\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-grammar/issues\"\n  },\n  \"dependencies\": {\n    \"@aureooms/js-itertools\": \"^3.4.0\"\n  },\n  \"devDependencies\": {\n    \"@aureooms/js-compare\": \"^1.4.5\",\n    \"@aureooms/js-stream\": \"^0.0.1\",\n    \"ava\": \"^0.24.0\",\n    \"babel-cli\": \"^6.26.0\",\n    \"babel-polyfill\": \"^6.26.0\",\n    \"babel-preset-env\": \"^1.6.1\",\n    \"codeclimate-test-reporter\": \"^0.5.0\",\n    \"coveralls\": \"^3.0.0\",\n    \"esdoc\": \"^1.0.4\",\n    \"esdoc-inject-script-plugin\": \"^1.0.0\",\n    \"esdoc-inject-style-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"np\": \"^2.18.3\",\n    \"nyc\": \"^11.4.1\"\n  },\n  \"homepage\": \"https://aureooms.github.io/js-grammar\",\n  \"keywords\": [\n    \"compilation\",\n    \"grammar\",\n    \"language\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-grammar\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf lib && babel src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"ava ./test/src\"\n  }\n}\n",
+    "longname": "/home/aureooms/dev/js/js-grammar/package.json",
+    "name": "package.json",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manualIndex",
+    "globalIndex": false,
+    "content": null,
+    "longname": "",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manual",
+    "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/overview.md",
+    "name": "./doc/manual/overview.md",
+    "content": "# Overview\n",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manual",
+    "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/installation.md",
+    "name": "./doc/manual/installation.md",
+    "content": "# Installation\n\nCan be managed using\n[jspm](http://jspm.io)\nor [npm](https://github.com/npm/npm).\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-grammar\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-grammar --save\n```\n",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manual",
+    "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/usage.md",
+    "name": "./doc/manual/usage.md",
+    "content": "# Usage\n\nThe code needs a ES2015+ polyfill to work, for example\n[babel-polyfill](https://babeljs.io/docs/usage/polyfill).\n```js\nrequire( 'babel-polyfill' ) ;\n// or\nimport 'babel-polyfill' ;\n```\n\nThen\n```js\nconst grammar = require( '@aureooms/js-grammar' ) ;\n// or\nimport * as grammar from '@aureooms/js-grammar' ;\n```\n",
+    "static": true,
+    "access": "public"
+  },
+  {
+    "kind": "manual",
+    "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/example.md",
+    "name": "./doc/manual/example.md",
+    "content": "# Example\n",
+    "static": true,
+    "access": "public"
+  }
+]

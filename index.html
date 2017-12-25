@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | @aureooms/js-grammar</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Grammar compilation toolkit for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-grammar"><meta property="twitter:description" content="Grammar compilation toolkit for JavaScript"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-grammar"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ll1">ll1</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_compile">_compile</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_first">_first</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_parse">_parse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-alphabet">alphabet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compile">compile</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-first">first</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-follow">follow</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-is">is</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parse">parse</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EOF">EOF</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EW">EW</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setadd">setadd</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setaddall">setaddall</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-a-href--https---aureooms-github-io-js-grammar---aureooms-js-grammar--a-"><a href="https://aureooms.github.io/js-grammar">@aureooms/js-grammar</a></h1><p>Grammar compilation toolkit for JavaScript.
+See <a href="https://aureooms.github.io/js-grammar/index.html">docs</a>.</p>
+<pre><code class="lang-js"><code class="source-code prettyprint">    import * as stream from &apos;@aureooms/js-stream&apos; ;
+    import { ll1 } from &apos;@aureooms/js-grammar&apos; ;
+
+    const G = [ [ [ &apos;0&apos; , &apos;1&apos; ] ] ] ;
+
+    const table = ll1.compile(0, G);
+
+    const tokens = stream.fromstring(&apos;010101&apos;);
+
+    const tree = ll1.parse(0, G, table, tokens);</code>
+</code></pre>
+<p><a href="https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE"><img src="https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat" alt="License"></a>
+<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/v/@aureooms/js-grammar.svg?style=flat" alt="NPM version"></a>
+<a href="https://travis-ci.org/aureooms/js-grammar"><img src="https://img.shields.io/travis/aureooms/js-grammar.svg?style=flat" alt="Build status"></a>
+<a href="https://coveralls.io/r/aureooms/js-grammar"><img src="https://img.shields.io/coveralls/aureooms/js-grammar.svg?style=flat" alt="Coverage status"></a>
+<a href="https://david-dm.org/aureooms/js-grammar"><img src="https://img.shields.io/david/aureooms/js-grammar.svg?style=flat" alt="Dependencies status"></a>
+<a href="https://david-dm.org/aureooms/js-grammar?type=dev"><img src="https://img.shields.io/david/dev/aureooms/js-grammar.svg?style=flat" alt="Dev dependencies status"></a>
+<a href="https://codeclimate.com/github/aureooms/js-grammar"><img src="https://img.shields.io/codeclimate/github/aureooms/js-grammar.svg?style=flat" alt="Code Climate"></a>
+<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/dm/@aureooms/js-grammar.svg?style=flat" alt="NPM downloads per month"></a>
+<a href="https://github.com/aureooms/js-grammar/issues"><img src="https://img.shields.io/github/issues/aureooms/js-grammar.svg?style=flat" alt="GitHub issues"></a>
+<a href="https://aureooms.github.io/js-grammar/source.html"><img src="https://aureooms.github.io/js-grammar/badge.svg" alt="Documentation"></a></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
