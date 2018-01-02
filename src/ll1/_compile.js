@@ -57,7 +57,7 @@ export default function* _compile ( start , grammar ) {
 					dflt,
 				) ,
 			] ,
-			filter( a => a != EW , abc )
+			filter( a => a !== EW , abc )
 		);
 
 		yield new Map(filter(([k,v]) => v !== dflt, chain([m,n])));
