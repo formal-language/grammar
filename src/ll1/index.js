@@ -2,6 +2,7 @@ import EOF from './EOF' ;
 import EW from './EW' ;
 import _compile from './_compile' ;
 import _first from './_first' ;
+import _follow from './_follow' ;
 import _parse from './_parse' ;
 import alphabet from './alphabet' ;
 import compile from './compile' ;
@@ -15,6 +16,7 @@ export default {
 	EW ,
 	_compile ,
 	_first ,
+	_follow ,
 	_parse ,
 	alphabet ,
 	compile ,
@@ -29,6 +31,7 @@ export {
 	EW ,
 	_compile ,
 	_first ,
+	_follow ,
 	_parse ,
 	alphabet ,
 	compile ,

@@ -9,9 +9,9 @@ import {
 	filter ,
 } from '@aureooms/js-itertools' ;
 
-import follow from './follow' ;
-import first from './first' ;
 import _first from './_first' ;
+import _follow from './_follow' ;
+import first from './first' ;
 import EW from './EW' ;
 
 /**
@@ -45,7 +45,7 @@ export default function is ( start , grammar ) {
 	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
 	//   and likewise if the empty word is in FIRST(a).''
 
-	const pho = follow(phi, start, grammar);
+	const pho = _follow(phi, start, grammar);
 
 	const FOLLOW = A => pho[A];
 

@@ -13,6 +13,7 @@ const {
 	parse ,
 	alphabet ,
 	_first ,
+	_follow ,
 	first ,
 	follow ,
 	EOF ,
@@ -21,7 +22,7 @@ const {
 
 const ALPHABET = ( t , abc , e ) => t.deepEqual( sorted(increasing, abc) , sorted(increasing, e ) );
 const FIRST = ( t , phi , i , e ) => t.deepEqual( sorted(increasing, first(phi, i)) , sorted(increasing, e) ) ;
-const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, pho[i]) , sorted(increasing, e) ) ;
+const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, follow(pho, i)) , sorted(increasing, e) ) ;
 
 test( 'Dragon Book (2006) page 62 & 65' , t => {
 
@@ -154,7 +155,7 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 	ALPHABET( t , abc , ['+' , '*' , '(' , ')' , 'id' , EW] ) ;
 
 	const phi = _first(G);
-	const pho = follow(phi, start, G);
+	const pho = _follow(phi, start, G);
 
 	// 1.
 	FIRST(t, phi, [4], ['(' , 'id']);
@@ -168,15 +169,15 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 	FIRST(t, phi, [3], ['*' , EW]);
 
 	// 4.
-	FOLLOW(t, pho, 0, [')' , EOF]);
-	FOLLOW(t, pho, 1, [')' , EOF]);
+	FOLLOW(t, pho, [0], [')' , EOF]);
+	FOLLOW(t, pho, [1], [')' , EOF]);
 
 	// 5.
-	FOLLOW(t, pho, 2, ['+' , ')' , EOF]);
-	FOLLOW(t, pho, 3, ['+' , ')' , EOF]);
+	FOLLOW(t, pho, [2], ['+' , ')' , EOF]);
+	FOLLOW(t, pho, [3], ['+' , ')' , EOF]);
 
 	// 6.
-	FOLLOW(t, pho, 4, [ '*' , '+' , ')' , EOF]);
+	FOLLOW(t, pho, [4], [ '*' , '+' , ')' , EOF]);
 
 });
 
@@ -331,7 +332,7 @@ test( 'chain' , t => {
 	ALPHABET( t , abc , ['w' , 'x' , 'y' , 'z' , EW] ) ;
 
 	const phi = _first(G);
-	const pho = follow(phi, start, G);
+	const pho = _follow(phi, start, G);
 
 	FIRST(t, phi, [0], ['w']);
 	FIRST(t, phi, [1], ['x', 'y', 'z', EW]);

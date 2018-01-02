@@ -10,7 +10,7 @@ import {
 
 import first from './first' ;
 import _first from './_first' ;
-import follow from './follow' ;
+import _follow from './_follow' ;
 import alphabet from './alphabet' ;
 import EW from './EW' ;
 import EOF from './EOF' ;
@@ -30,7 +30,7 @@ export default function* _compile ( start , grammar ) {
 	const abc = alphabet(grammar);
 
 	const phi = _first(grammar);
-	const pho = follow(phi, start, grammar);
+	const pho = _follow(phi, start, grammar);
 
 	const FIRST = rule => first(phi, rule) ;
 
