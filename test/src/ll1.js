@@ -168,15 +168,15 @@ test( 'Dragon Book (2006) Example 4.30' , t => {
 	FIRST(t, phi, [3], ['*' , EW]);
 
 	// 4.
-	FOLLOW(t, pho, [0], [')' , EOF]);
-	FOLLOW(t, pho, [1], [')' , EOF]);
+	FOLLOW(t, pho, 0, [')' , EOF]);
+	FOLLOW(t, pho, 1, [')' , EOF]);
 
 	// 5.
-	FOLLOW(t, pho, [2], ['+' , ')' , EOF]);
-	FOLLOW(t, pho, [3], ['+' , ')' , EOF]);
+	FOLLOW(t, pho, 2, ['+' , ')' , EOF]);
+	FOLLOW(t, pho, 3, ['+' , ')' , EOF]);
 
 	// 6.
-	FOLLOW(t, pho, [4], [ '*' , '+' , ')' , EOF]);
+	FOLLOW(t, pho, 4, [ '*' , '+' , ')' , EOF]);
 
 });
 
