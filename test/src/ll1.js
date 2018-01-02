@@ -302,6 +302,44 @@ test( 'Dragon Book (2006) page 49' , t => {
 
 }) ;
 
+test( 'chain' , t => {
+
+	const start = 0;
+
+	const G = [
+		[ // 0 (start)
+			[ 'w' , 1 ] ,
+		] ,
+		[ // 1
+			[ 'x' , 2 ] ,
+			[ 2 ] ,
+		] ,
+		[ // 2
+			[ 'y' , 3 ] ,
+			[ 3 ] ,
+		] ,
+		[ // 3
+			[ 'z' , 3 ] ,
+			[ ] ,
+		] ,
+	] ;
+
+	t.true(ll1.is(start, G));
+
+	const abc = alphabet(G);
+
+	ALPHABET( t , abc , ['w' , 'x' , 'y' , 'z' , EW] ) ;
+
+	const phi = _first(G);
+	const pho = follow(phi, start, G);
+
+	FIRST(t, phi, [0], ['w']);
+	FIRST(t, phi, [1], ['x', 'y', 'z', EW]);
+	FIRST(t, phi, [2], ['y', 'z', EW]);
+	FIRST(t, phi, [3], ['z', EW]);
+
+});
+
 
 //function resolve ( rules ) {
 
