@@ -1,4 +1,4 @@
-import EOF from './EOF' ;
+import _nextchild from './_nextchild' ;
 
 /**
  * Table-driven predictive parsing.
@@ -8,32 +8,14 @@ import EOF from './EOF' ;
  * @param stream
  * @returns {Array}
  */
-export default function _parse ( grammar , table , rule , stream , nonterminal , productionid ) {
+export default function _parse ( eof , productions , table , rule , stream , nonterminal , productionid ) {
 
 	const children = [];
 
-	for (const x of rule) {
-
-		const lookahead = stream.read();
-
-		const t = lookahead === stream.eof ? EOF : lookahead ;
-
-		if (typeof x === 'string') {
-			if (t === x) { children.push(x); continue; }
-			else throw new Error(`Syntax error at token '${t}', expected '${x}'.`) ;
-		}
-
-		stream.unread(t);
-
-		const next = table[x].get(t) ;
-
-		if ( next === undefined ) throw new Error(`Syntax error at token '${t}', expected one of '${[...table[x].keys()]}'.`) ;
-
-		else children.push(_parse(grammar, table, grammar[x][next], stream , x , next));
-
-	}
+	for (const x of rule) children.push(_nextchild(eof, productions, table, stream, x)) ;
 
 	return {
+		'type' : 'node' ,
 		nonterminal ,
 		'production' : {
 			'id' : productionid ,

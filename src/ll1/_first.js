@@ -1,18 +1,18 @@
-import { enumerate , list , map , filter , any } from '@aureooms/js-itertools' ;
+import { list , map , filter , any } from '@aureooms/js-itertools' ;
 
 import { setadd , setaddall } from '../util' ;
 
-import EW from './EW';
+import { EW } from '../grammar';
 
 /**
  * Computes FIRST table for grammar nonterminals.
  *
- * @param grammar
- * @returns {Array}
+ * @param productions
+ * @returns {Map}
  */
-export default function _first ( grammar ) {
+export default function _first ( productions ) {
 
-	const FIRST = list( map( _ => new Set() , grammar ) ) ;
+	const FIRST = new Map( map( key => [ key , new Set() ] , productions.keys() ) ) ;
 
 	let updated = true;
 
@@ -20,9 +20,9 @@ export default function _first ( grammar ) {
 
 		updated = false;
 
-		for (const [i, rules] of enumerate(grammar)) {
+		for (const [i, rules] of productions) {
 
-			for (const rule of rules) {
+			for (const rule of rules.values()) {
 
 				let read = true;
 
@@ -30,15 +30,15 @@ export default function _first ( grammar ) {
 
 					if (!read) break; read = false;
 
-					if ( typeof x === 'string' ) updated |= setadd( FIRST[i], x);
+					if ( x.type === 'leaf' ) updated |= setadd( FIRST.get(i), x.terminal);
 					else {
-						updated |= setaddall(FIRST[i], filter(y => y !== EW, FIRST[x]));
-						read |= any(map(y => y === EW, FIRST[x]));
+						updated |= setaddall(FIRST.get(i), filter(y => y !== EW, FIRST.get(x.nonterminal)));
+						read |= any(map(y => y === EW, FIRST.get(x.nonterminal)));
 					}
 
 				}
 
-				if (read) updated |= setadd(FIRST[i], EW);
+				if (read) updated |= setadd(FIRST.get(i), EW);
 			}
 
 		}

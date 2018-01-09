@@ -4,32 +4,29 @@ import { setaddall } from '../util' ;
 
 import first from './first' ;
 
-import EW from './EW' ;
-import EOF from './EOF' ;
+import { EW } from '../grammar';
 
 /**
  * Computes the FOLLOW table for all nonterminals.
  *
  * @param {Array} FIRST
  * @param {Number} start
- * @param {Array} grammar
+ * @param {Map} productions
  * @returns {Array}
  */
-export default function _follow ( FIRST , start , grammar ) {
+export default function _follow ( FIRST , start , eof , productions ) {
 
-	const n = grammar.length ;
+	const FOLLOW = new Map( map( i => [ i , new Set( i === start ? [eof] : []) ] , productions.keys() ) ) ;
 
-	const FOLLOW = list( map( i => new Set( i === start ? [EOF] : []) , range(n) ) ) ;
+	const couldbelast = new Map( map( i => [ i , new Set() ] , productions.keys() )) ;
 
-	const couldbelast = list( map ( _ => new Set() , grammar )) ;
-
-	for (const [ A , rules ] of enumerate(grammar)) {
-		for (const rule of rules) {
+	for (const [ A , rules ] of productions) {
+		for (const rule of rules.values()) {
 			for (const [ pos , B ] of enumerate(rule)) {
-				if (typeof B === 'string') continue ;
+				if (B.type === 'leaf') continue ;
 				const fi = first(FIRST, rule.slice(pos+1));
-				if (fi.has(EW)) couldbelast[A].add(B);
-				setaddall(FOLLOW[B], filter( x => x !== EW , fi));
+				if (fi.has(EW)) couldbelast.get(A).add(B.nonterminal);
+				setaddall(FOLLOW.get(B.nonterminal), filter( x => x !== EW , fi));
 			}
 		}
 	}
@@ -37,9 +34,9 @@ export default function _follow ( FIRST , start , grammar ) {
 	let updated = true;
 	while (updated) {
 		updated = false;
-		for (const A of range(n)) {
-			for (const B of couldbelast[A]) {
-				updated |= setaddall(FOLLOW[B], FOLLOW[A]);
+		for (const A of productions.keys()) {
+			for (const B of couldbelast.get(A)) {
+				updated |= setaddall(FOLLOW.get(B), FOLLOW.get(A));
 			}
 		}
 	}

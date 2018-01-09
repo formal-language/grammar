@@ -2,7 +2,7 @@ import { map , filter , any } from '@aureooms/js-itertools' ;
 
 import { setaddall } from '../util' ;
 
-import EW from './EW';
+import { EW } from '../grammar';
 
 /**
  * Generate FIRST set for any rule given the FIRST sets for the nonterminals.
@@ -17,12 +17,12 @@ export default function first ( FIRST , rule ) {
 	let read = true;
 	for (const x of rule) {
 		if (!read) break; read = false;
-		if (typeof x === 'string') {
-			terminals.add(x);
+		if (x.type === 'leaf') {
+			terminals.add(x.terminal);
 			break;
 		}
-		setaddall(terminals, filter(y => y !== EW, FIRST[x]));
-		read |= any(map(y => y === EW, FIRST[x]));
+		setaddall(terminals, filter(y => y !== EW, FIRST.get(x.nonterminal)));
+		read |= any(map(y => y === EW, FIRST.get(x.nonterminal)));
 	}
 
 	if (read) terminals.add(EW);

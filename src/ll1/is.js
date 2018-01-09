@@ -12,17 +12,17 @@ import {
 import _first from './_first' ;
 import _follow from './_follow' ;
 import first from './first' ;
-import EW from './EW' ;
+import { EW } from '../grammar' ;
 
 /**
  * Check if grammar is ll(1).
  *
- * @param {Array} grammar
+ * @param {Grammar} grammar
  * @returns {Boolean}
  */
-export default function is ( start , grammar ) {
+export default function is ( { start , eof , productions } ) {
 
-	const phi = _first(grammar);
+	const phi = _first(productions);
 
 	const FIRST = rule => first(phi, rule);
 
@@ -35,9 +35,9 @@ export default function is ( start , grammar ) {
 	if ( any(
 		map(
 			rules => containsduplicates(
-				list( chain( map( FIRST , rules ) ) )
+				list( chain( map( FIRST , rules.values() ) ) )
 			) ,
-			grammar
+			productions.values()
 		)
 	) ) return false ;
 
@@ -45,15 +45,15 @@ export default function is ( start , grammar ) {
 	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
 	//   and likewise if the empty word is in FIRST(a).''
 
-	const pho = _follow(phi, start, grammar);
+	const pho = _follow(phi, start, eof, productions);
 
-	const FOLLOW = A => pho[A];
+	const FOLLOW = A => pho.get(A);
 
 	const dflt = {}; // dummy object
 
-	for ( const [A, rules] of enumerate(grammar) ) {
+	for ( const [A, rules] of productions ) {
 
-		const yieldsEW = next( iter( filter( rule => FIRST(rule).has(EW), rules ) ) , dflt );
+		const yieldsEW = next( iter( filter( rule => FIRST(rule).has(EW), rules.values() ) ) , dflt );
 
 		if (yieldsEW === dflt) continue;
 
@@ -62,7 +62,7 @@ export default function is ( start , grammar ) {
 				rule => containsduplicates(
 					list( chain( [ FIRST(rule) , FOLLOW(A) ] ) )
 				) ,
-				filter(rule => rule !== yieldsEW, rules)
+				filter(rule => rule !== yieldsEW, rules.values())
 			)
 		) ) return false ;
 
