@@ -1,4 +1,4 @@
-import { LookaheadMismatchError , ExpectedEndOfFileError } from '../error' ;
+import { LookaheadMismatchError , UnexpectedEndOfFileError } from '../error' ;
 import _parse_lazy from './_parse_lazy' ;
 
 /**
@@ -14,14 +14,13 @@ export default function _children_next_lazy ( eof, grammar , table , stream , ex
 
 	const lookahead = stream.read( ) ;
 
-	if ( lookahead === stream.eof ) {
-		if ( expected.terminal === eof ) return expected ;
-		else throw new ExpectedEndOfFileError( lookahead ) ;
-	}
-
 	if ( expected.type === 'leaf' ) {
-		if ( lookahead.terminal === expected.terminal ) return lookahead ;
-		else throw new LookaheadMismatchError(lookahead, [expected]) ;
+		if ( lookahead === stream.eof ) {
+			if ( expected.terminal === eof ) return expected ;
+			else throw new UnexpectedEndOfFileError( [expected.terminal] ) ;
+		}
+		else if ( lookahead.terminal === expected.terminal ) return lookahead ;
+		else throw new LookaheadMismatchError(lookahead, [expected.terminal]) ;
 	}
 
 	stream.unread(lookahead);

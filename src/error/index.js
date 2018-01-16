@@ -1,15 +1,15 @@
-import ExpectedEndOfFileError from './ExpectedEndOfFileError' ;
 import LookaheadMismatchError from './LookaheadMismatchError' ;
 import SyntaxError from './SyntaxError' ;
+import UnexpectedEndOfFileError from './UnexpectedEndOfFileError' ;
 
 export default {
-	ExpectedEndOfFileError ,
 	LookaheadMismatchError ,
 	SyntaxError ,
+	UnexpectedEndOfFileError ,
 } ;
 
 export {
-	ExpectedEndOfFileError ,
 	LookaheadMismatchError ,
 	SyntaxError ,
+	UnexpectedEndOfFileError ,
 } ;

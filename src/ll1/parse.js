@@ -1,9 +1,11 @@
-import _parse from './_parse' ;
+import { next } from '@aureooms/js-itertools' ;
+
+import _parse_lazy from './_parse_lazy' ;
 
 export default function parse ( start , eof , productions, table , stream ) {
 	const root = [
 		{ 'type' : 'node' , 'nonterminal' : start } ,
 		{ 'type' : 'leaf' , 'terminal' : eof } ,
 	] ;
-	return _parse( eof, productions, table , root , stream , -1 , 0 ).children[0] ;
+	return next( _parse_lazy( eof, productions, table , root , stream , -1 , 0 ).children ) ;
 }
