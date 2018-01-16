@@ -1,20 +1,62 @@
 window.esdocSearchIndex = [
   [
-    "@aureooms/js-grammar/src/ll1/eof.js~eof",
-    "variable/index.html#static-variable-EOF",
-    "<span>EOF</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/EOF.js</span>",
+    "@aureooms/js-grammar/src/grammar/ew.js~ew",
+    "variable/index.html#static-variable-EW",
+    "<span>EW</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/EW.js</span>",
     "variable"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/ew.js~ew",
-    "variable/index.html#static-variable-EW",
-    "<span>EW</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/EW.js</span>",
-    "variable"
+    "@aureooms/js-grammar/src/grammar/grammar.js~grammar",
+    "class/src/grammar/Grammar.js~Grammar.html",
+    "<span>Grammar</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/Grammar.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-grammar/src/error/lookaheadmismatcherror.js~lookaheadmismatcherror",
+    "class/src/error/LookaheadMismatchError.js~LookaheadMismatchError.html",
+    "<span>LookaheadMismatchError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/LookaheadMismatchError.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-grammar/src/ll1/parser.js~parser",
+    "class/src/ll1/Parser.js~Parser.html",
+    "<span>Parser</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/Parser.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-grammar/src/error/syntaxerror.js~syntaxerror",
+    "class/src/error/SyntaxError.js~SyntaxError.html",
+    "<span>SyntaxError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/SyntaxError.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-grammar/src/error/unexpectedendoffileerror.js~unexpectedendoffileerror",
+    "class/src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError.html",
+    "<span>UnexpectedEndOfFileError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/UnexpectedEndOfFileError.js</span>",
+    "class"
+  ],
+  [
+    "@aureooms/js-grammar/src/ast/_children_exhaust.js~_children_exhaust",
+    "function/index.html#static-function-_children_exhaust",
+    "<span>_children_exhaust</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/_children_exhaust.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ll1/_children_next_lazy.js~_children_next_lazy",
+    "function/index.html#static-function-_children_next_lazy",
+    "<span>_children_next_lazy</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_children_next_lazy.js</span>",
+    "function"
   ],
   [
     "@aureooms/js-grammar/src/ll1/_compile.js~_compile",
     "function/index.html#static-function-_compile",
     "<span>_compile</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_compile.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/grammar/_expandproduction.js~_expandproduction",
+    "function/index.html#static-function-_expandproduction",
+    "<span>_expandproduction</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/_expandproduction.js</span>",
     "function"
   ],
   [
@@ -24,15 +66,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/_parse.js~_parse",
-    "function/index.html#static-function-_parse",
-    "<span>_parse</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_parse.js</span>",
+    "@aureooms/js-grammar/src/ll1/_follow.js~_follow",
+    "function/index.html#static-function-_follow",
+    "<span>_follow</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_follow.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/alphabet.js~alphabet",
+    "@aureooms/js-grammar/src/ll1/_parse_lazy.js~_parse_lazy",
+    "function/index.html#static-function-_parse_lazy",
+    "<span>_parse_lazy</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_parse_lazy.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/grammar/alphabet.js~alphabet",
     "function/index.html#static-function-alphabet",
-    "<span>alphabet</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/alphabet.js</span>",
+    "<span>alphabet</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/alphabet.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ast/cmap.js~cmap",
+    "function/index.html#static-function-cmap",
+    "<span>cmap</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/cmap.js</span>",
     "function"
   ],
   [
@@ -42,9 +96,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-grammar/src/grammar/expandobject.js~expandobject",
+    "function/index.html#static-function-expandobject",
+    "<span>expandobject</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/expandobject.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-grammar/src/ll1/first.js~first",
     "function/index.html#static-function-first",
     "<span>first</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/first.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ast/flatten.js~flatten",
+    "function/index.html#static-function-flatten",
+    "<span>flatten</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/flatten.js</span>",
     "function"
   ],
   [
@@ -54,9 +120,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-grammar/src/grammar/from.js~from",
+    "function/index.html#static-function-from",
+    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/from.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ll1/from.js~from",
+    "function/index.html#static-function-from",
+    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/from.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-grammar/src/ll1/is.js~is",
     "function/index.html#static-function-is",
     "<span>is</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/is.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ast/materialize.js~materialize",
+    "function/index.html#static-function-materialize",
+    "<span>materialize</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/materialize.js</span>",
     "function"
   ],
   [
@@ -75,6 +159,12 @@ window.esdocSearchIndex = [
     "@aureooms/js-grammar/src/util/setaddall.js~setaddall",
     "function/index.html#static-function-setaddall",
     "<span>setaddall</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/util/setaddall.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/ast/transform.js~transform",
+    "function/index.html#static-function-transform",
+    "<span>transform</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/transform.js</span>",
     "function"
   ],
   [
@@ -360,21 +450,207 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/ast/_children_exhaust.js",
+    "file/src/ast/_children_exhaust.js.html",
+    "src/ast/_children_exhaust.js",
+    "file"
+  ],
+  [
+    "src/ast/cmap.js",
+    "file/src/ast/cmap.js.html",
+    "src/ast/cmap.js",
+    "file"
+  ],
+  [
+    "src/ast/flatten.js",
+    "file/src/ast/flatten.js.html",
+    "src/ast/flatten.js",
+    "file"
+  ],
+  [
+    "src/ast/index.js",
+    "file/src/ast/index.js.html",
+    "src/ast/index.js",
+    "file"
+  ],
+  [
+    "src/ast/materialize.js",
+    "file/src/ast/materialize.js.html",
+    "src/ast/materialize.js",
+    "file"
+  ],
+  [
+    "src/ast/transform.js",
+    "file/src/ast/transform.js.html",
+    "src/ast/transform.js",
+    "file"
+  ],
+  [
+    "src/error/lookaheadmismatcherror.js",
+    "file/src/error/LookaheadMismatchError.js.html",
+    "src/error/LookaheadMismatchError.js",
+    "file"
+  ],
+  [
+    "src/error/lookaheadmismatcherror.js~lookaheadmismatcherror#constructor",
+    "class/src/error/LookaheadMismatchError.js~LookaheadMismatchError.html#instance-constructor-constructor",
+    "src/error/LookaheadMismatchError.js~LookaheadMismatchError#constructor",
+    "method"
+  ],
+  [
+    "src/error/syntaxerror.js",
+    "file/src/error/SyntaxError.js.html",
+    "src/error/SyntaxError.js",
+    "file"
+  ],
+  [
+    "src/error/syntaxerror.js~syntaxerror#constructor",
+    "class/src/error/SyntaxError.js~SyntaxError.html#instance-constructor-constructor",
+    "src/error/SyntaxError.js~SyntaxError#constructor",
+    "method"
+  ],
+  [
+    "src/error/unexpectedendoffileerror.js",
+    "file/src/error/UnexpectedEndOfFileError.js.html",
+    "src/error/UnexpectedEndOfFileError.js",
+    "file"
+  ],
+  [
+    "src/error/unexpectedendoffileerror.js~unexpectedendoffileerror#constructor",
+    "class/src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError.html#instance-constructor-constructor",
+    "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError#constructor",
+    "method"
+  ],
+  [
+    "src/error/index.js",
+    "file/src/error/index.js.html",
+    "src/error/index.js",
+    "file"
+  ],
+  [
+    "src/grammar/ew.js",
+    "file/src/grammar/EW.js.html",
+    "src/grammar/EW.js",
+    "file"
+  ],
+  [
+    "src/grammar/grammar.js",
+    "file/src/grammar/Grammar.js.html",
+    "src/grammar/Grammar.js",
+    "file"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#_alphabet",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-member-_alphabet",
+    "src/grammar/Grammar.js~Grammar#_alphabet",
+    "member"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#alphabet",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-method-alphabet",
+    "src/grammar/Grammar.js~Grammar#alphabet",
+    "method"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#constructor",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-constructor-constructor",
+    "src/grammar/Grammar.js~Grammar#constructor",
+    "method"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#eof",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-member-eof",
+    "src/grammar/Grammar.js~Grammar#eof",
+    "member"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#productions",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-member-productions",
+    "src/grammar/Grammar.js~Grammar#productions",
+    "member"
+  ],
+  [
+    "src/grammar/grammar.js~grammar#start",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-member-start",
+    "src/grammar/Grammar.js~Grammar#start",
+    "member"
+  ],
+  [
+    "src/grammar/_expandproduction.js",
+    "file/src/grammar/_expandproduction.js.html",
+    "src/grammar/_expandproduction.js",
+    "file"
+  ],
+  [
+    "src/grammar/alphabet.js",
+    "file/src/grammar/alphabet.js.html",
+    "src/grammar/alphabet.js",
+    "file"
+  ],
+  [
+    "src/grammar/expandobject.js",
+    "file/src/grammar/expandobject.js.html",
+    "src/grammar/expandobject.js",
+    "file"
+  ],
+  [
+    "src/grammar/from.js",
+    "file/src/grammar/from.js.html",
+    "src/grammar/from.js",
+    "file"
+  ],
+  [
+    "src/grammar/index.js",
+    "file/src/grammar/index.js.html",
+    "src/grammar/index.js",
+    "file"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
     "file"
   ],
   [
-    "src/ll1/eof.js",
-    "file/src/ll1/EOF.js.html",
-    "src/ll1/EOF.js",
+    "src/ll1/parser.js",
+    "file/src/ll1/Parser.js.html",
+    "src/ll1/Parser.js",
     "file"
   ],
   [
-    "src/ll1/ew.js",
-    "file/src/ll1/EW.js.html",
-    "src/ll1/EW.js",
+    "src/ll1/parser.js~parser#_table",
+    "class/src/ll1/Parser.js~Parser.html#instance-member-_table",
+    "src/ll1/Parser.js~Parser#_table",
+    "member"
+  ],
+  [
+    "src/ll1/parser.js~parser#constructor",
+    "class/src/ll1/Parser.js~Parser.html#instance-constructor-constructor",
+    "src/ll1/Parser.js~Parser#constructor",
+    "method"
+  ],
+  [
+    "src/ll1/parser.js~parser#grammar",
+    "class/src/ll1/Parser.js~Parser.html#instance-member-grammar",
+    "src/ll1/Parser.js~Parser#grammar",
+    "member"
+  ],
+  [
+    "src/ll1/parser.js~parser#parse",
+    "class/src/ll1/Parser.js~Parser.html#instance-method-parse",
+    "src/ll1/Parser.js~Parser#parse",
+    "method"
+  ],
+  [
+    "src/ll1/parser.js~parser#table",
+    "class/src/ll1/Parser.js~Parser.html#instance-method-table",
+    "src/ll1/Parser.js~Parser#table",
+    "method"
+  ],
+  [
+    "src/ll1/_children_next_lazy.js",
+    "file/src/ll1/_children_next_lazy.js.html",
+    "src/ll1/_children_next_lazy.js",
     "file"
   ],
   [
@@ -390,15 +666,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/ll1/_parse.js",
-    "file/src/ll1/_parse.js.html",
-    "src/ll1/_parse.js",
+    "src/ll1/_follow.js",
+    "file/src/ll1/_follow.js.html",
+    "src/ll1/_follow.js",
     "file"
   ],
   [
-    "src/ll1/alphabet.js",
-    "file/src/ll1/alphabet.js.html",
-    "src/ll1/alphabet.js",
+    "src/ll1/_parse_lazy.js",
+    "file/src/ll1/_parse_lazy.js.html",
+    "src/ll1/_parse_lazy.js",
     "file"
   ],
   [
@@ -417,6 +693,12 @@ window.esdocSearchIndex = [
     "src/ll1/follow.js",
     "file/src/ll1/follow.js.html",
     "src/ll1/follow.js",
+    "file"
+  ],
+  [
+    "src/ll1/from.js",
+    "file/src/ll1/from.js.html",
+    "src/ll1/from.js",
     "file"
   ],
   [

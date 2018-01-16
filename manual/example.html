@@ -57,7 +57,94 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="example">Example</h1></div>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="example">Example</h1><pre><code><code class="source-code prettyprint">A convoluted `&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)`.</code>
+</code></pre><pre><code class="lang-js"><code class="source-code prettyprint">    import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
+    import * as stream from &apos;@aureooms/js-stream&apos; ;
+    import { grammar , ll1 , ast } from &apos;@aureooms/js-grammar&apos; ;
+
+    const G = grammar.from( {
+        &quot;start&quot; : &quot;bits&quot; ,
+        &quot;eof&quot; : &quot;$&quot; ,
+        &quot;productions&quot; : {
+            &quot;bits&quot; : {
+                &quot;add&quot; : [ &quot;&amp;bit&quot; , &quot;&amp;bits&quot; ] ,
+                &quot;end&quot; : [ ] ,
+            } ,
+            &quot;bit&quot; : [
+                [ &quot;=0&quot; ] ,
+                [ &quot;=1&quot; ] ,
+            ] ,
+        } ,
+    } ) ;
+
+    const parser = ll1.from(G);
+
+    const tokens = stream.fromiterable(
+        map(
+            ( [ i , a ] ) =&gt; { return {
+                &quot;type&quot; : &quot;leaf&quot; ,
+                &quot;terminal&quot; : a ,
+                &quot;buffer&quot; : a ,
+                &quot;position&quot; : i ,
+            } ; } ,
+            enumerate( &apos;010101&apos; )
+        )
+    ) ;
+
+    const tree = parser.parse(tokens);
+
+    const transformed = ast.transform( tree , {
+        &quot;bits&quot; : {
+            &quot;add&quot; : ( t , n ) =&gt;  { return {
+                &quot;type&quot; : &quot;node&quot; ,
+                &quot;nonterminal&quot; : &quot;letters&quot; ,
+                &quot;production&quot; : &quot;yetanotherletter&quot; ,
+                &quot;children&quot; : ast.cmap( t , n.children ) ,
+            } ; } ,
+            &quot;end&quot; : ( t , n ) =&gt;  { return {
+                &quot;type&quot; : &quot;node&quot; ,
+                &quot;nonterminal&quot; : &quot;letters&quot; ,
+                &quot;production&quot; : &quot;done&quot; ,
+                &quot;children&quot; : [ ] ,
+            } ; } ,
+        } ,
+        &quot;bit&quot; : [
+            ( t , n ) =&gt; {
+                return {
+                    &quot;type&quot; : &quot;node&quot; ,
+                    &quot;nonterminal&quot; : &quot;letter&quot; ,
+                    &quot;production&quot; : &quot;aaa&quot; ,
+                    &quot;children&quot; : ast.cmap ( leaf =&gt; {
+                        return {
+                            &quot;type&quot; : &quot;leaf&quot; ,
+                            &quot;terminal&quot; : &quot;a&quot; ,
+                            &quot;buffer&quot; : &quot;a&quot; ,
+                            &quot;position&quot; : leaf.position ,
+                        } ;
+                    } , n.children ) ,
+                } ;
+            } ,
+            ( t , n ) =&gt; {
+                return {
+                    &quot;type&quot; : &quot;node&quot; ,
+                    &quot;nonterminal&quot; : &quot;letter&quot; ,
+                    &quot;production&quot; : &quot;bbb&quot; ,
+                    &quot;children&quot; : ast.cmap ( leaf =&gt; {
+                        return {
+                            &quot;type&quot; : &quot;leaf&quot; ,
+                            &quot;terminal&quot; : &quot;b&quot; ,
+                            &quot;buffer&quot; : &quot;b&quot; ,
+                            &quot;position&quot; : leaf.position ,
+                        } ;
+                    } , n.children ) ,
+                } ;
+            } ,
+        ] ,
+    } ) ;
+
+    list( map( leaf =&gt; leaf.buffer , ast.flatten( transformed ) ) ).join(&apos;&apos;) ; // ababab</code>
+</code></pre>
+</div>
 </div>
 
 <footer class="footer">

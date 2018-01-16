@@ -1,104 +1,159 @@
 [
   {
-    "name": "_compile",
-    "filePath": "src/ll1/_compile.js",
+    "name": "_children_next_lazy",
+    "filePath": "src/ll1/_children_next_lazy.js",
     "lines": [
-      {
-        "lineNumber": 17,
-        "line": "/**"
-      },
-      {
-        "lineNumber": 18,
-        "line": " * Generates the lines of the predictive parsing table for a grammar."
-      },
-      {
-        "lineNumber": 19,
-        "line": " * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224."
-      },
-      {
-        "lineNumber": 20,
-        "line": " *"
-      },
-      {
-        "lineNumber": 21,
-        "line": " * TODO handle translation"
-      },
-      {
-        "lineNumber": 22,
-        "line": " *"
-      },
-      {
-        "lineNumber": 23,
-        "line": " * @param grammar"
-      },
-      {
-        "lineNumber": 24,
-        "line": " * @param start"
-      },
-      {
-        "lineNumber": 25,
-        "line": " * @returns {undefined}"
-      },
-      {
-        "lineNumber": 26,
-        "line": " */"
-      },
-      {
-        "lineNumber": 27,
-        "line": "export default function* _compile ( start , grammar ) {"
-      }
-    ],
-    "codeParams": [
-      "start",
-      "grammar"
-    ],
-    "docParams": [
-      "grammar",
-      "start"
-    ]
-  },
-  {
-    "name": "_parse",
-    "filePath": "src/ll1/_parse.js",
-    "lines": [
-      {
-        "lineNumber": 2,
-        "line": "/**"
-      },
       {
         "lineNumber": 3,
-        "line": " * Table-driven predictive parsing."
+        "line": "/**"
       },
       {
         "lineNumber": 4,
-        "line": " *"
+        "line": " * Get next child of table-driven predictive lazy parsing."
       },
       {
         "lineNumber": 5,
-        "line": " * @param table"
+        "line": " *"
       },
       {
         "lineNumber": 6,
-        "line": " * @param rule"
+        "line": " * @param grammar"
       },
       {
         "lineNumber": 7,
-        "line": " * @param stream"
+        "line": " * @param table"
       },
       {
         "lineNumber": 8,
-        "line": " * @returns {Array}"
+        "line": " * @param stream"
       },
       {
         "lineNumber": 9,
-        "line": " */"
+        "line": " * @param token"
       },
       {
         "lineNumber": 10,
-        "line": "export default function _parse ( grammar , table , rule , stream , nonterminal , productionid ) {"
+        "line": " * @returns {Array}"
+      },
+      {
+        "lineNumber": 11,
+        "line": " */"
+      },
+      {
+        "lineNumber": 12,
+        "line": "export default function _children_next_lazy ( eof, grammar , table , stream , expected ) {"
       }
     ],
     "codeParams": [
+      "eof",
+      "grammar",
+      "table",
+      "stream",
+      "expected"
+    ],
+    "docParams": [
+      "grammar",
+      "table",
+      "stream",
+      "token"
+    ]
+  },
+  {
+    "name": "_follow",
+    "filePath": "src/ll1/_follow.js",
+    "lines": [
+      {
+        "lineNumber": 8,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "line": " * Computes the FOLLOW table for all nonterminals."
+      },
+      {
+        "lineNumber": 10,
+        "line": " *"
+      },
+      {
+        "lineNumber": 11,
+        "line": " * @param {Array} FIRST"
+      },
+      {
+        "lineNumber": 12,
+        "line": " * @param {Number} start"
+      },
+      {
+        "lineNumber": 13,
+        "line": " * @param {Map} productions"
+      },
+      {
+        "lineNumber": 14,
+        "line": " * @returns {Array}"
+      },
+      {
+        "lineNumber": 15,
+        "line": " */"
+      },
+      {
+        "lineNumber": 16,
+        "line": "export default function _follow ( FIRST , start , eof , productions ) {"
+      }
+    ],
+    "codeParams": [
+      "FIRST",
+      "start",
+      "eof",
+      "productions"
+    ],
+    "docParams": [
+      "FIRST",
+      "start",
+      "productions"
+    ]
+  },
+  {
+    "name": "_parse_lazy",
+    "filePath": "src/ll1/_parse_lazy.js",
+    "lines": [
+      {
+        "lineNumber": 5,
+        "line": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "line": " * Table-driven predictive lazy parsing."
+      },
+      {
+        "lineNumber": 7,
+        "line": " *"
+      },
+      {
+        "lineNumber": 8,
+        "line": " * @param table"
+      },
+      {
+        "lineNumber": 9,
+        "line": " * @param rule"
+      },
+      {
+        "lineNumber": 10,
+        "line": " * @param stream"
+      },
+      {
+        "lineNumber": 11,
+        "line": " * @returns {Array}"
+      },
+      {
+        "lineNumber": 12,
+        "line": " */"
+      },
+      {
+        "lineNumber": 13,
+        "line": "export default function _parse_lazy ( eof , grammar , table , rule , stream , nonterminal , productionid ) {"
+      }
+    ],
+    "codeParams": [
+      "eof",
       "grammar",
       "table",
       "rule",
@@ -110,92 +165,6 @@
       "table",
       "rule",
       "stream"
-    ]
-  },
-  {
-    "name": "compile",
-    "filePath": "src/ll1/compile.js",
-    "lines": [
-      {
-        "lineNumber": 4,
-        "line": "/**"
-      },
-      {
-        "lineNumber": 5,
-        "line": " * Compiles the predictive parsing table for a grammar."
-      },
-      {
-        "lineNumber": 6,
-        "line": " * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224."
-      },
-      {
-        "lineNumber": 7,
-        "line": " *"
-      },
-      {
-        "lineNumber": 8,
-        "line": " * @param grammar"
-      },
-      {
-        "lineNumber": 9,
-        "line": " * @returns {undefined}"
-      },
-      {
-        "lineNumber": 10,
-        "line": " */"
-      },
-      {
-        "lineNumber": 11,
-        "line": "export default function compile (start, grammar) {"
-      }
-    ],
-    "codeParams": [
-      "start",
-      "grammar"
-    ],
-    "docParams": [
-      "grammar"
-    ]
-  },
-  {
-    "name": "is",
-    "filePath": "src/ll1/is.js",
-    "lines": [
-      {
-        "lineNumber": 16,
-        "line": "/**"
-      },
-      {
-        "lineNumber": 17,
-        "line": " * Check if grammar is ll(1)."
-      },
-      {
-        "lineNumber": 18,
-        "line": " *"
-      },
-      {
-        "lineNumber": 19,
-        "line": " * @param {Array} grammar"
-      },
-      {
-        "lineNumber": 20,
-        "line": " * @returns {Boolean}"
-      },
-      {
-        "lineNumber": 21,
-        "line": " */"
-      },
-      {
-        "lineNumber": 22,
-        "line": "export default function is ( start , grammar ) {"
-      }
-    ],
-    "codeParams": [
-      "start",
-      "grammar"
-    ],
-    "docParams": [
-      "grammar"
     ]
   }
 ]

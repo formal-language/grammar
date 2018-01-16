@@ -31,7 +31,7 @@
       {
         "type": "ImportDeclaration",
         "start": 0,
-        "end": 47,
+        "end": 35,
         "loc": {
           "start": {
             "line": 1,
@@ -39,121 +39,35 @@
           },
           "end": {
             "line": 1,
-            "column": 47
-          }
-        },
-        "specifiers": [
-          {
-            "type": "ImportSpecifier",
-            "start": 9,
-            "end": 13,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 9
-              },
-              "end": {
-                "line": 1,
-                "column": 13
-              }
-            },
-            "imported": {
-              "type": "Identifier",
-              "start": 9,
-              "end": 13,
-              "loc": {
-                "start": {
-                  "line": 1,
-                  "column": 9
-                },
-                "end": {
-                  "line": 1,
-                  "column": 13
-                },
-                "identifierName": "list"
-              },
-              "name": "list"
-            },
-            "local": {
-              "type": "Identifier",
-              "start": 9,
-              "end": 13,
-              "loc": {
-                "start": {
-                  "line": 1,
-                  "column": 9
-                },
-                "end": {
-                  "line": 1,
-                  "column": 13
-                },
-                "identifierName": "list"
-              },
-              "name": "list"
-            }
-          }
-        ],
-        "source": {
-          "type": "StringLiteral",
-          "start": 21,
-          "end": 45,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 21
-            },
-            "end": {
-              "line": 1,
-              "column": 45
-            }
-          },
-          "extra": {
-            "rawValue": "@aureooms/js-itertools",
-            "raw": "'@aureooms/js-itertools'"
-          },
-          "value": "@aureooms/js-itertools"
-        }
-      },
-      {
-        "type": "ImportDeclaration",
-        "start": 49,
-        "end": 84,
-        "loc": {
-          "start": {
-            "line": 3,
-            "column": 0
-          },
-          "end": {
-            "line": 3,
             "column": 35
           }
         },
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
-            "start": 56,
-            "end": 64,
+            "start": 7,
+            "end": 15,
             "loc": {
               "start": {
-                "line": 3,
+                "line": 1,
                 "column": 7
               },
               "end": {
-                "line": 3,
+                "line": 1,
                 "column": 15
               }
             },
             "local": {
               "type": "Identifier",
-              "start": 56,
-              "end": 64,
+              "start": 7,
+              "end": 15,
               "loc": {
                 "start": {
-                  "line": 3,
+                  "line": 1,
                   "column": 7
                 },
                 "end": {
-                  "line": 3,
+                  "line": 1,
                   "column": 15
                 },
                 "identifierName": "_compile"
@@ -164,15 +78,15 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 70,
-          "end": 82,
+          "start": 21,
+          "end": 33,
           "loc": {
             "start": {
-              "line": 3,
+              "line": 1,
               "column": 21
             },
             "end": {
-              "line": 3,
+              "line": 1,
               "column": 33
             }
           },
@@ -185,12 +99,12 @@
         "trailingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n ",
-            "start": 86,
-            "end": 262,
+            "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param start\n * @param eof\n * @param productions\n * @returns {Map}\n ",
+            "start": 37,
+            "end": 241,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 3,
                 "column": 0
               },
               "end": {
@@ -203,7 +117,7 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 263,
+        "start": 242,
         "end": 355,
         "loc": {
           "start": {
@@ -217,7 +131,7 @@
         },
         "declaration": {
           "type": "FunctionDeclaration",
-          "start": 278,
+          "start": 257,
           "end": 355,
           "loc": {
             "start": {
@@ -231,8 +145,8 @@
           },
           "id": {
             "type": "Identifier",
-            "start": 287,
-            "end": 294,
+            "start": 266,
+            "end": 273,
             "loc": {
               "start": {
                 "line": 12,
@@ -253,8 +167,8 @@
           "params": [
             {
               "type": "Identifier",
-              "start": 296,
-              "end": 301,
+              "start": 275,
+              "end": 280,
               "loc": {
                 "start": {
                   "line": 12,
@@ -270,8 +184,8 @@
             },
             {
               "type": "Identifier",
-              "start": 303,
-              "end": 310,
+              "start": 282,
+              "end": 285,
               "loc": {
                 "start": {
                   "line": 12,
@@ -279,21 +193,38 @@
                 },
                 "end": {
                   "line": 12,
-                  "column": 47
+                  "column": 43
                 },
-                "identifierName": "grammar"
+                "identifierName": "eof"
               },
-              "name": "grammar"
+              "name": "eof"
+            },
+            {
+              "type": "Identifier",
+              "start": 287,
+              "end": 298,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 45
+                },
+                "end": {
+                  "line": 12,
+                  "column": 56
+                },
+                "identifierName": "productions"
+              },
+              "name": "productions"
             }
           ],
           "body": {
             "type": "BlockStatement",
-            "start": 312,
+            "start": 300,
             "end": 355,
             "loc": {
               "start": {
                 "line": 12,
-                "column": 49
+                "column": 58
               },
               "end": {
                 "line": 14,
@@ -303,7 +234,7 @@
             "body": [
               {
                 "type": "ReturnStatement",
-                "start": 315,
+                "start": 303,
                 "end": 353,
                 "loc": {
                   "start": {
@@ -312,12 +243,12 @@
                   },
                   "end": {
                     "line": 13,
-                    "column": 39
+                    "column": 51
                   }
                 },
                 "argument": {
-                  "type": "CallExpression",
-                  "start": 322,
+                  "type": "NewExpression",
+                  "start": 310,
                   "end": 352,
                   "loc": {
                     "start": {
@@ -326,53 +257,53 @@
                     },
                     "end": {
                       "line": 13,
-                      "column": 38
+                      "column": 50
                     }
                   },
                   "callee": {
                     "type": "Identifier",
-                    "start": 322,
-                    "end": 326,
+                    "start": 314,
+                    "end": 317,
                     "loc": {
                       "start": {
                         "line": 13,
-                        "column": 8
+                        "column": 12
                       },
                       "end": {
                         "line": 13,
-                        "column": 12
+                        "column": 15
                       },
-                      "identifierName": "list"
+                      "identifierName": "Map"
                     },
-                    "name": "list"
+                    "name": "Map"
                   },
                   "arguments": [
                     {
                       "type": "CallExpression",
-                      "start": 327,
+                      "start": 318,
                       "end": 351,
                       "loc": {
                         "start": {
                           "line": 13,
-                          "column": 13
+                          "column": 16
                         },
                         "end": {
                           "line": 13,
-                          "column": 37
+                          "column": 49
                         }
                       },
                       "callee": {
                         "type": "Identifier",
-                        "start": 327,
-                        "end": 335,
+                        "start": 318,
+                        "end": 326,
                         "loc": {
                           "start": {
                             "line": 13,
-                            "column": 13
+                            "column": 16
                           },
                           "end": {
                             "line": 13,
-                            "column": 21
+                            "column": 24
                           },
                           "identifierName": "_compile"
                         },
@@ -381,16 +312,16 @@
                       "arguments": [
                         {
                           "type": "Identifier",
-                          "start": 336,
-                          "end": 341,
+                          "start": 327,
+                          "end": 332,
                           "loc": {
                             "start": {
                               "line": 13,
-                              "column": 22
+                              "column": 25
                             },
                             "end": {
                               "line": 13,
-                              "column": 27
+                              "column": 30
                             },
                             "identifierName": "start"
                           },
@@ -398,20 +329,37 @@
                         },
                         {
                           "type": "Identifier",
-                          "start": 343,
+                          "start": 334,
+                          "end": 337,
+                          "loc": {
+                            "start": {
+                              "line": 13,
+                              "column": 32
+                            },
+                            "end": {
+                              "line": 13,
+                              "column": 35
+                            },
+                            "identifierName": "eof"
+                          },
+                          "name": "eof"
+                        },
+                        {
+                          "type": "Identifier",
+                          "start": 339,
                           "end": 350,
                           "loc": {
                             "start": {
                               "line": 13,
-                              "column": 29
+                              "column": 37
                             },
                             "end": {
                               "line": 13,
-                              "column": 36
+                              "column": 48
                             },
-                            "identifierName": "grammar"
+                            "identifierName": "productions"
                           },
-                          "name": "grammar"
+                          "name": "productions"
                         }
                       ]
                     }
@@ -424,12 +372,12 @@
           "leadingComments": [
             {
               "type": "CommentBlock",
-              "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n ",
-              "start": 86,
-              "end": 262,
+              "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param start\n * @param eof\n * @param productions\n * @returns {Map}\n ",
+              "start": 37,
+              "end": 241,
               "loc": {
                 "start": {
-                  "line": 5,
+                  "line": 3,
                   "column": 0
                 },
                 "end": {
@@ -444,12 +392,12 @@
         "leadingComments": [
           {
             "type": "CommentBlock",
-            "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n ",
-            "start": 86,
-            "end": 262,
+            "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param start\n * @param eof\n * @param productions\n * @returns {Map}\n ",
+            "start": 37,
+            "end": 241,
             "loc": {
               "start": {
-                "line": 5,
+                "line": 3,
                 "column": 0
               },
               "end": {
@@ -466,12 +414,12 @@
   "comments": [
     {
       "type": "CommentBlock",
-      "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n ",
-      "start": 86,
-      "end": 262,
+      "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param start\n * @param eof\n * @param productions\n * @returns {Map}\n ",
+      "start": 37,
+      "end": 241,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 3,
           "column": 0
         },
         "end": {
@@ -512,31 +460,6 @@
     },
     {
       "type": {
-        "label": "{",
-        "beforeExpr": true,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 7,
-      "end": 8,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 7
-        },
-        "end": {
-          "line": 1,
-          "column": 8
-        }
-      }
-    },
-    {
-      "type": {
         "label": "name",
         "beforeExpr": false,
         "startsExpr": true,
@@ -547,38 +470,13 @@
         "postfix": false,
         "binop": null
       },
-      "value": "list",
-      "start": 9,
-      "end": 13,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 9
-        },
-        "end": {
-          "line": 1,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "}",
-        "beforeExpr": false,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 14,
+      "value": "_compile",
+      "start": 7,
       "end": 15,
       "loc": {
         "start": {
           "line": 1,
-          "column": 14
+          "column": 7
         },
         "end": {
           "line": 1,
@@ -625,149 +523,16 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "@aureooms/js-itertools",
-      "start": 21,
-      "end": 45,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 21
-        },
-        "end": {
-          "line": 1,
-          "column": 45
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ";",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 46,
-      "end": 47,
-      "loc": {
-        "start": {
-          "line": 1,
-          "column": 46
-        },
-        "end": {
-          "line": 1,
-          "column": 47
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "import",
-        "keyword": "import",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": "import",
-      "start": 49,
-      "end": 55,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "_compile",
-      "start": 56,
-      "end": 64,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 7
-        },
-        "end": {
-          "line": 3,
-          "column": 15
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "from",
-      "start": 65,
-      "end": 69,
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 16
-        },
-        "end": {
-          "line": 3,
-          "column": 20
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "string",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
       "value": "./_compile",
-      "start": 70,
-      "end": 82,
+      "start": 21,
+      "end": 33,
       "loc": {
         "start": {
-          "line": 3,
+          "line": 1,
           "column": 21
         },
         "end": {
-          "line": 3,
+          "line": 1,
           "column": 33
         }
       }
@@ -785,27 +550,27 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 83,
-      "end": 84,
+      "start": 34,
+      "end": 35,
       "loc": {
         "start": {
-          "line": 3,
+          "line": 1,
           "column": 34
         },
         "end": {
-          "line": 3,
+          "line": 1,
           "column": 35
         }
       }
     },
     {
       "type": "CommentBlock",
-      "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param grammar\n * @returns {undefined}\n ",
-      "start": 86,
-      "end": 262,
+      "value": "*\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param start\n * @param eof\n * @param productions\n * @returns {Map}\n ",
+      "start": 37,
+      "end": 241,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 3,
           "column": 0
         },
         "end": {
@@ -829,8 +594,8 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 263,
-      "end": 269,
+      "start": 242,
+      "end": 248,
       "loc": {
         "start": {
           "line": 12,
@@ -857,8 +622,8 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 270,
-      "end": 277,
+      "start": 249,
+      "end": 256,
       "loc": {
         "start": {
           "line": 12,
@@ -884,8 +649,8 @@
         "binop": null
       },
       "value": "function",
-      "start": 278,
-      "end": 286,
+      "start": 257,
+      "end": 265,
       "loc": {
         "start": {
           "line": 12,
@@ -910,8 +675,8 @@
         "binop": null
       },
       "value": "compile",
-      "start": 287,
-      "end": 294,
+      "start": 266,
+      "end": 273,
       "loc": {
         "start": {
           "line": 12,
@@ -935,8 +700,8 @@
         "postfix": false,
         "binop": null
       },
-      "start": 295,
-      "end": 296,
+      "start": 274,
+      "end": 275,
       "loc": {
         "start": {
           "line": 12,
@@ -961,8 +726,8 @@
         "binop": null
       },
       "value": "start",
-      "start": 296,
-      "end": 301,
+      "start": 275,
+      "end": 280,
       "loc": {
         "start": {
           "line": 12,
@@ -987,8 +752,8 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 301,
-      "end": 302,
+      "start": 280,
+      "end": 281,
       "loc": {
         "start": {
           "line": 12,
@@ -1012,9 +777,9 @@
         "postfix": false,
         "binop": null
       },
-      "value": "grammar",
-      "start": 303,
-      "end": 310,
+      "value": "eof",
+      "start": 282,
+      "end": 285,
       "loc": {
         "start": {
           "line": 12,
@@ -1022,7 +787,59 @@
         },
         "end": {
           "line": 12,
-          "column": 47
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 285,
+      "end": 286,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 43
+        },
+        "end": {
+          "line": 12,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "productions",
+      "start": 287,
+      "end": 298,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 45
+        },
+        "end": {
+          "line": 12,
+          "column": 56
         }
       }
     },
@@ -1038,16 +855,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 310,
-      "end": 311,
+      "start": 298,
+      "end": 299,
       "loc": {
         "start": {
           "line": 12,
-          "column": 47
+          "column": 56
         },
         "end": {
           "line": 12,
-          "column": 48
+          "column": 57
         }
       }
     },
@@ -1063,16 +880,16 @@
         "postfix": false,
         "binop": null
       },
-      "start": 312,
-      "end": 313,
+      "start": 300,
+      "end": 301,
       "loc": {
         "start": {
           "line": 12,
-          "column": 49
+          "column": 58
         },
         "end": {
           "line": 12,
-          "column": 50
+          "column": 59
         }
       }
     },
@@ -1091,8 +908,8 @@
         "updateContext": null
       },
       "value": "return",
-      "start": 315,
-      "end": 321,
+      "start": 303,
+      "end": 309,
       "loc": {
         "start": {
           "line": 13,
@@ -1101,6 +918,34 @@
         "end": {
           "line": 13,
           "column": 7
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "new",
+        "keyword": "new",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "value": "new",
+      "start": 310,
+      "end": 313,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 8
+        },
+        "end": {
+          "line": 13,
+          "column": 11
         }
       }
     },
@@ -1116,17 +961,68 @@
         "postfix": false,
         "binop": null
       },
-      "value": "list",
-      "start": 322,
+      "value": "Map",
+      "start": 314,
+      "end": 317,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 12
+        },
+        "end": {
+          "line": 13,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "(",
+        "beforeExpr": true,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "start": 317,
+      "end": 318,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 15
+        },
+        "end": {
+          "line": 13,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "_compile",
+      "start": 318,
       "end": 326,
       "loc": {
         "start": {
           "line": 13,
-          "column": 8
+          "column": 16
         },
         "end": {
           "line": 13,
-          "column": 12
+          "column": 24
         }
       }
     },
@@ -1147,62 +1043,11 @@
       "loc": {
         "start": {
           "line": 13,
-          "column": 12
+          "column": 24
         },
         "end": {
           "line": 13,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "_compile",
-      "start": 327,
-      "end": 335,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 13
-        },
-        "end": {
-          "line": 13,
-          "column": 21
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "(",
-        "beforeExpr": true,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 335,
-      "end": 336,
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 21
-        },
-        "end": {
-          "line": 13,
-          "column": 22
+          "column": 25
         }
       }
     },
@@ -1219,16 +1064,16 @@
         "binop": null
       },
       "value": "start",
-      "start": 336,
-      "end": 341,
+      "start": 327,
+      "end": 332,
       "loc": {
         "start": {
           "line": 13,
-          "column": 22
+          "column": 25
         },
         "end": {
           "line": 13,
-          "column": 27
+          "column": 30
         }
       }
     },
@@ -1245,16 +1090,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 341,
-      "end": 342,
+      "start": 332,
+      "end": 333,
       "loc": {
         "start": {
           "line": 13,
-          "column": 27
+          "column": 30
         },
         "end": {
           "line": 13,
-          "column": 28
+          "column": 31
         }
       }
     },
@@ -1270,17 +1115,69 @@
         "postfix": false,
         "binop": null
       },
-      "value": "grammar",
-      "start": 343,
-      "end": 350,
+      "value": "eof",
+      "start": 334,
+      "end": 337,
       "loc": {
         "start": {
           "line": 13,
-          "column": 29
+          "column": 32
+        },
+        "end": {
+          "line": 13,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": {
+        "label": ",",
+        "beforeExpr": true,
+        "startsExpr": false,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null,
+        "updateContext": null
+      },
+      "start": 337,
+      "end": 338,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 35
         },
         "end": {
           "line": 13,
           "column": 36
+        }
+      }
+    },
+    {
+      "type": {
+        "label": "name",
+        "beforeExpr": false,
+        "startsExpr": true,
+        "rightAssociative": false,
+        "isLoop": false,
+        "isAssign": false,
+        "prefix": false,
+        "postfix": false,
+        "binop": null
+      },
+      "value": "productions",
+      "start": 339,
+      "end": 350,
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 37
+        },
+        "end": {
+          "line": 13,
+          "column": 48
         }
       }
     },
@@ -1301,11 +1198,11 @@
       "loc": {
         "start": {
           "line": 13,
-          "column": 36
+          "column": 48
         },
         "end": {
           "line": 13,
-          "column": 37
+          "column": 49
         }
       }
     },
@@ -1326,11 +1223,11 @@
       "loc": {
         "start": {
           "line": 13,
-          "column": 37
+          "column": 49
         },
         "end": {
           "line": 13,
-          "column": 38
+          "column": 50
         }
       }
     },
@@ -1352,11 +1249,11 @@
       "loc": {
         "start": {
           "line": 13,
-          "column": 38
+          "column": 50
         },
         "end": {
           "line": 13,
-          "column": 39
+          "column": 51
         }
       }
     },
