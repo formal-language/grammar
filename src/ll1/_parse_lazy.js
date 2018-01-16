@@ -1,4 +1,7 @@
-import _nextchild_lazy from './_nextchild_lazy' ;
+import { iter } from '@aureooms/js-itertools' ;
+import { cmap } from '../ast' ;
+
+import _children_next_lazy from './_children_next_lazy' ;
 
 /**
  * Table-driven predictive lazy parsing.
@@ -10,17 +13,15 @@ import _nextchild_lazy from './_nextchild_lazy' ;
  */
 export default function _parse_lazy ( eof , grammar , table , rule , stream , nonterminal , productionid ) {
 
-	const children = [];
+	const shallow_materialize = x => _children_next_lazy(eof, grammar, table, stream, x) ;
 
-	for (const x of rule) children.push(_nextchild_lazy(eof, grammar, table, stream, x)) ;
+	const children = iter( cmap( shallow_materialize , rule ) ) ;
 
 	return {
+		'type' : 'node' ,
 		nonterminal ,
-		'production' : {
-			'id' : productionid ,
-			rule ,
-		} ,
-		children
+		'production' : productionid ,
+		children ,
 	} ;
 
 }

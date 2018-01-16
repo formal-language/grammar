@@ -6,6 +6,6 @@ export default function materialize ( tree ) {
 		'type' : 'node' ,
 		'nonterminal' : tree.nonterminal ,
 		'production' : tree.production ,
-		'children' : list(map(materialize, children)) ,
+		'children' : list(map(materialize, tree.children)) ,
 	} ;
 }

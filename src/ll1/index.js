@@ -1,9 +1,9 @@
 import Parser from './Parser' ;
+import _children_next from './_children_next' ;
+import _children_next_lazy from './_children_next_lazy' ;
 import _compile from './_compile' ;
 import _first from './_first' ;
 import _follow from './_follow' ;
-import _nextchild from './_nextchild' ;
-import _nextchild_lazy from './_nextchild_lazy' ;
 import _parse from './_parse' ;
 import _parse_lazy from './_parse_lazy' ;
 import compile from './compile' ;
@@ -15,11 +15,11 @@ import parse from './parse' ;
 
 export default {
 	Parser ,
+	_children_next ,
+	_children_next_lazy ,
 	_compile ,
 	_first ,
 	_follow ,
-	_nextchild ,
-	_nextchild_lazy ,
 	_parse ,
 	_parse_lazy ,
 	compile ,
@@ -32,11 +32,11 @@ export default {
 
 export {
 	Parser ,
+	_children_next ,
+	_children_next_lazy ,
 	_compile ,
 	_first ,
 	_follow ,
-	_nextchild ,
-	_nextchild_lazy ,
 	_parse ,
 	_parse_lazy ,
 	compile ,

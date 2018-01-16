@@ -5,5 +5,5 @@ export default function parse ( start , eof , productions, table , stream ) {
 		{ 'type' : 'node' , 'nonterminal' : start } ,
 		{ 'type' : 'leaf' , 'terminal' : eof } ,
 	] ;
-	return _parse( eof, productions, table , root , stream , -1 , 0 ) ;
+	return _parse( eof, productions, table , root , stream , -1 , 0 ).children[0] ;
 }

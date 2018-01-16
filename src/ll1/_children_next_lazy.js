@@ -10,7 +10,7 @@ import _parse_lazy from './_parse_lazy' ;
  * @param token
  * @returns {Array}
  */
-export default function _nextchild_lazy ( eof, grammar , table , stream , expected ) {
+export default function _children_next_lazy ( eof, grammar , table , stream , expected ) {
 
 	const lookahead = stream.read( ) ;
 

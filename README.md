@@ -5,16 +5,21 @@ Grammar compilation toolkit for JavaScript.
 See [docs](https://aureooms.github.io/js-grammar/index.html).
 
 ```js
+	import { map , enumerate } from '@aureooms/js-itertools' ;
 	import * as stream from '@aureooms/js-stream' ;
-	import { ll1 } from '@aureooms/js-grammar' ;
+	import { grammar , ll1 } from '@aureooms/js-grammar' ;
 
-	const G = [ [ [ '0' , '1' ] ] ] ;
+	const G = grammar.from( { start , eof , productions } ) ;
 
-	const table = ll1.compile(0, G);
+	const parser = ll1.compile(G);
 
-	const tokens = stream.fromstring('010101');
+	const tokens = stream.fromiterable( ... ) ; // 010101
 
-	const tree = ll1.parse(0, G, table, tokens);
+	const tree = parser.parse( tokens ) ;
+
+	const transformed = ast.transform( tree , ... ) ;
+
+	list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') ; // ababab
 ```
 
 [![License](https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)

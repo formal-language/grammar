@@ -11,7 +11,7 @@ import _parse from './_parse' ;
  * @param expected
  * @returns {Array}
  */
-export default function _nextchild ( eof, productions , table , stream , expected ) {
+export default function _children_next ( eof, productions , table , stream , expected ) {
 
 	const lookahead = stream.read( ) ;
 

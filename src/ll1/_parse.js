@@ -1,4 +1,4 @@
-import _nextchild from './_nextchild' ;
+import _children_next from './_children_next' ;
 
 /**
  * Table-driven predictive parsing.
@@ -12,15 +12,12 @@ export default function _parse ( eof , productions , table , rule , stream , non
 
 	const children = [];
 
-	for (const x of rule) children.push(_nextchild(eof, productions, table, stream, x)) ;
+	for (const x of rule) children.push(_children_next(eof, productions, table, stream, x)) ;
 
 	return {
 		'type' : 'node' ,
 		nonterminal ,
-		'production' : {
-			'id' : productionid ,
-			rule ,
-		} ,
+		'production' : productionid ,
 		children
 	} ;
 

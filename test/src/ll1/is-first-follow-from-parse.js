@@ -23,11 +23,8 @@ const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, follow(pho,
 
 const node = ( G , nonterminal , productionid , children ) => { return {
 	"type" : "node" ,
-	"nonterminal" : ''+nonterminal ,
-	"production" : {
-		"id" : ''+productionid ,
-		"rule" : list( _expandproduction( G.productions.get(''+nonterminal).get(''+productionid) ) ) ,
-	} ,
+	"nonterminal" : ''+nonterminal , // needs to be a string
+	"production" : ''+productionid , // needs to be a string
 	children ,
 } ; } ;
 
@@ -79,7 +76,7 @@ test( 'Dragon Book (2006) page 62 & 65' , t => {
 
 	const tree = parser.parse(tokens);
 
-	t.deepEqual( tree.children[0] ,
+	t.deepEqual( tree ,
 		node( G , 0 , 2 , [
 			leaf( "for" ) ,
 			leaf( "(" ) ,
@@ -189,7 +186,7 @@ test( 'Dragon Book (2006) page 71' , t => {
 
 	const tree = parser.parse(tokens);
 
-	t.deepEqual( tree.children[0] ,
+	t.deepEqual( tree ,
 		node( G , 0 , 0 , [
 			node( G , 2 , 9 , [ leaf( "9" ) ] ) ,
 			node( G , 1 , 1 , [
@@ -334,7 +331,7 @@ test( 'Test all features of JSON encoding' , t => {
 
 	const tree = parser.parse(tokens);
 
-	t.deepEqual( tree.children[0] ,
+	t.deepEqual( tree ,
 		node( G , "sentence" , "main" , [
 			node( G , "beginning-of-sentence" , "main" , [
 				node( G , "Word" , "main" , [

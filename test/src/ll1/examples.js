@@ -1,11 +1,10 @@
-# Example
+import test from 'ava' ;
 
-	A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.
+import { map , enumerate , list } from '@aureooms/js-itertools' ;
+import * as stream from '@aureooms/js-stream' ;
+import { grammar , ast , ll1 } from '../../../src' ;
 
-```js
-	import { map , enumerate } from '@aureooms/js-itertools' ;
-	import * as stream from '@aureooms/js-stream' ;
-	import { grammar , ll1 , ast } from '@aureooms/js-grammar' ;
+test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
 
 	const G = grammar.from( {
 		"start" : "bits" ,
@@ -21,6 +20,8 @@
 			] ,
 		} ,
 	} ) ;
+
+	t.true(ll1.is(G));
 
 	const parser = ll1.from(G);
 
@@ -59,7 +60,7 @@
 					"type" : "node" ,
 					"nonterminal" : "letter" ,
 					"production" : "aaa" ,
-					"children" : ast.cmap ( leaf => {
+					"children" : ast.cmap( leaf => {
 						return {
 							"type" : "leaf" ,
 							"terminal" : "a" ,
@@ -74,7 +75,7 @@
 					"type" : "node" ,
 					"nonterminal" : "letter" ,
 					"production" : "bbb" ,
-					"children" : ast.cmap ( leaf => {
+					"children" : ast.cmap( leaf => {
 						return {
 							"type" : "leaf" ,
 							"terminal" : "b" ,
@@ -87,6 +88,6 @@
 		] ,
 	} ) ;
 
-	list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') ; // ababab
+	t.is( list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') , 'ababab' ) ;
 
-```
+});
