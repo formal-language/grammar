@@ -27,64 +27,58 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
 
 	const tokens = stream.fromiterable(
 		map(
-			( [ i , a ] ) => { return {
+			( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
 				"buffer" : a ,
 				"position" : i ,
-			} ; } ,
+			}) ,
 			enumerate( '010101' )
 		)
 	) ;
 
 	const tree = parser.parse(tokens);
 
+	const m = ( children , match , ctx ) => ast.cmap( child => ast.transform( child , match , ctx ) , children ) ;
+
 	const transformed = ast.transform( tree , {
 		"bits" : {
-			"add" : ( t , n ) =>  { return {
+			"add" : ( tree , match ) =>  ({
 				"type" : "node" ,
 				"nonterminal" : "letters" ,
 				"production" : "yetanotherletter" ,
-				"children" : ast.cmap( t , n.children ) ,
-			} ; } ,
-			"end" : ( t , n ) =>  { return {
+				"children" : m( tree.children , match ) ,
+			}) ,
+			"end" : ( ) =>  ({
 				"type" : "node" ,
 				"nonterminal" : "letters" ,
 				"production" : "done" ,
 				"children" : [ ] ,
-			} ; } ,
+			}) ,
 		} ,
 		"bit" : [
-			( t , n ) => {
-				return {
-					"type" : "node" ,
-					"nonterminal" : "letter" ,
-					"production" : "aaa" ,
-					"children" : ast.cmap( leaf => {
-						return {
-							"type" : "leaf" ,
-							"terminal" : "a" ,
-							"buffer" : "a" ,
-							"position" : leaf.position ,
-						} ;
-					} , n.children ) ,
-				} ;
-			} ,
-			( t , n ) => {
-				return {
-					"type" : "node" ,
-					"nonterminal" : "letter" ,
-					"production" : "bbb" ,
-					"children" : ast.cmap( leaf => {
-						return {
-							"type" : "leaf" ,
-							"terminal" : "b" ,
-							"buffer" : "b" ,
-							"position" : leaf.position ,
-						} ;
-					} , n.children ) ,
-				} ;
-			} ,
+			tree => ({
+				"type" : "node" ,
+				"nonterminal" : "letter" ,
+				"production" : "aaa" ,
+				"children" : ast.cmap( leaf => ({
+					"type" : "leaf" ,
+					"terminal" : "a" ,
+					"buffer" : "a" ,
+					"position" : leaf.position ,
+				}) , tree.children ) ,
+			}) ,
+			tree => ({
+				"type" : "node" ,
+				"nonterminal" : "letter" ,
+				"production" : "bbb" ,
+				"children" : ast.cmap( leaf => ({
+					"type" : "leaf" ,
+					"terminal" : "b" ,
+					"buffer" : "b" ,
+					"position" : leaf.position ,
+				}) , tree.children ) ,
+			}) ,
 		] ,
 	} ) ;
 

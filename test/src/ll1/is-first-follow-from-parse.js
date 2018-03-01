@@ -21,14 +21,14 @@ const ALPHABET = ( t , abc , e ) => t.deepEqual( sorted(increasing, abc) , sorte
 const FIRST = ( t , phi , i , e ) => t.deepEqual( sorted(increasing, first(phi, _expandproduction(i))) , sorted(increasing, e) ) ;
 const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, follow(pho, _expandproduction(i))) , sorted(increasing, e) ) ;
 
-const node = ( G , nonterminal , productionid , children ) => { return {
+const node = ( G , nonterminal , productionid , children ) => ({
 	"type" : "node" ,
 	"nonterminal" : ''+nonterminal , // needs to be a string
 	"production" : ''+productionid , // needs to be a string
 	children ,
-} ; } ;
+}) ;
 
-const leaf = terminal => { return { "type" : "leaf" , terminal , "buffer" : terminal } ; } ;
+const leaf = terminal => ({ "type" : "leaf" , terminal , "buffer" : terminal }) ;
 
 test( 'Dragon Book (2006) page 62 & 65' , t => {
 
@@ -65,11 +65,11 @@ test( 'Dragon Book (2006) page 62 & 65' , t => {
 	const parser = ll1.from(G);
 
 	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => { return {
+		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
 				"buffer" : a ,
-			} ; } ,
+			}) ,
 			enumerate( 'for ( ; expr ; expr ) other'.split(' ') )
 		)
 	) ;
@@ -175,11 +175,11 @@ test( 'Dragon Book (2006) page 71' , t => {
 	const parser = ll1.from(G);
 
 	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => { return {
+		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
 				"buffer" : a ,
-			} ; } ,
+			}) ,
 			enumerate( '9-5+2' )
 		)
 	) ;
@@ -319,12 +319,12 @@ test( 'Test all features of JSON encoding' , t => {
 	const parser = ll1.from(G) ;
 
 	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => { return {
+		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
 				"buffer" : a ,
 				"position" : i
-			} ; } ,
+			}) ,
 			enumerate( 'Bac.' )
 		)
 	);
