@@ -11,7 +11,7 @@ See [docs](https://aureooms.github.io/js-grammar/index.html).
 
 	const G = grammar.from( { start , eof , productions } ) ;
 
-	const parser = ll1.compile(G);
+	const parser = ll1.from(G);
 
 	const tokens = stream.fromiterable( ... ) ; // 010101
 
