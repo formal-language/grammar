@@ -50,19 +50,25 @@ test( 'Dragon Book (2006) page 62' , async t => {
 
 	const tree = await parser.parse(tokens);
 
-	t.deepEqual( await ast.materialize( tree ) ,
-		node( G , 0 , 2 , [
-			leaf( "for" ) ,
-			leaf( "(" ) ,
-			node( G , 1 , 0 , [ ] ) ,
-			leaf( ";" ) ,
-			node( G , 1 , 1 , [ leaf("expr") ] ) ,
-			leaf( ";" ) ,
-			node( G , 1 , 1 , [ leaf("expr") ] ) ,
-			leaf( ")" ) ,
-			node( G , 0 , 3 , [ leaf("other") ] ) ,
-		] )
-	) ;
+	const expected = node( G , 0 , 2 , [
+		leaf( "for" ) ,
+		leaf( "(" ) ,
+		node( G , 1 , 0 , [ ] ) ,
+		leaf( ";" ) ,
+		node( G , 1 , 1 , [ leaf("expr") ] ) ,
+		leaf( ";" ) ,
+		node( G , 1 , 1 , [ leaf("expr") ] ) ,
+		leaf( ")" ) ,
+		node( G , 0 , 3 , [ leaf("other") ] ) ,
+	] ) ;
+
+	const materialized1 = await ast.materialize( tree ) ;
+
+	t.deepEqual( materialized1 , expected ) ;
+
+	const materialized2 = await ast.materialize( materialized1 ) ;
+
+	t.deepEqual( materialized2 , expected ) ;
 
 }) ;
 
@@ -100,20 +106,26 @@ test( 'Dragon Book (2006) page 71' , async t => {
 
 	const tree = await parser.parse(tokens);
 
-	t.deepEqual( await ast.materialize( tree ) ,
-		node( G , 0 , 0 , [
-			node( G , 2 , 9 , [ leaf( "9" ) ] ) ,
-			node( G , 1 , 1 , [
-				leaf( "-" ) ,
-				node( G , 2 , 5 , [ leaf( "5" ) ] ) ,
-				node( G , 1 , 0 , [
-					leaf( "+" ) ,
-					node( G , 2 , 2 , [ leaf( "2" ) ] ) ,
-					node( G , 1 , 2 , [ ] ) ,
-				]) ,
+	const expected = node( G , 0 , 0 , [
+		node( G , 2 , 9 , [ leaf( "9" ) ] ) ,
+		node( G , 1 , 1 , [
+			leaf( "-" ) ,
+			node( G , 2 , 5 , [ leaf( "5" ) ] ) ,
+			node( G , 1 , 0 , [
+				leaf( "+" ) ,
+				node( G , 2 , 2 , [ leaf( "2" ) ] ) ,
+				node( G , 1 , 2 , [ ] ) ,
 			]) ,
-		])
-	) ;
+		]) ,
+	]) ;
+
+	const materialized1 = await ast.materialize( tree ) ;
+
+	t.deepEqual( materialized1 , expected ) ;
+
+	const materialized2 = await ast.materialize( materialized1 ) ;
+
+	t.deepEqual( materialized2 , expected ) ;
 
 });
 
@@ -179,60 +191,66 @@ test( 'Test all features of JSON encoding' , async t => {
 
 	const tree = await parser.parse(tokens);
 
-	t.deepEqual( await ast.materialize( tree ) ,
-		node( G , "sentence" , "main" , [
-			node( G , "beginning-of-sentence" , "main" , [
-				node( G , "Word" , "main" , [
-					node( G , "uppercase-letter" , "1" , [
+	const expected = node( G , "sentence" , "main" , [
+		node( G , "beginning-of-sentence" , "main" , [
+			node( G , "Word" , "main" , [
+				node( G , "uppercase-letter" , "1" , [
+					{
+						"type" : "leaf" ,
+						"position" : 0 ,
+						"terminal" : "B" ,
+						"buffer" : "B" ,
+					} ,
+				] ,
+				) ,
+				node( G , "lowercase-letters" , "add" , [
+					node( G , "lowercase-letter" , "0" , [
 						{
 							"type" : "leaf" ,
-							"position" : 0 ,
-							"terminal" : "B" ,
-							"buffer" : "B" ,
+							"position" : 1 ,
+							"terminal" : "a" ,
+							"buffer" : "a" ,
 						} ,
 					] ,
 					) ,
 					node( G , "lowercase-letters" , "add" , [
-						node( G , "lowercase-letter" , "0" , [
+						node( G , "lowercase-letter" , "2" , [
 							{
 								"type" : "leaf" ,
-								"position" : 1 ,
-								"terminal" : "a" ,
-								"buffer" : "a" ,
+								"position" : 2 ,
+								"terminal" : "c" ,
+								"buffer" : "c" ,
 							} ,
-						] ,
-						) ,
-						node( G , "lowercase-letters" , "add" , [
-							node( G , "lowercase-letter" , "2" , [
-								{
-									"type" : "leaf" ,
-									"position" : 2 ,
-									"terminal" : "c" ,
-									"buffer" : "c" ,
-								} ,
-							]
-							) ,
-							node( G , "lowercase-letters" , "end" , [] ) ,
 						]
-						)
-					] ,
-					) ,
+						) ,
+						node( G , "lowercase-letters" , "end" , [] ) ,
+					]
+					)
 				] ,
-				)
+				) ,
 			] ,
-			) ,
-			node( G , "end-of-sentence" , "end" , [
-				{
-					"type" : "leaf" ,
-					"position" : 3 ,
-					"terminal" : "." ,
-					"buffer" : "." ,
-				}
-			] ,
-			) ,
-		]
-		)
+			)
+		] ,
+		) ,
+		node( G , "end-of-sentence" , "end" , [
+			{
+				"type" : "leaf" ,
+				"position" : 3 ,
+				"terminal" : "." ,
+				"buffer" : "." ,
+			}
+		] ,
+		) ,
+	]
 	) ;
+
+	const materialized1 = await ast.materialize( tree ) ;
+
+	t.deepEqual( materialized1 , expected ) ;
+
+	const materialized2 = await ast.materialize( materialized1 ) ;
+
+	t.deepEqual( materialized2 , expected ) ;
 
 	//stream.fromstring('Cbba aba.')
 	//stream.fromstring('Acc bcbb ccaaaaa.')

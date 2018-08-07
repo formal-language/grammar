@@ -1,3 +1,5 @@
+import { anyIterator } from '../util' ;
+
 export default async function materialize ( root ) {
 
 	// assert root.type === 'node'
@@ -11,7 +13,7 @@ export default async function materialize ( root ) {
 		}
 	] ;
 
-	const children = [ root.children[Symbol.asyncIterator]() ] ;
+	const children = [ anyIterator(root.children) ] ;
 
 	while ( true ) {
 
@@ -42,7 +44,7 @@ export default async function materialize ( root ) {
 
 			else {
 
-				const grandchildren = child.children[Symbol.asyncIterator]() ;
+				const grandchildren = anyIterator(child.children) ;
 
 				const newchild = {
 					type : 'node' ,

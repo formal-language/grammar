@@ -1,7 +1,4 @@
-function anyIterator ( object ) {
-	if ( object[Symbol.asyncIterator] ) return object[Symbol.asyncIterator]() ;
-	else return object[Symbol.iterator]() ;
-}
+import { anyIterator } from '../util' ;
 
 export default async function* flatten ( root ) {
 
