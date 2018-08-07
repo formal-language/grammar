@@ -4,10 +4,10 @@
  * @param {Iterator} children - The input children iterator.
  *
  */
-export default function _children_exhaust ( children ) {
+export default async function _children_exhaust ( children ) {
 
-	for ( let child of children ) {
-		if ( child.type === 'node' ) _children_exhaust( child.children ) ;
+	for await ( const child of children ) {
+		if ( child.type === 'node' ) await _children_exhaust( child.children ) ;
 	}
 
 }

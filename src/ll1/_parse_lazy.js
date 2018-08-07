@@ -1,5 +1,4 @@
-import { iter } from '@aureooms/js-itertools' ;
-import { cmap } from '../ast' ;
+import { rmap } from '../grammar' ;
 
 import _children_next_lazy from './_children_next_lazy' ;
 
@@ -13,9 +12,9 @@ import _children_next_lazy from './_children_next_lazy' ;
  */
 export default function _parse_lazy ( eof , grammar , table , rule , stream , nonterminal , productionid ) {
 
-	const shallow_materialize = x => _children_next_lazy(eof, grammar, table, stream, x) ;
+	const shallow_materialize = async x => _children_next_lazy(eof, grammar, table, stream, x) ;
 
-	const children = iter( cmap( shallow_materialize , rule ) ) ;
+	const children = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;
 
 	return {
 		'type' : 'node' ,

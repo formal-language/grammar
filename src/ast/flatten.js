@@ -1,6 +1,9 @@
-import { iter } from '@aureooms/js-itertools' ;
+function anyIterator ( object ) {
+	if ( object[Symbol.asyncIterator] ) return object[Symbol.asyncIterator]() ;
+	else return object[Symbol.iterator]() ;
+}
 
-export default function* flatten ( root ) {
+export default async function* flatten ( root ) {
 
 	// assert root.type === 'node'
 
@@ -9,7 +12,7 @@ export default function* flatten ( root ) {
 			type : 'node' ,
 			nonterminal : root.nonterminal ,
 			production : root.production ,
-			children : iter( root.children ) ,
+			children : anyIterator(root.children) ,
 		}
 	] ;
 
@@ -17,7 +20,7 @@ export default function* flatten ( root ) {
 
 		const tree = stack.pop();
 
-		const { done , value } = tree.children.next();
+		const { done , value } = await tree.children.next();
 
 		if ( !done ) {
 
@@ -33,7 +36,7 @@ export default function* flatten ( root ) {
 					type : 'node' ,
 					nonterminal : child.nonterminal ,
 					production : child.production ,
-					children : iter(child.children) ,
+					children : anyIterator(child.children) ,
 				} ;
 
 				stack.push(newchild);

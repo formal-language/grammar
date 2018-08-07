@@ -4,7 +4,7 @@
 
 ```js
 	import { map , enumerate } from '@aureooms/js-itertools' ;
-	import * as stream from '@aureooms/js-stream' ;
+	import stream , { asyncIterableMap } from '@aureooms/js-stream' ;
 	import { grammar , ll1 , ast } from '@aureooms/js-grammar' ;
 
 	const G = grammar.from( {
@@ -24,69 +24,77 @@
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromiterable(
-		map(
-			( [ i , a ] ) => { return {
-				"type" : "leaf" ,
-				"terminal" : a ,
-				"buffer" : a ,
-				"position" : i ,
-			} ; } ,
-			enumerate( '010101' )
-		)
-	) ;
+	const replace = async input => {
 
-	const tree = parser.parse(tokens);
+		const tokens = stream.fromIterable(
+			map(
+				( [ i , a ] ) => ({
+					"type" : "leaf" ,
+					"terminal" : a ,
+					"buffer" : a ,
+					"position" : i ,
+				}) ,
+				enumerate( input )
+			)
+		) ;
 
-	const transformed = ast.transform( tree , {
-		"bits" : {
-			"add" : ( t , n ) =>  { return {
-				"type" : "node" ,
-				"nonterminal" : "letters" ,
-				"production" : "yetanotherletter" ,
-				"children" : ast.cmap( t , n.children ) ,
-			} ; } ,
-			"end" : ( t , n ) =>  { return {
-				"type" : "node" ,
-				"nonterminal" : "letters" ,
-				"production" : "done" ,
-				"children" : [ ] ,
-			} ; } ,
-		} ,
-		"bit" : [
-			( t , n ) => {
-				return {
+		const tree = await parser.parse(tokens);
+
+		const m = ( children , match , ctx ) => ast.cmap( async child => await ast.transform( child , match , ctx ) , children ) ;
+
+		const transform = {
+			"bits" : {
+				"add" : ( tree , match ) =>  ({
+					"type" : "node" ,
+					"nonterminal" : "letters" ,
+					"production" : "yetanotherletter" ,
+					"children" : m( tree.children , match ) ,
+				}) ,
+				"end" : ( ) =>  ({
+					"type" : "node" ,
+					"nonterminal" : "letters" ,
+					"production" : "done" ,
+					"children" : [ ] ,
+				}) ,
+			} ,
+			"bit" : [
+				tree => ({
 					"type" : "node" ,
 					"nonterminal" : "letter" ,
 					"production" : "aaa" ,
-					"children" : ast.cmap ( leaf => {
-						return {
-							"type" : "leaf" ,
-							"terminal" : "a" ,
-							"buffer" : "a" ,
-							"position" : leaf.position ,
-						} ;
-					} , n.children ) ,
-				} ;
-			} ,
-			( t , n ) => {
-				return {
+					"children" : ast.cmap( leaf => ({
+						"type" : "leaf" ,
+						"terminal" : "a" ,
+						"buffer" : "a" ,
+						"position" : leaf.position ,
+					}) , tree.children ) ,
+				}) ,
+				tree => ({
 					"type" : "node" ,
 					"nonterminal" : "letter" ,
 					"production" : "bbb" ,
-					"children" : ast.cmap ( leaf => {
-						return {
-							"type" : "leaf" ,
-							"terminal" : "b" ,
-							"buffer" : "b" ,
-							"position" : leaf.position ,
-						} ;
-					} , n.children ) ,
-				} ;
-			} ,
-		] ,
-	} ) ;
+					"children" : ast.cmap( leaf => ({
+						"type" : "leaf" ,
+						"terminal" : "b" ,
+						"buffer" : "b" ,
+						"position" : leaf.position ,
+					}) , tree.children ) ,
+				}) ,
+			] ,
+		} ) ;
 
-	list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') ; // ababab
+		const transformed = await ast.transform( tree , transform ) ;
+
+		const flattened = ast.flatten( transformed ) ;
+
+		const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ;
+
+		const output = stream.fromAsyncIterable( chunks ) ;
+
+		return await stream.toString( output ) ;
+
+	} ;
+
+	replace('010101').then( output => console.log(output) ) ; // 'ababab'
 
 ```

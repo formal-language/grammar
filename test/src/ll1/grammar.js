@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import * as stream from '@aureooms/js-stream' ;
+import stream from '@aureooms/js-stream' ;
 
 import { sorted , list , map , enumerate } from '@aureooms/js-itertools' ;
 
@@ -59,36 +59,6 @@ test( 'Dragon Book (2006) page 62 & 65' , t => {
 
 	FIRST(t , phi , [0], [ 'expr', 'for', 'if', 'other' ]) ;
 	FIRST(t , phi , [ '=expr', '=;' ], [ 'expr' ]) ;
-
-	// page 62
-
-	const parser = ll1.from(G);
-
-	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => ({
-				"type" : "leaf" ,
-				"terminal" : a ,
-				"buffer" : a ,
-			}) ,
-			enumerate( 'for ( ; expr ; expr ) other'.split(' ') )
-		)
-	) ;
-
-	const tree = parser.parse(tokens);
-
-	t.deepEqual( ast.materialize( tree ) ,
-		node( G , 0 , 2 , [
-			leaf( "for" ) ,
-			leaf( "(" ) ,
-			node( G , 1 , 0 , [ ] ) ,
-			leaf( ";" ) ,
-			node( G , 1 , 1 , [ leaf("expr") ] ) ,
-			leaf( ";" ) ,
-			node( G , 1 , 1 , [ leaf("expr") ] ) ,
-			leaf( ")" ) ,
-			node( G , 0 , 3 , [ leaf("other") ] ) ,
-		] )
-	) ;
 
 }) ;
 
@@ -171,35 +141,6 @@ test( 'Dragon Book (2006) page 71' , t => {
 	const G = grammar.from( { start , eof , productions } ) ;
 
 	t.true(ll1.is(G));
-
-	const parser = ll1.from(G);
-
-	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => ({
-				"type" : "leaf" ,
-				"terminal" : a ,
-				"buffer" : a ,
-			}) ,
-			enumerate( '9-5+2' )
-		)
-	) ;
-
-	const tree = parser.parse(tokens);
-
-	t.deepEqual( ast.materialize( tree ) ,
-		node( G , 0 , 0 , [
-			node( G , 2 , 9 , [ leaf( "9" ) ] ) ,
-			node( G , 1 , 1 , [
-				leaf( "-" ) ,
-				node( G , 2 , 5 , [ leaf( "5" ) ] ) ,
-				node( G , 1 , 0 , [
-					leaf( "+" ) ,
-					node( G , 2 , 2 , [ leaf( "2" ) ] ) ,
-					node( G , 1 , 2 , [ ] ) ,
-				]) ,
-			]) ,
-		])
-	) ;
 
 });
 
@@ -315,80 +256,6 @@ test( 'Test all features of JSON encoding' , t => {
 	const G = grammar.from( object ) ;
 
 	t.true(ll1.is(G));
-
-	const parser = ll1.from(G) ;
-
-	const tokens = stream.fromiterable(
-		map( ( [ i , a ] ) => ({
-				"type" : "leaf" ,
-				"terminal" : a ,
-				"buffer" : a ,
-				"position" : i
-			}) ,
-			enumerate( 'Bac.' )
-		)
-	);
-
-	const tree = parser.parse(tokens);
-
-	t.deepEqual( ast.materialize( tree ) ,
-		node( G , "sentence" , "main" , [
-			node( G , "beginning-of-sentence" , "main" , [
-				node( G , "Word" , "main" , [
-					node( G , "uppercase-letter" , "1" , [
-						{
-							"type" : "leaf" ,
-							"position" : 0 ,
-							"terminal" : "B" ,
-							"buffer" : "B" ,
-						} ,
-					] ,
-					) ,
-					node( G , "lowercase-letters" , "add" , [
-						node( G , "lowercase-letter" , "0" , [
-							{
-								"type" : "leaf" ,
-								"position" : 1 ,
-								"terminal" : "a" ,
-								"buffer" : "a" ,
-							} ,
-						] ,
-						) ,
-						node( G , "lowercase-letters" , "add" , [
-							node( G , "lowercase-letter" , "2" , [
-								{
-									"type" : "leaf" ,
-									"position" : 2 ,
-									"terminal" : "c" ,
-									"buffer" : "c" ,
-								} ,
-							]
-							) ,
-							node( G , "lowercase-letters" , "end" , [] ) ,
-						]
-						)
-					] ,
-					) ,
-				] ,
-				)
-			] ,
-			) ,
-			node( G , "end-of-sentence" , "end" , [
-				{
-					"type" : "leaf" ,
-					"position" : 3 ,
-					"terminal" : "." ,
-					"buffer" : "." ,
-				}
-			] ,
-			) ,
-		]
-		)
-	) ;
-
-	//stream.fromstring('Cbba aba.')
-	//stream.fromstring('Acc bcbb ccaaaaa.')
-	//stream.fromstring('Ab cbcc baaaa cbc.')
 
 }) ;
 

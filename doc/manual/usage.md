@@ -10,7 +10,7 @@ import 'babel-polyfill' ;
 
 Then
 ```js
-const grammar = require( '@aureooms/js-grammar' ) ;
+const grammarToolkit = require( '@aureooms/js-grammar' ) ;
 // or
-import * as grammar from '@aureooms/js-grammar' ;
+import { ast , error , grammar , ll1 , util } from '@aureooms/js-grammar' ;
 ```

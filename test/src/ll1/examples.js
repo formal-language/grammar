@@ -1,10 +1,10 @@
 import test from 'ava' ;
 
-import { map , enumerate , list } from '@aureooms/js-itertools' ;
-import * as stream from '@aureooms/js-stream' ;
+import { map , enumerate } from '@aureooms/js-itertools' ;
+import stream , { asyncIterableMap } from '@aureooms/js-stream' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
-test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
+test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , async t => {
 
 	const G = grammar.from( {
 		"start" : "bits" ,
@@ -25,7 +25,7 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromiterable(
+	const tokens = stream.fromIterable(
 		map(
 			( [ i , a ] ) => ({
 				"type" : "leaf" ,
@@ -37,11 +37,11 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
 		)
 	) ;
 
-	const tree = parser.parse(tokens);
+	const tree = await parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( child => ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.cmap( async child => await ast.transform( child , match , ctx ) , children ) ;
 
-	const transformed = ast.transform( tree , {
+	const transformed = await ast.transform( tree , {
 		"bits" : {
 			"add" : ( tree , match ) =>  ({
 				"type" : "node" ,
@@ -82,6 +82,8 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , t => {
 		] ,
 	} ) ;
 
-	t.is( list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') , 'ababab' ) ;
+	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( transformed ) ) ) ) ;
+	const expected = 'ababab' ;
+	t.is( got , expected ) ;
 
 });

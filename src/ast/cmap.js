@@ -1,18 +1,21 @@
 import _children_exhaust from './_children_exhaust' ;
 
 /**
- * Applies a given callable to each of the child of a given children iterable.
+ * Applies a given callable to each of the child of a given children async iterable.
  *
  * @param {Function} callable - The callable to use.
- * @param {Iterable} children - The input children.
- * @returns {Iterator}
+ * @param {AsyncIterable} children - The input children.
+ * @returns {AsyncIterator}
  */
-export default function* cmap ( callable , children ) {
+export default async function* cmap ( callable , children ) {
 
-	for ( let child of children ) {
-		const node = callable( child ) ;
+	for await ( const child of children ) {
+		const node = await callable( child ) ;
 		yield node ;
-		if ( node.type === 'node' ) _children_exhaust( node.children ) ;
+		// TODO exhaust child.children too ?
+		// though be careful because cmap is also used on grammar rule
+		// productions as `children`
+		if ( node.type === 'node' ) await _children_exhaust( node.children ) ;
 	}
 
 }

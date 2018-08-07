@@ -5,21 +5,45 @@ Grammar compilation toolkit for JavaScript.
 See [docs](https://aureooms.github.io/js-grammar/index.html).
 
 ```js
-	import { map , enumerate } from '@aureooms/js-itertools' ;
-	import * as stream from '@aureooms/js-stream' ;
 	import { grammar , ll1 } from '@aureooms/js-grammar' ;
+	import stream from '@aureooms/js-stream' ;
 
-	const G = grammar.from( { start , eof , productions } ) ;
+	const start = 'start' ;
+	const eof = '$' ;
+	const productions = { 'start' : { ... } , ... } ;
 
-	const parser = ll1.from(G);
+	const G = grammar.from( { start , eof , productions } ) ; // Grammar Object
 
-	const tokens = stream.fromiterable( ... ) ; // 010101
+	ll1.is(G); // true
 
-	const tree = parser.parse( tokens ) ;
+	const parser = ll1.from(G); // Parser Object
 
-	const transformed = ast.transform( tree , ... ) ;
+	const replace = async input => {
 
-	list( map( leaf => leaf.buffer , ast.flatten( transformed ) ) ).join('') ; // ababab
+		const tokens = stream.fromIterable( ... ) ; // create tokens from string `input`
+
+		const tree = await parser.parse( tokens ) ; // root of parsed tree
+
+		const transformed = await ast.transform( tree , ... ) ; // root of transformed tree
+
+		const flattened = ast.flatten( transformed ) ; // async generator of leaves
+
+		const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ; // async generator of strings
+
+		const output = stream.fromAsyncIterable( chunks ) ; // tape of chunks
+
+		return await stream.toString( output ) ; // chunks concatenation
+
+	} ;
+
+	replace('010101').then( output => console.log(output) ) ; // 'ababab'
+```
+
+> The code needs a ES2015+ polyfill to work (`regeneratorRuntime`), for example
+> [babel-polyfill](https://babeljs.io/docs/usage/polyfill).
+
+```js
+import 'babel-polyfill' ;
 ```
 
 [![License](https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)

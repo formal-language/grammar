@@ -10,9 +10,9 @@ import _parse_lazy from './_parse_lazy' ;
  * @param token
  * @returns {Array}
  */
-export default function _children_next_lazy ( eof, grammar , table , stream , expected ) {
+export default async function _children_next_lazy ( eof, grammar , table , stream , expected ) {
 
-	const lookahead = stream.read( ) ;
+	const lookahead = await stream.read( ) ;
 
 	if ( expected.type === 'leaf' ) {
 		if ( lookahead === stream.eof ) {

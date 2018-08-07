@@ -1,10 +1,10 @@
 import test from 'ava' ;
 
 import { iter , map , enumerate , list , range , nrepeat , ncycle } from '@aureooms/js-itertools' ;
-import * as stream from '@aureooms/js-stream' ;
+import stream , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-stream' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
-function flatten ( t , n ) {
+async function flatten ( t , n ) {
 
 	const G = grammar.from( {
 		"start" : "letters" ,
@@ -24,7 +24,7 @@ function flatten ( t , n ) {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromiterable(
+	const tokens = stream.fromIterable(
 		map(
 			i => ({
 				"type" : "leaf" ,
@@ -36,20 +36,24 @@ function flatten ( t , n ) {
 		)
 	) ;
 
-	const tree = parser.parse(tokens);
+	const tree = await parser.parse(tokens);
 
-	t.is( list( map( leaf => leaf.buffer , ast.flatten( tree ) ) ).join('') , list(nrepeat('x', n)).join('') ) ;
+	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( tree ) ) ) ) ;
+
+	const expected = list(nrepeat('x', n)).join('') ;
+
+	t.is( got , expected ) ;
 
 }
 
-flatten.title = ( _ , n ) => `Tail-recursion: flatten repetition of a single letter x${n} times.` ;
+flatten.title = ( _ , n ) => `No recursion: flatten repetition of a single letter x${n} times.` ;
 
 test( flatten , 1000 ) ;
 test( flatten , 10000 ) ;
 test( flatten , 100000 ) ;
 
 
-function materialize ( t , n ) {
+async function materialize ( t , n ) {
 
 	const G = grammar.from( {
 		"start" : "letters" ,
@@ -69,7 +73,7 @@ function materialize ( t , n ) {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromiterable(
+	const tokens = stream.fromIterable(
 		map(
 			i => ({
 				"type" : "leaf" ,
@@ -81,15 +85,19 @@ function materialize ( t , n ) {
 		)
 	) ;
 
-	const tree = parser.parse(tokens);
+	const tree = await parser.parse(tokens);
 
-	const materialized = ast.materialize(tree) ;
+	const materialized = await ast.materialize(tree) ;
 
-	t.is( list( map( leaf => leaf.buffer , ast.flatten( materialized ) ) ).join('') , list(nrepeat('x', n)).join('') ) ;
+	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( materialized ) ) ) ) ;
+
+	const expected = list(nrepeat('x', n)).join('') ;
+
+	t.is( got , expected ) ;
 
 }
 
-materialize.title = ( _ , n ) => `Tail-recursion: materialize repetition of a single letter x${n} times.` ;
+materialize.title = ( _ , n ) => `No recursion: materialize repetition of a single letter x${n} times.` ;
 
 test( materialize , 1000 ) ;
 test( materialize , 10000 ) ;

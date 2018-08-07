@@ -1,6 +1,4 @@
-import { iter } from '@aureooms/js-itertools' ;
-
-export default function materialize ( root ) {
+export default async function materialize ( root ) {
 
 	// assert root.type === 'node'
 
@@ -13,13 +11,13 @@ export default function materialize ( root ) {
 		}
 	] ;
 
-	const children = [ iter( root.children ) ] ;
+	const children = [ root.children[Symbol.asyncIterator]() ] ;
 
 	while ( true ) {
 
 		const todo = children.pop();
 
-		const { done , value } = todo.next();
+		const { done , value } = await todo.next();
 
 		if ( done ) {
 			if ( children.length === 0 ) return parents.pop() ;
@@ -44,7 +42,7 @@ export default function materialize ( root ) {
 
 			else {
 
-				const grandchildren = iter(child.children) ;
+				const grandchildren = child.children[Symbol.asyncIterator]() ;
 
 				const newchild = {
 					type : 'node' ,
