@@ -8,21 +8,7 @@ const {
 	LookaheadMismatchError ,
 } = error ;
 
-async function throws ( t , n ) {
-
-	const G = grammar.from( {
-		"start" : "letters" ,
-		"eof" : "$" ,
-		"productions" : {
-			"letters" : {
-				"add" : [ "&letter" , "&letters" ] ,
-				"end" : [ ] ,
-			} ,
-			"letter" : {
-				"x" : [ "=x" ] ,
-			} ,
-		} ,
-	} ) ;
+async function throws ( t , G , n ) {
 
 	t.true(ll1.is(G));
 
@@ -99,10 +85,42 @@ async function throws ( t , n ) {
 
 }
 
-throws.title = ( _ , n ) => `Lookahead mismatch at position ${n+1}.` ;
+throws.title = ( which , G , n ) => `Lookahead mismatch at position ${n+1} (${which}).` ;
 
-test( throws , 0 ) ;
-test( throws , 1 ) ;
-test( throws , 10 ) ;
-test( throws , 100 ) ;
-test( throws , 666 ) ;
+const G1 = grammar.from( {
+	"start" : "letters" ,
+	"eof" : "$" ,
+	"productions" : {
+		"letters" : {
+			"add" : [ "=x" , "&letters" ] ,
+			"end" : [ ] ,
+		} ,
+	} ,
+} ) ;
+
+const G2 = grammar.from( {
+	"start" : "letters" ,
+	"eof" : "$" ,
+	"productions" : {
+		"letters" : {
+			"add" : [ "&letter" , "&letters" ] ,
+			"end" : [ ] ,
+		} ,
+		"letter" : {
+			"x" : [ "=x" ] ,
+		} ,
+	} ,
+} ) ;
+
+
+test( 'leaf' , throws , G1 , 0 ) ;
+test( 'leaf' , throws , G1 , 1 ) ;
+test( 'leaf' , throws , G1 , 10 ) ;
+test( 'leaf' , throws , G1 , 100 ) ;
+test( 'leaf' , throws , G1 , 666 ) ;
+
+test( 'node' , throws , G2 , 0 ) ;
+test( 'node' , throws , G2 , 1 ) ;
+test( 'node' , throws , G2 , 10 ) ;
+test( 'node' , throws , G2 , 100 ) ;
+test( 'node' , throws , G2 , 666 ) ;

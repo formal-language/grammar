@@ -46,7 +46,7 @@ async function throws ( t , G , n ) {
 
 }
 
-throws.title = ( grammar , G , n ) => `Unexpected end of file error (${grammar}, ${n}).` ;
+throws.title = ( which , G , n ) => `Unexpected end of file error (${which}, ${n}).` ;
 
 const G1 = grammar.from( {
 	"start" : "letters" ,
@@ -73,14 +73,14 @@ const G2 = grammar.from( {
 	} ,
 } ) ;
 
-test( throws , G1 , 0 ) ;
-test( throws , G1 , 2 ) ;
-test( throws , G1 , 10 ) ;
-test( throws , G1 , 100 ) ;
-test( throws , G1 , 666 ) ;
+test( 'leaf' , throws , G1 , 0 ) ;
+test( 'leaf' , throws , G1 , 2 ) ;
+test( 'leaf' , throws , G1 , 10 ) ;
+test( 'leaf' , throws , G1 , 100 ) ;
+test( 'leaf' , throws , G1 , 666 ) ;
 
-test( throws , G2 , 0 ) ;
-test( throws , G2 , 2 ) ;
-test( throws , G2 , 10 ) ;
-test( throws , G2 , 100 ) ;
-test( throws , G2 , 666 ) ;
+test( 'node' , throws , G2 , 0 ) ;
+test( 'node' , throws , G2 , 2 ) ;
+test( 'node' , throws , G2 , 10 ) ;
+test( 'node' , throws , G2 , 100 ) ;
+test( 'node' , throws , G2 , 666 ) ;
