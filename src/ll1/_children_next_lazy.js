@@ -29,7 +29,10 @@ export default async function _children_next_lazy ( eof, grammar , table , tape 
 
 	const next = router.get(lookahead === tape.eof ? eof : lookahead.terminal) ;
 
-	if ( next === undefined ) throw new LookaheadMismatchError(lookahead, [...router.keys()]) ;
+	if ( next === undefined ) {
+		if ( lookahead === tape.eof ) throw new UnexpectedEndOfFileError( [...router.keys()] ) ;
+		else throw new LookaheadMismatchError(lookahead, [...router.keys()]) ;
+	}
 
 	else return _parse_lazy(eof, grammar, table, grammar.get(expected.nonterminal).get(next), tape , expected.nonterminal , next);
 
