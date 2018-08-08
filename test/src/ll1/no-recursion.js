@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import { iter , map , enumerate , list , range , nrepeat , ncycle } from '@aureooms/js-itertools' ;
+import { iter , map , enumerate , list , range , nrepeat } from '@aureooms/js-itertools' ;
 import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tape' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
