@@ -2,7 +2,7 @@ import test from 'ava' ;
 import fs from 'fs' ;
 
 import { map , enumerate } from '@aureooms/js-itertools' ;
-import stream , { asyncIterableMap } from '@aureooms/js-stream' ;
+import tape , { asyncIterableMap } from '@aureooms/js-tape' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
 test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads from a file!" , async t => {
@@ -38,13 +38,13 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 		}
 	) ;
 
-	const tokens = stream.map(
+	const tokens = tape.map(
 		a => ({
 			"type" : "leaf" ,
 			"terminal" : a ,
 			"buffer" : a ,
 		}) ,
-		stream.fromReadStream( readStream )
+		tape.fromReadStream( readStream )
 	) ;
 
 	const tree = await parser.parse(tokens);
@@ -90,7 +90,7 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 		] ,
 	} ) ;
 
-	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( transformed ) ) ) ) ;
+	const got = await tape.toString( tape.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( transformed ) ) ) ) ;
 	t.is( got , expected ) ;
 
 });

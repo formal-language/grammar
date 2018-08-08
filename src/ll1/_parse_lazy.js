@@ -7,12 +7,12 @@ import _children_next_lazy from './_children_next_lazy' ;
  *
  * @param table
  * @param rule
- * @param stream
+ * @param tape
  * @returns {Array}
  */
-export default function _parse_lazy ( eof , grammar , table , rule , stream , nonterminal , productionid ) {
+export default function _parse_lazy ( eof , grammar , table , rule , tape , nonterminal , productionid ) {
 
-	const shallow_materialize = async x => _children_next_lazy(eof, grammar, table, stream, x) ;
+	const shallow_materialize = async x => _children_next_lazy(eof, grammar, table, tape, x) ;
 
 	const children = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;
 

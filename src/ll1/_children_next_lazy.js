@@ -6,16 +6,16 @@ import _parse_lazy from './_parse_lazy' ;
  *
  * @param grammar
  * @param table
- * @param stream
+ * @param tape
  * @param token
  * @returns {Array}
  */
-export default async function _children_next_lazy ( eof, grammar , table , stream , expected ) {
+export default async function _children_next_lazy ( eof, grammar , table , tape , expected ) {
 
-	const lookahead = await stream.read( ) ;
+	const lookahead = await tape.read( ) ;
 
 	if ( expected.type === 'leaf' ) {
-		if ( lookahead === stream.eof ) {
+		if ( lookahead === tape.eof ) {
 			if ( expected.terminal === eof ) return expected ;
 			else throw new UnexpectedEndOfFileError( [expected.terminal] ) ;
 		}
@@ -23,14 +23,14 @@ export default async function _children_next_lazy ( eof, grammar , table , strea
 		else throw new LookaheadMismatchError(lookahead, [expected.terminal]) ;
 	}
 
-	stream.unread(lookahead);
+	tape.unread(lookahead);
 
 	const router = table.get(expected.nonterminal);
 
-	const next = router.get(lookahead === stream.eof ? eof : lookahead.terminal) ;
+	const next = router.get(lookahead === tape.eof ? eof : lookahead.terminal) ;
 
 	if ( next === undefined ) throw new LookaheadMismatchError(lookahead, [...router.keys()]) ;
 
-	else return _parse_lazy(eof, grammar, table, grammar.get(expected.nonterminal).get(next), stream , expected.nonterminal , next);
+	else return _parse_lazy(eof, grammar, table, grammar.get(expected.nonterminal).get(next), tape , expected.nonterminal , next);
 
 }

@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import stream from '@aureooms/js-stream' ;
+import tape from '@aureooms/js-tape' ;
 
 import { sorted , list , map , enumerate } from '@aureooms/js-itertools' ;
 
@@ -163,7 +163,7 @@ test( 'Dragon Book (2006) page 49' , t => {
 
 	//const table = compile(start, eof, G);
 
-	//const tokens = stream.fromstring('a=b=c');
+	//const tokens = tape.fromString('a=b=c');
 
 	//const tree = parse(start, eof, G, table, tokens);
 

@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@aureooms/js-compare": "^1.4.5",
-    "@aureooms/js-stream": "^1.0.0",
+    "@aureooms/js-tape": "^4.0.0",
     "@babel/cli": "^7.0.0-beta.56",
     "@babel/core": "^7.0.0-beta.56",
     "@babel/plugin-proposal-async-generator-functions": "^7.0.0-beta.56",

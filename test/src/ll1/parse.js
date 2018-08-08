@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import stream from '@aureooms/js-stream' ;
+import tape from '@aureooms/js-tape' ;
 
 import { list , map , enumerate } from '@aureooms/js-itertools' ;
 
@@ -38,7 +38,7 @@ test( 'Dragon Book (2006) page 62' , async t => {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromIterable(
+	const tokens = tape.fromIterable(
 		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
@@ -94,7 +94,7 @@ test( 'Dragon Book (2006) page 71' , async t => {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromIterable(
+	const tokens = tape.fromIterable(
 		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
@@ -178,7 +178,7 @@ test( 'Test all features of JSON encoding' , async t => {
 
 	const parser = ll1.from(G) ;
 
-	const tokens = stream.fromIterable(
+	const tokens = tape.fromIterable(
 		map( ( [ i , a ] ) => ({
 				"type" : "leaf" ,
 				"terminal" : a ,
@@ -252,8 +252,8 @@ test( 'Test all features of JSON encoding' , async t => {
 
 	t.deepEqual( materialized2 , expected ) ;
 
-	//stream.fromstring('Cbba aba.')
-	//stream.fromstring('Acc bcbb ccaaaaa.')
-	//stream.fromstring('Ab cbcc baaaa cbc.')
+	//tape.fromString('Cbba aba.')
+	//tape.fromString('Acc bcbb ccaaaaa.')
+	//tape.fromString('Ab cbcc baaaa cbc.')
 
 }) ;

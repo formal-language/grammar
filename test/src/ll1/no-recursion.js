@@ -1,7 +1,7 @@
 import test from 'ava' ;
 
 import { iter , map , enumerate , list , range , nrepeat , ncycle } from '@aureooms/js-itertools' ;
-import stream , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-stream' ;
+import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tape' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
 async function flatten ( t , n ) {
@@ -24,7 +24,7 @@ async function flatten ( t , n ) {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromIterable(
+	const tokens = tape.fromIterable(
 		map(
 			i => ({
 				"type" : "leaf" ,
@@ -38,7 +38,7 @@ async function flatten ( t , n ) {
 
 	const tree = await parser.parse(tokens);
 
-	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( tree ) ) ) ) ;
+	const got = await tape.toString( tape.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( tree ) ) ) ) ;
 
 	const expected = list(nrepeat('x', n)).join('') ;
 
@@ -73,7 +73,7 @@ async function materialize ( t , n ) {
 
 	const parser = ll1.from(G);
 
-	const tokens = stream.fromIterable(
+	const tokens = tape.fromIterable(
 		map(
 			i => ({
 				"type" : "leaf" ,
@@ -89,7 +89,7 @@ async function materialize ( t , n ) {
 
 	const materialized = await ast.materialize(tree) ;
 
-	const got = await stream.toString( stream.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( materialized ) ) ) ) ;
+	const got = await tape.toString( tape.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( materialized ) ) ) ) ;
 
 	const expected = list(nrepeat('x', n)).join('') ;
 

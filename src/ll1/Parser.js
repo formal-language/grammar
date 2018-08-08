@@ -22,9 +22,9 @@ export default class Parser {
 		return this._table ;
 	}
 
-	async parse ( stream ) {
+	async parse ( tape ) {
 		const table = this.table();
-		const result = await parse(this.grammar.start, this.grammar.eof, this.grammar.productions, table, stream);
+		const result = await parse(this.grammar.start, this.grammar.eof, this.grammar.productions, table, tape);
 		const tree = result.value ;
 		return tree ;
 	}
