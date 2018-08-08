@@ -5,7 +5,7 @@ import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tap
 import { grammar , ast , ll1 , error } from '../../../src' ;
 
 const {
-	SyntaxError ,
+	LookaheadMismatchError ,
 } = error ;
 
 async function throws ( t , n ) {
@@ -68,7 +68,10 @@ async function throws ( t , n ) {
 		//}
 		return parser.parse(tokens)
 			.then( tree => t.fail() )
-			.catch( error => t.true(/at 1 \(y\)/.test(error.message)) ) ;
+			.catch( error => {
+				t.true(error instanceof LookaheadMismatchError) ;
+				t.true(/at 1 \(y\)/.test(error.message)) ;
+			} ) ;
 
 	}
 
@@ -87,13 +90,16 @@ async function throws ( t , n ) {
 
 		return tape.toString( output )
 			.then( string => t.fail() )
-			.catch( error => t.true(new RegExp(`at ${n+1} \\(y\\)`).test(error.message)) ) ;
+			.catch( error => {
+				t.true(error instanceof LookaheadMismatchError) ;
+				t.true(new RegExp(`at ${n+1} \\(y\\)`).test(error.message)) ;
+			} ) ;
 
 	}
 
 }
 
-throws.title = ( _ , n ) => `Unknown token at position ${n+1}.` ;
+throws.title = ( _ , n ) => `Lookahead mismatch at position ${n+1}.` ;
 
 test( throws , 0 ) ;
 test( throws , 1 ) ;
