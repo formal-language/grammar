@@ -13,8 +13,6 @@ export default async function* cmap ( callable , children ) {
 		const node = await callable( child ) ;
 		yield node ;
 		// TODO exhaust child.children too ?
-		// though be careful because cmap is also used on grammar rule
-		// productions as `children`
 		if ( node.type === 'node' ) await _children_exhaust( node.children ) ;
 	}
 
