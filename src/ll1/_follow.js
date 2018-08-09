@@ -9,10 +9,11 @@ import { EW } from '../grammar';
 /**
  * Computes the FOLLOW table for all nonterminals.
  *
- * @param {Array} FIRST
- * @param {Number} start
- * @param {Map} productions
- * @returns {Array}
+ * @param {Map} FIRST - The FIRST table as computed by {@link ll1#_first}
+ * @param {String} start - The starting nonterminal.
+ * @param {Object} eof - The end-of-file symbol.
+ * @param {Map} productions - The productions map.
+ * @returns {Map} The FOLLOW table.
  */
 export default function _follow ( FIRST , start , eof , productions ) {
 

@@ -4,11 +4,12 @@ import _parse_lazy from './_parse_lazy' ;
 /**
  * Get next child of table-driven predictive lazy parsing.
  *
- * @param grammar
- * @param table
- * @param tape
- * @param token
- * @returns {Array}
+ * @param {Object} eof - The end-of-file symbol.
+ * @param {Grammar} grammar - The ll1 grammar.
+ * @param {Map} table - The symbol table.
+ * @param {Tape} tape - The tape from which to read the symbols from.
+ * @param {Object} expected - The expected node.
+ * @returns {Object} A node.
  */
 export default async function _children_next_lazy ( eof, grammar , table , tape , expected ) {
 

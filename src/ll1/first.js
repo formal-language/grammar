@@ -7,7 +7,7 @@ import { EW } from '../grammar';
 /**
  * Generate FIRST set for any rule given the FIRST sets for the nonterminals.
  *
- * @param {Array} FIRST
+ * @param {Map} FIRST
  * @param {Array} rule
  * @returns {Set}
  */
