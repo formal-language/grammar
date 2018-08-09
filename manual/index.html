@@ -51,7 +51,8 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
-    <li data-ice="manualNav" class="indent-h1" data-link="manual/example.html"><a href="manual/example.html" data-ice="link">Example</a></li>
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/example.html"><a href="manual/example.html" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/example.html"><a href="manual/example.html#a-convoluted--code---39-010101--39--replace--0-g----39-a--39---replace--1-g----39-b--39----code--" data-ice="link">A convoluted &apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;).</a></li>
 </ul>
   </div>
 </div>
@@ -66,7 +67,39 @@
     
   <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Overview</h1></div>
+        <div data-ice="card"><h1>Overview</h1><pre><code class="lang-js"><code class="source-code prettyprint">import { grammar , ll1 } from &apos;@aureooms/js-grammar&apos; ;
+import tape from &apos;@aureooms/js-tape&apos; ;
+
+const start = &apos;start&apos; ;
+const eof = &apos;$&apos; ;
+const productions = { &apos;start&apos; : { ... } , ... } ;
+
+const G = grammar.from( { start , eof , productions } ) ; // Grammar Object
+
+ll1.is(G); // true
+
+const parser = ll1.from(G); // Parser Object
+
+const replace = async input =&gt; {
+
+    const tokens = tape.fromString( ... ) ; // create tokens from string `input`
+
+    const tree = await parser.parse( tokens ) ; // root of parsed tree
+
+    const transformed = await ast.transform( tree , ... ) ; // root of transformed tree
+
+    const flattened = ast.flatten( transformed ) ; // async generator of leaves
+
+    const chunks = asyncIterableMap( leaf =&gt; leaf.buffer , flattened ) ; // async generator of strings
+
+    const output = tape.fromAsyncIterable( chunks ) ; // tape of chunks
+
+    return await tape.toString( output ) ; // chunks concatenation
+
+} ;
+
+replace(&apos;010101&apos;).then( output =&gt; console.log(output) ) ; // &apos;ababab&apos;</code>
+</code></pre></div>
         <a data-ice="link" href="manual/overview.html"></a>
       </div>
     </div>
@@ -86,101 +119,111 @@ or <a href="https://github.com/npm/npm">npm</a>.</p><h3>jspm</h3><pre><code clas
 <a href="https://babeljs.io/docs/usage/polyfill">babel-polyfill</a>.</p><pre><code class="lang-js"><code class="source-code prettyprint">require( &apos;babel-polyfill&apos; ) ;
 // or
 import &apos;babel-polyfill&apos; ;</code>
-</code></pre><p>Then</p><pre><code class="lang-js"><code class="source-code prettyprint">const grammar = require( &apos;@aureooms/js-grammar&apos; ) ;
+</code></pre><p>Then</p><pre><code class="lang-js"><code class="source-code prettyprint">const grammarToolkit = require( &apos;@aureooms/js-grammar&apos; ) ;
 // or
-import * as grammar from &apos;@aureooms/js-grammar&apos; ;</code>
+import { ast , error , grammar , ll1 , util } from &apos;@aureooms/js-grammar&apos; ;</code>
 </code></pre></div>
         <a data-ice="link" href="manual/usage.html"></a>
       </div>
     </div>
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Example</h1><pre><code><code class="source-code prettyprint">A convoluted `&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)`.</code>
-</code></pre><pre><code class="lang-js"><code class="source-code prettyprint">    import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
-    import * as stream from &apos;@aureooms/js-stream&apos; ;
-    import { grammar , ll1 , ast } from &apos;@aureooms/js-grammar&apos; ;
+        <div data-ice="card"><h1>Examples</h1><blockquote>
+<p>More examples in <a href="https://github.com/aureooms/js-tape/tree/master/test/src">the test files</a>.</p>
+</blockquote><h2>A convoluted <code>&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)</code>.</h2><pre><code class="lang-js"><code class="source-code prettyprint">import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
+import tape , { asyncIterableMap } from &apos;@aureooms/js-tape&apos; ;
+import { grammar , ll1 , ast } from &apos;@aureooms/js-grammar&apos; ;
 
-    const G = grammar.from( {
-        &quot;start&quot; : &quot;bits&quot; ,
-        &quot;eof&quot; : &quot;$&quot; ,
-        &quot;productions&quot; : {
-            &quot;bits&quot; : {
-                &quot;add&quot; : [ &quot;&amp;bit&quot; , &quot;&amp;bits&quot; ] ,
-                &quot;end&quot; : [ ] ,
-            } ,
-            &quot;bit&quot; : [
-                [ &quot;=0&quot; ] ,
-                [ &quot;=1&quot; ] ,
-            ] ,
+const G = grammar.from( {
+    &quot;start&quot; : &quot;bits&quot; ,
+    &quot;eof&quot; : &quot;$&quot; ,
+    &quot;productions&quot; : {
+        &quot;bits&quot; : {
+            &quot;add&quot; : [ &quot;&amp;bit&quot; , &quot;&amp;bits&quot; ] ,
+            &quot;end&quot; : [ ] ,
         } ,
-    } ) ;
+        &quot;bit&quot; : [
+            [ &quot;=0&quot; ] ,
+            [ &quot;=1&quot; ] ,
+        ] ,
+    } ,
+} ) ;
 
-    const parser = ll1.from(G);
+const parser = ll1.from(G);
 
-    const tokens = stream.fromiterable(
+const replace = async input =&gt; {
+
+    const tokens = tape.fromIterable(
         map(
-            ( [ i , a ] ) =&gt; { return {
+            ( [ i , a ] ) =&gt; ({
                 &quot;type&quot; : &quot;leaf&quot; ,
                 &quot;terminal&quot; : a ,
                 &quot;buffer&quot; : a ,
                 &quot;position&quot; : i ,
-            } ; } ,
-            enumerate( &apos;010101&apos; )
+            }) ,
+            enumerate( input )
         )
     ) ;
 
-    const tree = parser.parse(tokens);
+    const tree = await parser.parse(tokens);
 
-    const transformed = ast.transform( tree , {
+    const m = ( children , match , ctx ) =&gt; ast.cmap( async child =&gt; await ast.transform( child , match , ctx ) , children ) ;
+
+    const transform = {
         &quot;bits&quot; : {
-            &quot;add&quot; : ( t , n ) =&gt;  { return {
+            &quot;add&quot; : ( tree , match ) =&gt;  ({
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letters&quot; ,
                 &quot;production&quot; : &quot;yetanotherletter&quot; ,
-                &quot;children&quot; : ast.cmap( t , n.children ) ,
-            } ; } ,
-            &quot;end&quot; : ( t , n ) =&gt;  { return {
+                &quot;children&quot; : m( tree.children , match ) ,
+            }) ,
+            &quot;end&quot; : ( ) =&gt;  ({
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letters&quot; ,
                 &quot;production&quot; : &quot;done&quot; ,
                 &quot;children&quot; : [ ] ,
-            } ; } ,
+            }) ,
         } ,
         &quot;bit&quot; : [
-            ( t , n ) =&gt; {
-                return {
-                    &quot;type&quot; : &quot;node&quot; ,
-                    &quot;nonterminal&quot; : &quot;letter&quot; ,
-                    &quot;production&quot; : &quot;aaa&quot; ,
-                    &quot;children&quot; : ast.cmap ( leaf =&gt; {
-                        return {
-                            &quot;type&quot; : &quot;leaf&quot; ,
-                            &quot;terminal&quot; : &quot;a&quot; ,
-                            &quot;buffer&quot; : &quot;a&quot; ,
-                            &quot;position&quot; : leaf.position ,
-                        } ;
-                    } , n.children ) ,
-                } ;
-            } ,
-            ( t , n ) =&gt; {
-                return {
-                    &quot;type&quot; : &quot;node&quot; ,
-                    &quot;nonterminal&quot; : &quot;letter&quot; ,
-                    &quot;production&quot; : &quot;bbb&quot; ,
-                    &quot;children&quot; : ast.cmap ( leaf =&gt; {
-                        return {
-                            &quot;type&quot; : &quot;leaf&quot; ,
-                            &quot;terminal&quot; : &quot;b&quot; ,
-                            &quot;buffer&quot; : &quot;b&quot; ,
-                            &quot;position&quot; : leaf.position ,
-                        } ;
-                    } , n.children ) ,
-                } ;
-            } ,
+            tree =&gt; ({
+                &quot;type&quot; : &quot;node&quot; ,
+                &quot;nonterminal&quot; : &quot;letter&quot; ,
+                &quot;production&quot; : &quot;aaa&quot; ,
+                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                    &quot;type&quot; : &quot;leaf&quot; ,
+                    &quot;terminal&quot; : &quot;a&quot; ,
+                    &quot;buffer&quot; : &quot;a&quot; ,
+                    &quot;position&quot; : leaf.position ,
+                }) , tree.children ) ,
+            }) ,
+            tree =&gt; ({
+                &quot;type&quot; : &quot;node&quot; ,
+                &quot;nonterminal&quot; : &quot;letter&quot; ,
+                &quot;production&quot; : &quot;bbb&quot; ,
+                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                    &quot;type&quot; : &quot;leaf&quot; ,
+                    &quot;terminal&quot; : &quot;b&quot; ,
+                    &quot;buffer&quot; : &quot;b&quot; ,
+                    &quot;position&quot; : leaf.position ,
+                }) , tree.children ) ,
+            }) ,
         ] ,
     } ) ;
 
-    list( map( leaf =&gt; leaf.buffer , ast.flatten( transformed ) ) ).join(&apos;&apos;) ; // ababab</code>
+    const transformed = await ast.transform( tree , transform ) ;
+
+    const flattened = ast.flatten( transformed ) ;
+
+    const chunks = asyncIterableMap( leaf =&gt; leaf.buffer , flattened ) ;
+
+    const output = tape.fromAsyncIterable( chunks ) ;
+
+    return await tape.toString( output ) ;
+
+} ;
+
+replace(&apos;010101&apos;).then( output =&gt; console.log(output) ) ; // &apos;ababab&apos;
+</code>
 </code></pre></div>
         <a data-ice="link" href="manual/example.html"></a>
       </div>
@@ -190,7 +233,7 @@ import * as grammar from &apos;@aureooms/js-grammar&apos; ;</code>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

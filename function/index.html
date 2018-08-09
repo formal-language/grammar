@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-alphabet">alphabet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-expandobject">expandobject</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rmap">rmap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EW">EW</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ll1">ll1</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ll1/Parser.js~Parser.html">Parser</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_children_next_lazy">_children_next_lazy</a></span></span></li>
@@ -55,7 +56,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-is">is</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parse">parse</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setadd">setadd</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-anyIterator">anyIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setadd">setadd</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setaddall">setaddall</a></span></span></li>
 </ul>
 </div>
@@ -107,14 +109,42 @@
         <p>
           
           
-          <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cmap">cmap</a></span></span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, children: <span>Iterable</span>): <span>Iterator</span></span>
+          
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-anyIterator">anyIterator</a></span></span><span class="code" data-ice="signature">(object: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
-        <div data-ice="description"><p>Applies a given callable to each of the child of a given children iterable.</p>
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          <span data-ice="generator">*</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-cmap">cmap</a></span></span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, children: <span>AsyncIterable</span>): <span>AsyncIterator</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Applies a given callable to each of the child of a given children async iterable.</p>
 </div>
       </div>
     </td>
@@ -194,7 +224,7 @@
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-first">first</a></span></span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-first">first</a></span></span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span></span>
         </p>
       </div>
       <div>
@@ -221,9 +251,9 @@
       <div>
         <p>
           
-          
+          <span data-ice="async">async</span>
           <span data-ice="generator">*</span>
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span><span class="code" data-ice="signature">(tree: <span>*</span>)</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-flatten">flatten</a></span></span><span class="code" data-ice="signature">(root: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -363,9 +393,9 @@
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-materialize">materialize</a></span></span><span class="code" data-ice="signature">(tree: <span>*</span>): {&quot;type&quot;: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, &quot;nonterminal&quot;: <span>*</span>, &quot;production&quot;: <span>*</span>, &quot;children&quot;: <span>*</span>}</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-materialize">materialize</a></span></span><span class="code" data-ice="signature">(root: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -391,15 +421,44 @@
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-parse">parse</a></span></span><span class="code" data-ice="signature">(start: <span>*</span>, eof: <span>*</span>, productions: <span>*</span>, table: <span>*</span>, stream: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-parse">parse</a></span></span><span class="code" data-ice="signature">(start: <span>*</span>, eof: <span>*</span>, productions: <span>*</span>, table: <span>*</span>, tape: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
         
         
         
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          <span data-ice="async">async</span>
+          <span data-ice="generator">*</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-rmap">rmap</a></span></span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, rule: <span>Iterable</span>): <span>AsyncIterator</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Applies a given callable to each part of a given grammar rule (given as an iterable).</p>
+</div>
       </div>
     </td>
     <td>
@@ -478,9 +537,9 @@ changed.</p>
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-transform">transform</a></span></span><span class="code" data-ice="signature">(tree: <span>*</span>, match: <span>*</span>): <span>*</span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-transform">transform</a></span></span><span class="code" data-ice="signature">(tree: <span>*</span>, match: <span>*</span>, ctx: <span>*</span>): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -512,7 +571,7 @@ changed.</p>
       <div>
         <p>
           
-          
+          <span data-ice="async">async</span>
           
           <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_children_exhaust">_children_exhaust</a></span></span><span class="code" data-ice="signature">(children: <span>Iterator</span>)</span>
         </p>
@@ -541,9 +600,9 @@ changed.</p>
       <div>
         <p>
           
+          <span data-ice="async">async</span>
           
-          
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_children_next_lazy">_children_next_lazy</a></span></span><span class="code" data-ice="signature">(grammar: <span>*</span>, table: <span>*</span>, stream: <span>*</span>, token: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_children_next_lazy">_children_next_lazy</a></span></span><span class="code" data-ice="signature">(eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>, table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, tape: <span>Tape</span>, expected: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -658,7 +717,7 @@ changed.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_follow">_follow</a></span></span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, productions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_follow">_follow</a></span></span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, productions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></span>
         </p>
       </div>
       <div>
@@ -687,7 +746,7 @@ changed.</p>
           
           
           
-          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_parse_lazy">_parse_lazy</a></span></span><span class="code" data-ice="signature">(table: <span>*</span>, rule: <span>*</span>, stream: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-_parse_lazy">_parse_lazy</a></span></span><span class="code" data-ice="signature">(eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>, table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, tape: <span>Tape</span>, nonterminal: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, production: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
         </p>
       </div>
       <div>
@@ -779,14 +838,85 @@ changed.</p>
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-function-cmap">
+  <h3 data-ice="anchor" id="static-function-anyIterator">
     <span class="access" data-ice="access">public</span>
     
     
     
     
+    
+    <span class="code" data-ice="name">anyIterator</span><span class="code" data-ice="signature">(object: <span>*</span>): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/util/anyIterator.js.html#lineNumber1">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import anyIterator from &apos;<span><a href="file/src/util/anyIterator.js.html#lineNumber1">@aureooms/js-grammar/src/util/anyIterator.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">object</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-cmap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
     <span data-ice="generator">*</span>
-    <span class="code" data-ice="name">cmap</span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, children: <span>Iterable</span>): <span>Iterator</span></span>
+    <span class="code" data-ice="name">cmap</span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, children: <span>AsyncIterable</span>): <span>AsyncIterator</span></span>
     <span class="right-info">
       
       
@@ -797,7 +927,7 @@ changed.</p>
   <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import cmap from &apos;<span><a href="file/src/ast/cmap.js.html#lineNumber10">@aureooms/js-grammar/src/ast/cmap.js</a></span>&apos;</code></pre></div>
   
   
-  <div data-ice="description"><p>Applies a given callable to each of the child of a given children iterable.</p>
+  <div data-ice="description"><p>Applies a given callable to each of the child of a given children async iterable.</p>
 </div>
 
   
@@ -819,7 +949,7 @@ changed.</p>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">children</td>
-      <td data-ice="type" class="code"><span>Iterable</span></td>
+      <td data-ice="type" class="code"><span>AsyncIterable</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"><p>The input children.</p>
 </td>
@@ -834,7 +964,7 @@ changed.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span>Iterator</span></td>
+          <td class="return-type code" data-ice="returnType"><span>AsyncIterator</span></td>
           
         </tr>
       </tbody>
@@ -1022,7 +1152,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
-    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span></span>
+    <span class="code" data-ice="name">first</span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span></span>
     <span class="right-info">
       
       
@@ -1048,7 +1178,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">FIRST</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -1098,17 +1228,17 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
-    
+    <span data-ice="async">async</span>
     <span data-ice="generator">*</span>
-    <span class="code" data-ice="name">flatten</span><span class="code" data-ice="signature">(tree: <span>*</span>)</span>
+    <span class="code" data-ice="name">flatten</span><span class="code" data-ice="signature">(root: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ast/flatten.js.html#lineNumber1">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ast/flatten.js.html#lineNumber3">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import flatten from &apos;<span><a href="file/src/ast/flatten.js.html#lineNumber1">@aureooms/js-grammar/src/ast/flatten.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import flatten from &apos;<span><a href="file/src/ast/flatten.js.html#lineNumber3">@aureooms/js-grammar/src/ast/flatten.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1124,7 +1254,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">tree</td>
+      <td data-ice="name" class="code" data-depth="0">root</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -1449,9 +1579,9 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">materialize</span><span class="code" data-ice="signature">(tree: <span>*</span>): {&quot;type&quot;: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, &quot;nonterminal&quot;: <span>*</span>, &quot;production&quot;: <span>*</span>, &quot;children&quot;: <span>*</span>}</span>
+    <span class="code" data-ice="name">materialize</span><span class="code" data-ice="signature">(root: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
@@ -1475,7 +1605,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">tree</td>
+      <td data-ice="name" class="code" data-depth="0">root</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -1490,7 +1620,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType">{&quot;type&quot;: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, &quot;nonterminal&quot;: <span>*</span>, &quot;production&quot;: <span>*</span>, &quot;children&quot;: <span>*</span>}</td>
+          <td class="return-type code" data-ice="returnType"><span>*</span></td>
           
         </tr>
       </tbody>
@@ -1520,17 +1650,17 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(start: <span>*</span>, eof: <span>*</span>, productions: <span>*</span>, table: <span>*</span>, stream: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">parse</span><span class="code" data-ice="signature">(start: <span>*</span>, eof: <span>*</span>, productions: <span>*</span>, table: <span>*</span>, tape: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ll1/parse.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ll1/parse.js.html#lineNumber3">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import parse from &apos;<span><a href="file/src/ll1/parse.js.html#lineNumber5">@aureooms/js-grammar/src/ll1/parse.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import parse from &apos;<span><a href="file/src/ll1/parse.js.html#lineNumber3">@aureooms/js-grammar/src/ll1/parse.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1570,7 +1700,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
       <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">stream</td>
+      <td data-ice="name" class="code" data-depth="0">tape</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -1586,6 +1716,86 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
       <tbody>
         <tr>
           <td class="return-type code" data-ice="returnType"><span>*</span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-rmap">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    <span data-ice="async">async</span>
+    <span data-ice="generator">*</span>
+    <span class="code" data-ice="name">rmap</span><span class="code" data-ice="signature">(callable: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span>, rule: <span>Iterable</span>): <span>AsyncIterator</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/grammar/rmap.js.html#lineNumber10">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import rmap from &apos;<span><a href="file/src/grammar/rmap.js.html#lineNumber10">@aureooms/js-grammar/src/grammar/rmap.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>Applies a given callable to each part of a given grammar rule (given as an iterable).</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">callable</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">Function</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The callable to use.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">rule</td>
+      <td data-ice="type" class="code"><span>Iterable</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The input grammar rule.</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>AsyncIterator</span></td>
           
         </tr>
       </tbody>
@@ -1778,17 +1988,17 @@ changed.</p>
     
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">transform</span><span class="code" data-ice="signature">(tree: <span>*</span>, match: <span>*</span>): <span>*</span></span>
+    <span class="code" data-ice="name">transform</span><span class="code" data-ice="signature">(tree: <span>*</span>, match: <span>*</span>, ctx: <span>*</span>): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ast/transform.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ast/transform.js.html#lineNumber1">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import transform from &apos;<span><a href="file/src/ast/transform.js.html#lineNumber14">@aureooms/js-grammar/src/ast/transform.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import transform from &apos;<span><a href="file/src/ast/transform.js.html#lineNumber1">@aureooms/js-grammar/src/ast/transform.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -1811,6 +2021,12 @@ changed.</p>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">match</td>
+      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">ctx</td>
       <td data-ice="type" class="code"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -1857,7 +2073,7 @@ changed.</p>
     
     
     
-    
+    <span data-ice="async">async</span>
     
     <span class="code" data-ice="name">_children_exhaust</span><span class="code" data-ice="signature">(children: <span>Iterator</span>)</span>
     <span class="right-info">
@@ -1918,17 +2134,17 @@ changed.</p>
     
     
     
+    <span data-ice="async">async</span>
     
-    
-    <span class="code" data-ice="name">_children_next_lazy</span><span class="code" data-ice="signature">(grammar: <span>*</span>, table: <span>*</span>, stream: <span>*</span>, token: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+    <span class="code" data-ice="name">_children_next_lazy</span><span class="code" data-ice="signature">(eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>, table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, tape: <span>Tape</span>, expected: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ll1/_children_next_lazy.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ll1/_children_next_lazy.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _children_next_lazy from &apos;<span><a href="file/src/ll1/_children_next_lazy.js.html#lineNumber13">@aureooms/js-grammar/src/ll1/_children_next_lazy.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _children_next_lazy from &apos;<span><a href="file/src/ll1/_children_next_lazy.js.html#lineNumber14">@aureooms/js-grammar/src/ll1/_children_next_lazy.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Get next child of table-driven predictive lazy parsing.</p>
@@ -1945,28 +2161,39 @@ changed.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">grammar</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">eof</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The end-of-file symbol.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">grammar</td>
+      <td data-ice="type" class="code"><span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ll1 grammar.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">table</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The symbol table.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">stream</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">tape</td>
+      <td data-ice="type" class="code"><span>Tape</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The tape from which to read the symbols from.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">token</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">expected</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The expected node.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -1978,8 +2205,9 @@ changed.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>A node.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2226,15 +2454,15 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
-    <span class="code" data-ice="name">_follow</span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span>, productions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+    <span class="code" data-ice="name">_follow</span><span class="code" data-ice="signature">(FIRST: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, start: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, productions: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ll1/_follow.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ll1/_follow.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _follow from &apos;<span><a href="file/src/ll1/_follow.js.html#lineNumber17">@aureooms/js-grammar/src/ll1/_follow.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _follow from &apos;<span><a href="file/src/ll1/_follow.js.html#lineNumber18">@aureooms/js-grammar/src/ll1/_follow.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Computes the FOLLOW table for all nonterminals.</p>
@@ -2252,21 +2480,31 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">FIRST</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The FIRST table as computed by <span>ll1#_first</span></p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">start</td>
-      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a></span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The starting nonterminal.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">eof</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The end-of-file symbol.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">productions</td>
       <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The productions map.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2278,8 +2516,9 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>The FOLLOW table.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2310,15 +2549,15 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     
     
     
-    <span class="code" data-ice="name">_parse_lazy</span><span class="code" data-ice="signature">(table: <span>*</span>, rule: <span>*</span>, stream: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
+    <span class="code" data-ice="name">_parse_lazy</span><span class="code" data-ice="signature">(eof: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>, grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>, table: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span>, rule: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span>, tape: <span>Tape</span>, nonterminal: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>, production: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ll1/_parse_lazy.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ll1/_parse_lazy.js.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _parse_lazy from &apos;<span><a href="file/src/ll1/_parse_lazy.js.html#lineNumber14">@aureooms/js-grammar/src/ll1/_parse_lazy.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import _parse_lazy from &apos;<span><a href="file/src/ll1/_parse_lazy.js.html#lineNumber17">@aureooms/js-grammar/src/ll1/_parse_lazy.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Table-driven predictive lazy parsing.</p>
@@ -2335,22 +2574,53 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">table</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">eof</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The end-of-file symbol.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">grammar</td>
+      <td data-ice="type" class="code"><span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The ll1 grammar.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">table</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">Map</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The symbol table.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" class="code" data-depth="0">rule</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The production rule in use.</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
-      <td data-ice="name" class="code" data-depth="0">stream</td>
-      <td data-ice="type" class="code"><span>*</span></td>
+      <td data-ice="name" class="code" data-depth="0">tape</td>
+      <td data-ice="type" class="code"><span>Tape</span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>The tape from which to read the symbols from.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">nonterminal</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The nonterminal that produced <code>rule</code>.</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">production</td>
+      <td data-ice="type" class="code"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>The production that corresponds to <code>rule</code>.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -2362,8 +2632,9 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <table>
       <tbody>
         <tr>
-          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
-          
+          <td class="return-type code" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>The root node of the parsed tree.</p>
+</td>
         </tr>
       </tbody>
     </table>
@@ -2390,7 +2661,7 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

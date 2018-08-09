@@ -42,6 +42,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-alphabet">alphabet</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-expandobject">expandobject</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rmap">rmap</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-EW">EW</a></span></span></li>
 <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#ll1">ll1</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/ll1/Parser.js~Parser.html">Parser</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_children_next_lazy">_children_next_lazy</a></span></span></li>
@@ -55,45 +56,40 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-is">is</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-parse">parse</a></span></span></li>
-<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setadd">setadd</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-anyIterator">anyIterator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setadd">setadd</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-setaddall">setaddall</a></span></span></li>
 </ul>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-a-href--https---aureooms-github-io-js-grammar---aureooms-js-grammar--a-"><a href="https://aureooms.github.io/js-grammar">@aureooms/js-grammar</a></h1><p>Grammar compilation toolkit for JavaScript.
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-a-href--https---aureooms-github-io-js-grammar---aureooms-js-grammar--a-"><a href="https://aureooms.github.io/js-grammar">@aureooms/js-grammar</a></h1><p>Grammar compilation toolkit for JavaScript. Served with asynchronous goodness.
 See <a href="https://aureooms.github.io/js-grammar/index.html">docs</a>.</p>
-<pre><code class="lang-js"><code class="source-code prettyprint">    import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
-    import * as stream from &apos;@aureooms/js-stream&apos; ;
-    import { grammar , ll1 } from &apos;@aureooms/js-grammar&apos; ;
-
-    const G = grammar.from( { start , eof , productions } ) ;
-
-    const parser = ll1.compile(G);
-
-    const tokens = stream.fromiterable( ... ) ; // 010101
-
-    const tree = parser.parse( tokens ) ;
-
-    const transformed = ast.transform( tree , ... ) ;
-
-    list( map( leaf =&gt; leaf.buffer , ast.flatten( transformed ) ) ).join(&apos;&apos;) ; // ababab</code>
+<blockquote>
+<p>:warning: The code needs a ES2015+ polyfill to work (<code>regeneratorRuntime</code>),
+for instance <a href="https://babeljs.io/docs/usage/polyfill">@babel/polyfill</a>.</p>
+</blockquote>
+<pre><code class="lang-js"><code class="source-code prettyprint">const G = grammar.from( { start , eof , productions } ) ;
+const parser = ll1.from(G);</code>
 </code></pre>
-<p><a href="https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE"><img src="https://img.shields.io/github/license/aureooms/js-grammar.svg?style=flat" alt="License"></a>
-<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/v/@aureooms/js-grammar.svg?style=flat" alt="NPM version"></a>
-<a href="https://travis-ci.org/aureooms/js-grammar"><img src="https://img.shields.io/travis/aureooms/js-grammar.svg?style=flat" alt="Build status"></a>
-<a href="https://coveralls.io/r/aureooms/js-grammar"><img src="https://img.shields.io/coveralls/aureooms/js-grammar.svg?style=flat" alt="Coverage status"></a>
-<a href="https://david-dm.org/aureooms/js-grammar"><img src="https://img.shields.io/david/aureooms/js-grammar.svg?style=flat" alt="Dependencies status"></a>
-<a href="https://david-dm.org/aureooms/js-grammar?type=dev"><img src="https://img.shields.io/david/dev/aureooms/js-grammar.svg?style=flat" alt="Dev dependencies status"></a>
-<a href="https://codeclimate.com/github/aureooms/js-grammar"><img src="https://img.shields.io/codeclimate/github/aureooms/js-grammar.svg?style=flat" alt="Code Climate"></a>
-<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/dm/@aureooms/js-grammar.svg?style=flat" alt="NPM downloads per month"></a>
-<a href="https://github.com/aureooms/js-grammar/issues"><img src="https://img.shields.io/github/issues/aureooms/js-grammar.svg?style=flat" alt="GitHub issues"></a>
+<p><a href="https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE"><img src="https://img.shields.io/github/license/aureooms/js-grammar.svg" alt="License"></a>
+<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/v/@aureooms/js-grammar.svg" alt="Version"></a>
+<a href="https://travis-ci.org/aureooms/js-grammar"><img src="https://img.shields.io/travis/aureooms/js-grammar.svg" alt="Build"></a>
+<a href="https://david-dm.org/aureooms/js-grammar"><img src="https://img.shields.io/david/aureooms/js-grammar.svg" alt="Dependencies"></a>
+<a href="https://david-dm.org/aureooms/js-grammar?type=dev"><img src="https://img.shields.io/david/dev/aureooms/js-grammar.svg" alt="Dev dependencies"></a>
+<a href="https://github.com/aureooms/js-grammar/issues"><img src="https://img.shields.io/github/issues/aureooms/js-grammar.svg" alt="GitHub issues"></a>
+<a href="https://www.npmjs.org/package/@aureooms/js-grammar"><img src="https://img.shields.io/npm/dm/@aureooms/js-grammar.svg" alt="Downloads"></a></p>
+<p><a href="https://codeclimate.com/github/aureooms/js-grammar/issues"><img src="https://img.shields.io/codeclimate/issues/aureooms/js-grammar.svg" alt="Code issues"></a>
+<a href="https://codeclimate.com/github/aureooms/js-grammar/trends/churn"><img src="https://img.shields.io/codeclimate/maintainability/github/aureooms/js-grammar.svg" alt="Code maintainability"></a>
+<a href="https://codecov.io/gh/aureooms/js-grammar"><img src="https://img.shields.io/codecov/c/github/aureooms/js-grammar.svg" alt="Code coverage (cov)"></a>
+<a href="https://codeclimate.com/github/aureooms/js-grammar/trends/test_coverage_new_code"><img src="https://img.shields.io/codeclimate/coverage-letter/aureooms/js-grammar.svg" alt="Code coverage (clim)"></a>
+<a href="https://codeclimate.com/github/aureooms/js-grammar/trends/technical_debt"><img src="https://img.shields.io/codeclimate/tech-debt/aureooms/js-grammar.svg" alt="Code technical debt"></a>
 <a href="https://aureooms.github.io/js-grammar/source.html"><img src="https://aureooms.github.io/js-grammar/badge.svg" alt="Documentation"></a></p>
 </div>
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.0.4)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
 </footer>
 
 <script src="script/search_index.js"></script>

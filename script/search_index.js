@@ -84,6 +84,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@aureooms/js-grammar/src/util/anyiterator.js~anyiterator",
+    "function/index.html#static-function-anyIterator",
+    "<span>anyIterator</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/util/anyIterator.js</span>",
+    "function"
+  ],
+  [
     "@aureooms/js-grammar/src/ast/cmap.js~cmap",
     "function/index.html#static-function-cmap",
     "<span>cmap</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/cmap.js</span>",
@@ -147,6 +153,12 @@ window.esdocSearchIndex = [
     "@aureooms/js-grammar/src/ll1/parse.js~parse",
     "function/index.html#static-function-parse",
     "<span>parse</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/parse.js</span>",
+    "function"
+  ],
+  [
+    "@aureooms/js-grammar/src/grammar/rmap.js~rmap",
+    "function/index.html#static-function-rmap",
+    "<span>rmap</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/rmap.js</span>",
     "function"
   ],
   [
@@ -606,6 +618,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/grammar/rmap.js",
+    "file/src/grammar/rmap.js.html",
+    "src/grammar/rmap.js",
+    "file"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
@@ -717,6 +735,12 @@ window.esdocSearchIndex = [
     "src/ll1/parse.js",
     "file/src/ll1/parse.js.html",
     "src/ll1/parse.js",
+    "file"
+  ],
+  [
+    "src/util/anyiterator.js",
+    "file/src/util/anyIterator.js.html",
+    "src/util/anyIterator.js",
     "file"
   ],
   [
