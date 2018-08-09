@@ -49,3 +49,24 @@ test( 'Dragon Book (2006) page 258 exercise 4.6.6' , t => {
 	t.false(ll1.is(G));
 
 }) ;
+
+test( 'Dragon Book (2006) page 224 ... if the empty word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets ...' , t => {
+
+	const start = 'S';
+	const eof = '$';
+
+	const productions = {
+		"S" : [
+			[ "&A" , "=x" ]
+		] ,
+		"A" : [
+			[ "=x" ] ,
+			[ ]
+		]
+	} ;
+
+	const G = grammar.from( { start , eof , productions } ) ;
+
+	t.false(ll1.is(G));
+
+}) ;
