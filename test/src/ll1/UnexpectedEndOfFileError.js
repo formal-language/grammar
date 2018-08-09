@@ -34,15 +34,7 @@ async function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
-	// THIS DOES NOT WORK
-	// await t.throws( () => tape.toString( output ) , new RegExp( `at ${n+1} \\(y\\)` ) ) ;
-
-	return tape.toString( output )
-		.then( string => t.fail() )
-		.catch( error => {
-			t.true(error instanceof UnexpectedEndOfFileError) ;
-			t.true(/expected one of \["x"\]/.test(error.message));
-		} ) ;
+	await t.throws( async () => await tape.toString( output ) , /unexpected end of file, expected one of \["x"\]/ ) ;
 
 }
 
