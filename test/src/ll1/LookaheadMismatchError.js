@@ -36,28 +36,12 @@ async function throws ( t , G , n ) {
 		] )
 	) ;
 
+	const expectedError = new RegExp( `Syntax error at ${n+1} \\(y\\)` ) ;
+
 
 	if ( n === 0 ) {
 
-		// THIS DOES NOT WORK
-		//await t.throws( async () => parser.parse(tokens) , /at 1 \(y\)/ ) ;
-		//await t.throws( async () => await parser.parse(tokens) ) ;
-
-		// WHAT WORKS IS BELOW
-		//try {
-			//const tree = await parser.parse(tokens) ;
-			//t.fail();
-		//}
-		//catch ( e ) {
-			//console.debug(e);
-			//t.pass();
-		//}
-		return parser.parse(tokens)
-			.then( tree => t.fail() )
-			.catch( error => {
-				t.true(error instanceof LookaheadMismatchError) ;
-				t.true(/at 1 \(y\)/.test(error.message)) ;
-			} ) ;
+		await t.throws( () => parser.parse(tokens) , expectedError ) ;
 
 	}
 
@@ -71,21 +55,13 @@ async function throws ( t , G , n ) {
 
 		const output = tape.fromAsyncIterable( chunks ) ;
 
-		// AGAIN THIS DOES NOT WORK
-		// await t.throws( () => tape.toString( output ) , new RegExp( `at ${n+1} \\(y\\)` ) ) ;
-
-		return tape.toString( output )
-			.then( string => t.fail() )
-			.catch( error => {
-				t.true(error instanceof LookaheadMismatchError) ;
-				t.true(new RegExp(`at ${n+1} \\(y\\)`).test(error.message)) ;
-			} ) ;
+		await t.throws( () => tape.toString( output ) , expectedError ) ;
 
 	}
 
 }
 
-throws.title = ( which , G , n ) => `Lookahead mismatch at position ${n+1} (${which}).` ;
+throws.title = ( which , G , n ) => `Lookahead mismatch error at position ${n+1} (${which}).` ;
 
 const G1 = grammar.from( {
 	"start" : "letters" ,

@@ -34,7 +34,7 @@ async function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
-	await t.throws( async () => await tape.toString( output ) , /unexpected end of file, expected one of \["x"\]/ ) ;
+	await t.throws( () => tape.toString( output ) , /unexpected end of file, expected one of \["x"\]/ ) ;
 
 }
 
