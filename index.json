@@ -2567,7 +2567,7 @@
     "kind": "manual",
     "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/installation.md",
     "name": "./doc/manual/installation.md",
-    "content": "# Installation\n\nCan be managed using\n[jspm](http://jspm.io)\nor [npm](https://github.com/npm/npm).\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-grammar\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-grammar --save\n```\n",
+    "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @aureooms/js-grammar\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-grammar --save\n```\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-grammar\n```\n",
     "static": true,
     "access": "public"
   },
@@ -2575,7 +2575,7 @@
     "kind": "manual",
     "longname": "/home/aureooms/dev/js/js-grammar/doc/manual/usage.md",
     "name": "./doc/manual/usage.md",
-    "content": "# Usage\n\nThe code needs a ES2015+ polyfill to work, for example\n[babel-polyfill](https://babeljs.io/docs/usage/polyfill).\n```js\nrequire( 'babel-polyfill' ) ;\n// or\nimport 'babel-polyfill' ;\n```\n\nThen\n```js\nconst grammarToolkit = require( '@aureooms/js-grammar' ) ;\n// or\nimport { ast , error , grammar , ll1 , util } from '@aureooms/js-grammar' ;\n```\n",
+    "content": "# Usage\n\n> :warning: The code needs a ES2015+ polyfill to work (`regeneratorRuntime`),\n> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( '@babel/polyfill' ) ;\n// or\nimport '@babel/polyfill' ;\n```\n\nThen, import the library where needed\n```js\nconst grammarToolkit = require( '@aureooms/js-grammar' ) ;\n// or\nimport { ast , error , grammar , ll1 , util } from '@aureooms/js-grammar' ;\n```\n",
     "static": true,
     "access": "public"
   },
