@@ -1,6 +1,9 @@
-# Example
+# Examples
 
-	A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.
+> More examples in [the test files](https://github.com/aureooms/js-tape/tree/master/test/src).
+
+
+## A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.
 
 ```js
 import { map , enumerate } from '@aureooms/js-itertools' ;
