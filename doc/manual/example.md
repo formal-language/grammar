@@ -11,9 +11,13 @@ import tape , { asyncIterableMap } from '@aureooms/js-tape' ;
 import { grammar , ll1 , ast } from '@aureooms/js-grammar' ;
 
 const G = grammar.from( {
-	"start" : "bits" ,
+	"root" : "root" ,
+	"start" : "start" ,
 	"eof" : "$" ,
 	"productions" : {
+		"root" : {
+			"start" : [ "&bits" , "=$" ]
+		} ,
 		"bits" : {
 			"add" : [ "&bit" , "&bits" ] ,
 			"end" : [ ] ,
@@ -43,9 +47,17 @@ const replace = async input => {
 
 	const tree = parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( async child => await ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
 
 	const transform = {
+		"root" : {
+			"start" : ( tree , match ) => ({
+				"type" : "node" ,
+				"nonterminal" : "root" ,
+				"production" : "start" ,
+				"children" : m( tree.children , match ) ,
+			}) ,
+		} ,
 		"bits" : {
 			"add" : ( tree , match ) =>  ({
 				"type" : "node" ,
@@ -84,7 +96,7 @@ const replace = async input => {
 				}) , tree.children ) ,
 			}) ,
 		] ,
-	} ) ;
+	} ;
 
 	const transformed = await ast.transform( tree , transform ) ;
 

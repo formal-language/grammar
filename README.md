@@ -8,7 +8,7 @@ See [docs](https://aureooms.github.io/js-grammar/index.html).
 > for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).
 
 ```js
-const G = grammar.from( { start , eof , productions } ) ;
+const G = grammar.from( { root , start , eof , productions } ) ;
 const parser = ll1.from(G);
 ```
 
