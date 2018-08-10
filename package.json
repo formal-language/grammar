@@ -1,7 +1,7 @@
 {
   "name": "@aureooms/js-grammar",
   "description": "Grammar compilation toolkit for JavaScript",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "author": "aureooms",
   "ava": {
     "require": [
