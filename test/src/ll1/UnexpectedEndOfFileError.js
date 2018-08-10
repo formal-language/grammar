@@ -26,7 +26,7 @@ async function throws ( t , G , n ) {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
 	const flattened = ast.flatten( tree ) ;
 
@@ -41,9 +41,13 @@ async function throws ( t , G , n ) {
 throws.title = ( which , G , n ) => `Unexpected end of file error (${which}, ${n}).` ;
 
 const G1 = grammar.from( {
-	"start" : "letters" ,
+	"root" : "root" ,
+	"start" : "start" ,
 	"eof" : "$" ,
 	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ] ,
+		} ,
 		"letters" : {
 			"add" : [ "=x" , "=x" , "&letters" ] ,
 			"end" : [ ] ,
@@ -52,9 +56,13 @@ const G1 = grammar.from( {
 } ) ;
 
 const G2 = grammar.from( {
-	"start" : "letters" ,
+	"root" : "root" ,
+	"start" : "start" ,
 	"eof" : "$" ,
 	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ] ,
+		} ,
 		"letters" : {
 			"add" : [ "&letter" , "&letter" , "&letters" ] ,
 			"end" : [ ] ,

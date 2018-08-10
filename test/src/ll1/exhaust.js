@@ -8,9 +8,13 @@ import { grammar , ll1 } from '../../../src' ;
 
 test( 'exhaust with parenthesis' , async t => {
 
-	const start = 'expr';
-	const eof = '$';
+	const root = 'root' ;
+	const start = 0 ;
+	const eof = '$' ;
 	const productions = {
+		"root" : [
+			[ "&expr" , "=$" ] ,
+		] ,
 		"expr" : [
 			[ '=(' , '&expr' , '=)' , '&expr' ] ,
 			[ '=x' ] ,
@@ -18,7 +22,7 @@ test( 'exhaust with parenthesis' , async t => {
 		] ,
 	} ;
 
-	const G = grammar.from( { start , eof , productions } )
+	const G = grammar.from( { root , start , eof , productions } )
 
 	t.true(ll1.is(G));
 
@@ -35,7 +39,7 @@ test( 'exhaust with parenthesis' , async t => {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const { value: tree } = await parser.parse(tokens).children.next();
 
 	await tree.children.next(); // (
 	await tree.children.next(); // &expr

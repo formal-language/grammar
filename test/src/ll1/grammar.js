@@ -19,114 +19,114 @@ const ALPHABET = ( t , abc , e ) => t.deepEqual( sorted(increasing, abc) , sorte
 const FIRST = ( t , phi , i , e ) => t.deepEqual( sorted(increasing, first(phi, _expandproduction(i))) , sorted(increasing, e) ) ;
 const FOLLOW = ( t , pho , i , e) => t.deepEqual( sorted(increasing, follow(pho, _expandproduction(i))) , sorted(increasing, e) ) ;
 
-const node = ( G , nonterminal , productionid , children ) => ({
-	"type" : "node" ,
-	"nonterminal" : ''+nonterminal , // needs to be a string
-	"production" : ''+productionid , // needs to be a string
-	children ,
-}) ;
-
-const leaf = terminal => ({ "type" : "leaf" , terminal , "buffer" : terminal }) ;
-
 test( 'Dragon Book (2006) page 62 & 65' , t => {
 
-	const start = '0';
-	const eof = '$';
-	const productions = [ // page 62
-		[ // stmt : 0 (start)
+	const root = 'root' ;
+	const start = 0 ;
+	const eof = '$' ;
+	const productions = { // page 62
+		"root" : [
+			[ "&stmt" , "=$"]
+		] ,
+		"stmt": [ // stmt : 0 (start)
 			[ '=expr' , '=;' ] ,
-			[ '=if' , '=(' , '=expr' , '=)' , 0 ] ,
-			[ '=for' , '=(' , 1 , '=;' , 1 , '=;' , 1 , '=)' , 0 ] ,
-			[ '=other' ] ,
+			[ '=if' , '=(' , '=expr' , '=)' , '&stmt' ] ,
+			[ '=for' , '=(' , '&optexpr' , '=;' , '&optexpr' , '=;' , '&optexpr' , '=)' , '&stmt' ] ,
+			[ '=other' ]
 		] ,
-		[ // optexpr : 1
+		"optexpr": [ // optexpr : 1
 			[ ] ,
-			[ '=expr' ] ,
-		] ,
-	] ;
+			[ '=expr' ]
+		]
+	} ;
 
-	const G = grammar.from( { start , eof , productions } )
+	const G = grammar.from( { root , start , eof , productions } ) ;
 
 	t.true(ll1.is(G));
 
 	// page 65
 
-	ALPHABET( t , G.alphabet() , ['expr' , ';' , 'if' , '(' , ')' , 'for' , 'other' , EW] ) ;
+	ALPHABET( t , G.alphabet() , ['expr' , ';' , 'if' , '(' , ')' , 'for' , 'other' , EW , eof ] ) ;
 
 	const phi = _first(G.productions);
 
-	FIRST(t , phi , [0], [ 'expr', 'for', 'if', 'other' ]) ;
+	FIRST(t , phi , [ '&stmt' ], [ 'expr', 'for', 'if', 'other' ]) ;
 	FIRST(t , phi , [ '=expr', '=;' ], [ 'expr' ]) ;
 
 }) ;
 
 test( 'Dragon Book (2006) Example 4.30' , t => {
 
-	const start = '0';
-	const eof = '$';
+	const root = "R" ;
+	const start = 0 ;
+	const eof = "$" ;
 
-	const productions = [
-		[ // E : 0 (start)
-			[ 2 , 1 ] ,
+	const productions = {
+		"R" : [
+			[ "&E" , "=$" ]
 		] ,
-		[ // E' : 1
-			[ '=+' , 2 , 1 ] ,
-			[ ] ,
+		"E" : [ // E : 0 (start)
+			[ "&T" , "&E'" ]
 		] ,
-		[ // T : 2
-			[ 4 , 3 ] ,
+		"E'" : [ // E' : 1
+			[ '=+' , "&T" , "&E'" ] ,
+			[ ]
 		] ,
-		[ // T' : 3
-			[ '=*' , 4 , 3 ] ,
-			[ ] ,
+		"T" : [ // T : 2
+			[ "&F" , "&T'" ]
 		] ,
-		[ // F : 4
-			[ '=(' , 0 , '=)' ] ,
-			[ '=id' ] ,
+		"T'" : [ // T' : 3
+			[ '=*' , "&F" , "&T'" ] ,
+			[ ]
 		] ,
-	] ;
+		"F" : [ // F : 4
+			[ '=(' , "&E" , '=)' ] ,
+			[ '=id' ]
+		]
+	} ;
 
-	const G = grammar.from( { start , eof , productions } )
+	const G = grammar.from( { root , start , eof , productions } )
 
 	t.true(ll1.is(G));
 
-	ALPHABET( t , G.alphabet() , ['+' , '*' , '(' , ')' , 'id' , EW] ) ;
+	ALPHABET( t , G.alphabet() , ['+' , '*' , '(' , ')' , 'id' , EW , eof ] ) ;
 
 	const phi = _first(G.productions);
-	const pho = _follow(phi, start, eof, G.productions);
+	const pho = _follow(phi, G.productions);
 
 	// 1.
-	FIRST(t, phi, [4], ['(' , 'id']);
-	FIRST(t, phi, [2], ['(' , 'id']);
-	FIRST(t, phi, [0], ['(' , 'id']);
+	FIRST(t, phi, ["&F"], ['(' , 'id']);
+	FIRST(t, phi, ["&T"], ['(' , 'id']);
+	FIRST(t, phi, ["&E"], ['(' , 'id']);
 
 	// 2.
-	FIRST(t, phi, [1], ['+' , EW]);
+	FIRST(t, phi, ["&E'"], ['+' , EW]);
 
 	// 3.
-	FIRST(t, phi, [3], ['*' , EW]);
+	FIRST(t, phi, ["&T'"], ['*' , EW]);
 
 	// 4.
-	FOLLOW(t, pho, [0], [')' , eof]);
-	FOLLOW(t, pho, [1], [')' , eof]);
+	FOLLOW(t, pho, ["&E"], [')' , eof]);
+	FOLLOW(t, pho, ["&E'"], [')' , eof]);
 
 	// 5.
-	FOLLOW(t, pho, [2], ['+' , ')' , eof]);
-	FOLLOW(t, pho, [3], ['+' , ')' , eof]);
+	FOLLOW(t, pho, ["&T"], ['+' , ')' , eof]);
+	FOLLOW(t, pho, ["&T'"], ['+' , ')' , eof]);
 
 	// 6.
-	FOLLOW(t, pho, [4], [ '*' , '+' , ')' , eof]);
+	FOLLOW(t, pho, ["&F"], [ '*' , '+' , ')' , eof]);
 
 });
 
 test( 'Dragon Book (2006) page 71' , t => {
 
-	const start = '0';
-	const eof = '$';
+	const root = 0 ;
+	const start = 0 ;
+	const eof = '$' ;
 
 	const productions = [
 		[ // expr : 0 (start)
-			[ 2 , 1 ] ,
+			[ 2 , 1 , '=$' ] ,
 		],
 		[ // rest : 1
 			[ '=+' , 2 , 1 ] ,
@@ -136,7 +136,7 @@ test( 'Dragon Book (2006) page 71' , t => {
 		list( map( d => [ `=${d}` ] , '0123456789' ) ) , // term : 2
 	] ;
 
-	const G = grammar.from( { start , eof , productions } ) ;
+	const G = grammar.from( { root , start , eof , productions } ) ;
 
 	t.true(ll1.is(G));
 
@@ -172,7 +172,7 @@ test( 'chain' , t => {
 	ALPHABET( t , G.alphabet() , ['w' , 'x' , 'y' , 'z' , EW] ) ;
 
 	const phi = _first(G.productions);
-	const pho = _follow(phi, start, eof, G.productions);
+	const pho = _follow(phi, G.productions);
 
 	FIRST(t, phi, [0], ['w']);
 	FIRST(t, phi, [1], ['x', 'y', 'z', EW]);
@@ -184,7 +184,8 @@ test( 'chain' , t => {
 test( 'Test all features of JSON encoding' , t => {
 
 	const object = {
-		"start" : "sentence" ,
+		"root" : "sentence" ,
+		"start" : "main" ,
 		"eof" : "$" ,
 		"productions" : {
 			"sentence" : {
@@ -194,6 +195,7 @@ test( 'Test all features of JSON encoding' , t => {
 						"nonterminal" : "beginning-of-sentence" ,
 					} ,
 					"&end-of-sentence" ,
+					"=$" ,
 				] ,
 			} ,
 			"beginning-of-sentence" : {

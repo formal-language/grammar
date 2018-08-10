@@ -7,9 +7,13 @@ import { grammar , ast , ll1 } from '../../../src' ;
 async function flatten ( t , n ) {
 
 	const G = grammar.from( {
-		"start" : "letters" ,
+		"root" : "root" ,
+		"start" : "start" ,
 		"eof" : "$" ,
 		"productions" : {
+			"root" : {
+				"start" : [ "&letters" , "=$" ] ,
+			} ,
 			"letters" : {
 				"add" : [ "&letter" , "&letters" ] ,
 				"end" : [ ] ,
@@ -36,7 +40,7 @@ async function flatten ( t , n ) {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
 	const got = await tape.toString( tape.fromAsyncIterable( asyncIterableMap( leaf => leaf.buffer , ast.flatten( tree ) ) ) ) ;
 
@@ -56,9 +60,13 @@ test( flatten , 100000 ) ;
 async function materialize ( t , n ) {
 
 	const G = grammar.from( {
-		"start" : "letters" ,
+		"root" : "root" ,
+		"start" : "start" ,
 		"eof" : "$" ,
 		"productions" : {
+			"root" : {
+				"start" : [ "&letters" , "=$" ] ,
+			} ,
 			"letters" : {
 				"add" : [ "&letter" , "&letters" ] ,
 				"end" : [ ] ,
@@ -85,7 +93,7 @@ async function materialize ( t , n ) {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
 	const materialized = await ast.materialize(tree) ;
 

@@ -7,9 +7,13 @@ import { grammar , ast , ll1 } from '../../../src' ;
 test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , async t => {
 
 	const G = grammar.from( {
-		"start" : "bits" ,
+		"root" : "root" ,
+		"start" : "start" ,
 		"eof" : "$" ,
 		"productions" : {
+			"root" : {
+				"start" : [ "&bits" , "=$" ]
+			} ,
 			"bits" : {
 				"add" : [ "&bit" , "&bits" ] ,
 				"end" : [ ] ,
@@ -37,11 +41,19 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , async t
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( async child => await ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
 
 	const transformed = await ast.transform( tree , {
+		"root" : {
+			"start" : ( tree , match ) => ({
+				"type" : "node" ,
+				"nonterminal" : "root" ,
+				"production" : "start" ,
+				"children" : m( tree.children , match ) ,
+			}) ,
+		} ,
 		"bits" : {
 			"add" : ( tree , match ) =>  ({
 				"type" : "node" ,

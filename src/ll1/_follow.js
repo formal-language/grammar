@@ -10,14 +10,12 @@ import { EW } from '../grammar';
  * Computes the FOLLOW table for all nonterminals.
  *
  * @param {Map} FIRST - The FIRST table as computed by {@link ll1#_first}
- * @param {String} start - The starting nonterminal.
- * @param {Object} eof - The end-of-file symbol.
  * @param {Map} productions - The productions map.
  * @returns {Map} The FOLLOW table.
  */
-export default function _follow ( FIRST , start , eof , productions ) {
+export default function _follow ( FIRST , productions ) {
 
-	const FOLLOW = new Map( map( i => [ i , new Set( i === start ? [eof] : []) ] , productions.keys() ) ) ;
+	const FOLLOW = new Map( map( i => [ i , new Set() ] , productions.keys() ) ) ;
 
 	const couldbelast = new Map( map( i => [ i , new Set() ] , productions.keys() )) ;
 

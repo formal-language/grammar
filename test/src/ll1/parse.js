@@ -15,24 +15,30 @@ const node = ( G , nonterminal , productionid , children ) => ({
 
 const leaf = terminal => ({ "type" : "leaf" , terminal , "buffer" : terminal }) ;
 
+const eofleaf = terminal => ({ "type" : "leaf" , terminal }) ;
+
 test( 'Dragon Book (2006) page 62' , async t => {
 
-	const start = '0';
-	const eof = '$';
-	const productions = [ // page 62
-		[ // stmt : 0 (start)
+	const root = 'root' ;
+	const start = 0 ;
+	const eof = '$' ;
+	const productions = { // page 62
+		"root" : [
+			[ "&stmt" , "=$"]
+		] ,
+		"stmt": [ // stmt : 0 (start)
 			[ '=expr' , '=;' ] ,
-			[ '=if' , '=(' , '=expr' , '=)' , 0 ] ,
-			[ '=for' , '=(' , 1 , '=;' , 1 , '=;' , 1 , '=)' , 0 ] ,
-			[ '=other' ] ,
+			[ '=if' , '=(' , '=expr' , '=)' , '&stmt' ] ,
+			[ '=for' , '=(' , '&optexpr' , '=;' , '&optexpr' , '=;' , '&optexpr' , '=)' , '&stmt' ] ,
+			[ '=other' ]
 		] ,
-		[ // optexpr : 1
+		"optexpr": [ // optexpr : 1
 			[ ] ,
-			[ '=expr' ] ,
-		] ,
-	] ;
+			[ '=expr' ]
+		]
+	} ;
 
-	const G = grammar.from( { start , eof , productions } )
+	const G = grammar.from( { root , start , eof , productions } ) ;
 
 	// page 62
 
@@ -48,18 +54,21 @@ test( 'Dragon Book (2006) page 62' , async t => {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
-	const expected = node( G , 0 , 2 , [
-		leaf( "for" ) ,
-		leaf( "(" ) ,
-		node( G , 1 , 0 , [ ] ) ,
-		leaf( ";" ) ,
-		node( G , 1 , 1 , [ leaf("expr") ] ) ,
-		leaf( ";" ) ,
-		node( G , 1 , 1 , [ leaf("expr") ] ) ,
-		leaf( ")" ) ,
-		node( G , 0 , 3 , [ leaf("other") ] ) ,
+	const expected = node( G , "root" , 0 , [
+		node( G , "stmt" , 2 , [
+			leaf( "for" ) ,
+			leaf( "(" ) ,
+			node( G , 'optexpr' , 0 , [ ] ) ,
+			leaf( ";" ) ,
+			node( G , 'optexpr' , 1 , [ leaf("expr") ] ) ,
+			leaf( ";" ) ,
+			node( G , 'optexpr' , 1 , [ leaf("expr") ] ) ,
+			leaf( ")" ) ,
+			node( G , "stmt" , 3 , [ leaf("other") ] ) ,
+		] ) ,
+		eofleaf( eof ) ,
 	] ) ;
 
 	const materialized1 = await ast.materialize( tree ) ;
@@ -75,12 +84,13 @@ test( 'Dragon Book (2006) page 62' , async t => {
 
 test( 'Dragon Book (2006) page 71' , async t => {
 
-	const start = '0';
-	const eof = '$';
+	const root = 0 ;
+	const start = 0 ;
+	const eof = '$' ;
 
 	const productions = [
 		[ // expr : 0 (start)
-			[ 2 , 1 ] ,
+			[ 2 , 1 , '=$' ] ,
 		],
 		[ // rest : 1
 			[ '=+' , 2 , 1 ] ,
@@ -90,7 +100,7 @@ test( 'Dragon Book (2006) page 71' , async t => {
 		list( map( d => [ `=${d}` ] , '0123456789' ) ) , // term : 2
 	] ;
 
-	const G = grammar.from( { start , eof , productions } ) ;
+	const G = grammar.from( { root , start , eof , productions } ) ;
 
 	const parser = ll1.from(G);
 
@@ -104,7 +114,7 @@ test( 'Dragon Book (2006) page 71' , async t => {
 		)
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
 	const expected = node( G , 0 , 0 , [
 		node( G , 2 , 9 , [ leaf( "9" ) ] ) ,
@@ -117,6 +127,7 @@ test( 'Dragon Book (2006) page 71' , async t => {
 				node( G , 1 , 2 , [ ] ) ,
 			]) ,
 		]) ,
+		eofleaf(eof) ,
 	]) ;
 
 	const materialized1 = await ast.materialize( tree ) ;
@@ -132,7 +143,8 @@ test( 'Dragon Book (2006) page 71' , async t => {
 test( 'Test all features of JSON encoding' , async t => {
 
 	const object = {
-		"start" : "sentence" ,
+		"root" : "sentence" ,
+		"start" : "main" ,
 		"eof" : "$" ,
 		"productions" : {
 			"sentence" : {
@@ -142,6 +154,7 @@ test( 'Test all features of JSON encoding' , async t => {
 						"nonterminal" : "beginning-of-sentence" ,
 					} ,
 					"&end-of-sentence" ,
+					"=$" ,
 				] ,
 			} ,
 			"beginning-of-sentence" : {
@@ -189,7 +202,7 @@ test( 'Test all features of JSON encoding' , async t => {
 		)
 	);
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
 	const expected = node( G , "sentence" , "main" , [
 		node( G , "beginning-of-sentence" , "main" , [
@@ -239,8 +252,8 @@ test( 'Test all features of JSON encoding' , async t => {
 				"terminal" : "." ,
 				"buffer" : "." ,
 			}
-		] ,
-		) ,
+		] ) ,
+		eofleaf(object.eof) ,
 	]
 	) ;
 
@@ -251,9 +264,5 @@ test( 'Test all features of JSON encoding' , async t => {
 	const materialized2 = await ast.materialize( materialized1 ) ;
 
 	t.deepEqual( materialized2 , expected ) ;
-
-	//tape.fromString('Cbba aba.')
-	//tape.fromString('Acc bcbb ccaaaaa.')
-	//tape.fromString('Ab cbcc baaaa cbc.')
 
 }) ;

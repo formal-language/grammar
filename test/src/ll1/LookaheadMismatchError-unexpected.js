@@ -38,35 +38,28 @@ async function throws ( t , G , n ) {
 
 	const expectedError = new RegExp( `Syntax error at ${n+1} \\(y\\)` ) ;
 
+	const tree = parser.parse(tokens);
 
-	if ( n === 0 ) {
+	const flattened = ast.flatten( tree ) ;
 
-		await t.throws( () => parser.parse(tokens) , expectedError ) ;
+	const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ;
 
-	}
+	const output = tape.fromAsyncIterable( chunks ) ;
 
-	else {
-
-		const tree = await parser.parse(tokens);
-
-		const flattened = ast.flatten( tree ) ;
-
-		const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ;
-
-		const output = tape.fromAsyncIterable( chunks ) ;
-
-		await t.throws( () => tape.toString( output ) , expectedError ) ;
-
-	}
+	await t.throws( () => tape.toString( output ) , expectedError ) ;
 
 }
 
-throws.title = ( which , G , n ) => `Lookahead mismatch error at position ${n+1} (${which}).` ;
+throws.title = ( which , G , n ) => `Lookahead mismatch error at position ${n+1} (unexpected case - ${which}).` ;
 
 const G1 = grammar.from( {
-	"start" : "letters" ,
+	"root" : "root" ,
+	"start" : "start" ,
 	"eof" : "$" ,
 	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ]
+		} ,
 		"letters" : {
 			"add" : [ "=x" , "&letters" ] ,
 			"end" : [ ] ,
@@ -75,17 +68,21 @@ const G1 = grammar.from( {
 } ) ;
 
 const G2 = grammar.from( {
-	"start" : "letters" ,
+	"root" : "root" ,
+	"start" : "start" ,
 	"eof" : "$" ,
 	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ]
+		} ,
 		"letters" : {
 			"add" : [ "&letter" , "&letters" ] ,
-			"end" : [ ] ,
+			"end" : [ ]
 		} ,
 		"letter" : {
-			"x" : [ "=x" ] ,
-		} ,
-	} ,
+			"x" : [ "=x" ]
+		}
+	}
 } ) ;
 
 

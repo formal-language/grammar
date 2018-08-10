@@ -3,8 +3,9 @@ import alphabet from './alphabet' ;
 
 export default class Grammar {
 
-	constructor ( { start , eof , productions } ) {
-		this.start = start ;
+	constructor ( { root , start , eof , productions } ) {
+		this.root = ''+root ;
+		this.start = ''+start ;
 		this.eof = eof ;
 		this.productions = expandobject( productions ) ;
 		this._alphabet = null ;

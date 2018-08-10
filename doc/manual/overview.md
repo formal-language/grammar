@@ -4,11 +4,12 @@
 import { grammar , ll1 } from '@aureooms/js-grammar' ;
 import tape from '@aureooms/js-tape' ;
 
+const root = 'root' ;
 const start = 'start' ;
 const eof = '$' ;
-const productions = { 'start' : { ... } , ... } ;
+const productions = { 'root' : { 'start' : [ ... , '=$' ] } , ... } ;
 
-const G = grammar.from( { start , eof , productions } ) ; // Grammar Object
+const G = grammar.from( { root , start , eof , productions } ) ; // Grammar Object
 
 ll1.is(G); // true
 
@@ -18,7 +19,7 @@ const replace = async input => {
 
     const tokens = tape.fromString( ... ) ; // create tokens from string `input`
 
-    const tree = await parser.parse( tokens ) ; // root of parsed tree
+    const tree = parser.parse( tokens ) ; // root of parsed tree
 
     const transformed = await ast.transform( tree , ... ) ; // root of transformed tree
 

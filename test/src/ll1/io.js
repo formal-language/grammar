@@ -9,12 +9,16 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 
 	const filepath = 'test/data/010101.txt' ;
 	const encoding = 'utf8' ;
-	const expected = 'ababab' ;
+	const expected = 'ababab\n' ;
 
 	const G = grammar.from( {
-		"start" : "bits" ,
-		"eof" : "\n" , // read untile newline
+		"root" : "root" ,
+		"start" : "start" ,
+		"eof" : "$" ,
 		"productions" : {
+			"root" : {
+				"start" : [ "&bits"  , "=\n", "=$" ]
+			} ,
 			"bits" : {
 				"add" : [ "&bit" , "&bits" ] ,
 				"end" : [ ] ,
@@ -47,11 +51,19 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 		tape.fromReadStream( readStream )
 	) ;
 
-	const tree = await parser.parse(tokens);
+	const tree = parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( async child => await ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
 
 	const transformed = await ast.transform( tree , {
+		"root" : {
+			"start" : ( tree , match ) => ({
+				"type" : "node" ,
+				"nonterminal" : "root" ,
+				"production" : "start" ,
+				"children" : m( tree.children , match ) ,
+			}) ,
+		} ,
 		"bits" : {
 			"add" : ( tree , match ) =>  ({
 				"type" : "node" ,

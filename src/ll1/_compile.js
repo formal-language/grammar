@@ -15,17 +15,15 @@ import { alphabet , EW } from '../grammar' ;
  * Generates the rows of the predictive parsing table for a grammar.
  * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.
  *
- * @param start
- * @param eof
- * @param productions
- * @returns {undefined}
+ * @param {Map} productions
+ * @returns {Iterable}
  */
-export default function* _compile ( start , eof , productions ) {
+export default function* _compile ( productions ) {
 
 	const abc = alphabet(productions);
 
 	const phi = _first(productions);
-	const pho = _follow(phi, start, eof, productions);
+	const pho = _follow(phi, productions);
 
 	const FIRST = rule => first(phi, rule) ;
 
@@ -41,7 +39,7 @@ export default function* _compile ( start , eof , productions ) {
 					dflt,
 				) ,
 			] ,
-			filter( a => pho.get(A).has(a) && !phi.get(A).has(a), chain([abc,[eof]]))
+			filter( a => pho.get(A).has(a) && !phi.get(A).has(a), abc)
 		);
 
 		const n = map(

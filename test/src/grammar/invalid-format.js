@@ -6,10 +6,14 @@ import { grammar , ll1 } from '../../../src' ;
 
 test( 'invalid node type in _expandproduction (_makenode)' , t => {
 
-	const start = 'S';
+	const root = 'R' ;
+	const start = 0 ;
 	const eof = '$';
 
 	const productions = {
+		"R" : [
+			[ "&S" , '=$' ]
+		] ,
 		"S" : [
 			[ "&A" , "+x" ]
 		] ,
@@ -19,6 +23,6 @@ test( 'invalid node type in _expandproduction (_makenode)' , t => {
 		]
 	} ;
 
-	t.throws( () => grammar.from( { start , eof , productions } , /\+ is not a valid type/ ) ) ;
+	t.throws( () => grammar.from( { root , start , eof , productions } ) , /\+ is not a valid type/ ) ;
 
 }) ;
