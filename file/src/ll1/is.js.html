@@ -86,7 +86,7 @@ import { EW } from &apos;../grammar&apos; ;
  * @param {Grammar} grammar
  * @returns {Boolean}
  */
-export default function is ( { start , eof , productions } ) {
+export default function is ( { productions } ) {
 
 	const phi = _first(productions);
 
@@ -111,7 +111,7 @@ export default function is ( { start , eof , productions } ) {
 	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
 	//   and likewise if the empty word is in FIRST(a).&apos;&apos;
 
-	const pho = _follow(phi, start, eof, productions);
+	const pho = _follow(phi, productions);
 
 	const FOLLOW = A =&gt; pho.get(A);
 

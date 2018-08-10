@@ -84,15 +84,13 @@ export default class Parser {
 	//}
 
 	table ( ) {
-		if ( this._table === null ) this._table = compile( this.grammar.start, this.grammar.eof, this.grammar.productions) ;
+		if ( this._table === null ) this._table = compile(this.grammar.productions) ;
 		return this._table ;
 	}
 
-	async parse ( tape ) {
+	parse ( tape ) {
 		const table = this.table();
-		const result = await parse(this.grammar.start, this.grammar.eof, this.grammar.productions, table, tape);
-		const tree = result.value ;
-		return tree ;
+		return parse(this.grammar.root, this.grammar.start, this.grammar.eof, this.grammar.productions, table, tape);
 	}
 
 }

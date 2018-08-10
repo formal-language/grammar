@@ -69,8 +69,9 @@ import alphabet from &apos;./alphabet&apos; ;
 
 export default class Grammar {
 
-	constructor ( { start , eof , productions } ) {
-		this.start = start ;
+	constructor ( { root , start , eof , productions } ) {
+		this.root = &apos;&apos;+root ;
+		this.start = &apos;&apos;+start ;
 		this.eof = eof ;
 		this.productions = expandobject( productions ) ;
 		this._alphabet = null ;

@@ -1,7 +1,7 @@
 {
-  "coverage": "29.78%",
-  "expectCount": 47,
-  "actualCount": 14,
+  "coverage": "31.25%",
+  "expectCount": 48,
+  "actualCount": 15,
   "files": {
     "src/ast/_children_exhaust.js": {
       "expectCount": 1,
@@ -66,7 +66,7 @@
       ]
     },
     "src/grammar/Grammar.js": {
-      "expectCount": 7,
+      "expectCount": 8,
       "actualCount": 0,
       "undocumentLines": [
         4,
@@ -75,7 +75,8 @@
         8,
         9,
         10,
-        13
+        11,
+        14
       ]
     },
     "src/grammar/_expandproduction.js": {
@@ -180,10 +181,8 @@
     },
     "src/ll1/parse.js": {
       "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/util/anyIterator.js": {
       "expectCount": 1,

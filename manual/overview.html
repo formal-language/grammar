@@ -62,11 +62,12 @@
 <div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="overview">Overview</h1><pre><code class="lang-js"><code class="source-code prettyprint">import { grammar , ll1 } from &apos;@aureooms/js-grammar&apos; ;
 import tape from &apos;@aureooms/js-tape&apos; ;
 
+const root = &apos;root&apos; ;
 const start = &apos;start&apos; ;
 const eof = &apos;$&apos; ;
-const productions = { &apos;start&apos; : { ... } , ... } ;
+const productions = { &apos;root&apos; : { &apos;start&apos; : [ ... , &apos;=$&apos; ] } , ... } ;
 
-const G = grammar.from( { start , eof , productions } ) ; // Grammar Object
+const G = grammar.from( { root , start , eof , productions } ) ; // Grammar Object
 
 ll1.is(G); // true
 
@@ -76,7 +77,7 @@ const replace = async input =&gt; {
 
     const tokens = tape.fromString( ... ) ; // create tokens from string `input`
 
-    const tree = await parser.parse( tokens ) ; // root of parsed tree
+    const tree = parser.parse( tokens ) ; // root of parsed tree
 
     const transformed = await ast.transform( tree , ... ) ; // root of transformed tree
 

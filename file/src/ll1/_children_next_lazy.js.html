@@ -71,13 +71,13 @@ import _parse_lazy from &apos;./_parse_lazy&apos; ;
  * Get next child of table-driven predictive lazy parsing.
  *
  * @param {Object} eof - The end-of-file symbol.
- * @param {Grammar} grammar - The ll1 grammar.
+ * @param {Map} productions - The ll1 productions.
  * @param {Map} table - The symbol table.
  * @param {Tape} tape - The tape from which to read the symbols from.
  * @param {Object} expected - The expected node.
  * @returns {Object} A node.
  */
-export default async function _children_next_lazy ( eof, grammar , table , tape , expected ) {
+export default async function _children_next_lazy ( eof, productions , table , tape , expected ) {
 
 	const lookahead = await tape.read( ) ;
 
@@ -101,7 +101,7 @@ export default async function _children_next_lazy ( eof, grammar , table , tape 
 		else throw new LookaheadMismatchError(lookahead, [...router.keys()]) ;
 	}
 
-	else return _parse_lazy(eof, grammar, table, grammar.get(expected.nonterminal).get(next), tape , expected.nonterminal , next);
+	else return _parse_lazy(eof, productions, table, productions.get(expected.nonterminal).get(next), tape , expected.nonterminal , next);
 
 }
 </code></pre>

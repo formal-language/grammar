@@ -97,7 +97,7 @@ const replace = async input =&gt; {
         )
     ) ;
 
-    const tree = await parser.parse(tokens);
+    const tree = parser.parse(tokens);
 
     const m = ( children , match , ctx ) =&gt; ast.cmap( async child =&gt; await ast.transform( child , match , ctx ) , children ) ;
 

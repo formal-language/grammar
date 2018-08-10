@@ -582,6 +582,12 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
+    "src/grammar/grammar.js~grammar#root",
+    "class/src/grammar/Grammar.js~Grammar.html#instance-member-root",
+    "src/grammar/Grammar.js~Grammar#root",
+    "member"
+  ],
+  [
     "src/grammar/grammar.js~grammar#start",
     "class/src/grammar/Grammar.js~Grammar.html#instance-member-start",
     "src/grammar/Grammar.js~Grammar#start",
