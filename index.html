@@ -69,7 +69,7 @@ See <a href="https://aureooms.github.io/js-grammar/index.html">docs</a>.</p>
 <p>:warning: The code needs a ES2015+ polyfill to work (<code>regeneratorRuntime</code>),
 for instance <a href="https://babeljs.io/docs/usage/polyfill">@babel/polyfill</a>.</p>
 </blockquote>
-<pre><code class="lang-js"><code class="source-code prettyprint">const G = grammar.from( { start , eof , productions } ) ;
+<pre><code class="lang-js"><code class="source-code prettyprint">const G = grammar.from( { root , start , eof , productions } ) ;
 const parser = ll1.from(G);</code>
 </code></pre>
 <p><a href="https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE"><img src="https://img.shields.io/github/license/aureooms/js-grammar.svg" alt="License"></a>
