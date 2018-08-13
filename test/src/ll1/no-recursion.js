@@ -110,3 +110,78 @@ materialize.title = ( _ , n ) => `No recursion: materialize repetition of a sing
 test( materialize , 1000 ) ;
 test( materialize , 10000 ) ;
 test( materialize , 100000 ) ;
+
+
+async function exhaust ( t , G , n ) {
+
+	t.true(ll1.is(G));
+
+	const parser = ll1.from(G);
+
+	const tokens = tape.fromIterable(
+		map(
+			i => ({
+				"type" : "leaf" ,
+				"terminal" : "x" ,
+				"buffer" : "x" ,
+				"position" : i ,
+			}) ,
+			range(n)
+		)
+	) ;
+
+	const tree = parser.parse(tokens);
+
+	await tree.children.next() ; // skip first node
+
+	const eof = await tree.children.next() ;
+	t.deepEqual( eof.value , { 'type' : 'leaf' , 'terminal' : G.eof } ) ;
+
+	const { done } = await tree.children.next() ;
+	t.true( done ) ;
+
+}
+
+const G1 = grammar.from( {
+	"root" : "root" ,
+	"start" : "start" ,
+	"eof" : "$" ,
+	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ]
+		} ,
+		"letters" : {
+			"add" : [ "=x" , "&letters" ] ,
+			"end" : [ ] ,
+		} ,
+	} ,
+} ) ;
+
+const G2 = grammar.from( {
+	"root" : "root" ,
+	"start" : "start" ,
+	"eof" : "$" ,
+	"productions" : {
+		"root" : {
+			"start" : [ "&letters" , "=$" ]
+		} ,
+		"letters" : {
+			"add" : [ "&letter" , "&letters" ] ,
+			"end" : [ ]
+		} ,
+		"letter" : {
+			"x" : [ "=x" ]
+		}
+	}
+} ) ;
+
+
+exhaust.title = ( which , _ , n ) => `No recursion: exhaust repetition of a single letter x${n} times (${which} case).` ;
+
+test( 'leaf' , exhaust , G1 , 1000 ) ;
+test( 'leaf' , exhaust , G1 , 10000 ) ;
+test( 'leaf' , exhaust , G1 , 100000 ) ;
+
+test( 'node' , exhaust , G2 , 1000 ) ;
+test( 'node' , exhaust , G2 , 10000 ) ;
+test( 'node' , exhaust , G2 , 100000 ) ;
