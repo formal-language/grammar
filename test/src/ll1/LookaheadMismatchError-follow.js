@@ -8,7 +8,7 @@ const {
 	LookaheadMismatchError ,
 } = error ;
 
-async function throws ( t , G , n ) {
+function throws ( t , G , n ) {
 
 	t.true(ll1.is(G));
 
@@ -46,7 +46,11 @@ async function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
-	await t.throws( () => tape.toString( output ) , expectedError ) ;
+	//await t.throws( () => tape.toString( output ) , expectedError ) ;
+
+	return tape.toString( output )
+		.then( () => t.fail() )
+		.catch( err => t.true(expectedError.test(err.message)) ) ;
 
 }
 

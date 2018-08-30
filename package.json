@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@aureooms/js-compare": "^1.4.5",
-    "@aureooms/js-tape": "^4.0.1",
-    "@babel/cli": "^7.0.0-rc.1",
-    "@babel/core": "^7.0.0-rc.1",
-    "@babel/plugin-proposal-async-generator-functions": "^7.0.0-rc.1",
-    "@babel/polyfill": "^7.0.0-rc.1",
-    "@babel/preset-env": "^7.0.0-rc.1",
-    "@babel/register": "^7.0.0-rc.1",
-    "ava": "^1.0.0-beta.1",
+    "@aureooms/js-tape": "^5.0.0",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-async-generator-functions": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "ava": "^1.0.0-beta.8",
     "codeclimate-test-reporter": "^0.5.0",
     "coveralls": "^3.0.2",
     "esdoc": "^1.1.0",
@@ -46,7 +46,7 @@
     "esdoc-inject-style-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "np": "^3.0.4",
-    "nyc": "^12.0.2"
+    "nyc": "^13.0.1"
   },
   "files": [
     "lib"
