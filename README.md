@@ -14,7 +14,7 @@ const parser = ll1.from(G);
 
 [![License](https://img.shields.io/github/license/aureooms/js-grammar.svg)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)
 [![Version](https://img.shields.io/npm/v/@aureooms/js-grammar.svg)](https://www.npmjs.org/package/@aureooms/js-grammar)
-[![Build](https://img.shields.io/travis/aureooms/js-grammar.svg)](https://travis-ci.org/aureooms/js-grammar)
+[![Build](https://img.shields.io/travis/aureooms/js-grammar/master.svg)](https://travis-ci.org/aureooms/js-grammar/branches)
 [![Dependencies](https://img.shields.io/david/aureooms/js-grammar.svg)](https://david-dm.org/aureooms/js-grammar)
 [![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-grammar.svg)](https://david-dm.org/aureooms/js-grammar?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/aureooms/js-grammar.svg)](https://github.com/aureooms/js-grammar/issues)
