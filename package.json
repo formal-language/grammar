@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "@aureooms/js-compare": "^1.4.5",
-    "@aureooms/js-tape": "^5.0.0",
+    "@aureooms/js-tape": "^5.0.1",
     "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
+    "@babel/core": "^7.0.1",
     "@babel/plugin-proposal-async-generator-functions": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
