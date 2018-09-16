@@ -39,13 +39,15 @@ test( 'exhaust with parenthesis' , async t => {
 		)
 	) ;
 
-	const { value: tree } = await parser.parse(tokens).children.next();
+	const { value: tree } = await parser.parse(tokens).children[Symbol.asyncIterator]().next();
 
-	await tree.children.next(); // (
-	await tree.children.next(); // &expr
-	await tree.children.next(); // )
-	const { done , value } = await tree.children.next(); // x
-	const x = await value.children.next();
+	const it = tree.children[Symbol.asyncIterator]();
+
+	await it.next(); // (
+	await it.next(); // &expr
+	await it.next(); // )
+	const { done , value } = await it.next(); // x
+	const x = await value.children[Symbol.asyncIterator]().next();
 
 	const got = x.value.buffer ;
 	t.is(got, 'x') ;

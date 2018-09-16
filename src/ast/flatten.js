@@ -1,26 +1,30 @@
 import { anyIterator } from '../util' ;
 
+function getCount ( object ) {
+	if ( object instanceof Function || object.length === undefined ) return Infinity ;
+	else return object.length ;
+}
+
 export default async function* flatten ( root ) {
 
 	// assert root.type === 'node'
 
 	const stack = [
-		{
-			type : 'node' ,
-			nonterminal : root.nonterminal ,
-			production : root.production ,
+		{ // no need to use the exhaustive iterator since flatten exhausts the whole subtree
 			children : anyIterator(root.children) ,
+			count : getCount(root.children) ,
 		}
 	] ;
 
 	while ( stack.length !== 0 ) {
 
-		const tree = stack.pop();
+		const tree = stack.pop() ;
 
-		const { done , value } = await tree.children.next();
+		const { done , value } = await tree.children.next() ;
 
 		if ( !done ) {
 
+			if ( --tree.count > 0 ) // prunes left side of the tree
 			stack.push(tree);
 
 			const child = value ;
@@ -29,18 +33,17 @@ export default async function* flatten ( root ) {
 
 			else {
 
-				const newchild = {
-					type : 'node' ,
-					nonterminal : child.nonterminal ,
-					production : child.production ,
+				const it = {
 					children : anyIterator(child.children) ,
+					count : getCount(child.children) ,
 				} ;
 
-				stack.push(newchild);
+				stack.push(it);
 
 			}
 
 		}
 
 	}
+
 }

@@ -4,7 +4,6 @@ import _expandproduction from './_expandproduction' ;
 import alphabet from './alphabet' ;
 import expandobject from './expandobject' ;
 import from from './from' ;
-import rmap from './rmap' ;
 
 export default {
 	EW ,
@@ -13,7 +12,6 @@ export default {
 	alphabet ,
 	expandobject ,
 	from ,
-	rmap ,
 } ;
 
 export {
@@ -23,5 +21,4 @@ export {
 	alphabet ,
 	expandobject ,
 	from ,
-	rmap ,
 } ;

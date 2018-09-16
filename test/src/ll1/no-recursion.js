@@ -132,12 +132,14 @@ async function exhaust ( t , G , n ) {
 
 	const tree = parser.parse(tokens);
 
-	await tree.children.next() ; // skip first node
+	const it = tree.children[Symbol.asyncIterator]();
 
-	const eof = await tree.children.next() ;
+	await it.next() ; // skip first node
+
+	const eof = await it.next() ;
 	t.deepEqual( eof.value , { 'type' : 'leaf' , 'terminal' : G.eof } ) ;
 
-	const { done } = await tree.children.next() ;
+	const { done } = await it.next() ;
 	t.true( done ) ;
 
 }

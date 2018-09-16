@@ -1,4 +1,4 @@
-import { _children_exhaust } from '../ast' ;
+//import _children_exhaust from './_children_exhaust' ;
 
 /**
  * Applies a given callable to each part of a given grammar rule (given as an iterable).
@@ -12,7 +12,7 @@ export default async function* rmap ( callable , rule ) {
 	for ( const part of rule ) {
 		const node = await callable( part ) ;
 		yield node ;
-		if ( node.type === 'node' ) await _children_exhaust( node.children ) ;
+		//if ( node.type === 'node' ) await _children_exhaust( node.children ) ;
 	}
 
 }

@@ -46,6 +46,9 @@ function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
+	//for ( const i of range(n) ) t.is( await output.read(), 'x') ;
+	//await t.throws( () => output.read() , expectedError ) ;
+
 	//await t.throws( () => tape.toString( output ) , expectedError ) ;
 
 	return tape.toString( output )

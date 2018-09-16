@@ -1,4 +1,7 @@
-import { rmap } from '../grammar' ;
+import {
+	rmap ,
+	Children ,
+} from '../ast' ;
 
 import _children_next_lazy from './_children_next_lazy' ;
 
@@ -18,13 +21,13 @@ export default function _parse_lazy ( eof , productions , table , rule , tape , 
 
 	const shallow_materialize = async expected => await _children_next_lazy(eof, productions, table, tape, expected) ;
 
-	const children = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;
+	const iterator = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;
 
 	return {
 		'type' : 'node' ,
 		nonterminal ,
 		production ,
-		children ,
+		children : new Children( iterator , rule.length ) ,
 	} ;
 
 }

@@ -47,7 +47,7 @@ const replace = async input => {
 
 	const tree = parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.map( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
 
 	const transform = {
 		"root" : {
@@ -77,7 +77,7 @@ const replace = async input => {
 				"type" : "node" ,
 				"nonterminal" : "letter" ,
 				"production" : "aaa" ,
-				"children" : ast.cmap( leaf => ({
+				"children" : ast.map( leaf => ({
 					"type" : "leaf" ,
 					"terminal" : "a" ,
 					"buffer" : "a" ,
@@ -88,7 +88,7 @@ const replace = async input => {
 				"type" : "node" ,
 				"nonterminal" : "letter" ,
 				"production" : "bbb" ,
-				"children" : ast.cmap( leaf => ({
+				"children" : ast.map( leaf => ({
 					"type" : "leaf" ,
 					"terminal" : "b" ,
 					"buffer" : "b" ,

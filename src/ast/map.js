@@ -1,4 +1,5 @@
-//import _children_exhaust from './_children_exhaust' ;
+import Children from './Children' ;
+import cmap from './cmap' ;
 
 /**
  * Applies a given callable to each of the child of a given children async iterable.
@@ -7,11 +8,10 @@
  * @param {AsyncIterable} children - The input children.
  * @returns {AsyncIterator}
  */
-export default async function* cmap ( callable , children ) {
+export default function map ( callable , children ) {
 
-	for await ( const child of children ) {
-		const node = await callable( child ) ;
-		yield node ;
-	}
+	const iterator = cmap( callable , children )[Symbol.asyncIterator]() ;
+
+	return new Children( iterator , undefined ) ;
 
 }

@@ -53,7 +53,7 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 
 	const tree = parser.parse(tokens);
 
-	const m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
+	const m = ( children , match , ctx ) => ast.map( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;
 
 	const transformed = await ast.transform( tree , {
 		"root" : {
@@ -83,7 +83,7 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 				"type" : "node" ,
 				"nonterminal" : "letter" ,
 				"production" : "aaa" ,
-				"children" : ast.cmap( leaf => ({
+				"children" : ast.map( leaf => ({
 					"type" : "leaf" ,
 					"terminal" : "a" ,
 					"buffer" : "a" ,
@@ -93,7 +93,7 @@ test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads 
 				"type" : "node" ,
 				"nonterminal" : "letter" ,
 				"production" : "bbb" ,
-				"children" : ast.cmap( leaf => ({
+				"children" : ast.map( leaf => ({
 					"type" : "leaf" ,
 					"terminal" : "b" ,
 					"buffer" : "b" ,
