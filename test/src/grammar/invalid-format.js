@@ -23,6 +23,6 @@ test( 'invalid node type in _expandproduction (_makenode)' , t => {
 		]
 	} ;
 
-	t.throws( () => grammar.from( { root , start , eof , productions } ) , /\+ is not a valid type/ ) ;
+	t.throws( () => grammar.from( { root , start , eof , productions } ) , { message: /\+ is not a valid type/ } ) ;
 
 }) ;
