@@ -11,7 +11,7 @@
     "files": [
       "test/src/**/*"
     ],
-    "timeout": "1m"
+    "timeout": "3m"
   },
   "babel": {
     "presets": [
