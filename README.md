@@ -21,8 +21,8 @@ const parser = ll1.from(G);
 [![Downloads](https://img.shields.io/npm/dm/@aureooms/js-grammar.svg)](https://www.npmjs.org/package/@aureooms/js-grammar)
 
 [![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/issues)
-[![Code maintainability](https://img.shields.io/codeclimate/maintainability/github/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/churn)
-[![Code coverage (cov)](https://img.shields.io/codecov/c/github/aureooms/js-grammar.svg)](https://codecov.io/gh/aureooms/js-grammar)
-[![Code coverage (clim)](https://img.shields.io/codeclimate/coverage-letter/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/test_coverage_new_code)
+[![Code maintainability](https://img.shields.io/codeclimate/maintainability/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/churn)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/aureooms/js-grammar/master.svg)](https://codecov.io/gh/aureooms/js-grammar)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/technical_debt)
 [![Documentation](https://aureooms.github.io/js-grammar/badge.svg)](https://aureooms.github.io/js-grammar/source.html)
+[![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-grammar)](https://bundlephobia.com/result?p=@aureooms/js-grammar)
