@@ -50,7 +50,7 @@
     "esdoc-inject-style-plugin": "1.0.0",
     "esdoc-standard-plugin": "1.0.0",
     "np": "3.1.0",
-    "nyc": "13.3.0"
+    "nyc": "15.0.1"
   },
   "files": [
     "lib"
