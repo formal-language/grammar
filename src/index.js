@@ -1,4 +1,5 @@
 import ast from './ast' ;
+import cnf from './cnf' ;
 import error from './error' ;
 import grammar from './grammar' ;
 import language from './language' ;
@@ -7,6 +8,7 @@ import util from './util' ;
 
 export default {
 	ast ,
+	cnf ,
 	error ,
 	grammar ,
 	language ,
@@ -16,6 +18,7 @@ export default {
 
 export {
 	ast ,
+	cnf ,
 	error ,
 	grammar ,
 	language ,
