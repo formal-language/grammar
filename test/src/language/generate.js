@@ -64,6 +64,82 @@ test( 'language.generate empty x2' , t => {
 
 }) ;
 
+test( 'language.generate finite (large)' , t => {
+	const root = 'R' ;
+	const start = 0 ;
+	const eof = '$' ;
+
+	const productions = {
+		"R" : [
+			[ "&S_0" , "=$" ] ,
+		] ,
+		"S_0" : [
+			[ "&A" , "=b" , "&B" ] ,
+			[ "&C" ] ,
+		] ,
+		"B": [
+			[ "&A" , "&A" ] ,
+			[ "&A" , "&C" ]
+		] ,
+		"C": [
+			["=b"],
+			["=c"],
+		],
+		"A": [
+			[ "=a" ] ,
+			[ ] ,
+		]
+	} ;
+
+	const G = grammar.from( { root , start , eof , productions } ) ;
+
+	const L = set(new Set(map(x => list(x).join(''), language.generate(G)))) ;
+
+	const expected = set([ 'ab$','aba$','abaa$','abab$','abac$','abb$','abc$','b$','ba$','baa$','bab$','bac$','bb$','bc$','c$' ]) ;
+
+	t.deepEqual(expected, L);
+});
+
+test( 'language.generate finite (large without ε-rules)' , t => {
+	const root = 'R' ;
+	const start = 0 ;
+	const eof = '$' ;
+
+	const productions = {
+		"R" : [
+			[ "&S_0" , "=$" ] ,
+		] ,
+		"S_0" : [
+			[ "&A" , "=b" , "&B" ] ,
+			[ "&A" , "=b" ] ,
+			[ "=b" , "&B" ] ,
+			[ "=b" ] ,
+			[ "&C" ] ,
+		] ,
+		"B": [
+			[ "&A" , "&A" ] ,
+			[ "&A" ] ,
+			[ "&A" , "&C" ] ,
+			[ "&C" ]
+		] ,
+		"C": [
+			["=b"],
+			["=c"],
+		],
+		"A": [
+			[ "=a" ] ,
+		]
+	} ;
+
+	const G = grammar.from( { root , start , eof , productions } ) ;
+
+	const L = set(new Set(map(x => list(x).join(''), language.generate(G)))) ;
+
+	const expected = set([ 'ab$','aba$','abaa$','abab$','abac$','abb$','abc$','b$','ba$','baa$','bab$','bac$','bb$','bc$','c$' ]) ;
+
+	t.deepEqual(expected, L);
+});
+
 test( 'language.generate infinite (left)' , t => {
 
 	const root = 'R' ;
