@@ -4,8 +4,8 @@
 Grammar compilation toolkit for JavaScript. Served with asynchronous goodness.
 See [docs](https://aureooms.github.io/js-grammar/index.html).
 
-> :warning: The code needs a ES2015+ polyfill to work (`regeneratorRuntime`),
-> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).
+> :warning: The code requires `regeneratorRuntime` to be defined, for instance by importing
+> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).
 
 ```js
 const G = grammar.from( { root , start , eof , productions } ) ;

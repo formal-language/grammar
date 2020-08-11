@@ -5,7 +5,7 @@
   "author": "aureooms",
   "ava": {
     "require": [
-      "@babel/polyfill",
+      "regenerator-runtime/runtime",
       "@babel/register"
     ],
     "files": [
@@ -17,11 +17,57 @@
     "presets": [
       "@babel/preset-env"
     ],
-    "plugins": [
-      "@babel/plugin-proposal-async-generator-functions"
-    ],
     "env": {
+      "test": {
+        "presets": [
+          "babel-preset-power-assert"
+        ],
+        "plugins": [
+          [
+            "transform-remove-console",
+            {
+              "exclude": [
+                "log",
+                "error",
+                "warn"
+              ]
+            }
+          ]
+        ],
+        "sourceMaps": "inline"
+      },
       "development": {
+        "presets": [
+          "babel-preset-power-assert"
+        ],
+        "plugins": [
+          [
+            "transform-remove-console",
+            {
+              "exclude": [
+                "log",
+                "error",
+                "warn"
+              ]
+            }
+          ]
+        ],
+        "sourceMaps": "inline"
+      },
+      "production": {
+        "plugins": [
+          "babel-plugin-unassert",
+          [
+            "transform-remove-console",
+            {
+              "exclude": [
+                "log",
+                "error",
+                "warn"
+              ]
+            }
+          ]
+        ],
         "sourceMaps": "inline"
       }
     }
@@ -38,18 +84,22 @@
     "@babel/cli": "7.10.5",
     "@babel/core": "7.11.1",
     "@babel/plugin-proposal-async-generator-functions": "7.10.5",
-    "@babel/polyfill": "7.10.4",
     "@babel/preset-env": "7.11.0",
     "@babel/register": "7.10.5",
     "ava": "3.11.1",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "babel-plugin-unassert": "3.0.1",
+    "babel-preset-power-assert": "3.0.0",
     "coveralls": "3.1.0",
     "esdoc": "1.1.0",
     "esdoc-ecmascript-proposal-plugin": "1.0.0",
     "esdoc-inject-script-plugin": "1.0.0",
     "esdoc-inject-style-plugin": "1.0.0",
     "esdoc-standard-plugin": "1.0.0",
-    "np": "6.3.2",
-    "nyc": "15.1.0"
+    "np": "6.4.0",
+    "nyc": "15.1.0",
+    "power-assert": "1.6.1",
+    "regenerator-runtime": "0.13.7"
   },
   "files": [
     "lib"
@@ -67,7 +117,7 @@
     "url": "https://github.com/aureooms/js-grammar"
   },
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib",
+    "build": "babel --delete-dir-on-start --env-name production src -d lib",
     "cover": "nyc --reporter=lcov npm test",
     "esdoc": "esdoc",
     "prepare": "npm run build",
