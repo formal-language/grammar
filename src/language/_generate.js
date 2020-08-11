@@ -5,7 +5,7 @@ import { chain , list , map , roundrobin , diagonal } from '@aureooms/js-itertoo
 // (first by number of derivation rules applied, then lexicographically on the
 // terminals and nonterminals where terminals precede nonterminals)
 // use persistent seq to represent children
-// convert to CNF first then output is guaranteed
+// convert to CNF first then output words can be ordered qlexly.
 export default function* _generate ( productions , rule ) {
 
 	if (rule.length === 0) {
