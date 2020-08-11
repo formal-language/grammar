@@ -1,5 +1,6 @@
 import expandobject from './expandobject' ;
 import alphabet from './alphabet' ;
+import toJSON from './toJSON' ;
 
 export default class Grammar {
 
@@ -14,6 +15,10 @@ export default class Grammar {
 	alphabet ( ) {
 		if ( this._alphabet === null ) this._alphabet = alphabet(this.productions);
 		return this._alphabet;
+	}
+
+	toJSON ( ) {
+		return toJSON(this);
 	}
 
 }
