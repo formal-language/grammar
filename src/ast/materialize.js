@@ -1,8 +1,9 @@
+import assert from 'assert';
 import { anyIterator } from '../util' ;
 
 export default async function materialize ( root ) {
 
-	// assert root.type === 'node'
+	assert(root.type === 'node');
 
 	const parents = [
 		{

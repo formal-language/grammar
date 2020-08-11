@@ -1,3 +1,4 @@
+import assert from 'assert' ;
 import { anyIterator } from '../util' ;
 
 function getCount ( object ) {
@@ -7,7 +8,7 @@ function getCount ( object ) {
 
 export default async function* flatten ( root ) {
 
-	// assert root.type === 'node'
+	assert(root.type === 'node');
 
 	const stack = [
 		{ // no need to use the exhaustive iterator since flatten exhausts the whole subtree
