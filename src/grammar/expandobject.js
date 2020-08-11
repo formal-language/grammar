@@ -1,4 +1,4 @@
-import { map , list } from '@aureooms/js-itertools' ;
+import { list } from '@aureooms/js-itertools' ;
 
 import _expandproduction from './_expandproduction' ;
 
