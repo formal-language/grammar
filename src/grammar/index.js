@@ -4,7 +4,10 @@ import _expandproduction from './_expandproduction' ;
 import alphabet from './alphabet' ;
 import expandobject from './expandobject' ;
 import from from './from' ;
+import iter from './iter' ;
+import iterObject from './iterObject' ;
 
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
 	EW ,
 	Grammar ,
@@ -12,6 +15,8 @@ export default {
 	alphabet ,
 	expandobject ,
 	from ,
+	iter ,
+	iterObject ,
 } ;
 
 export {
@@ -21,4 +26,6 @@ export {
 	alphabet ,
 	expandobject ,
 	from ,
+	iter ,
+	iterObject ,
 } ;
