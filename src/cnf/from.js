@@ -1,7 +1,8 @@
 import assert from 'assert' ;
 import { any , map } from '@aureooms/js-itertools' ;
 import { iter } from '../grammar' ;
-import { nullable } from '../cfg' ;
+import { nullable , unitrules } from '../cfg' ;
+import { transitive_closure } from '../math/graphs' ;
 
 // From Wikipedia, the free encyclopedia
 // https://en.wikipedia.org/wiki/Chomsky_normal_form
@@ -288,16 +289,14 @@ export function cnf_DEL ( { root , start , eof , productions } ) {
  */
 export function* cnf_UNIT_gen ( { productions } , nonterminalAliases ) {
 
-	// if nonterminalAliases.get(B).has(A) then there is a chain A -> ... -> B
+	// if nonterminalAliases.has([B,A]) then there is a chain A -> ... -> B
 
 	for ( const [nonterminal, rule, key] of iter(productions) ) {
 		if ( rule.length === 1 && rule[0].type === 'node' ) continue ;
 		yield [ nonterminal , rule , key ] ;
-		if ( nonterminalAliases.has(nonterminal) ) {
-			for ( const alias of nonterminalAliases.get(nonterminal) ) {
-				const newKey = cnf_new_symbol(productions.get(alias), nonterminal + '#' + key);
-				yield [ alias , rule , newKey ] ;
-			}
+		for ( const alias of nonterminalAliases.right(nonterminal) ) {
+			const newKey = cnf_new_symbol(productions.get(alias), nonterminal + '#' + key);
+			yield [ alias , rule , newKey ] ;
 		}
 	}
 
@@ -305,7 +304,7 @@ export function* cnf_UNIT_gen ( { productions } , nonterminalAliases ) {
 
 export function cnf_UNIT ( { root , start , eof , productions } ) {
 
-	const edges = unit_rules(iter(productions));
+	const edges = unitrules(iter(productions));
 	const nonterminalAliases = aliases(edges);
 	const newProductions = cnf_pack(cnf_UNIT_gen({productions}, nonterminalAliases));
 
@@ -317,76 +316,10 @@ export function cnf_UNIT ( { root , start , eof , productions } ) {
 	} ;
 }
 
-function unit_rules ( productions ) {
-
-	const out = new Map();
-
-	for ( const [A, rule, key] of productions ) {
-		if ( rule.length === 1 && rule[0].type === 'node' ) {
-			// A -> B
-			const B = rule[0].nonterminal ;
-			if (out.has(A)) out.get(A).add(B) ;
-			else out.set(A, new Set([B])) ;
-		}
-	}
-
-	return out;
-
-}
-
-/**
- * TODO Make it run in O(OUTPUT).
- */
-function reachability ( neighbours ) {
-
-	const reachable = new Map();
-
-	for ( const start of neighbours.keys() ) { // bfs on each nonterminal
-		const queue = [start];
-		const marked = new Set(queue);
-		while (queue.length !== 0) {
-			const A = queue.pop();
-			if (!neighbours.has(A)) continue;
-			for ( const B of neighbours.get(A) ) {
-				if (marked.has(B)) continue;
-				marked.add(B);
-				if (reachable.has(B)) {
-					for ( const C of reachable.get(B) ) marked.add(C) ;
-				}
-				else {
-					queue.push(B);
-				}
-			}
-		}
-		reachable.set(start, marked);
-	}
-
-	return reachable ;
-
-}
 
 function aliases ( edges ) {
-
-	if (edges.size === 0) return edges;
-
-	const reachable = reachability(edges);
-	return invert(reachable);
-
-}
-
-function invert ( map ) {
-
-	const out = new Map();
-
-	for ( const [ key , values ] of map.entries( ) ) {
-		for ( const value of values ) {
-			if (out.has(value)) out.get(value).add(key);
-			else out.set(value, new Set([key]));
-		}
-	}
-
-	return out;
-
+	const closure = transitive_closure(edges);
+	return closure.invert();
 }
 
 /**

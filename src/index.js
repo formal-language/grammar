@@ -5,6 +5,7 @@ import error from './error' ;
 import grammar from './grammar' ;
 import language from './language' ;
 import ll1 from './ll1' ;
+import math from './math' ;
 import util from './util' ;
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
@@ -16,6 +17,7 @@ export default {
 	grammar ,
 	language ,
 	ll1 ,
+	math ,
 	util ,
 } ;
 
@@ -27,5 +29,6 @@ export {
 	grammar ,
 	language ,
 	ll1 ,
+	math ,
 	util ,
 } ;
