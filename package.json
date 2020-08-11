@@ -33,7 +33,7 @@
     "@aureooms/js-itertools": "^4.0.1"
   },
   "devDependencies": {
-    "@aureooms/js-compare": "1.4.5",
+    "@aureooms/js-compare": "1.4.7",
     "@aureooms/js-tape": "7.0.0",
     "@babel/cli": "7.10.5",
     "@babel/core": "7.11.1",
