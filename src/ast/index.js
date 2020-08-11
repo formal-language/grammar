@@ -7,6 +7,7 @@ import materialize from './materialize' ;
 import rmap from './rmap' ;
 import transform from './transform' ;
 
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
 	Children ,
 	_children_exhaust ,

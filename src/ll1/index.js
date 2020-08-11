@@ -11,6 +11,7 @@ import from from './from' ;
 import is from './is' ;
 import parse from './parse' ;
 
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
 	Parser ,
 	_children_next_lazy ,
