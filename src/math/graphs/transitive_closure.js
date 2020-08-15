@@ -14,7 +14,7 @@ export default function transitive_closure ( edges ) {
 		const marked = new Set(queue);
 		while (queue.length !== 0) {
 			const A = queue.pop();
-			for ( const B of pairs.right(A) ) {
+			for ( const B of pairs.rightOf(A) ) {
 				if (marked.has(B)) continue;
 				marked.add(B);
 				if (closure.has(B)) {

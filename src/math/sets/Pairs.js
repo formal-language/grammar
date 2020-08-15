@@ -73,7 +73,7 @@ export default class Pairs {
 		return this._map.keys();
 	}
 
-	*right ( A ) {
+	*rightOf ( A ) {
 		if ( this._map.has(A) ) yield* this._map.get(A);
 	}
 

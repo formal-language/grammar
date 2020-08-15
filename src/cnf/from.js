@@ -294,7 +294,7 @@ export function* cnf_UNIT_gen ( { productions } , nonterminalAliases ) {
 	for ( const [nonterminal, rule, key] of iter(productions) ) {
 		if ( rule.length === 1 && rule[0].type === 'node' ) continue ;
 		yield [ nonterminal , rule , key ] ;
-		for ( const alias of nonterminalAliases.right(nonterminal) ) {
+		for ( const alias of nonterminalAliases.rightOf(nonterminal) ) {
 			const newKey = cnf_new_symbol(productions.get(alias), nonterminal + '#' + key);
 			yield [ alias , rule , newKey ] ;
 		}
