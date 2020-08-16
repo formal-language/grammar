@@ -6,6 +6,7 @@ import grammar from './grammar' ;
 import language from './language' ;
 import ll1 from './ll1' ;
 import math from './math' ;
+import productions from './productions' ;
 import util from './util' ;
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
@@ -18,6 +19,7 @@ export default {
 	language ,
 	ll1 ,
 	math ,
+	productions ,
 	util ,
 } ;
 
@@ -30,5 +32,6 @@ export {
 	language ,
 	ll1 ,
 	math ,
+	productions ,
 	util ,
 } ;

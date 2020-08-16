@@ -3,6 +3,7 @@ import { any , map } from '@aureooms/js-itertools' ;
 import { iter } from '../grammar' ;
 import { nullable , unitrules } from '../cfg' ;
 import { transitive_closure } from '../math/graphs' ;
+import { fromIterable , nonterminalNotOnRHS } from '../productions' ;
 
 // From Wikipedia, the free encyclopedia
 // https://en.wikipedia.org/wiki/Chomsky_normal_form
@@ -35,7 +36,7 @@ export function cnf_START ( G ) {
 
 	const { root , start , eof , productions } = G ;
 
-	if ( notInRightHandSide( root , iter(productions) ) ) return G ;
+	if ( nonterminalNotOnRHS( root , iter(productions) ) ) return G ;
 
 	const newRoot = cnf_new_symbol(productions, 'S0') ;
 	const newStart = 0 ;
@@ -53,15 +54,6 @@ export function cnf_START ( G ) {
 	} ;
 
 }
-
-function* onTheRightHandSide ( productions ) {
-	for ( const [ _ , rule ] of productions ) yield* rule ;
-}
-
-function notInRightHandSide ( nonterminal , productions ) {
-	return !any(map(x => x.type === 'node' && x.nonterminal === nonterminal, onTheRightHandSide(productions) ));
-}
-
 
 /**
  * TERM: Eliminate rules with nonsolitary terminals
@@ -123,7 +115,7 @@ export function* cnf_TERM_gen ( existingNonterminals , productions ) {
 
 export function cnf_TERM ( { root , start , eof , productions } ) {
 
-	const newProductions = cnf_pack(cnf_TERM_gen(productions, iter(productions)));
+	const newProductions = fromIterable(cnf_TERM_gen(productions, iter(productions)));
 
 	return {
 		root,
@@ -171,7 +163,7 @@ export function* cnf_BIN_gen ( existingNonterminals , productions ) {
 
 export function cnf_BIN ( { root , start , eof , productions } ) {
 
-	const newProductions = cnf_pack(cnf_BIN_gen(productions, iter(productions)));
+	const newProductions = fromIterable(cnf_BIN_gen(productions, iter(productions)));
 
 	return {
 		root,
@@ -259,7 +251,7 @@ function* _expandNullables ( nullable , rule ) {
 export function cnf_DEL ( { root , start , eof , productions } ) {
 
 	const nullableNonterminals = nullable(iter(productions));
-	const newProductions = cnf_pack(cnf_DEL_gen({root, productions}, nullableNonterminals));
+	const newProductions = fromIterable(cnf_DEL_gen({root, productions}, nullableNonterminals));
 
 	return {
 		root,
@@ -306,7 +298,7 @@ export function cnf_UNIT ( { root , start , eof , productions } ) {
 
 	const edges = unitrules(iter(productions));
 	const nonterminalAliases = aliases(edges);
-	const newProductions = cnf_pack(cnf_UNIT_gen({productions}, nonterminalAliases));
+	const newProductions = fromIterable(cnf_UNIT_gen({productions}, nonterminalAliases));
 
 	return {
 		root,
@@ -353,28 +345,12 @@ export default function from ( G ) {
 	// return cnf_TERM(cnf_UNIT(cnf_DEL(cnf_BIN(cnf_START(G)))));
 }
 
-function cnf_pack ( iterable ) {
-	const productions = new Map();
-	for ( const [ nonterminal , rule , key ] of iterable ) {
-		assert(nonterminal !== undefined);
-		assert(rule instanceof Array);
-		assert(key !== undefined);
-		if (productions.has(nonterminal)) {
-			productions.get(nonterminal).set(key, rule);
-		}
-		else {
-			productions.set(nonterminal, new Map([[key, rule]]));
-		}
-	}
-	return productions;
-}
-
 //function cnf_copy ( { root , start , eof , productions } ) {
 	//return {
 		//root,
 		//start,
 		//eof,
-		//productions: cnf_pack(iter(productions)),
+		//productions: fromIterable(iter(productions)),
 	//};
 //}
 
