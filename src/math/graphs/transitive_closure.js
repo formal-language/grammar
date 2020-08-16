@@ -1,4 +1,5 @@
 import { Pairs } from '../sets' ;
+import reachable from './reachable' ;
 
 /**
  * TODO Make it run in O(OUTPUT).
@@ -9,22 +10,8 @@ export default function transitive_closure ( edges ) {
 
 	const closure = new Map();
 
-	for ( const start of pairs.left() ) { // bfs on each nonterminal
-		const queue = [start];
-		const marked = new Set(queue);
-		while (queue.length !== 0) {
-			const A = queue.pop();
-			for ( const B of pairs.rightOf(A) ) {
-				if (marked.has(B)) continue;
-				marked.add(B);
-				if (closure.has(B)) {
-					for ( const C of closure.get(B) ) marked.add(C) ;
-				}
-				else {
-					queue.push(B);
-				}
-			}
-		}
+	for ( const start of pairs.left() ) {
+		const marked = reachable(pairs, start, closure);
 		closure.set(start, marked);
 	}
 
