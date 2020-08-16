@@ -4,6 +4,7 @@ import _arrayIndexOrObjectKey from './_arrayIndexOrObjectKey' ;
 
 export default function _mostAppropriateKeyHolder ( keys ) {
 	const _keys = list(map(_arrayIndexOrObjectKey, keys));
+	if (_keys.length === 0) return [];
 	if (any(map(x => typeof x === 'string', _keys))) return {};
 	_keys.sort();
 	// check starts at 0
