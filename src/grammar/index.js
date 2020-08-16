@@ -8,6 +8,7 @@ import expandobject from './expandobject' ;
 import from from './from' ;
 import iter from './iter' ;
 import iterObject from './iterObject' ;
+import simplify from './simplify' ;
 import toJSON from './toJSON' ;
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
@@ -22,6 +23,7 @@ export default {
 	from ,
 	iter ,
 	iterObject ,
+	simplify ,
 	toJSON ,
 } ;
 
@@ -36,5 +38,6 @@ export {
 	from ,
 	iter ,
 	iterObject ,
+	simplify ,
 	toJSON ,
 } ;
