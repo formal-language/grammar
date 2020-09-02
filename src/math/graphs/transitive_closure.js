@@ -1,4 +1,4 @@
-import { Pairs } from '../sets' ;
+import { MemoryEfficientPairs as Pairs } from '@aureooms/js-pairs' ;
 import reachable from './reachable' ;
 
 /**

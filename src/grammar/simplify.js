@@ -1,6 +1,6 @@
 import { map , filter } from '@aureooms/js-itertools' ;
 import { RedBlackTree } from '@aureooms/js-red-black-tree' ;
-import { Pairs } from '../math/sets' ;
+import { MemoryEfficientPairs as Pairs } from '@aureooms/js-pairs' ;
 import { reachable } from '../math/graphs' ;
 import { compareKeyedRules } from '../util' ;
 import { nonterminalEdges } from '../productions' ;
