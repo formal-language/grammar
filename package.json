@@ -83,8 +83,8 @@
   "devDependencies": {
     "@aureooms/js-compare": "1.4.8",
     "@aureooms/js-tape": "7.0.0",
-    "@babel/cli": "7.11.5",
-    "@babel/core": "7.11.5",
+    "@babel/cli": "7.11.6",
+    "@babel/core": "7.11.6",
     "@babel/plugin-proposal-async-generator-functions": "7.10.5",
     "@babel/preset-env": "7.11.5",
     "@babel/register": "7.11.5",
