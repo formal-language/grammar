@@ -41,7 +41,7 @@
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.12.7",
     "@babel/register": "7.12.1",
-    "ava": "3.13.0",
+    "ava": "3.14.0",
     "coveralls": "3.1.0",
     "esdoc": "1.1.0",
     "esdoc-ecmascript-proposal-plugin": "1.0.0",
