@@ -30,7 +30,7 @@
     "url": "https://github.com/aureooms/js-grammar/issues"
   },
   "dependencies": {
-    "@aureooms/js-itertools": "^4.0.1"
+    "@aureooms/js-itertools": "^5.0.0"
   },
   "devDependencies": {
     "@aureooms/js-compare": "1.4.8",
