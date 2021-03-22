@@ -39,7 +39,7 @@
     "@babel/core": "7.13.10",
     "@babel/plugin-proposal-async-generator-functions": "7.13.8",
     "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.13.10",
+    "@babel/preset-env": "7.13.12",
     "@babel/register": "7.13.8",
     "ava": "3.15.0",
     "coveralls": "3.1.0",
