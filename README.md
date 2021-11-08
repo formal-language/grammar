@@ -12,9 +12,9 @@ const G = grammar.from( { root , start , eof , productions } ) ;
 const parser = ll1.from(G);
 ```
 
-[![License](https://img.shields.io/github/license/make-github-pseudonymous-again/js-grammar.svg)](https://raw.githubusercontent.com/make-github-pseudonymous-again/js-grammar/master/LICENSE)
+[![License](https://img.shields.io/github/license/make-github-pseudonymous-again/js-grammar.svg)](https://raw.githubusercontent.com/make-github-pseudonymous-again/js-grammar/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@aureooms/js-grammar.svg)](https://www.npmjs.org/package/@aureooms/js-grammar)
-[![Build](https://img.shields.io/travis/make-github-pseudonymous-again/js-grammar/master.svg)](https://travis-ci.org/make-github-pseudonymous-again/js-grammar/branches)
+[![Build](https://img.shields.io/travis/make-github-pseudonymous-again/js-grammar/main.svg)](https://travis-ci.org/make-github-pseudonymous-again/js-grammar/branches)
 [![Dependencies](https://img.shields.io/david/make-github-pseudonymous-again/js-grammar.svg)](https://david-dm.org/make-github-pseudonymous-again/js-grammar)
 [![Dev dependencies](https://img.shields.io/david/dev/make-github-pseudonymous-again/js-grammar.svg)](https://david-dm.org/make-github-pseudonymous-again/js-grammar?type=dev)
 [![GitHub issues](https://img.shields.io/github/issues/make-github-pseudonymous-again/js-grammar.svg)](https://github.com/make-github-pseudonymous-again/js-grammar/issues)
@@ -22,7 +22,7 @@ const parser = ll1.from(G);
 
 [![Code issues](https://img.shields.io/codeclimate/issues/make-github-pseudonymous-again/js-grammar.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-grammar/issues)
 [![Code maintainability](https://img.shields.io/codeclimate/maintainability/make-github-pseudonymous-again/js-grammar.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-grammar/trends/churn)
-[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/make-github-pseudonymous-again/js-grammar/master.svg)](https://codecov.io/gh/make-github-pseudonymous-again/js-grammar)
+[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/make-github-pseudonymous-again/js-grammar/main.svg)](https://codecov.io/gh/make-github-pseudonymous-again/js-grammar)
 [![Code technical debt](https://img.shields.io/codeclimate/tech-debt/make-github-pseudonymous-again/js-grammar.svg)](https://codeclimate.com/github/make-github-pseudonymous-again/js-grammar/trends/technical_debt)
 [![Documentation](https://make-github-pseudonymous-again.github.io/js-grammar/badge.svg)](https://make-github-pseudonymous-again.github.io/js-grammar/source.html)
 [![Package size](https://img.shields.io/bundlephobia/minzip/@aureooms/js-grammar)](https://bundlephobia.com/result?p=@aureooms/js-grammar)

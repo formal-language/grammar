@@ -1,6 +1,6 @@
 # Examples
 
-> More examples in [the test files](https://github.com/make-github-pseudonymous-again/js-grammar/tree/master/test/src).
+> More examples in [the test files](https://github.com/make-github-pseudonymous-again/js-grammar/tree/main/test/src).
 
 
 ## A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.
