@@ -1,8 +1,9 @@
 import test from 'ava' ;
 
-import tape from '@aureooms/js-tape' ;
+import {fromIterable} from '@async-abstraction/tape';
 
-import { map , enumerate } from '@aureooms/js-itertools' ;
+import {map} from '@iterable-iterator/map';
+import {enumerate} from '@iterable-iterator/zip';
 
 import { grammar , ll1 } from '../../../src' ;
 
@@ -28,7 +29,7 @@ test( 'exhaust with parenthesis' , async t => {
 
 	const parser = ll1.from(G);
 
-	const tokens = tape.fromIterable(
+	const tokens = fromIterable(
 		map( ( [ i , a ] ) => ({
 				type : "leaf" ,
 				terminal : a ,

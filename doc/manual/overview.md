@@ -2,7 +2,7 @@
 
 ```js
 import { grammar , ll1 } from '@aureooms/js-grammar' ;
-import tape from '@aureooms/js-tape' ;
+import * as tape from '@async-abstraction/tape' ;
 
 const root = 'root' ;
 const start = 'start' ;

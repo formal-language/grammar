@@ -1,4 +1,4 @@
-import { reversed } from '@aureooms/js-itertools' ;
+import {reversed} from '@iterable-iterator/reversed';
 import first from './first' ;
 
 /**

@@ -1,10 +1,8 @@
-import {
-	map ,
-	filter ,
-	chain ,
-	next ,
-	iter ,
-} from '@aureooms/js-itertools' ;
+import {map} from '@iterable-iterator/map';
+import {filter} from '@iterable-iterator/filter';
+import {_chain} from '@iterable-iterator/chain';
+import {next} from '@iterable-iterator/next';
+import {iter} from '@iterable-iterator/iter';
 
 import first from './first' ;
 import _first from './_first' ;
@@ -53,7 +51,7 @@ export default function* _compile ( productions ) {
 			filter( a => a !== EW , abc )
 		);
 
-		yield [ A , new Map(filter(([k,v]) => v !== dflt, chain([m,n]))) ] ;
+		yield [ A , new Map(filter(([k,v]) => v !== dflt, _chain([m,n]))) ] ;
 
 	}
 

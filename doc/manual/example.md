@@ -7,7 +7,10 @@
 
 ```js
 import { map , enumerate } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableMap } from '@aureooms/js-tape' ;
+import {map} from '@iterable-iterator/map';
+import {enumerate} from '@iterable-iterator/zip';
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape';
 import { grammar , ll1 , ast } from '@aureooms/js-grammar' ;
 
 const G = grammar.from( {

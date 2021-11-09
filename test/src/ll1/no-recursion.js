@@ -1,7 +1,11 @@
 import test from 'ava' ;
 
-import { iter , map , enumerate , list , range , nrepeat } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tape' ;
+import {map} from '@iterable-iterator/map';
+import {list} from '@iterable-iterator/list';
+import {range} from '@iterable-iterator/range';
+import {nrepeat} from '@iterable-iterator/repeat';
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape';
 import { grammar , ast , ll1 } from '../../../src' ;
 
 async function flatten ( t , n ) {

@@ -1,8 +1,8 @@
 import test from 'ava' ;
 import fs from 'fs' ;
 
-import { map , enumerate } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableMap } from '@aureooms/js-tape' ;
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape';
 import { grammar , ast , ll1 } from '../../../src' ;
 
 test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads from a file!" , async t => {

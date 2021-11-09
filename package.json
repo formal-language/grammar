@@ -5,7 +5,7 @@
   "author": "aureooms",
   "ava": {
     "require": [
-      "@babel/polyfill",
+      "regenerator-runtime/runtime",
       "@babel/register"
     ],
     "files": [
@@ -30,26 +30,37 @@
     "url": "https://github.com/make-github-pseudonymous-again/js-grammar/issues"
   },
   "dependencies": {
-    "@aureooms/js-itertools": "^5.0.0"
+    "@iterable-iterator/chain": "^2.0.1",
+    "@iterable-iterator/filter": "^1.0.1",
+    "@iterable-iterator/iter": "^1.0.1",
+    "@iterable-iterator/list": "^1.0.1",
+    "@iterable-iterator/map": "^1.0.1",
+    "@iterable-iterator/next": "^2.0.1",
+    "@iterable-iterator/reduce": "^1.0.1",
+    "@iterable-iterator/reversed": "^1.0.0",
+    "@iterable-iterator/zip": "^1.0.1"
   },
   "devDependencies": {
-    "@aureooms/js-compare": "2.0.0",
-    "@aureooms/js-tape": "7.0.0",
-    "@babel/cli": "7.13.10",
-    "@babel/core": "7.13.10",
-    "@babel/plugin-proposal-async-generator-functions": "7.13.8",
-    "@babel/polyfill": "7.12.1",
-    "@babel/preset-env": "7.13.12",
-    "@babel/register": "7.13.8",
+    "@async-abstraction/tape": "^8.0.0",
+    "@babel/cli": "7.16.0",
+    "@babel/core": "7.16.0",
+    "@babel/plugin-proposal-async-generator-functions": "7.16.0",
+    "@babel/preset-env": "7.16.0",
+    "@babel/register": "7.16.0",
+    "@iterable-iterator/range": "^2.1.0",
+    "@iterable-iterator/repeat": "^1.0.1",
+    "@iterable-iterator/sorted": "^1.0.0",
+    "@total-order/primitive": "^1.0.1",
     "ava": "3.15.0",
-    "coveralls": "3.1.0",
+    "coveralls": "3.1.1",
     "esdoc": "1.1.0",
     "esdoc-ecmascript-proposal-plugin": "1.0.0",
     "esdoc-inject-script-plugin": "1.0.0",
     "esdoc-inject-style-plugin": "1.0.0",
     "esdoc-standard-plugin": "1.0.0",
-    "np": "7.4.0",
-    "nyc": "15.1.0"
+    "np": "7.5.0",
+    "nyc": "15.1.0",
+    "regenerator-runtime": "0.13.9"
   },
   "files": [
     "lib"
