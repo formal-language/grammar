@@ -1,7 +1,9 @@
 import test from 'ava' ;
 
-import { map , enumerate } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableMap } from '@aureooms/js-tape' ;
+import {map} from '@iterable-iterator/map';
+import {enumerate} from '@iterable-iterator/zip';
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape' ;
 import { grammar , ast , ll1 } from '../../../src' ;
 
 test( "A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`." , async t => {

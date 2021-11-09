@@ -1,14 +1,12 @@
 import test from 'ava' ;
 
-import { iter , map , enumerate , list , range , nrepeat } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tape' ;
-import { grammar , ast , ll1 , error } from '../../../src' ;
+import {map} from '@iterable-iterator/map';
+import {range} from '@iterable-iterator/range';
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape';
+import { grammar , ast , ll1 } from '../../../src' ;
 
-const {
-	UnexpectedEndOfFileError ,
-} = error ;
-
-function throws ( t , G , n ) {
+async function throws ( t , G , n ) {
 
 	t.true(ll1.is(G));
 
@@ -34,14 +32,11 @@ function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
-	const expectedError = /unexpected end of file, expected one of \["x"\]/ ;
+	const expectedError = {
+		message: /unexpected end of file, expected one of \["x"\]/,
+	};
 
-	//await t.throws( () => tape.toString( output ) , expectedError ) ;
-
-	return tape.toString( output )
-		.then( () => t.fail() )
-		.catch( err => t.true(expectedError.test(err.message)) ) ;
-
+	await t.throwsAsync( tape.toString( output ) , expectedError ) ;
 }
 
 throws.title = ( which , G , n ) => `Unexpected end of file error (${which}, ${n}).` ;

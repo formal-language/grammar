@@ -1,21 +1,20 @@
 import test from 'ava' ;
 
-import { iter , map , chain , enumerate , list , range , nrepeat } from '@aureooms/js-itertools' ;
-import tape , { asyncIterableToArray , asyncIterableMap } from '@aureooms/js-tape' ;
-import { grammar , ast , ll1 , error } from '../../../src' ;
+import {map} from '@iterable-iterator/map';
+import {chain} from '@iterable-iterator/chain';
+import {range} from '@iterable-iterator/range';
+import * as tape from '@async-abstraction/tape' ;
+import {asyncIterableMap} from '@async-abstraction/tape';
+import { grammar , ast , ll1 } from '../../../src' ;
 
-const {
-	LookaheadMismatchError ,
-} = error ;
-
-function throws ( t , G , n ) {
+async function throws ( t , G , n ) {
 
 	t.true(ll1.is(G));
 
 	const parser = ll1.from(G);
 
 	const tokens = tape.fromIterable(
-		chain( [
+		chain(
 			map(
 				i => ({
 					"type" : "leaf" ,
@@ -33,10 +32,12 @@ function throws ( t , G , n ) {
 					"position" : n+1 ,
 				} ,
 			] ,
-		] )
+		)
 	) ;
 
-	const expectedError = new RegExp( `Syntax error at ${n+1} \\(\\)\\)` ) ;
+	const expectedError = {
+		message: new RegExp( `Syntax error at ${n+1} \\(\\)\\)` ),
+	};
 
 	const tree = parser.parse(tokens);
 
@@ -46,15 +47,8 @@ function throws ( t , G , n ) {
 
 	const output = tape.fromAsyncIterable( chunks ) ;
 
-	//for ( const i of range(n) ) t.is( await output.read(), 'x') ;
-	//await t.throws( () => output.read() , expectedError ) ;
-
-	//await t.throws( () => tape.toString( output ) , expectedError ) ;
-
-	return tape.toString( output )
-		.then( () => t.fail() )
-		.catch( err => t.true(expectedError.test(err.message)) ) ;
-
+	for ( const _ of range(n) ) t.is( await output.read(), 'x') ;
+	await t.throwsAsync( output.read() , expectedError ) ;
 }
 
 throws.title = ( which , G , n ) => `Lookahead mismatch error at position ${n+1} (follow case).` ;

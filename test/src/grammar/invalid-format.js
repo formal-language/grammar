@@ -1,8 +1,6 @@
 import test from 'ava' ;
 
-import { list , map } from '@aureooms/js-itertools' ;
-
-import { grammar , ll1 } from '../../../src' ;
+import { grammar } from '../../../src' ;
 
 test( 'invalid node type in _expandproduction (_makenode)' , t => {
 

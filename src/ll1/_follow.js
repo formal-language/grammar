@@ -1,4 +1,6 @@
-import { list , map , filter , enumerate , range } from '@aureooms/js-itertools' ;
+import {map} from '@iterable-iterator/map';
+import {filter} from '@iterable-iterator/filter';
+import {enumerate} from '@iterable-iterator/zip';
 
 import { setaddall } from '../util' ;
 

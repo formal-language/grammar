@@ -1,13 +1,10 @@
-import {
-	any ,
-	map ,
-	list ,
-	chain ,
-	enumerate ,
-	next ,
-	iter ,
-	filter ,
-} from '@aureooms/js-itertools' ;
+import {any} from '@iterable-iterator/reduce';
+import {map} from '@iterable-iterator/map';
+import {list} from '@iterable-iterator/list';
+import {_chain} from '@iterable-iterator/chain';
+import {next} from '@iterable-iterator/next';
+import {iter} from '@iterable-iterator/iter';
+import {filter} from '@iterable-iterator/filter';
 
 import _first from './_first' ;
 import _follow from './_follow' ;
@@ -35,7 +32,7 @@ export default function is ( { productions } ) {
 	if ( any(
 		map(
 			rules => containsduplicates(
-				list( chain( map( FIRST , rules.values() ) ) )
+				list( _chain( map( FIRST , rules.values() ) ) )
 			) ,
 			productions.values()
 		)
@@ -60,7 +57,7 @@ export default function is ( { productions } ) {
 		if ( any (
 			map (
 				rule => containsduplicates(
-					list( chain( [ FIRST(rule) , FOLLOW(A) ] ) )
+					list( _chain( [ FIRST(rule) , FOLLOW(A) ] ) )
 				) ,
 				filter(rule => rule !== yieldsEW, rules.values())
 			)

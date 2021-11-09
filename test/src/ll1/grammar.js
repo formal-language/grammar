@@ -1,8 +1,10 @@
 import test from 'ava' ;
 
-import { sorted , list , map } from '@aureooms/js-itertools' ;
+import {list} from '@iterable-iterator/list';
+import {map} from '@iterable-iterator/map';
+import {sorted} from '@iterable-iterator/sorted';
 
-import { increasing } from '@aureooms/js-compare' ;
+import { increasing } from '@total-order/primitive' ;
 
 import { grammar , ll1 } from '../../../src' ;
 
