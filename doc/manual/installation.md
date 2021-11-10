@@ -8,15 +8,15 @@ or [jspm](https://jspm.org/docs).
 
 ### yarn
 ```terminal
-yarn add @aureooms/js-grammar
+yarn add @formal-language/grammar
 ```
 
 ### npm
 ```terminal
-npm install @aureooms/js-grammar --save
+npm install @formal-language/grammar --save
 ```
 
 ### jspm
 ```terminal
-jspm install npm:@aureooms/js-grammar
+jspm install npm:@formal-language/grammar
 ```

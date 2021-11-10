@@ -1,8 +1,8 @@
 {
-  "name": "@aureooms/js-grammar",
+  "name": "@formal-language/grammar",
   "description": "Grammar compilation toolkit for JavaScript",
   "version": "8.0.0",
-  "author": "aureooms",
+  "author": "make-github-pseudonymous-again",
   "ava": {
     "require": [
       "regenerator-runtime/runtime",
@@ -27,7 +27,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/make-github-pseudonymous-again/js-grammar/issues"
+    "url": "https://github.com/formal-language/grammar/issues"
   },
   "dependencies": {
     "@iterable-iterator/chain": "^2.0.1",
@@ -65,7 +65,7 @@
   "files": [
     "lib"
   ],
-  "homepage": "https://make-github-pseudonymous-again.github.io/js-grammar",
+  "homepage": "https://formal-language.github.io/grammar",
   "keywords": [
     "compilation",
     "grammar",
@@ -75,7 +75,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/make-github-pseudonymous-again/js-grammar"
+    "url": "https://github.com/formal-language/grammar"
   },
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",

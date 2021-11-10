@@ -1,17 +1,16 @@
 # Examples
 
-> More examples in [the test files](https://github.com/make-github-pseudonymous-again/js-grammar/tree/main/test/src).
+> More examples in [the test files](https://github.com/formal-language/grammar/tree/main/test/src).
 
 
 ## A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.
 
 ```js
-import { map , enumerate } from '@aureooms/js-itertools' ;
 import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
 import * as tape from '@async-abstraction/tape' ;
 import {asyncIterableMap} from '@async-abstraction/tape';
-import { grammar , ll1 , ast } from '@aureooms/js-grammar' ;
+import { grammar , ll1 , ast } from '@formal-language/grammar' ;
 
 const G = grammar.from( {
 	"root" : "root" ,
