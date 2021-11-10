@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",
-    "cover": "nyc --reporter=lcov npm test",
+    "cover": "c8 --all --src src --reporter=lcov npm test",
     "esdoc": "esdoc",
     "lint-config": "fixpack --dryRun",
     "lint-config-and-fix": "fixpack || fixpack",
@@ -55,6 +55,7 @@
     "@iterable-iterator/sorted": "^1.0.0",
     "@total-order/primitive": "^1.0.1",
     "ava": "3.15.0",
+    "c8": "7.10.0",
     "coveralls": "3.1.1",
     "esdoc": "1.1.0",
     "esdoc-ecmascript-proposal-plugin": "1.0.0",
@@ -63,7 +64,6 @@
     "esdoc-standard-plugin": "1.0.0",
     "fixpack": "4.0.0",
     "np": "7.5.0",
-    "nyc": "15.1.0",
     "regenerator-runtime": "0.13.9"
   },
   "ava": {
