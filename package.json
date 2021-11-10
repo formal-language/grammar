@@ -55,6 +55,7 @@
     "@iterable-iterator/sorted": "^1.0.0",
     "@total-order/primitive": "^1.0.1",
     "ava": "3.15.0",
+    "babel-plugin-transform-remove-console": "6.9.4",
     "c8": "7.10.0",
     "coveralls": "3.1.1",
     "esdoc": "1.1.0",
