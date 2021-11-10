@@ -1,6 +1,6 @@
 import test from 'ava' ;
 
-import { grammar } from '../../../src' ;
+import { grammar } from '../../../src/index.js' ;
 
 test( 'invalid node type in _expandproduction (_makenode)' , t => {
 

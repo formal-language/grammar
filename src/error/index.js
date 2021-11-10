@@ -1,6 +1,6 @@
-import LookaheadMismatchError from './LookaheadMismatchError' ;
-import SyntaxError from './SyntaxError' ;
-import UnexpectedEndOfFileError from './UnexpectedEndOfFileError' ;
+import LookaheadMismatchError from './LookaheadMismatchError.js' ;
+import SyntaxError from './SyntaxError.js' ;
+import UnexpectedEndOfFileError from './UnexpectedEndOfFileError.js' ;
 
 export default {
 	LookaheadMismatchError ,

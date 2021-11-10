@@ -2,9 +2,9 @@ import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
 import {any} from '@iterable-iterator/reduce';
 
-import { setadd , setaddall } from '../util' ;
+import { setadd , setaddall } from '../util/index.js' ;
 
-import { EW } from '../grammar';
+import { EW } from '../grammar/index.js';
 
 /**
  * Computes FIRST table for grammar nonterminals.

@@ -1,4 +1,4 @@
-import { anyIterator } from '../util' ;
+import { anyIterator } from '../util/index.js' ;
 
 export default async function materialize ( root ) {
 

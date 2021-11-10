@@ -3,7 +3,7 @@ import test from 'ava' ;
 import {list} from '@iterable-iterator/list';
 import {map} from '@iterable-iterator/map';
 
-import { grammar , ll1 } from '../../../src' ;
+import { grammar , ll1 } from '../../../src/index.js' ;
 
 test( 'Dragon Book (2006) page 48: 2.2.5 Associativity of Operators' , t => {
 

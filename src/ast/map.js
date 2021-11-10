@@ -1,5 +1,5 @@
-import Children from './Children' ;
-import cmap from './cmap' ;
+import Children from './Children.js' ;
+import cmap from './cmap.js' ;
 
 /**
  * Applies a given callable to each of the child of a given children async iterable.

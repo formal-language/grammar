@@ -6,10 +6,10 @@ import {next} from '@iterable-iterator/next';
 import {iter} from '@iterable-iterator/iter';
 import {filter} from '@iterable-iterator/filter';
 
-import _first from './_first' ;
-import _follow from './_follow' ;
-import first from './first' ;
-import { EW } from '../grammar' ;
+import _first from './_first.js' ;
+import _follow from './_follow.js' ;
+import first from './first.js' ;
+import { EW } from '../grammar/index.js' ;
 
 /**
  * Check if grammar is ll(1).

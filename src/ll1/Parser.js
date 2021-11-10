@@ -1,6 +1,6 @@
-import { alphabet } from '../grammar' ;
-import compile from './compile' ;
-import parse from './parse' ;
+import { alphabet } from '../grammar/index.js' ;
+import compile from './compile.js' ;
+import parse from './parse.js' ;
 
 export default class Parser {
 

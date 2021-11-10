@@ -2,11 +2,11 @@ import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
 import {enumerate} from '@iterable-iterator/zip';
 
-import { setaddall } from '../util' ;
+import { setaddall } from '../util/index.js' ;
 
-import first from './first' ;
+import first from './first.js' ;
 
-import { EW } from '../grammar';
+import { EW } from '../grammar/index.js';
 
 /**
  * Computes the FOLLOW table for all nonterminals.

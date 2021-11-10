@@ -1,5 +1,5 @@
-import expandobject from './expandobject' ;
-import alphabet from './alphabet' ;
+import expandobject from './expandobject.js' ;
+import alphabet from './alphabet.js' ;
 
 export default class Grammar {
 

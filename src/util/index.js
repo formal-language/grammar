@@ -1,6 +1,6 @@
-import anyIterator from './anyIterator' ;
-import setadd from './setadd' ;
-import setaddall from './setaddall' ;
+import anyIterator from './anyIterator.js' ;
+import setadd from './setadd.js' ;
+import setaddall from './setaddall.js' ;
 
 export default {
 	anyIterator ,

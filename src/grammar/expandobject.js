@@ -1,6 +1,6 @@
 import {list} from '@iterable-iterator/list';
 
-import _expandproduction from './_expandproduction' ;
+import _expandproduction from './_expandproduction.js' ;
 
 function* _expandproductions ( productions ) {
 	for ( const key in productions ) yield [ key , list( _expandproduction( productions[key] ) ) ] ;

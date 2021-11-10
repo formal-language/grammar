@@ -1,4 +1,4 @@
-import _compile from './_compile' ;
+import _compile from './_compile.js' ;
 
 /**
  * Compiles the predictive parsing table for a grammar.

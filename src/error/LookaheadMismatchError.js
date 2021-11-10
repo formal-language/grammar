@@ -1,4 +1,4 @@
-import SyntaxError from './SyntaxError' ;
+import SyntaxError from './SyntaxError.js' ;
 
 export default class LookaheadMismatchError extends SyntaxError {
 	constructor ( lookahead , expected ) {

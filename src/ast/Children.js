@@ -1,5 +1,5 @@
-import rmap from './rmap' ;
-import _children_exhaust from './_children_exhaust' ;
+import rmap from './rmap.js' ;
+import _children_exhaust from './_children_exhaust.js' ;
 
 export default class Children {
 
