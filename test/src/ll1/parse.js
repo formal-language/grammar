@@ -6,7 +6,7 @@ import {list} from '@iterable-iterator/list';
 import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
 
-import { grammar , ast , ll1 } from '../../../src' ;
+import { grammar , ast , ll1 } from '../../../src/index.js' ;
 
 const node = ( G , nonterminal , productionid , children ) => ({
 	"type" : "node" ,

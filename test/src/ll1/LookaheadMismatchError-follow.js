@@ -5,7 +5,7 @@ import {chain} from '@iterable-iterator/chain';
 import {range} from '@iterable-iterator/range';
 import * as tape from '@async-abstraction/tape' ;
 import {asyncIterableMap} from '@async-abstraction/tape';
-import { grammar , ast , ll1 } from '../../../src' ;
+import { grammar , ast , ll1 } from '../../../src/index.js' ;
 
 async function throws ( t , G , n ) {
 

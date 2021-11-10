@@ -6,7 +6,7 @@ import {sorted} from '@iterable-iterator/sorted';
 
 import { increasing } from '@total-order/primitive' ;
 
-import { grammar , ll1 } from '../../../src' ;
+import { grammar , ll1 } from '../../../src/index.js' ;
 
 const {
 	_first ,

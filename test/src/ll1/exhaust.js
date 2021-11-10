@@ -5,7 +5,7 @@ import {fromIterable} from '@async-abstraction/tape';
 import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
 
-import { grammar , ll1 } from '../../../src' ;
+import { grammar , ll1 } from '../../../src/index.js' ;
 
 test( 'exhaust with parenthesis' , async t => {
 

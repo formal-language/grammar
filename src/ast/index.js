@@ -1,11 +1,11 @@
-import Children from './Children' ;
-import _children_exhaust from './_children_exhaust' ;
-import cmap from './cmap' ;
-import flatten from './flatten' ;
-import map from './map' ;
-import materialize from './materialize' ;
-import rmap from './rmap' ;
-import transform from './transform' ;
+import Children from './Children.js' ;
+import _children_exhaust from './_children_exhaust.js' ;
+import cmap from './cmap.js' ;
+import flatten from './flatten.js' ;
+import map from './map.js' ;
+import materialize from './materialize.js' ;
+import rmap from './rmap.js' ;
+import transform from './transform.js' ;
 
 export default {
 	Children ,

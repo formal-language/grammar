@@ -2,9 +2,9 @@ import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
 import {any} from '@iterable-iterator/reduce';
 
-import { setaddall } from '../util' ;
+import { setaddall } from '../util/index.js' ;
 
-import { EW } from '../grammar';
+import { EW } from '../grammar/index.js';
 
 /**
  * Generate FIRST set for any rule given the FIRST sets for the nonterminals.

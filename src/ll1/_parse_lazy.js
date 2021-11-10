@@ -1,9 +1,9 @@
 import {
 	rmap ,
 	Children ,
-} from '../ast' ;
+} from '../ast/index.js' ;
 
-import _children_next_lazy from './_children_next_lazy' ;
+import _children_next_lazy from './_children_next_lazy.js' ;
 
 /**
  * Table-driven predictive lazy parsing.

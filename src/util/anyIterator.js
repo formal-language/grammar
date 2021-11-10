@@ -1,4 +1,4 @@
-import Children from '../ast/Children' ;
+import Children from '../ast/Children.js' ;
 
 export default function anyIterator ( object ) {
 	if ( object instanceof Children ) return object.iterator ;

@@ -4,10 +4,10 @@ import {_chain} from '@iterable-iterator/chain';
 import {next} from '@iterable-iterator/next';
 import {iter} from '@iterable-iterator/iter';
 
-import first from './first' ;
-import _first from './_first' ;
-import _follow from './_follow' ;
-import { alphabet , EW } from '../grammar' ;
+import first from './first.js' ;
+import _first from './_first.js' ;
+import _follow from './_follow.js' ;
+import { alphabet , EW } from '../grammar/index.js' ;
 
 /**
  * Generates the rows of the predictive parsing table for a grammar.

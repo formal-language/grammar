@@ -1,9 +1,9 @@
-import EW from './EW' ;
-import Grammar from './Grammar' ;
-import _expandproduction from './_expandproduction' ;
-import alphabet from './alphabet' ;
-import expandobject from './expandobject' ;
-import from from './from' ;
+import EW from './EW.js' ;
+import Grammar from './Grammar.js' ;
+import _expandproduction from './_expandproduction.js' ;
+import alphabet from './alphabet.js' ;
+import expandobject from './expandobject.js' ;
+import from from './from.js' ;
 
 export default {
 	EW ,

@@ -1,4 +1,4 @@
-import _parse_lazy from './_parse_lazy' ;
+import _parse_lazy from './_parse_lazy.js' ;
 
 /**
  * parse

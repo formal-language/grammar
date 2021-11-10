@@ -1,5 +1,5 @@
-import { LookaheadMismatchError , UnexpectedEndOfFileError } from '../error' ;
-import _parse_lazy from './_parse_lazy' ;
+import { LookaheadMismatchError , UnexpectedEndOfFileError } from '../error/index.js' ;
+import _parse_lazy from './_parse_lazy.js' ;
 
 /**
  * Get next child of table-driven predictive lazy parsing.

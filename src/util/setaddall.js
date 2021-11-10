@@ -1,4 +1,4 @@
-import setadd from './setadd' ;
+import setadd from './setadd.js' ;
 
 /**
  * Adds all elements of an iterable to a set and returns true if the set has

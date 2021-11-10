@@ -6,7 +6,7 @@ import {range} from '@iterable-iterator/range';
 import {nrepeat} from '@iterable-iterator/repeat';
 import * as tape from '@async-abstraction/tape' ;
 import {asyncIterableMap} from '@async-abstraction/tape';
-import { grammar , ast , ll1 } from '../../../src' ;
+import { grammar , ast , ll1 } from '../../../src/index.js' ;
 
 async function flatten ( t , n ) {
 

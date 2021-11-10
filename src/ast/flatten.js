@@ -1,4 +1,4 @@
-import { anyIterator } from '../util' ;
+import { anyIterator } from '../util/index.js' ;
 
 function getCount ( object ) {
 	if ( object instanceof Function || object.length === undefined ) return Infinity ;

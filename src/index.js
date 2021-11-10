@@ -1,8 +1,8 @@
-import ast from './ast' ;
-import error from './error' ;
-import grammar from './grammar' ;
-import ll1 from './ll1' ;
-import util from './util' ;
+import ast from './ast/index.js' ;
+import error from './error/index.js' ;
+import grammar from './grammar/index.js' ;
+import ll1 from './ll1/index.js' ;
+import util from './util/index.js' ;
 
 export default {
 	ast ,

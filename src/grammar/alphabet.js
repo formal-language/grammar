@@ -1,4 +1,4 @@
-import EW from './EW' ;
+import EW from './EW.js' ;
 
 export default function alphabet ( productions ) {
 
