@@ -68,7 +68,8 @@
     "fixpack": "4.0.0",
     "np": "7.5.0",
     "power-assert": "1.6.1",
-    "regenerator-runtime": "0.13.9"
+    "regenerator-runtime": "0.13.9",
+    "xo": "0.46.4"
   },
   "ava": {
     "files": [
