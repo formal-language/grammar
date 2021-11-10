@@ -5,14 +5,14 @@
 
 First, require the polyfill at the entry point of your application
 ```js
-require( 'regenerator-runtime/runtime' ) ;
+await import( 'regenerator-runtime/runtime.js' ) ;
 // or
 import 'regenerator-runtime/runtime.js' ;
 ```
 
 Then, import the library where needed
 ```js
-const grammarToolkit = require( '@formal-language/grammar' ) ;
+const grammarToolkit = await import( '@formal-language/grammar' ) ;
 // or
 import { ast , error , grammar , ll1 , util } from '@formal-language/grammar' ;
 ```
