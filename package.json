@@ -107,7 +107,17 @@
       "@babel/plugin-proposal-async-generator-functions"
     ],
     "env": {
-      "debug": {},
+      "debug": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": "current node"
+            }
+          ],
+          "babel-preset-power-assert"
+        ]
+      },
       "cover": {
         "sourceMaps": "both",
         "presets": [
