@@ -2,32 +2,35 @@
   "name": "@formal-language/grammar",
   "description": "Grammar compilation toolkit for JavaScript",
   "version": "8.0.0",
+  "license": "AGPL-3.0",
   "author": "make-github-pseudonymous-again",
-  "ava": {
-    "require": [
-      "regenerator-runtime/runtime",
-      "@babel/register"
-    ],
-    "files": [
-      "test/src/**/*"
-    ],
-    "timeout": "3m"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-async-generator-functions"
-    ],
-    "env": {
-      "development": {
-        "sourceMaps": "inline"
-      }
-    }
+  "homepage": "https://formal-language.github.io/grammar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formal-language/grammar"
   },
   "bugs": {
     "url": "https://github.com/formal-language/grammar/issues"
+  },
+  "keywords": [
+    "compilation",
+    "grammar",
+    "language"
+  ],
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rm -rf lib && babel src -d lib",
+    "cover": "nyc --reporter=lcov npm test",
+    "esdoc": "esdoc",
+    "lint-config": "fixpack --dryRun",
+    "lint-config-and-fix": "fixpack || fixpack",
+    "prepare": "npm run build",
+    "release": "np",
+    "test": "ava"
   },
   "dependencies": {
     "@iterable-iterator/chain": "^2.0.1",
@@ -58,35 +61,32 @@
     "esdoc-inject-script-plugin": "1.0.0",
     "esdoc-inject-style-plugin": "1.0.0",
     "esdoc-standard-plugin": "1.0.0",
+    "fixpack": "4.0.0",
     "np": "7.5.0",
     "nyc": "15.1.0",
-    "regenerator-runtime": "0.13.9",
-    "fixpack": "4.0.0"
+    "regenerator-runtime": "0.13.9"
   },
-  "files": [
-    "lib"
-  ],
-  "homepage": "https://formal-language.github.io/grammar",
-  "keywords": [
-    "compilation",
-    "grammar",
-    "language"
-  ],
-  "license": "AGPL-3.0",
-  "main": "lib/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/formal-language/grammar"
+  "ava": {
+    "require": [
+      "regenerator-runtime/runtime",
+      "@babel/register"
+    ],
+    "files": [
+      "test/src/**/*"
+    ],
+    "timeout": "3m"
   },
-  "scripts": {
-    "build": "rm -rf lib && babel src -d lib",
-    "cover": "nyc --reporter=lcov npm test",
-    "esdoc": "esdoc",
-    "prepare": "npm run build",
-    "release": "np",
-    "test": "ava",
-    "lint-config-and-fix": "fixpack || fixpack",
-    "lint-config": "fixpack --dryRun"
-  },
-  "sideEffects": false
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-async-generator-functions"
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
+  }
 }
