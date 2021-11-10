@@ -1,7 +1,7 @@
 # Overview
 
 ```js
-import { grammar , ll1 } from '@aureooms/js-grammar' ;
+import { grammar , ll1 } from '@formal-language/grammar' ;
 import * as tape from '@async-abstraction/tape' ;
 
 const root = 'root' ;

@@ -12,7 +12,7 @@ import '@babel/polyfill' ;
 
 Then, import the library where needed
 ```js
-const grammarToolkit = require( '@aureooms/js-grammar' ) ;
+const grammarToolkit = require( '@formal-language/grammar' ) ;
 // or
-import { ast , error , grammar , ll1 , util } from '@aureooms/js-grammar' ;
+import { ast , error , grammar , ll1 , util } from '@formal-language/grammar' ;
 ```
