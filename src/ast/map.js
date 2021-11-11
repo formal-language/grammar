@@ -1,5 +1,5 @@
-import Children from './Children.js' ;
-import cmap from './cmap.js' ;
+import Children from './Children.js';
+import cmap from './cmap.js';
 
 /**
  * Applies a given callable to each of the child of a given children async iterable.
@@ -8,10 +8,8 @@ import cmap from './cmap.js' ;
  * @param {AsyncIterable} children - The input children.
  * @returns {AsyncIterator}
  */
-export default function map ( callable , children ) {
+export default function map(callable, children) {
+	const iterator = cmap(callable, children)[Symbol.asyncIterator]();
 
-	const iterator = cmap( callable , children )[Symbol.asyncIterator]() ;
-
-	return new Children( iterator , undefined ) ;
-
+	return new Children(iterator, undefined);
 }

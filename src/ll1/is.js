@@ -6,10 +6,10 @@ import {next} from '@iterable-iterator/next';
 import {iter} from '@iterable-iterator/iter';
 import {filter} from '@iterable-iterator/filter';
 
-import _first from './_first.js' ;
-import _follow from './_follow.js' ;
-import first from './first.js' ;
-import { EW } from '../grammar/index.js' ;
+import EW from '../grammar/EW.js';
+import _first from './_first.js';
+import _follow from './_follow.js';
+import first from './first.js';
 
 /**
  * Check if grammar is ll(1).
@@ -17,54 +17,57 @@ import { EW } from '../grammar/index.js' ;
  * @param {Grammar} grammar
  * @returns {Boolean}
  */
-export default function is ( { productions } ) {
-
+export default function is({productions}) {
 	const phi = _first(productions);
 
-	const FIRST = rule => first(phi, rule);
+	const FIRST = (rule) => first(phi, rule);
 
 	// TODO this is stupid
-	const containsduplicates = array => (new Set(array)).size !== array.length;
+	const containsduplicates = (array) => new Set(array).size !== array.length;
 
 	// Dragon Book (2006) page 224: For every A, a, b such that A => a | b
 	// ``... FIRST(a) and FIRST(b) are disjoint sets.''
 
-	if ( any(
-		map(
-			rules => containsduplicates(
-				list( _chain( map( FIRST , rules.values() ) ) )
-			) ,
-			productions.values()
+	if (
+		any(
+			map(
+				(rules) => containsduplicates(list(_chain(map(FIRST, rules.values())))),
+				productions.values(),
+			),
 		)
-	) ) return false ;
+	)
+		return false;
 
-	//   and ``... if the empty
+	//   And ``... if the empty
 	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
 	//   and likewise if the empty word is in FIRST(a).''
 
 	const pho = _follow(phi, productions);
 
-	const FOLLOW = A => pho.get(A);
+	const FOLLOW = (A) => pho.get(A);
 
-	const dflt = {}; // dummy object
+	const dflt = {}; // Dummy object
 
-	for ( const [A, rules] of productions ) {
-
-		const yieldsEW = next( iter( filter( rule => FIRST(rule).has(EW), rules.values() ) ) , dflt );
+	for (const [A, rules] of productions) {
+		const yieldsEW = next(
+			// eslint-disable-next-line new-cap
+			iter(filter((rule) => FIRST(rule).has(EW), rules.values())),
+			dflt,
+		);
 
 		if (yieldsEW === dflt) continue;
 
-		if ( any (
-			map (
-				rule => containsduplicates(
-					list( _chain( [ FIRST(rule) , FOLLOW(A) ] ) )
-				) ,
-				filter(rule => rule !== yieldsEW, rules.values())
+		if (
+			any(
+				map(
+					// eslint-disable-next-line new-cap
+					(rule) => containsduplicates(list(_chain([FIRST(rule), FOLLOW(A)]))),
+					filter((rule) => rule !== yieldsEW, rules.values()),
+				),
 			)
-		) ) return false ;
-
+		)
+			return false;
 	}
 
 	return true;
-
 }

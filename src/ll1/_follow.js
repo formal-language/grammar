@@ -2,11 +2,10 @@ import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
 import {enumerate} from '@iterable-iterator/zip';
 
-import { setaddall } from '../util/index.js' ;
+import setaddall from '../util/setaddall.js';
 
-import first from './first.js' ;
-
-import { EW } from '../grammar/index.js';
+import EW from '../grammar/EW.js';
+import first from './first.js';
 
 /**
  * Computes the FOLLOW table for all nonterminals.
@@ -15,19 +14,21 @@ import { EW } from '../grammar/index.js';
  * @param {Map} productions - The productions map.
  * @returns {Map} The FOLLOW table.
  */
-export default function _follow ( FIRST , productions ) {
+export default function _follow(FIRST, productions) {
+	const FOLLOW = new Map(map((i) => [i, new Set()], productions.keys()));
 
-	const FOLLOW = new Map( map( i => [ i , new Set() ] , productions.keys() ) ) ;
+	const couldbelast = new Map(map((i) => [i, new Set()], productions.keys()));
 
-	const couldbelast = new Map( map( i => [ i , new Set() ] , productions.keys() )) ;
-
-	for (const [ A , rules ] of productions) {
+	for (const [A, rules] of productions) {
 		for (const rule of rules.values()) {
-			for (const [ pos , B ] of enumerate(rule)) {
-				if (B.type === 'leaf') continue ;
-				const fi = first(FIRST, rule.slice(pos+1));
+			for (const [pos, B] of enumerate(rule)) {
+				if (B.type === 'leaf') continue;
+				const fi = first(FIRST, rule.slice(pos + 1));
 				if (fi.has(EW)) couldbelast.get(A).add(B.nonterminal);
-				setaddall(FOLLOW.get(B.nonterminal), filter( x => x !== EW , fi));
+				setaddall(
+					FOLLOW.get(B.nonterminal),
+					filter((x) => x !== EW, fi),
+				);
 			}
 		}
 	}
@@ -37,11 +38,10 @@ export default function _follow ( FIRST , productions ) {
 		updated = false;
 		for (const A of productions.keys()) {
 			for (const B of couldbelast.get(A)) {
-				updated |= setaddall(FOLLOW.get(B), FOLLOW.get(A));
+				updated ||= setaddall(FOLLOW.get(B), FOLLOW.get(A));
 			}
 		}
 	}
 
 	return FOLLOW;
-
 }

@@ -1,4 +1,4 @@
-import setadd from './setadd.js' ;
+import setadd from './setadd.js';
 
 /**
  * Adds all elements of an iterable to a set and returns true if the set has
@@ -8,8 +8,8 @@ import setadd from './setadd.js' ;
  * @param {Iterable} iterable - The iterable of elements to add to the set.
  * @returns {Boolean} Whether <code>set</code> has changed.
  */
-export default function setaddall ( set , iterable ) {
+export default function setaddall(set, iterable) {
 	let changed = false;
-	for (const element of iterable) changed |= setadd(set, element);
+	for (const element of iterable) changed ||= setadd(set, element);
 	return changed;
 }

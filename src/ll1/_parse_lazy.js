@@ -1,9 +1,7 @@
-import {
-	rmap ,
-	Children ,
-} from '../ast/index.js' ;
+import rmap from '../ast/rmap.js';
+import Children from '../ast/Children.js';
 
-import _children_next_lazy from './_children_next_lazy.js' ;
+import _children_next_lazy from './_children_next_lazy.js';
 
 /**
  * Table-driven predictive lazy parsing.
@@ -17,17 +15,24 @@ import _children_next_lazy from './_children_next_lazy.js' ;
  * @param {String} production - The production that corresponds to `rule`.
  * @returns {Object} The root node of the parsed tree.
  */
-export default function _parse_lazy ( eof , productions , table , rule , tape , nonterminal , production ) {
+export default function _parse_lazy(
+	eof,
+	productions,
+	table,
+	rule,
+	tape,
+	nonterminal,
+	production,
+) {
+	const shallow_materialize = async (expected) =>
+		_children_next_lazy(eof, productions, table, tape, expected);
 
-	const shallow_materialize = async expected => await _children_next_lazy(eof, productions, table, tape, expected) ;
-
-	const iterator = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;
+	const iterator = rmap(shallow_materialize, rule)[Symbol.asyncIterator]();
 
 	return {
-		'type' : 'node' ,
-		nonterminal ,
-		production ,
-		children : new Children( iterator , rule.length ) ,
-	} ;
-
+		type: 'node',
+		nonterminal,
+		production,
+		children: new Children(iterator, rule.length),
+	};
 }
