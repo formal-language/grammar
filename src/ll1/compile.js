@@ -1,4 +1,4 @@
-import _compile from './_compile.js' ;
+import _compile from './_compile.js';
 
 /**
  * Compiles the predictive parsing table for a grammar.
@@ -7,6 +7,6 @@ import _compile from './_compile.js' ;
  * @param {Map} productions
  * @returns {Map}
  */
-export default function compile (productions) {
+export default function compile(productions) {
 	return new Map(_compile(productions));
 }

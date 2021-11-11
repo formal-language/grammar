@@ -4,10 +4,12 @@ import {_chain} from '@iterable-iterator/chain';
 import {next} from '@iterable-iterator/next';
 import {iter} from '@iterable-iterator/iter';
 
-import first from './first.js' ;
-import _first from './_first.js' ;
-import _follow from './_follow.js' ;
-import { alphabet , EW } from '../grammar/index.js' ;
+import alphabet from '../grammar/alphabet.js';
+import EW from '../grammar/EW.js';
+
+import first from './first.js';
+import _first from './_first.js';
+import _follow from './_follow.js';
 
 /**
  * Generates the rows of the predictive parsing table for a grammar.
@@ -16,43 +18,40 @@ import { alphabet , EW } from '../grammar/index.js' ;
  * @param {Map} productions
  * @returns {Iterable}
  */
-export default function* _compile ( productions ) {
-
+export default function* _compile(productions) {
 	const abc = alphabet(productions);
 
 	const phi = _first(productions);
 	const pho = _follow(phi, productions);
 
-	const FIRST = rule => first(phi, rule) ;
+	const FIRST = (rule) => first(phi, rule);
 
-	const dflt = {}; // dummy object
+	const dflt = {}; // Dummy object
 
 	for (const [A, rules] of productions) {
-
 		const m = map(
-			a => [
-				a ,
+			(a) => [
+				a,
 				next(
-					iter(filter(r => rules.get(r).length === 0, rules.keys())),
+					iter(filter((r) => rules.get(r).length === 0, rules.keys())),
 					dflt,
-				) ,
-			] ,
-			filter( a => pho.get(A).has(a) && !phi.get(A).has(a), abc)
+				),
+			],
+			filter((a) => pho.get(A).has(a) && !phi.get(A).has(a), abc),
 		);
 
 		const n = map(
-			a => [
-				a ,
+			(a) => [
+				a,
 				next(
-					iter(filter(r => FIRST(rules.get(r)).has(a), rules.keys())),
+					// eslint-disable-next-line new-cap
+					iter(filter((r) => FIRST(rules.get(r)).has(a), rules.keys())),
 					dflt,
-				) ,
-			] ,
-			filter( a => a !== EW , abc )
+				),
+			],
+			filter((a) => a !== EW, abc),
 		);
 
-		yield [ A , new Map(filter(([k,v]) => v !== dflt, _chain([m,n]))) ] ;
-
+		yield [A, new Map(filter(([_k, v]) => v !== dflt, _chain([m, n])))];
 	}
-
 }

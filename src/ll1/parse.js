@@ -1,7 +1,7 @@
-import _parse_lazy from './_parse_lazy.js' ;
+import _parse_lazy from './_parse_lazy.js';
 
 /**
- * parse
+ * Parse
  *
  * @param root
  * @param start
@@ -11,7 +11,7 @@ import _parse_lazy from './_parse_lazy.js' ;
  * @param tape
  * @returns {Object}
  */
-export default function parse ( root , start , eof , productions, table , tape ) {
-	const startRule = productions.get(root).get(start) ;
-	return _parse_lazy( eof, productions, table , startRule , tape , root , start ) ;
+export default function parse(root, start, eof, productions, table, tape) {
+	const startRule = productions.get(root).get(start);
+	return _parse_lazy(eof, productions, table, startRule, tape, root, start);
 }
