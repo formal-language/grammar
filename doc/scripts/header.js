@@ -17,7 +17,7 @@ domReady(function () {
 	header.insertBefore(projectname, header.firstChild);
 
 	const testlink = document.querySelector('header > a[data-ice="testLink"]');
-	testlink.href = 'https://coveralls.io/github/formal-language/grammar';
+	testlink.href = 'https://app.codecov.io/gh/formal-language/grammar';
 	testlink.target = '_BLANK';
 
 	const searchBox = document.querySelector('.search-box');
