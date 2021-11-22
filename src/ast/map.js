@@ -1,3 +1,4 @@
+import assert from 'assert';
 import Children from './Children.js';
 import cmap from './cmap.js';
 
@@ -6,9 +7,10 @@ import cmap from './cmap.js';
  *
  * @param {Function} callable - The callable to use.
  * @param {AsyncIterable} children - The input children.
- * @returns {AsyncIterator}
+ * @returns {AsyncIterable}
  */
 export default function map(callable, children) {
+	assert(children !== undefined);
 	const iterator = cmap(callable, children)[Symbol.asyncIterator]();
 
 	return new Children(iterator, undefined);

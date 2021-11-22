@@ -220,6 +220,7 @@
       "no-constant-condition": "off",
       "unicorn/prefer-math-trunc": "off",
       "unicorn/no-new-array": "off",
+      "unicorn/prefer-node-protocol": "off",
       "no-negated-condition": "off"
     },
     "overrides": [

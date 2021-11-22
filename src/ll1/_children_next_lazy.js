@@ -10,7 +10,7 @@ import _parse_lazy from './_parse_lazy.js';
  * @param {Map} table - The symbol table.
  * @param {Tape} tape - The tape from which to read the symbols from.
  * @param {Object} expected - The expected node.
- * @returns {Object} A node.
+ * @returns {Promise<object>} A node.
  */
 export default async function _children_next_lazy(
 	eof,
