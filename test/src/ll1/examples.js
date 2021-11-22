@@ -42,8 +42,11 @@ test("A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.", async (t)
 	const tree = parser.parse(tokens);
 
 	const m = (children, match, ctx) =>
-		ast.map(async (child) =>
-			child.type === 'leaf' ? child : ast.transform(child, match, ctx),
+		ast.map(
+			async (child) =>
+				child.type === 'leaf' ? child : ast.transform(child, match, ctx),
+			// eslint-disable-next-line unicorn/no-array-method-this-argument
+			children,
 		);
 
 	const transformed = await ast.transform(tree, {
@@ -70,27 +73,35 @@ test("A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.", async (t)
 			}),
 		},
 		bit: [
-			() => ({
+			(tree) => ({
 				type: 'node',
 				nonterminal: 'letter',
 				production: 'aaa',
-				children: ast.map((leaf) => ({
-					type: 'leaf',
-					terminal: 'a',
-					buffer: 'a',
-					position: leaf.position,
-				})),
+				children: ast.map(
+					(leaf) => ({
+						type: 'leaf',
+						terminal: 'a',
+						buffer: 'a',
+						position: leaf.position,
+					}),
+					// eslint-disable-next-line unicorn/no-array-method-this-argument
+					tree.children,
+				),
 			}),
-			() => ({
+			(tree) => ({
 				type: 'node',
 				nonterminal: 'letter',
 				production: 'bbb',
-				children: ast.map((leaf) => ({
-					type: 'leaf',
-					terminal: 'b',
-					buffer: 'b',
-					position: leaf.position,
-				})),
+				children: ast.map(
+					(leaf) => ({
+						type: 'leaf',
+						terminal: 'b',
+						buffer: 'b',
+						position: leaf.position,
+					}),
+					// eslint-disable-next-line unicorn/no-array-method-this-argument
+					tree.children,
+				),
 			}),
 		],
 	});
