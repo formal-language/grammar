@@ -10,6 +10,9 @@ import setadd from './setadd.js';
  */
 export default function setaddall(set, iterable) {
 	let changed = false;
-	for (const element of iterable) changed ||= setadd(set, element);
+	for (const element of iterable) {
+		changed = setadd(set, element) || changed;
+	}
+
 	return changed;
 }

@@ -38,7 +38,7 @@ export default function _follow(FIRST, productions) {
 		updated = false;
 		for (const A of productions.keys()) {
 			for (const B of couldbelast.get(A)) {
-				updated ||= setaddall(FOLLOW.get(B), FOLLOW.get(A));
+				updated = setaddall(FOLLOW.get(B), FOLLOW.get(A)) || updated;
 			}
 		}
 	}

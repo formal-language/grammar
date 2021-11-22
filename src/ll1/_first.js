@@ -29,17 +29,19 @@ export default function _first(productions) {
 					if (!read) break;
 					read = false;
 
-					if (x.type === 'leaf') updated ||= setadd(FIRST.get(i), x.terminal);
+					if (x.type === 'leaf')
+						updated = setadd(FIRST.get(i), x.terminal) || updated;
 					else {
-						updated ||= setaddall(
-							FIRST.get(i),
-							filter((y) => y !== EW, FIRST.get(x.nonterminal)),
-						);
+						updated =
+							setaddall(
+								FIRST.get(i),
+								filter((y) => y !== EW, FIRST.get(x.nonterminal)),
+							) || updated;
 						read ||= any(map((y) => y === EW, FIRST.get(x.nonterminal)));
 					}
 				}
 
-				if (read) updated ||= setadd(FIRST.get(i), EW);
+				if (read) updated = setadd(FIRST.get(i), EW) || updated;
 			}
 		}
 	}
