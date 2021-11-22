@@ -4,7 +4,7 @@ import first from './first.js';
 /**
  * Generate FOLLOW set for any rule given the FOLLOW sets for the nonterminals.
  *
- * @param {Array} FOLLOW
+ * @param {Map} FOLLOW
  * @param {Array} rule
  * @returns {Set}
  */
