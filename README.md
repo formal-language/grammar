@@ -1,11 +1,12 @@
-[@formal-language/grammar](https://formal-language.github.io/grammar)
+:fountain_pen: [@formal-language/grammar](https://formal-language.github.io/grammar)
 ==
 
 Grammar compilation toolkit for JavaScript. Served with asynchronous goodness.
 See [docs](https://formal-language.github.io/grammar/index.html).
 
-> :warning: The code needs a ES2015+ polyfill to work (`regeneratorRuntime`),
-> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).
+> :warning: Depending on your environment, the code may require
+> `regeneratorRuntime` to be defined, for instance by importing
+> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).
 
 ```js
 const G = grammar.from( { root , start , eof , productions } ) ;
