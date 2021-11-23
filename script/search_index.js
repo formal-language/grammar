@@ -1,182 +1,176 @@
 window.esdocSearchIndex = [
   [
-    "@aureooms/js-grammar/src/grammar/ew.js~ew",
+    "@formal-language/grammar/src/ast/children.js~children",
+    "class/src/ast/Children.js~Children.html",
+    "<span>Children</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/Children.js</span>",
+    "class"
+  ],
+  [
+    "@formal-language/grammar/src/grammar/ew.js~ew",
     "variable/index.html#static-variable-EW",
-    "<span>EW</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/EW.js</span>",
+    "<span>EW</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/EW.js</span>",
     "variable"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/grammar.js~grammar",
+    "@formal-language/grammar/src/grammar/grammar.js~grammar",
     "class/src/grammar/Grammar.js~Grammar.html",
-    "<span>Grammar</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/Grammar.js</span>",
+    "<span>Grammar</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/Grammar.js</span>",
     "class"
   ],
   [
-    "@aureooms/js-grammar/src/error/lookaheadmismatcherror.js~lookaheadmismatcherror",
+    "@formal-language/grammar/src/error/lookaheadmismatcherror.js~lookaheadmismatcherror",
     "class/src/error/LookaheadMismatchError.js~LookaheadMismatchError.html",
-    "<span>LookaheadMismatchError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/LookaheadMismatchError.js</span>",
+    "<span>LookaheadMismatchError</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/error/LookaheadMismatchError.js</span>",
     "class"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/parser.js~parser",
+    "@formal-language/grammar/src/ll1/parser.js~parser",
     "class/src/ll1/Parser.js~Parser.html",
-    "<span>Parser</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/Parser.js</span>",
+    "<span>Parser</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/Parser.js</span>",
     "class"
   ],
   [
-    "@aureooms/js-grammar/src/error/syntaxerror.js~syntaxerror",
+    "@formal-language/grammar/src/error/syntaxerror.js~syntaxerror",
     "class/src/error/SyntaxError.js~SyntaxError.html",
-    "<span>SyntaxError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/SyntaxError.js</span>",
+    "<span>SyntaxError</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/error/SyntaxError.js</span>",
     "class"
   ],
   [
-    "@aureooms/js-grammar/src/error/unexpectedendoffileerror.js~unexpectedendoffileerror",
+    "@formal-language/grammar/src/error/unexpectedendoffileerror.js~unexpectedendoffileerror",
     "class/src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError.html",
-    "<span>UnexpectedEndOfFileError</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/error/UnexpectedEndOfFileError.js</span>",
+    "<span>UnexpectedEndOfFileError</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/error/UnexpectedEndOfFileError.js</span>",
     "class"
   ],
   [
-    "@aureooms/js-grammar/src/ast/_children_exhaust.js~_children_exhaust",
+    "@formal-language/grammar/src/ast/_children_exhaust.js~_children_exhaust",
     "function/index.html#static-function-_children_exhaust",
-    "<span>_children_exhaust</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/_children_exhaust.js</span>",
+    "<span>_children_exhaust</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/_children_exhaust.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/_children_next_lazy.js~_children_next_lazy",
+    "@formal-language/grammar/src/ll1/_children_next_lazy.js~_children_next_lazy",
     "function/index.html#static-function-_children_next_lazy",
-    "<span>_children_next_lazy</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_children_next_lazy.js</span>",
+    "<span>_children_next_lazy</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/_children_next_lazy.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/_compile.js~_compile",
+    "@formal-language/grammar/src/ll1/_compile.js~_compile",
     "function/index.html#static-function-_compile",
-    "<span>_compile</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_compile.js</span>",
+    "<span>_compile</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/_compile.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/_expandproduction.js~_expandproduction",
+    "@formal-language/grammar/src/grammar/_expandproduction.js~_expandproduction",
     "function/index.html#static-function-_expandproduction",
-    "<span>_expandproduction</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/_expandproduction.js</span>",
+    "<span>_expandproduction</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/_expandproduction.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/_first.js~_first",
-    "function/index.html#static-function-_first",
-    "<span>_first</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_first.js</span>",
-    "function"
-  ],
-  [
-    "@aureooms/js-grammar/src/ll1/_follow.js~_follow",
+    "@formal-language/grammar/src/ll1/_follow.js~_follow",
     "function/index.html#static-function-_follow",
-    "<span>_follow</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_follow.js</span>",
+    "<span>_follow</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/_follow.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/_parse_lazy.js~_parse_lazy",
+    "@formal-language/grammar/src/ll1/_parse_lazy.js~_parse_lazy",
     "function/index.html#static-function-_parse_lazy",
-    "<span>_parse_lazy</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/_parse_lazy.js</span>",
+    "<span>_parse_lazy</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/_parse_lazy.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/alphabet.js~alphabet",
+    "@formal-language/grammar/src/grammar/alphabet.js~alphabet",
     "function/index.html#static-function-alphabet",
-    "<span>alphabet</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/alphabet.js</span>",
+    "<span>alphabet</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/alphabet.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/util/anyiterator.js~anyiterator",
+    "@formal-language/grammar/src/util/anyiterator.js~anyiterator",
     "function/index.html#static-function-anyIterator",
-    "<span>anyIterator</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/util/anyIterator.js</span>",
+    "<span>anyIterator</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/util/anyIterator.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ast/cmap.js~cmap",
-    "function/index.html#static-function-cmap",
-    "<span>cmap</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/cmap.js</span>",
-    "function"
-  ],
-  [
-    "@aureooms/js-grammar/src/ll1/compile.js~compile",
+    "@formal-language/grammar/src/ll1/compile.js~compile",
     "function/index.html#static-function-compile",
-    "<span>compile</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/compile.js</span>",
+    "<span>compile</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/compile.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/expandobject.js~expandobject",
+    "@formal-language/grammar/src/grammar/expandobject.js~expandobject",
     "function/index.html#static-function-expandobject",
-    "<span>expandobject</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/expandobject.js</span>",
+    "<span>expandobject</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/expandobject.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/first.js~first",
-    "function/index.html#static-function-first",
-    "<span>first</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/first.js</span>",
-    "function"
-  ],
-  [
-    "@aureooms/js-grammar/src/ast/flatten.js~flatten",
+    "@formal-language/grammar/src/ast/flatten.js~flatten",
     "function/index.html#static-function-flatten",
-    "<span>flatten</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/flatten.js</span>",
+    "<span>flatten</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/flatten.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/follow.js~follow",
+    "@formal-language/grammar/src/ll1/follow.js~follow",
     "function/index.html#static-function-follow",
-    "<span>follow</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/follow.js</span>",
+    "<span>follow</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/follow.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/from.js~from",
+    "@formal-language/grammar/src/grammar/from.js~from",
     "function/index.html#static-function-from",
-    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/from.js</span>",
+    "<span>from</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/grammar/from.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/from.js~from",
+    "@formal-language/grammar/src/ll1/from.js~from",
     "function/index.html#static-function-from",
-    "<span>from</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/from.js</span>",
+    "<span>from</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/from.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/is.js~is",
+    "@formal-language/grammar/src/ll1/is.js~is",
     "function/index.html#static-function-is",
-    "<span>is</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/is.js</span>",
+    "<span>is</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/is.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ast/materialize.js~materialize",
+    "@formal-language/grammar/src/ast/map.js~map",
+    "function/index.html#static-function-map",
+    "<span>map</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/map.js</span>",
+    "function"
+  ],
+  [
+    "@formal-language/grammar/src/ast/materialize.js~materialize",
     "function/index.html#static-function-materialize",
-    "<span>materialize</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/materialize.js</span>",
+    "<span>materialize</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/materialize.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ll1/parse.js~parse",
+    "@formal-language/grammar/src/ll1/parse.js~parse",
     "function/index.html#static-function-parse",
-    "<span>parse</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ll1/parse.js</span>",
+    "<span>parse</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/parse.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/grammar/rmap.js~rmap",
+    "@formal-language/grammar/src/ast/rmap.js~rmap",
     "function/index.html#static-function-rmap",
-    "<span>rmap</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/grammar/rmap.js</span>",
+    "<span>rmap</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/rmap.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/util/setadd.js~setadd",
+    "@formal-language/grammar/src/util/setadd.js~setadd",
     "function/index.html#static-function-setadd",
-    "<span>setadd</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/util/setadd.js</span>",
+    "<span>setadd</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/util/setadd.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/util/setaddall.js~setaddall",
+    "@formal-language/grammar/src/util/setaddall.js~setaddall",
     "function/index.html#static-function-setaddall",
-    "<span>setaddall</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/util/setaddall.js</span>",
+    "<span>setaddall</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/util/setaddall.js</span>",
     "function"
   ],
   [
-    "@aureooms/js-grammar/src/ast/transform.js~transform",
+    "@formal-language/grammar/src/ast/transform.js~transform",
     "function/index.html#static-function-transform",
-    "<span>transform</span> <span class=\"search-result-import-path\">@aureooms/js-grammar/src/ast/transform.js</span>",
+    "<span>transform</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ast/transform.js</span>",
     "function"
   ],
   [
@@ -462,15 +456,39 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/ast/_children_exhaust.js",
-    "file/src/ast/_children_exhaust.js.html",
-    "src/ast/_children_exhaust.js",
+    "src/ast/children.js",
+    "file/src/ast/Children.js.html",
+    "src/ast/Children.js",
     "file"
   ],
   [
-    "src/ast/cmap.js",
-    "file/src/ast/cmap.js.html",
-    "src/ast/cmap.js",
+    "src/ast/children.js~children#[symbol.asynciterator]",
+    "class/src/ast/Children.js~Children.html#instance-method-[Symbol.asyncIterator]",
+    "src/ast/Children.js~Children#[Symbol.asyncIterator]",
+    "method"
+  ],
+  [
+    "src/ast/children.js~children#constructor",
+    "class/src/ast/Children.js~Children.html#instance-constructor-constructor",
+    "src/ast/Children.js~Children#constructor",
+    "method"
+  ],
+  [
+    "src/ast/children.js~children#iterator",
+    "class/src/ast/Children.js~Children.html#instance-member-iterator",
+    "src/ast/Children.js~Children#iterator",
+    "member"
+  ],
+  [
+    "src/ast/children.js~children#length",
+    "class/src/ast/Children.js~Children.html#instance-member-length",
+    "src/ast/Children.js~Children#length",
+    "member"
+  ],
+  [
+    "src/ast/_children_exhaust.js",
+    "file/src/ast/_children_exhaust.js.html",
+    "src/ast/_children_exhaust.js",
     "file"
   ],
   [
@@ -486,9 +504,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/ast/map.js",
+    "file/src/ast/map.js.html",
+    "src/ast/map.js",
+    "file"
+  ],
+  [
     "src/ast/materialize.js",
     "file/src/ast/materialize.js.html",
     "src/ast/materialize.js",
+    "file"
+  ],
+  [
+    "src/ast/rmap.js",
+    "file/src/ast/rmap.js.html",
+    "src/ast/rmap.js",
     "file"
   ],
   [
@@ -514,12 +544,6 @@ window.esdocSearchIndex = [
     "file/src/error/SyntaxError.js.html",
     "src/error/SyntaxError.js",
     "file"
-  ],
-  [
-    "src/error/syntaxerror.js~syntaxerror#constructor",
-    "class/src/error/SyntaxError.js~SyntaxError.html#instance-constructor-constructor",
-    "src/error/SyntaxError.js~SyntaxError#constructor",
-    "method"
   ],
   [
     "src/error/unexpectedendoffileerror.js",
@@ -624,12 +648,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/grammar/rmap.js",
-    "file/src/grammar/rmap.js.html",
-    "src/grammar/rmap.js",
-    "file"
-  ],
-  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",
@@ -684,12 +702,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/ll1/_first.js",
-    "file/src/ll1/_first.js.html",
-    "src/ll1/_first.js",
-    "file"
-  ],
-  [
     "src/ll1/_follow.js",
     "file/src/ll1/_follow.js.html",
     "src/ll1/_follow.js",
@@ -705,12 +717,6 @@ window.esdocSearchIndex = [
     "src/ll1/compile.js",
     "file/src/ll1/compile.js.html",
     "src/ll1/compile.js",
-    "file"
-  ],
-  [
-    "src/ll1/first.js",
-    "file/src/ll1/first.js.html",
-    "src/ll1/first.js",
     "file"
   ],
   [

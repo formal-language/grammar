@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual | @aureooms/js-grammar</title>
+  <title data-ice="title">Manual | @formal-language/grammar</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Grammar compilation toolkit for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-grammar"><meta property="twitter:description" content="Grammar compilation toolkit for JavaScript"></head>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Grammar compilation toolkit for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@formal-language/grammar"><meta property="twitter:description" content="Grammar compilation toolkit for JavaScript"></head>
 <body class="layout-container manual-root" data-ice="rootContainer">
 
 <header>
@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-grammar"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/formal-language/grammar"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
@@ -60,11 +60,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="examples">Examples</h1><blockquote>
-<p>More examples in <a href="https://github.com/aureooms/js-grammar/tree/master/test/src">the test files</a>.</p>
+<p>More examples in <a href="https://github.com/formal-language/grammar/tree/main/test/src">the test files</a>.</p>
 </blockquote>
-<h2 id="a-convoluted--code---39-010101--39--replace--0-g----39-a--39---replace--1-g----39-b--39----code--">A convoluted <code>&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)</code>.</h2><pre><code class="lang-js"><code class="source-code prettyprint">import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
-import tape , { asyncIterableMap } from &apos;@aureooms/js-tape&apos; ;
-import { grammar , ll1 , ast } from &apos;@aureooms/js-grammar&apos; ;
+<h2 id="a-convoluted--code---39-010101--39--replace--0-g----39-a--39---replace--1-g----39-b--39----code--">A convoluted <code>&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)</code>.</h2><pre><code class="lang-js"><code class="source-code prettyprint">import {map} from &apos;@iterable-iterator/map&apos;;
+import {enumerate} from &apos;@iterable-iterator/zip&apos;;
+import * as tape from &apos;@async-abstraction/tape&apos; ;
+import {asyncIterableMap} from &apos;@async-abstraction/tape&apos;;
+import { grammar , ll1 , ast } from &apos;@formal-language/grammar&apos; ;
 
 const G = grammar.from( {
     &quot;root&quot; : &quot;root&quot; ,
@@ -103,7 +105,7 @@ const replace = async input =&gt; {
 
     const tree = parser.parse(tokens);
 
-    const m = ( children , match , ctx ) =&gt; ast.cmap( async child =&gt; child.type === &apos;leaf&apos; ? child : await ast.transform( child , match , ctx ) , children ) ;
+    const m = ( children , match , ctx ) =&gt; ast.map( async child =&gt; child.type === &apos;leaf&apos; ? child : await ast.transform( child , match , ctx ) , children ) ;
 
     const transform = {
         &quot;root&quot; : {
@@ -133,7 +135,7 @@ const replace = async input =&gt; {
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letter&quot; ,
                 &quot;production&quot; : &quot;aaa&quot; ,
-                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                &quot;children&quot; : ast.map( leaf =&gt; ({
                     &quot;type&quot; : &quot;leaf&quot; ,
                     &quot;terminal&quot; : &quot;a&quot; ,
                     &quot;buffer&quot; : &quot;a&quot; ,
@@ -144,7 +146,7 @@ const replace = async input =&gt; {
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letter&quot; ,
                 &quot;production&quot; : &quot;bbb&quot; ,
-                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                &quot;children&quot; : ast.map( leaf =&gt; ({
                     &quot;type&quot; : &quot;leaf&quot; ,
                     &quot;terminal&quot; : &quot;b&quot; ,
                     &quot;buffer&quot; : &quot;b&quot; ,

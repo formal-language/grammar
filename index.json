@@ -566,16 +566,128 @@
   {
     "__docId__": 48,
     "kind": "file",
-    "name": "src/ast/_children_exhaust.js",
-    "content": "/**\n * Exhausts the input children iterator.\n *\n * @param {Iterator} children - The input children iterator.\n *\n */\nexport default async function _children_exhaust ( children ) {\n\n\tfor await ( const child of children ) {\n\t\tif ( child.type === 'node' ) await _children_exhaust( child.children ) ;\n\t}\n\n}\n",
+    "name": "src/ast/Children.js",
+    "content": "import _children_exhaust from './_children_exhaust.js';\n\nexport default class Children {\n\t/**\n\t * @param {AsyncIterableIterator} iterator\n\t * @param {number} length\n\t */\n\tconstructor(iterator, length) {\n\t\tthis.iterator = iterator;\n\t\tthis.length = length;\n\t}\n\n\tasync *[Symbol.asyncIterator]() {\n\t\tfor await (const node of this.iterator) {\n\t\t\tyield node;\n\t\t\tif (node.type === 'node') await _children_exhaust(node.children);\n\t\t}\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/_children_exhaust.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ast/Children.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
     "__docId__": 49,
+    "kind": "class",
+    "name": "Children",
+    "memberof": "src/ast/Children.js",
+    "static": true,
+    "longname": "src/ast/Children.js~Children",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/ast/Children.js",
+    "importStyle": "Children",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/ast/Children.js~Children",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ast/Children.js~Children#constructor",
+    "access": "public",
+    "description": "",
+    "lineNumber": 8,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "AsyncIterableIterator"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "iterator",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "length",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "__docId__": 51,
+    "kind": "member",
+    "name": "iterator",
+    "memberof": "src/ast/Children.js~Children",
+    "static": false,
+    "longname": "src/ast/Children.js~Children#iterator",
+    "access": "public",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "member",
+    "name": "length",
+    "memberof": "src/ast/Children.js~Children",
+    "static": false,
+    "longname": "src/ast/Children.js~Children#length",
+    "access": "public",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "method",
+    "name": "[Symbol.asyncIterator]",
+    "memberof": "src/ast/Children.js~Children",
+    "generator": true,
+    "async": true,
+    "static": false,
+    "longname": "src/ast/Children.js~Children#[Symbol.asyncIterator]",
+    "access": "public",
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [],
+    "return": null
+  },
+  {
+    "__docId__": 54,
+    "kind": "file",
+    "name": "src/ast/_children_exhaust.js",
+    "content": "import anyIterator from '../util/anyIterator.js';\n\n/**\n * Exhausts the input children iterator.\n *\n * @param {Iterator} children - The input children iterator.\n *\n */\nexport default async function _children_exhaust(children) {\n\t// For await ( const child of children ) {\n\t// if ( child.type === 'node' ) await _children_exhaust( child.children ) ;\n\t// }\n\n\tconst stack = [anyIterator(children)];\n\n\twhile (stack.length > 0) {\n\t\tconst it = stack.pop();\n\n\t\t// eslint-disable-next-line no-await-in-loop\n\t\tconst {done, value} = await it.next();\n\n\t\tif (!done) {\n\t\t\tstack.push(it);\n\n\t\t\tconst child = value;\n\n\t\t\tif (child.type === 'node') {\n\t\t\t\tconst grandchildren = anyIterator(child.children);\n\t\t\t\tstack.push(grandchildren);\n\t\t\t}\n\t\t}\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ast/_children_exhaust.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 55,
     "kind": "function",
     "name": "_children_exhaust",
     "memberof": "src/ast/_children_exhaust.js",
@@ -585,10 +697,10 @@
     "longname": "src/ast/_children_exhaust.js~_children_exhaust",
     "access": "private",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ast/_children_exhaust.js",
+    "importPath": "@formal-language/grammar/src/ast/_children_exhaust.js",
     "importStyle": "_children_exhaust",
     "description": "Exhausts the input children iterator.",
-    "lineNumber": 7,
+    "lineNumber": 9,
     "params": [
       {
         "nullable": null,
@@ -604,35 +716,114 @@
     "return": null
   },
   {
-    "__docId__": 50,
+    "__docId__": 56,
     "kind": "file",
-    "name": "src/ast/cmap.js",
-    "content": "import _children_exhaust from './_children_exhaust' ;\n\n/**\n * Applies a given callable to each of the child of a given children async iterable.\n *\n * @param {Function} callable - The callable to use.\n * @param {AsyncIterable} children - The input children.\n * @returns {AsyncIterator}\n */\nexport default async function* cmap ( callable , children ) {\n\n\tfor await ( const child of children ) {\n\t\tconst node = await callable( child ) ;\n\t\tyield node ;\n\t\t// TODO exhaust child.children too ?\n\t\tif ( node.type === 'node' ) await _children_exhaust( node.children ) ;\n\t}\n\n}\n",
+    "name": "src/ast/flatten.js",
+    "content": "import anyIterator from '../util/anyIterator.js';\n\nfunction getCount(object) {\n\tif (object instanceof Function || object.length === undefined)\n\t\treturn Number.POSITIVE_INFINITY;\n\treturn object.length;\n}\n\nexport default async function* flatten(root) {\n\t// Assert root.type === 'node'\n\n\tconst stack = [\n\t\t{\n\t\t\t// No need to use the exhaustive iterator since flatten exhausts the whole subtree\n\t\t\tchildren: anyIterator(root.children),\n\t\t\tcount: getCount(root.children),\n\t\t},\n\t];\n\n\twhile (stack.length > 0) {\n\t\tconst tree = stack.pop();\n\n\t\t// eslint-disable-next-line no-await-in-loop\n\t\tconst {done, value} = await tree.children.next();\n\n\t\tif (!done) {\n\t\t\tif (--tree.count > 0)\n\t\t\t\t// Prunes left side of the tree\n\t\t\t\tstack.push(tree);\n\n\t\t\tconst child = value;\n\n\t\t\tif (child.type === 'leaf') yield child;\n\t\t\telse {\n\t\t\t\tconst it = {\n\t\t\t\t\tchildren: anyIterator(child.children),\n\t\t\t\t\tcount: getCount(child.children),\n\t\t\t\t};\n\n\t\t\t\tstack.push(it);\n\t\t\t}\n\t\t}\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/cmap.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ast/flatten.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 51,
+    "__docId__": 57,
     "kind": "function",
-    "name": "cmap",
-    "memberof": "src/ast/cmap.js",
+    "name": "getCount",
+    "memberof": "src/ast/flatten.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ast/flatten.js~getCount",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ast/flatten.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 58,
+    "kind": "function",
+    "name": "flatten",
+    "memberof": "src/ast/flatten.js",
     "generator": true,
     "async": true,
     "static": true,
-    "longname": "src/ast/cmap.js~cmap",
+    "longname": "src/ast/flatten.js~flatten",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ast/cmap.js",
-    "importStyle": "cmap",
+    "importPath": "@formal-language/grammar/src/ast/flatten.js",
+    "importStyle": "flatten",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [
+      {
+        "name": "root",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 59,
+    "kind": "file",
+    "name": "src/ast/index.js",
+    "content": "import Children from './Children.js';\nimport _children_exhaust from './_children_exhaust.js';\nimport cmap from './cmap.js';\nimport flatten from './flatten.js';\nimport map from './map.js';\nimport materialize from './materialize.js';\nimport rmap from './rmap.js';\nimport transform from './transform.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tChildren,\n\t_children_exhaust,\n\tcmap,\n\tflatten,\n\tmap,\n\tmaterialize,\n\trmap,\n\ttransform,\n};\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ast/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 60,
+    "kind": "file",
+    "name": "src/ast/map.js",
+    "content": "import assert from 'assert';\nimport Children from './Children.js';\nimport cmap from './cmap.js';\n\n/**\n * Applies a given callable to each of the child of a given children async iterable.\n *\n * @param {Function} callable - The callable to use.\n * @param {AsyncIterable} children - The input children.\n * @returns {AsyncIterable}\n */\nexport default function map(callable, children) {\n\tassert(children !== undefined);\n\tconst iterator = cmap(callable, children)[Symbol.asyncIterator]();\n\n\treturn new Children(iterator, undefined);\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ast/map.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 61,
+    "kind": "function",
+    "name": "map",
+    "memberof": "src/ast/map.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ast/map.js~map",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/ast/map.js",
+    "importStyle": "map",
     "description": "Applies a given callable to each of the child of a given children async iterable.",
-    "lineNumber": 10,
+    "lineNumber": 12,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{AsyncIterator}"
+        "tagValue": "{AsyncIterable}"
       }
     ],
     "params": [
@@ -660,73 +851,25 @@
     "return": {
       "nullable": null,
       "types": [
-        "AsyncIterator"
+        "AsyncIterable"
       ],
       "spread": false,
       "description": ""
     }
   },
   {
-    "__docId__": 52,
-    "kind": "file",
-    "name": "src/ast/flatten.js",
-    "content": "import { anyIterator } from '../util' ;\n\nexport default async function* flatten ( root ) {\n\n\t// assert root.type === 'node'\n\n\tconst stack = [\n\t\t{\n\t\t\ttype : 'node' ,\n\t\t\tnonterminal : root.nonterminal ,\n\t\t\tproduction : root.production ,\n\t\t\tchildren : anyIterator(root.children) ,\n\t\t}\n\t] ;\n\n\twhile ( stack.length !== 0 ) {\n\n\t\tconst tree = stack.pop();\n\n\t\tconst { done , value } = await tree.children.next();\n\n\t\tif ( !done ) {\n\n\t\t\tstack.push(tree);\n\n\t\t\tconst child = value ;\n\n\t\t\tif ( child.type === 'leaf' ) yield child ;\n\n\t\t\telse {\n\n\t\t\t\tconst newchild = {\n\t\t\t\t\ttype : 'node' ,\n\t\t\t\t\tnonterminal : child.nonterminal ,\n\t\t\t\t\tproduction : child.production ,\n\t\t\t\t\tchildren : anyIterator(child.children) ,\n\t\t\t\t} ;\n\n\t\t\t\tstack.push(newchild);\n\n\t\t\t}\n\n\t\t}\n\n\t}\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/flatten.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 53,
-    "kind": "function",
-    "name": "flatten",
-    "memberof": "src/ast/flatten.js",
-    "generator": true,
-    "async": true,
-    "static": true,
-    "longname": "src/ast/flatten.js~flatten",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/ast/flatten.js",
-    "importStyle": "flatten",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "root",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 54,
-    "kind": "file",
-    "name": "src/ast/index.js",
-    "content": "import _children_exhaust from './_children_exhaust' ;\nimport cmap from './cmap' ;\nimport flatten from './flatten' ;\nimport materialize from './materialize' ;\nimport transform from './transform' ;\n\nexport default {\n\t_children_exhaust ,\n\tcmap ,\n\tflatten ,\n\tmaterialize ,\n\ttransform ,\n} ;\n\nexport {\n\t_children_exhaust ,\n\tcmap ,\n\tflatten ,\n\tmaterialize ,\n\ttransform ,\n} ;\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 55,
+    "__docId__": 62,
     "kind": "file",
     "name": "src/ast/materialize.js",
-    "content": "import { anyIterator } from '../util' ;\n\nexport default async function materialize ( root ) {\n\n\t// assert root.type === 'node'\n\n\tconst parents = [\n\t\t{\n\t\t\ttype : 'node' ,\n\t\t\tnonterminal : root.nonterminal ,\n\t\t\tproduction : root.production ,\n\t\t\tchildren : [ ] ,\n\t\t}\n\t] ;\n\n\tconst children = [ anyIterator(root.children) ] ;\n\n\twhile ( true ) {\n\n\t\tconst todo = children.pop();\n\n\t\tconst { done , value } = await todo.next();\n\n\t\tif ( done ) {\n\t\t\tif ( children.length === 0 ) return parents.pop() ;\n\t\t\telse {\n\t\t\t\tconst tree = parents.pop();\n\t\t\t\tconst parent = parents.pop();\n\t\t\t\tparent.children.push(tree);\n\t\t\t\tparents.push(parent);\n\t\t\t}\n\t\t}\n\n\t\telse {\n\n\t\t\tconst child = value;\n\n\t\t\tif ( child.type === 'leaf' ) {\n\t\t\t\tconst tree = parents.pop();\n\t\t\t\ttree.children.push(child);\n\t\t\t\tparents.push(tree);\n\t\t\t\tchildren.push(todo);\n\t\t\t}\n\n\t\t\telse {\n\n\t\t\t\tconst grandchildren = anyIterator(child.children) ;\n\n\t\t\t\tconst newchild = {\n\t\t\t\t\ttype : 'node' ,\n\t\t\t\t\tnonterminal : child.nonterminal ,\n\t\t\t\t\tproduction : child.production ,\n\t\t\t\t\tchildren : [ ] ,\n\t\t\t\t} ;\n\n\t\t\t\tparents.push(newchild);\n\t\t\t\tchildren.push(todo);\n\t\t\t\tchildren.push(grandchildren);\n\n\t\t\t}\n\n\t\t}\n\n\t}\n\n}\n",
+    "content": "import anyIterator from '../util/anyIterator.js';\n\nexport default async function materialize(root) {\n\t// Assert root.type === 'node'\n\n\tconst parents = [\n\t\t{\n\t\t\ttype: 'node',\n\t\t\tnonterminal: root.nonterminal,\n\t\t\tproduction: root.production,\n\t\t\tchildren: [],\n\t\t},\n\t];\n\n\tconst children = [anyIterator(root.children)];\n\n\twhile (true) {\n\t\tconst todo = children.pop();\n\n\t\t// eslint-disable-next-line no-await-in-loop\n\t\tconst {done, value} = await todo.next();\n\n\t\tif (done) {\n\t\t\tif (children.length === 0) return parents.pop();\n\n\t\t\tconst tree = parents.pop();\n\t\t\tconst parent = parents.pop();\n\t\t\tparent.children.push(tree);\n\t\t\tparents.push(parent);\n\t\t} else {\n\t\t\tconst child = value;\n\n\t\t\tif (child.type === 'leaf') {\n\t\t\t\tconst tree = parents.pop();\n\t\t\t\ttree.children.push(child);\n\t\t\t\tparents.push(tree);\n\t\t\t\tchildren.push(todo);\n\t\t\t} else {\n\t\t\t\tconst grandchildren = anyIterator(child.children);\n\n\t\t\t\tconst newchild = {\n\t\t\t\t\ttype: 'node',\n\t\t\t\t\tnonterminal: child.nonterminal,\n\t\t\t\t\tproduction: child.production,\n\t\t\t\t\tchildren: [],\n\t\t\t\t};\n\n\t\t\t\tparents.push(newchild);\n\t\t\t\tchildren.push(todo, grandchildren);\n\t\t\t}\n\t\t}\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/materialize.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ast/materialize.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 56,
+    "__docId__": 63,
     "kind": "function",
     "name": "materialize",
     "memberof": "src/ast/materialize.js",
@@ -736,7 +879,7 @@
     "longname": "src/ast/materialize.js~materialize",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ast/materialize.js",
+    "importPath": "@formal-language/grammar/src/ast/materialize.js",
     "importStyle": "materialize",
     "description": null,
     "lineNumber": 3,
@@ -756,663 +899,28 @@
     }
   },
   {
-    "__docId__": 57,
-    "kind": "file",
-    "name": "src/ast/transform.js",
-    "content": "export default async function transform ( tree , match , ctx ) {\n\t// assert tree.type === 'node'\n\tconst { nonterminal , production } = tree ;\n\treturn await match[nonterminal][production]( tree , match , ctx ) ;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ast/transform.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 58,
-    "kind": "function",
-    "name": "transform",
-    "memberof": "src/ast/transform.js",
-    "generator": false,
-    "async": true,
-    "static": true,
-    "longname": "src/ast/transform.js~transform",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/ast/transform.js",
-    "importStyle": "transform",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "tree",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "match",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "ctx",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 59,
-    "kind": "file",
-    "name": "src/error/LookaheadMismatchError.js",
-    "content": "import SyntaxError from './SyntaxError' ;\n\nexport default class LookaheadMismatchError extends SyntaxError {\n\tconstructor ( lookahead , expected ) {\n\t\tsuper( `Syntax error at ${lookahead.position} (${lookahead.terminal}), expected one of ${JSON.stringify(expected)}.` ) ;\n\t}\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/error/LookaheadMismatchError.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 60,
-    "kind": "class",
-    "name": "LookaheadMismatchError",
-    "memberof": "src/error/LookaheadMismatchError.js",
-    "static": true,
-    "longname": "src/error/LookaheadMismatchError.js~LookaheadMismatchError",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/error/LookaheadMismatchError.js",
-    "importStyle": "LookaheadMismatchError",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "interface": false,
-    "extends": [
-      "src/error/SyntaxError.js~SyntaxError"
-    ]
-  },
-  {
-    "__docId__": 61,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/error/LookaheadMismatchError.js~LookaheadMismatchError",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/error/LookaheadMismatchError.js~LookaheadMismatchError#constructor",
-    "access": "public",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true
-  },
-  {
-    "__docId__": 62,
-    "kind": "file",
-    "name": "src/error/SyntaxError.js",
-    "content": "\nexport default class SyntaxError extends Error {\n\n\tconstructor ( message ) {\n\t\tsuper( message ) ;\n\t}\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/error/SyntaxError.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 63,
-    "kind": "class",
-    "name": "SyntaxError",
-    "memberof": "src/error/SyntaxError.js",
-    "static": true,
-    "longname": "src/error/SyntaxError.js~SyntaxError",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/error/SyntaxError.js",
-    "importStyle": "SyntaxError",
-    "description": null,
-    "lineNumber": 2,
-    "undocument": true,
-    "interface": false,
-    "extends": [
-      "Error"
-    ]
-  },
-  {
     "__docId__": 64,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/error/SyntaxError.js~SyntaxError",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/error/SyntaxError.js~SyntaxError#constructor",
+    "kind": "file",
+    "name": "src/ast/rmap.js",
+    "content": "// Import _children_exhaust from './_children_exhaust' ;\n\n/**\n * Applies a given callable to each part of a given grammar rule (given as an iterable).\n *\n * @param {Function} callable - The callable to use.\n * @param {Iterable} rule - The input grammar rule.\n * @returns {AsyncIterator}\n */\nexport default async function* rmap(callable, rule) {\n\tfor (const part of rule) {\n\t\t// eslint-disable-next-line no-await-in-loop\n\t\tconst node = await callable(part);\n\t\tyield node;\n\t\t// If ( node.type === 'node' ) await _children_exhaust( node.children ) ;\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ast/rmap.js",
     "access": "public",
     "description": null,
-    "lineNumber": 4,
-    "undocument": true
+    "lineNumber": 1
   },
   {
     "__docId__": 65,
-    "kind": "file",
-    "name": "src/error/UnexpectedEndOfFileError.js",
-    "content": "import SyntaxError from './SyntaxError' ;\n\nexport default class UnexpectedEndOfFileError extends SyntaxError {\n\tconstructor ( expected ) {\n\t\tsuper( `Syntax error because of unexpected end of file, expected one of ${JSON.stringify(expected)}.` ) ;\n\t}\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/error/UnexpectedEndOfFileError.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 66,
-    "kind": "class",
-    "name": "UnexpectedEndOfFileError",
-    "memberof": "src/error/UnexpectedEndOfFileError.js",
-    "static": true,
-    "longname": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/error/UnexpectedEndOfFileError.js",
-    "importStyle": "UnexpectedEndOfFileError",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "interface": false,
-    "extends": [
-      "src/error/SyntaxError.js~SyntaxError"
-    ]
-  },
-  {
-    "__docId__": 67,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError#constructor",
-    "access": "public",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true
-  },
-  {
-    "__docId__": 68,
-    "kind": "file",
-    "name": "src/error/index.js",
-    "content": "import LookaheadMismatchError from './LookaheadMismatchError' ;\nimport SyntaxError from './SyntaxError' ;\nimport UnexpectedEndOfFileError from './UnexpectedEndOfFileError' ;\n\nexport default {\n\tLookaheadMismatchError ,\n\tSyntaxError ,\n\tUnexpectedEndOfFileError ,\n} ;\n\nexport {\n\tLookaheadMismatchError ,\n\tSyntaxError ,\n\tUnexpectedEndOfFileError ,\n} ;\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/error/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 69,
-    "kind": "file",
-    "name": "src/grammar/EW.js",
-    "content": "const EW = '';\nexport default EW;\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/EW.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 70,
-    "kind": "variable",
-    "name": "EW",
-    "memberof": "src/grammar/EW.js",
-    "static": true,
-    "longname": "src/grammar/EW.js~EW",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/EW.js",
-    "importStyle": "EW",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "type": {
-      "types": [
-        "string"
-      ]
-    }
-  },
-  {
-    "__docId__": 71,
-    "kind": "file",
-    "name": "src/grammar/Grammar.js",
-    "content": "import expandobject from './expandobject' ;\nimport alphabet from './alphabet' ;\n\nexport default class Grammar {\n\n\tconstructor ( { root , start , eof , productions } ) {\n\t\tthis.root = ''+root ;\n\t\tthis.start = ''+start ;\n\t\tthis.eof = eof ;\n\t\tthis.productions = expandobject( productions ) ;\n\t\tthis._alphabet = null ;\n\t}\n\n\talphabet ( ) {\n\t\tif ( this._alphabet === null ) this._alphabet = alphabet(this.productions);\n\t\treturn this._alphabet;\n\t}\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/Grammar.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 72,
-    "kind": "class",
-    "name": "Grammar",
-    "memberof": "src/grammar/Grammar.js",
-    "static": true,
-    "longname": "src/grammar/Grammar.js~Grammar",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/Grammar.js",
-    "importStyle": "Grammar",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "interface": false
-  },
-  {
-    "__docId__": 73,
-    "kind": "constructor",
-    "name": "constructor",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#constructor",
-    "access": "public",
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true
-  },
-  {
-    "__docId__": 74,
-    "kind": "member",
-    "name": "root",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#root",
-    "access": "public",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 75,
-    "kind": "member",
-    "name": "start",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#start",
-    "access": "public",
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 76,
-    "kind": "member",
-    "name": "eof",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#eof",
-    "access": "public",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 77,
-    "kind": "member",
-    "name": "productions",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#productions",
-    "access": "public",
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 78,
-    "kind": "member",
-    "name": "_alphabet",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#_alphabet",
-    "access": "private",
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 79,
-    "kind": "method",
-    "name": "alphabet",
-    "memberof": "src/grammar/Grammar.js~Grammar",
-    "generator": false,
-    "async": false,
-    "static": false,
-    "longname": "src/grammar/Grammar.js~Grammar#alphabet",
-    "access": "public",
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
-    "params": [],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 81,
-    "kind": "file",
-    "name": "src/grammar/_expandproduction.js",
-    "content": "function _makenode ( typ , arg ) {\n\tswitch ( typ ) {\n\t\tcase '&' :\n\t\t\treturn { \"type\" : \"node\" , \"nonterminal\" : arg } ;\n\t\tcase '=' :\n\t\t\treturn { \"type\" : \"leaf\" , \"terminal\" : arg } ;\n\t\tdefault :\n\t\t\tthrow new Error(`${typ} is not a valid type`) ;\n\t}\n}\n\nexport default function* _expandproduction ( production ) {\n\tfor ( const part of production ) {\n\t\tif ( typeof part === 'string' ) yield _makenode( part[0] , part.substr(1) ) ;\n\t\telse if ( typeof part === 'number' ) yield _makenode( '&' , ''+part ) ;\n\t\telse yield part ;\n\t}\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/_expandproduction.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 82,
-    "kind": "function",
-    "name": "_makenode",
-    "memberof": "src/grammar/_expandproduction.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/_expandproduction.js~_makenode",
-    "access": "private",
-    "export": false,
-    "importPath": "@aureooms/js-grammar/src/grammar/_expandproduction.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
-    "params": [
-      {
-        "name": "typ",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "arg",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "{\"type\": string, \"terminal\": *}"
-      ]
-    },
-    "ignore": true
-  },
-  {
-    "__docId__": 83,
-    "kind": "function",
-    "name": "_expandproduction",
-    "memberof": "src/grammar/_expandproduction.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/_expandproduction.js~_expandproduction",
-    "access": "private",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/_expandproduction.js",
-    "importStyle": "_expandproduction",
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "params": [
-      {
-        "name": "production",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null
-  },
-  {
-    "__docId__": 84,
-    "kind": "file",
-    "name": "src/grammar/alphabet.js",
-    "content": "import EW from './EW' ;\n\nexport default function alphabet ( productions ) {\n\n\tconst abc = new Set();\n\n\tfor (const unit of productions.values()) {\n\t\tfor (const rule of unit.values()) {\n\t\t\tif (rule.length === 0) abc.add(EW);\n\t\t\telse for ( const part of rule ) if (part.type === 'leaf') abc.add( part.terminal ) ;\n\t\t}\n\t}\n\n\treturn abc;\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/alphabet.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 85,
-    "kind": "function",
-    "name": "alphabet",
-    "memberof": "src/grammar/alphabet.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/alphabet.js~alphabet",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/alphabet.js",
-    "importStyle": "alphabet",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "productions",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 86,
-    "kind": "file",
-    "name": "src/grammar/expandobject.js",
-    "content": "import { map , list } from '@aureooms/js-itertools' ;\n\nimport _expandproduction from './_expandproduction' ;\n\nfunction* _expandproductions ( productions ) {\n\tfor ( const key in productions ) yield [ key , list( _expandproduction( productions[key] ) ) ] ;\n}\n\nfunction* _expandobject ( object ) {\n\tfor ( const nonterminal in object ) yield [ nonterminal , new Map( _expandproductions( object[nonterminal] ) ) ] ;\n}\n\nexport default function expandobject ( object ) {\n\treturn new Map( _expandobject( object ) ) ;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/expandobject.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 87,
-    "kind": "function",
-    "name": "_expandproductions",
-    "memberof": "src/grammar/expandobject.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/expandobject.js~_expandproductions",
-    "access": "private",
-    "export": false,
-    "importPath": "@aureooms/js-grammar/src/grammar/expandobject.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "params": [
-      {
-        "name": "productions",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null,
-    "ignore": true
-  },
-  {
-    "__docId__": 88,
-    "kind": "function",
-    "name": "_expandobject",
-    "memberof": "src/grammar/expandobject.js",
-    "generator": true,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/expandobject.js~_expandobject",
-    "access": "private",
-    "export": false,
-    "importPath": "@aureooms/js-grammar/src/grammar/expandobject.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "params": [
-      {
-        "name": "object",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": null,
-    "ignore": true
-  },
-  {
-    "__docId__": 89,
-    "kind": "function",
-    "name": "expandobject",
-    "memberof": "src/grammar/expandobject.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/expandobject.js~expandobject",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/expandobject.js",
-    "importStyle": "expandobject",
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "params": [
-      {
-        "name": "object",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 90,
-    "kind": "file",
-    "name": "src/grammar/from.js",
-    "content": "import Grammar from './Grammar' ;\n\nexport default function from ( object ) {\n\treturn new Grammar( object ) ;\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/from.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 91,
-    "kind": "function",
-    "name": "from",
-    "memberof": "src/grammar/from.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/grammar/from.js~from",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/from.js",
-    "importStyle": "from",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "params": [
-      {
-        "name": "object",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 92,
-    "kind": "file",
-    "name": "src/grammar/index.js",
-    "content": "import EW from './EW' ;\nimport Grammar from './Grammar' ;\nimport _expandproduction from './_expandproduction' ;\nimport alphabet from './alphabet' ;\nimport expandobject from './expandobject' ;\nimport from from './from' ;\nimport rmap from './rmap' ;\n\nexport default {\n\tEW ,\n\tGrammar ,\n\t_expandproduction ,\n\talphabet ,\n\texpandobject ,\n\tfrom ,\n\trmap ,\n} ;\n\nexport {\n\tEW ,\n\tGrammar ,\n\t_expandproduction ,\n\talphabet ,\n\texpandobject ,\n\tfrom ,\n\trmap ,\n} ;\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/index.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 93,
-    "kind": "file",
-    "name": "src/grammar/rmap.js",
-    "content": "import { _children_exhaust } from '../ast' ;\n\n/**\n * Applies a given callable to each part of a given grammar rule (given as an iterable).\n *\n * @param {Function} callable - The callable to use.\n * @param {Iterable} rule - The input grammar rule.\n * @returns {AsyncIterator}\n */\nexport default async function* rmap ( callable , rule ) {\n\n\tfor ( const part of rule ) {\n\t\tconst node = await callable( part ) ;\n\t\tyield node ;\n\t\tif ( node.type === 'node' ) await _children_exhaust( node.children ) ;\n\t}\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/grammar/rmap.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 94,
     "kind": "function",
     "name": "rmap",
-    "memberof": "src/grammar/rmap.js",
+    "memberof": "src/ast/rmap.js",
     "generator": true,
     "async": true,
     "static": true,
-    "longname": "src/grammar/rmap.js~rmap",
+    "longname": "src/ast/rmap.js~rmap",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/grammar/rmap.js",
+    "importPath": "@formal-language/grammar/src/ast/rmap.js",
     "importStyle": "rmap",
     "description": "Applies a given callable to each part of a given grammar rule (given as an iterable).",
     "lineNumber": 10,
@@ -1454,64 +962,300 @@
     }
   },
   {
-    "__docId__": 95,
+    "__docId__": 66,
     "kind": "file",
-    "name": "src/index.js",
-    "content": "import ast from './ast' ;\nimport error from './error' ;\nimport grammar from './grammar' ;\nimport ll1 from './ll1' ;\nimport util from './util' ;\n\nexport default {\n\tast ,\n\terror ,\n\tgrammar ,\n\tll1 ,\n\tutil ,\n} ;\n\nexport {\n\tast ,\n\terror ,\n\tgrammar ,\n\tll1 ,\n\tutil ,\n} ;\n",
+    "name": "src/ast/transform.js",
+    "content": "export default async function transform(tree, match, ctx) {\n\t// Assert tree.type === 'node'\n\tconst {nonterminal, production} = tree;\n\treturn match[nonterminal][production](tree, match, ctx);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/index.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ast/transform.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 96,
-    "kind": "file",
-    "name": "src/ll1/Parser.js",
-    "content": "import { alphabet } from '../grammar' ;\nimport compile from './compile' ;\nimport parse from './parse' ;\n\nexport default class Parser {\n\n\tconstructor ( grammar ) {\n\t\tthis.grammar = grammar ;\n\t\tthis._table = null ;\n\t}\n\n\t//first ( rule ) {\n\n\t//}\n\n\t//follow ( rule ) {\n\n\t//}\n\n\ttable ( ) {\n\t\tif ( this._table === null ) this._table = compile(this.grammar.productions) ;\n\t\treturn this._table ;\n\t}\n\n\tparse ( tape ) {\n\t\tconst table = this.table();\n\t\treturn parse(this.grammar.root, this.grammar.start, this.grammar.eof, this.grammar.productions, table, tape);\n\t}\n\n}\n",
+    "__docId__": 67,
+    "kind": "function",
+    "name": "transform",
+    "memberof": "src/ast/transform.js",
+    "generator": false,
+    "async": true,
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/Parser.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 97,
-    "kind": "class",
-    "name": "Parser",
-    "memberof": "src/ll1/Parser.js",
-    "static": true,
-    "longname": "src/ll1/Parser.js~Parser",
+    "longname": "src/ast/transform.js~transform",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/Parser.js",
-    "importStyle": "Parser",
+    "importPath": "@formal-language/grammar/src/ast/transform.js",
+    "importStyle": "transform",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 1,
+    "undocument": true,
+    "params": [
+      {
+        "name": "tree",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "match",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ctx",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 68,
+    "kind": "file",
+    "name": "src/error/LookaheadMismatchError.js",
+    "content": "import SyntaxError from './SyntaxError.js';\n\nexport default class LookaheadMismatchError extends SyntaxError {\n\tconstructor(lookahead, expected) {\n\t\tsuper(\n\t\t\t`Syntax error at ${lookahead.position} (${\n\t\t\t\tlookahead.terminal\n\t\t\t}), expected one of ${JSON.stringify(expected)}.`,\n\t\t);\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/error/LookaheadMismatchError.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 69,
+    "kind": "class",
+    "name": "LookaheadMismatchError",
+    "memberof": "src/error/LookaheadMismatchError.js",
+    "static": true,
+    "longname": "src/error/LookaheadMismatchError.js~LookaheadMismatchError",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/error/LookaheadMismatchError.js",
+    "importStyle": "LookaheadMismatchError",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/error/SyntaxError.js~SyntaxError"
+    ]
+  },
+  {
+    "__docId__": 70,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/error/LookaheadMismatchError.js~LookaheadMismatchError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/error/LookaheadMismatchError.js~LookaheadMismatchError#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "file",
+    "name": "src/error/SyntaxError.js",
+    "content": "export default class SyntaxError extends Error {}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/error/SyntaxError.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 72,
+    "kind": "class",
+    "name": "SyntaxError",
+    "memberof": "src/error/SyntaxError.js",
+    "static": true,
+    "longname": "src/error/SyntaxError.js~SyntaxError",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/error/SyntaxError.js",
+    "importStyle": "SyntaxError",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "Error"
+    ]
+  },
+  {
+    "__docId__": 73,
+    "kind": "file",
+    "name": "src/error/UnexpectedEndOfFileError.js",
+    "content": "import SyntaxError from './SyntaxError.js';\n\nexport default class UnexpectedEndOfFileError extends SyntaxError {\n\tconstructor(expected) {\n\t\tsuper(\n\t\t\t`Syntax error because of unexpected end of file, expected one of ${JSON.stringify(\n\t\t\t\texpected,\n\t\t\t)}.`,\n\t\t);\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/error/UnexpectedEndOfFileError.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 74,
+    "kind": "class",
+    "name": "UnexpectedEndOfFileError",
+    "memberof": "src/error/UnexpectedEndOfFileError.js",
+    "static": true,
+    "longname": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/error/UnexpectedEndOfFileError.js",
+    "importStyle": "UnexpectedEndOfFileError",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/error/SyntaxError.js~SyntaxError"
+    ]
+  },
+  {
+    "__docId__": 75,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/error/UnexpectedEndOfFileError.js~UnexpectedEndOfFileError#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "file",
+    "name": "src/error/index.js",
+    "content": "import LookaheadMismatchError from './LookaheadMismatchError.js';\nimport SyntaxError from './SyntaxError.js';\nimport UnexpectedEndOfFileError from './UnexpectedEndOfFileError.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tLookaheadMismatchError,\n\tSyntaxError,\n\tUnexpectedEndOfFileError,\n};\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/error/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 77,
+    "kind": "file",
+    "name": "src/grammar/EW.js",
+    "content": "const EW = '';\nexport default EW;\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/EW.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 78,
+    "kind": "variable",
+    "name": "EW",
+    "memberof": "src/grammar/EW.js",
+    "static": true,
+    "longname": "src/grammar/EW.js~EW",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/EW.js",
+    "importStyle": "EW",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 79,
+    "kind": "file",
+    "name": "src/grammar/Grammar.js",
+    "content": "import expandobject from './expandobject.js';\nimport alphabet from './alphabet.js';\n\nexport default class Grammar {\n\tconstructor({root, start, eof, productions}) {\n\t\tthis.root = String(root);\n\t\tthis.start = String(start);\n\t\tthis.eof = eof;\n\t\tthis.productions = expandobject(productions);\n\t\tthis._alphabet = null;\n\t}\n\n\talphabet() {\n\t\tif (this._alphabet === null) this._alphabet = alphabet(this.productions);\n\t\treturn this._alphabet;\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/Grammar.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 80,
+    "kind": "class",
+    "name": "Grammar",
+    "memberof": "src/grammar/Grammar.js",
+    "static": true,
+    "longname": "src/grammar/Grammar.js~Grammar",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/Grammar.js",
+    "importStyle": "Grammar",
+    "description": null,
+    "lineNumber": 4,
     "undocument": true,
     "interface": false
   },
   {
-    "__docId__": 98,
+    "__docId__": 81,
     "kind": "constructor",
     "name": "constructor",
-    "memberof": "src/ll1/Parser.js~Parser",
+    "memberof": "src/grammar/Grammar.js~Grammar",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/ll1/Parser.js~Parser#constructor",
+    "longname": "src/grammar/Grammar.js~Grammar#constructor",
     "access": "public",
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 5,
     "undocument": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 82,
     "kind": "member",
-    "name": "grammar",
-    "memberof": "src/ll1/Parser.js~Parser",
+    "name": "root",
+    "memberof": "src/grammar/Grammar.js~Grammar",
     "static": false,
-    "longname": "src/ll1/Parser.js~Parser#grammar",
+    "longname": "src/grammar/Grammar.js~Grammar#root",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 83,
+    "kind": "member",
+    "name": "start",
+    "memberof": "src/grammar/Grammar.js~Grammar",
+    "static": false,
+    "longname": "src/grammar/Grammar.js~Grammar#start",
+    "access": "public",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 84,
+    "kind": "member",
+    "name": "eof",
+    "memberof": "src/grammar/Grammar.js~Grammar",
+    "static": false,
+    "longname": "src/grammar/Grammar.js~Grammar#eof",
     "access": "public",
     "description": null,
     "lineNumber": 8,
@@ -1523,13 +1267,13 @@
     }
   },
   {
-    "__docId__": 100,
+    "__docId__": 85,
     "kind": "member",
-    "name": "_table",
-    "memberof": "src/ll1/Parser.js~Parser",
+    "name": "productions",
+    "memberof": "src/grammar/Grammar.js~Grammar",
     "static": false,
-    "longname": "src/ll1/Parser.js~Parser#_table",
-    "access": "private",
+    "longname": "src/grammar/Grammar.js~Grammar#productions",
+    "access": "public",
     "description": null,
     "lineNumber": 9,
     "undocument": true,
@@ -1540,17 +1284,34 @@
     }
   },
   {
-    "__docId__": 101,
+    "__docId__": 86,
+    "kind": "member",
+    "name": "_alphabet",
+    "memberof": "src/grammar/Grammar.js~Grammar",
+    "static": false,
+    "longname": "src/grammar/Grammar.js~Grammar#_alphabet",
+    "access": "private",
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 87,
     "kind": "method",
-    "name": "table",
-    "memberof": "src/ll1/Parser.js~Parser",
+    "name": "alphabet",
+    "memberof": "src/grammar/Grammar.js~Grammar",
     "generator": false,
     "async": false,
     "static": false,
-    "longname": "src/ll1/Parser.js~Parser#table",
+    "longname": "src/grammar/Grammar.js~Grammar#alphabet",
     "access": "public",
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 13,
     "undocument": true,
     "params": [],
     "return": {
@@ -1560,7 +1321,395 @@
     }
   },
   {
+    "__docId__": 89,
+    "kind": "file",
+    "name": "src/grammar/_expandproduction.js",
+    "content": "function _makenode(typ, arg) {\n\tswitch (typ) {\n\t\tcase '&':\n\t\t\treturn {type: 'node', nonterminal: arg};\n\t\tcase '=':\n\t\t\treturn {type: 'leaf', terminal: arg};\n\t\tdefault:\n\t\t\tthrow new Error(`${typ} is not a valid type`);\n\t}\n}\n\nexport default function* _expandproduction(production) {\n\tfor (const part of production) {\n\t\tif (typeof part === 'string') yield _makenode(part[0], part.slice(1));\n\t\telse if (typeof part === 'number') yield _makenode('&', String(part));\n\t\telse yield part;\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/_expandproduction.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 90,
+    "kind": "function",
+    "name": "_makenode",
+    "memberof": "src/grammar/_expandproduction.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/_expandproduction.js~_makenode",
+    "access": "private",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/grammar/_expandproduction.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "params": [
+      {
+        "name": "typ",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "arg",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "{\"type\": string, \"terminal\": *}"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "function",
+    "name": "_expandproduction",
+    "memberof": "src/grammar/_expandproduction.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/_expandproduction.js~_expandproduction",
+    "access": "private",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/_expandproduction.js",
+    "importStyle": "_expandproduction",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "production",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null
+  },
+  {
+    "__docId__": 92,
+    "kind": "file",
+    "name": "src/grammar/alphabet.js",
+    "content": "import EW from './EW.js';\n\nexport default function alphabet(productions) {\n\tconst abc = new Set();\n\n\tfor (const unit of productions.values()) {\n\t\tfor (const rule of unit.values()) {\n\t\t\tif (rule.length === 0) abc.add(EW);\n\t\t\telse\n\t\t\t\tfor (const part of rule)\n\t\t\t\t\tif (part.type === 'leaf') abc.add(part.terminal);\n\t\t}\n\t}\n\n\treturn abc;\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/alphabet.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 93,
+    "kind": "function",
+    "name": "alphabet",
+    "memberof": "src/grammar/alphabet.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/alphabet.js~alphabet",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/alphabet.js",
+    "importStyle": "alphabet",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "productions",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 94,
+    "kind": "file",
+    "name": "src/grammar/expandobject.js",
+    "content": "import {list} from '@iterable-iterator/list';\n\nimport _expandproduction from './_expandproduction.js';\n\n/**\n * @param {Record<string,any>} productions\n * @return {IterableIterator<[any,Map<any,any>]>}\n */\nfunction* _expandproductions(productions) {\n\tfor (const key in productions) {\n\t\tif (Object.prototype.hasOwnProperty.call(productions, key)) {\n\t\t\tyield [key, list(_expandproduction(productions[key]))];\n\t\t}\n\t}\n}\n\n/**\n * @param {object} object\n * @return {IterableIterator<[any,Map<any,any>]>}\n */\nfunction* _expandobject(object) {\n\tfor (const nonterminal in object) {\n\t\tif (Object.prototype.hasOwnProperty.call(object, nonterminal)) {\n\t\t\tyield [nonterminal, new Map(_expandproductions(object[nonterminal]))];\n\t\t}\n\t}\n}\n\nexport default function expandobject(object) {\n\treturn new Map(_expandobject(object));\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/expandobject.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 95,
+    "kind": "function",
+    "name": "_expandproductions",
+    "memberof": "src/grammar/expandobject.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/expandobject.js~_expandproductions",
+    "access": "private",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/grammar/expandobject.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Record<string,any>"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "productions",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IterableIterator<[any,Map<any,any>]>"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "function",
+    "name": "_expandobject",
+    "memberof": "src/grammar/expandobject.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/expandobject.js~_expandobject",
+    "access": "private",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/grammar/expandobject.js",
+    "importStyle": null,
+    "description": "",
+    "lineNumber": 21,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "object",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IterableIterator<[any,Map<any,any>]>"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "function",
+    "name": "expandobject",
+    "memberof": "src/grammar/expandobject.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/expandobject.js~expandobject",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/expandobject.js",
+    "importStyle": "expandobject",
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 98,
+    "kind": "file",
+    "name": "src/grammar/from.js",
+    "content": "import Grammar from './Grammar.js';\n\nexport default function from(object) {\n\treturn new Grammar(object);\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/from.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 99,
+    "kind": "function",
+    "name": "from",
+    "memberof": "src/grammar/from.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/grammar/from.js~from",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/grammar/from.js",
+    "importStyle": "from",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "params": [
+      {
+        "name": "object",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 100,
+    "kind": "file",
+    "name": "src/grammar/index.js",
+    "content": "import EW from './EW.js';\nimport Grammar from './Grammar.js';\nimport _expandproduction from './_expandproduction.js';\nimport alphabet from './alphabet.js';\nimport expandobject from './expandobject.js';\nimport from from './from.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tEW,\n\tGrammar,\n\t_expandproduction,\n\talphabet,\n\texpandobject,\n\tfrom,\n};\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/grammar/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 101,
+    "kind": "file",
+    "name": "src/index.js",
+    "content": "import ast from './ast/index.js';\nimport error from './error/index.js';\nimport grammar from './grammar/index.js';\nimport ll1 from './ll1/index.js';\nimport util from './util/index.js';\n\nexport {ast, error, grammar, ll1, util};\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/index.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 102,
+    "kind": "file",
+    "name": "src/ll1/Parser.js",
+    "content": "import compile from './compile.js';\nimport parse from './parse.js';\n\nexport default class Parser {\n\tconstructor(grammar) {\n\t\tthis.grammar = grammar;\n\t\tthis._table = null;\n\t}\n\n\t// First ( rule ) {\n\n\t// }\n\n\t// follow ( rule ) {\n\n\t// }\n\n\ttable() {\n\t\tif (this._table === null) this._table = compile(this.grammar.productions);\n\t\treturn this._table;\n\t}\n\n\tparse(tape) {\n\t\tconst table = this.table();\n\t\treturn parse(\n\t\t\tthis.grammar.root,\n\t\t\tthis.grammar.start,\n\t\t\tthis.grammar.eof,\n\t\t\tthis.grammar.productions,\n\t\t\ttable,\n\t\t\ttape,\n\t\t);\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/Parser.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
     "__docId__": 103,
+    "kind": "class",
+    "name": "Parser",
+    "memberof": "src/ll1/Parser.js",
+    "static": true,
+    "longname": "src/ll1/Parser.js~Parser",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/ll1/Parser.js",
+    "importStyle": "Parser",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 104,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/ll1/Parser.js~Parser",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ll1/Parser.js~Parser#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "member",
+    "name": "grammar",
+    "memberof": "src/ll1/Parser.js~Parser",
+    "static": false,
+    "longname": "src/ll1/Parser.js~Parser#grammar",
+    "access": "public",
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 106,
+    "kind": "member",
+    "name": "_table",
+    "memberof": "src/ll1/Parser.js~Parser",
+    "static": false,
+    "longname": "src/ll1/Parser.js~Parser#_table",
+    "access": "private",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 107,
+    "kind": "method",
+    "name": "table",
+    "memberof": "src/ll1/Parser.js~Parser",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ll1/Parser.js~Parser#table",
+    "access": "public",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 109,
     "kind": "method",
     "name": "parse",
     "memberof": "src/ll1/Parser.js~Parser",
@@ -1570,7 +1719,7 @@
     "longname": "src/ll1/Parser.js~Parser#parse",
     "access": "public",
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 23,
     "undocument": true,
     "params": [
       {
@@ -1587,18 +1736,18 @@
     }
   },
   {
-    "__docId__": 104,
+    "__docId__": 110,
     "kind": "file",
     "name": "src/ll1/_children_next_lazy.js",
-    "content": "import { LookaheadMismatchError , UnexpectedEndOfFileError } from '../error' ;\nimport _parse_lazy from './_parse_lazy' ;\n\n/**\n * Get next child of table-driven predictive lazy parsing.\n *\n * @param {Object} eof - The end-of-file symbol.\n * @param {Map} productions - The ll1 productions.\n * @param {Map} table - The symbol table.\n * @param {Tape} tape - The tape from which to read the symbols from.\n * @param {Object} expected - The expected node.\n * @returns {Object} A node.\n */\nexport default async function _children_next_lazy ( eof, productions , table , tape , expected ) {\n\n\tconst lookahead = await tape.read( ) ;\n\n\tif ( expected.type === 'leaf' ) {\n\t\tif ( lookahead === tape.eof ) {\n\t\t\tif ( expected.terminal === eof ) return expected ;\n\t\t\telse throw new UnexpectedEndOfFileError( [expected.terminal] ) ;\n\t\t}\n\t\telse if ( lookahead.terminal === expected.terminal ) return lookahead ;\n\t\telse throw new LookaheadMismatchError(lookahead, [expected.terminal]) ;\n\t}\n\n\ttape.unread(lookahead);\n\n\tconst router = table.get(expected.nonterminal);\n\n\tconst next = router.get(lookahead === tape.eof ? eof : lookahead.terminal) ;\n\n\tif ( next === undefined ) {\n\t\tif ( lookahead === tape.eof ) throw new UnexpectedEndOfFileError( [...router.keys()] ) ;\n\t\telse throw new LookaheadMismatchError(lookahead, [...router.keys()]) ;\n\t}\n\n\telse return _parse_lazy(eof, productions, table, productions.get(expected.nonterminal).get(next), tape , expected.nonterminal , next);\n\n}\n",
+    "content": "import LookaheadMismatchError from '../error/LookaheadMismatchError.js';\nimport UnexpectedEndOfFileError from '../error/UnexpectedEndOfFileError.js';\nimport _parse_lazy from './_parse_lazy.js';\n\n/**\n * Get next child of table-driven predictive lazy parsing.\n *\n * @param {Object} eof - The end-of-file symbol.\n * @param {Map} productions - The ll1 productions.\n * @param {Map} table - The symbol table.\n * @param {Tape} tape - The tape from which to read the symbols from.\n * @param {Object} expected - The expected node.\n * @returns {Promise<object>} A node.\n */\nexport default async function _children_next_lazy(\n\teof,\n\tproductions,\n\ttable,\n\ttape,\n\texpected,\n) {\n\tconst lookahead = await tape.read();\n\n\tif (expected.type === 'leaf') {\n\t\tif (lookahead === tape.eof) {\n\t\t\tif (expected.terminal === eof) return expected;\n\t\t\tthrow new UnexpectedEndOfFileError([expected.terminal]);\n\t\t} else if (lookahead.terminal === expected.terminal) return lookahead;\n\t\telse throw new LookaheadMismatchError(lookahead, [expected.terminal]);\n\t}\n\n\ttape.unread(lookahead);\n\n\tconst router = table.get(expected.nonterminal);\n\n\tconst next = router.get(lookahead === tape.eof ? eof : lookahead.terminal);\n\n\tif (next === undefined) {\n\t\tconst error =\n\t\t\tlookahead === tape.eof\n\t\t\t\t? new UnexpectedEndOfFileError([...router.keys()])\n\t\t\t\t: new LookaheadMismatchError(lookahead, [...router.keys()]);\n\t\tthrow error;\n\t} else\n\t\treturn _parse_lazy(\n\t\t\teof,\n\t\t\tproductions,\n\t\t\ttable,\n\t\t\tproductions.get(expected.nonterminal).get(next),\n\t\t\ttape,\n\t\t\texpected.nonterminal,\n\t\t\tnext,\n\t\t);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/_children_next_lazy.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/_children_next_lazy.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 105,
+    "__docId__": 111,
     "kind": "function",
     "name": "_children_next_lazy",
     "memberof": "src/ll1/_children_next_lazy.js",
@@ -1608,14 +1757,14 @@
     "longname": "src/ll1/_children_next_lazy.js~_children_next_lazy",
     "access": "private",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/_children_next_lazy.js",
+    "importPath": "@formal-language/grammar/src/ll1/_children_next_lazy.js",
     "importStyle": "_children_next_lazy",
     "description": "Get next child of table-driven predictive lazy parsing.",
-    "lineNumber": 14,
+    "lineNumber": 15,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Object} A node."
+        "tagValue": "{Promise<object>} A node."
       }
     ],
     "params": [
@@ -1673,25 +1822,25 @@
     "return": {
       "nullable": null,
       "types": [
-        "Object"
+        "Promise<object>"
       ],
       "spread": false,
       "description": "A node."
     }
   },
   {
-    "__docId__": 106,
+    "__docId__": 112,
     "kind": "file",
     "name": "src/ll1/_compile.js",
-    "content": "import {\n\tmap ,\n\tfilter ,\n\tchain ,\n\tnext ,\n\titer ,\n} from '@aureooms/js-itertools' ;\n\nimport first from './first' ;\nimport _first from './_first' ;\nimport _follow from './_follow' ;\nimport { alphabet , EW } from '../grammar' ;\n\n/**\n * Generates the rows of the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Iterable}\n */\nexport default function* _compile ( productions ) {\n\n\tconst abc = alphabet(productions);\n\n\tconst phi = _first(productions);\n\tconst pho = _follow(phi, productions);\n\n\tconst FIRST = rule => first(phi, rule) ;\n\n\tconst dflt = {}; // dummy object\n\n\tfor (const [A, rules] of productions) {\n\n\t\tconst m = map(\n\t\t\ta => [\n\t\t\t\ta ,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter(r => rules.get(r).length === 0, rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t) ,\n\t\t\t] ,\n\t\t\tfilter( a => pho.get(A).has(a) && !phi.get(A).has(a), abc)\n\t\t);\n\n\t\tconst n = map(\n\t\t\ta => [\n\t\t\t\ta ,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter(r => FIRST(rules.get(r)).has(a), rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t) ,\n\t\t\t] ,\n\t\t\tfilter( a => a !== EW , abc )\n\t\t);\n\n\t\tyield [ A , new Map(filter(([k,v]) => v !== dflt, chain([m,n]))) ] ;\n\n\t}\n\n}\n",
+    "content": "import {map} from '@iterable-iterator/map';\nimport {filter} from '@iterable-iterator/filter';\nimport {_chain} from '@iterable-iterator/chain';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\n\nimport alphabet from '../grammar/alphabet.js';\nimport EW from '../grammar/EW.js';\n\nimport first from './first.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\n\n/**\n * Generates the rows of the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Iterable}\n */\nexport default function* _compile(productions) {\n\tconst abc = alphabet(productions);\n\n\tconst phi = _first(productions);\n\tconst pho = _follow(phi, productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst m = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter((r) => rules.get(r).length === 0, rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => pho.get(A).has(a) && !phi.get(A).has(a), abc),\n\t\t);\n\n\t\tconst n = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\titer(filter((r) => FIRST(rules.get(r)).has(a), rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => a !== EW, abc),\n\t\t);\n\n\t\tyield [A, new Map(filter(([_k, v]) => v !== dflt, _chain([m, n])))];\n\t}\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/_compile.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/_compile.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 107,
+    "__docId__": 113,
     "kind": "function",
     "name": "_compile",
     "memberof": "src/ll1/_compile.js",
@@ -1701,7 +1850,7 @@
     "longname": "src/ll1/_compile.js~_compile",
     "access": "private",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/_compile.js",
+    "importPath": "@formal-language/grammar/src/ll1/_compile.js",
     "importStyle": "_compile",
     "description": "Generates the rows of the predictive parsing table for a grammar.\nCorresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.",
     "lineNumber": 21,
@@ -1733,71 +1882,18 @@
     }
   },
   {
-    "__docId__": 108,
-    "kind": "file",
-    "name": "src/ll1/_first.js",
-    "content": "import { list , map , filter , any } from '@aureooms/js-itertools' ;\n\nimport { setadd , setaddall } from '../util' ;\n\nimport { EW } from '../grammar';\n\n/**\n * Computes FIRST table for grammar nonterminals.\n *\n * @param productions\n * @returns {Map}\n */\nexport default function _first ( productions ) {\n\n\tconst FIRST = new Map( map( key => [ key , new Set() ] , productions.keys() ) ) ;\n\n\tlet updated = true;\n\n\twhile (updated) {\n\n\t\tupdated = false;\n\n\t\tfor (const [i, rules] of productions) {\n\n\t\t\tfor (const rule of rules.values()) {\n\n\t\t\t\tlet read = true;\n\n\t\t\t\tfor ( const x of rule ) {\n\n\t\t\t\t\tif (!read) break; read = false;\n\n\t\t\t\t\tif ( x.type === 'leaf' ) updated |= setadd( FIRST.get(i), x.terminal);\n\t\t\t\t\telse {\n\t\t\t\t\t\tupdated |= setaddall(FIRST.get(i), filter(y => y !== EW, FIRST.get(x.nonterminal)));\n\t\t\t\t\t\tread |= any(map(y => y === EW, FIRST.get(x.nonterminal)));\n\t\t\t\t\t}\n\n\t\t\t\t}\n\n\t\t\t\tif (read) updated |= setadd(FIRST.get(i), EW);\n\t\t\t}\n\n\t\t}\n\n\t}\n\n\treturn FIRST;\n\n}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/_first.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 109,
-    "kind": "function",
-    "name": "_first",
-    "memberof": "src/ll1/_first.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/ll1/_first.js~_first",
-    "access": "private",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/_first.js",
-    "importStyle": "_first",
-    "description": "Computes FIRST table for grammar nonterminals.",
-    "lineNumber": 13,
-    "unknown": [
-      {
-        "tagName": "@returns",
-        "tagValue": "{Map}"
-      }
-    ],
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "*"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "productions",
-        "description": ""
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Map"
-      ],
-      "spread": false,
-      "description": ""
-    }
-  },
-  {
-    "__docId__": 110,
+    "__docId__": 114,
     "kind": "file",
     "name": "src/ll1/_follow.js",
-    "content": "import { list , map , filter , enumerate , range } from '@aureooms/js-itertools' ;\n\nimport { setaddall } from '../util' ;\n\nimport first from './first' ;\n\nimport { EW } from '../grammar';\n\n/**\n * Computes the FOLLOW table for all nonterminals.\n *\n * @param {Map} FIRST - The FIRST table as computed by {@link ll1#_first}\n * @param {Map} productions - The productions map.\n * @returns {Map} The FOLLOW table.\n */\nexport default function _follow ( FIRST , productions ) {\n\n\tconst FOLLOW = new Map( map( i => [ i , new Set() ] , productions.keys() ) ) ;\n\n\tconst couldbelast = new Map( map( i => [ i , new Set() ] , productions.keys() )) ;\n\n\tfor (const [ A , rules ] of productions) {\n\t\tfor (const rule of rules.values()) {\n\t\t\tfor (const [ pos , B ] of enumerate(rule)) {\n\t\t\t\tif (B.type === 'leaf') continue ;\n\t\t\t\tconst fi = first(FIRST, rule.slice(pos+1));\n\t\t\t\tif (fi.has(EW)) couldbelast.get(A).add(B.nonterminal);\n\t\t\t\tsetaddall(FOLLOW.get(B.nonterminal), filter( x => x !== EW , fi));\n\t\t\t}\n\t\t}\n\t}\n\n\tlet updated = true;\n\twhile (updated) {\n\t\tupdated = false;\n\t\tfor (const A of productions.keys()) {\n\t\t\tfor (const B of couldbelast.get(A)) {\n\t\t\t\tupdated |= setaddall(FOLLOW.get(B), FOLLOW.get(A));\n\t\t\t}\n\t\t}\n\t}\n\n\treturn FOLLOW;\n\n}\n",
+    "content": "import {map} from '@iterable-iterator/map';\nimport {filter} from '@iterable-iterator/filter';\nimport {enumerate} from '@iterable-iterator/zip';\n\nimport setaddall from '../util/setaddall.js';\n\nimport EW from '../grammar/EW.js';\nimport first from './first.js';\n\n/**\n * Computes the FOLLOW table for all nonterminals.\n *\n * @param {Map} FIRST - The FIRST table as computed by {@link ll1#_first}\n * @param {Map} productions - The productions map.\n * @returns {Map} The FOLLOW table.\n */\nexport default function _follow(FIRST, productions) {\n\tconst FOLLOW = new Map(map((i) => [i, new Set()], productions.keys()));\n\n\tconst couldbelast = new Map(map((i) => [i, new Set()], productions.keys()));\n\n\tfor (const [A, rules] of productions) {\n\t\tfor (const rule of rules.values()) {\n\t\t\tfor (const [pos, B] of enumerate(rule)) {\n\t\t\t\tif (B.type === 'leaf') continue;\n\t\t\t\tconst fi = first(FIRST, rule.slice(pos + 1));\n\t\t\t\tif (fi.has(EW)) couldbelast.get(A).add(B.nonterminal);\n\t\t\t\tsetaddall(\n\t\t\t\t\tFOLLOW.get(B.nonterminal),\n\t\t\t\t\tfilter((x) => x !== EW, fi),\n\t\t\t\t);\n\t\t\t}\n\t\t}\n\t}\n\n\tlet updated = true;\n\twhile (updated) {\n\t\tupdated = false;\n\t\tfor (const A of productions.keys()) {\n\t\t\tfor (const B of couldbelast.get(A)) {\n\t\t\t\tupdated = setaddall(FOLLOW.get(B), FOLLOW.get(A)) || updated;\n\t\t\t}\n\t\t}\n\t}\n\n\treturn FOLLOW;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/_follow.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/_follow.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 111,
+    "__docId__": 115,
     "kind": "function",
     "name": "_follow",
     "memberof": "src/ll1/_follow.js",
@@ -1807,10 +1903,10 @@
     "longname": "src/ll1/_follow.js~_follow",
     "access": "private",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/_follow.js",
+    "importPath": "@formal-language/grammar/src/ll1/_follow.js",
     "importStyle": "_follow",
     "description": "Computes the FOLLOW table for all nonterminals.",
-    "lineNumber": 16,
+    "lineNumber": 17,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1849,18 +1945,18 @@
     }
   },
   {
-    "__docId__": 112,
+    "__docId__": 116,
     "kind": "file",
     "name": "src/ll1/_parse_lazy.js",
-    "content": "import { rmap } from '../grammar' ;\n\nimport _children_next_lazy from './_children_next_lazy' ;\n\n/**\n * Table-driven predictive lazy parsing.\n *\n * @param {Object} eof - The end-of-file symbol.\n * @param {Map} productions - The ll1 productions.\n * @param {Map} table - The symbol table.\n * @param {Array} rule - The production rule in use.\n * @param {Tape} tape - The tape from which to read the symbols from.\n * @param {String} nonterminal - The nonterminal that produced `rule`.\n * @param {String} production - The production that corresponds to `rule`.\n * @returns {Object} The root node of the parsed tree.\n */\nexport default function _parse_lazy ( eof , productions , table , rule , tape , nonterminal , production ) {\n\n\tconst shallow_materialize = async expected => await _children_next_lazy(eof, productions, table, tape, expected) ;\n\n\tconst children = rmap( shallow_materialize , rule )[Symbol.asyncIterator]() ;\n\n\treturn {\n\t\t'type' : 'node' ,\n\t\tnonterminal ,\n\t\tproduction ,\n\t\tchildren ,\n\t} ;\n\n}\n",
+    "content": "import rmap from '../ast/rmap.js';\nimport Children from '../ast/Children.js';\n\nimport _children_next_lazy from './_children_next_lazy.js';\n\n/**\n * Table-driven predictive lazy parsing.\n *\n * @param {Object} eof - The end-of-file symbol.\n * @param {Map} productions - The ll1 productions.\n * @param {Map} table - The symbol table.\n * @param {Array} rule - The production rule in use.\n * @param {Tape} tape - The tape from which to read the symbols from.\n * @param {String} nonterminal - The nonterminal that produced `rule`.\n * @param {String} production - The production that corresponds to `rule`.\n * @returns {Object} The root node of the parsed tree.\n */\nexport default function _parse_lazy(\n\teof,\n\tproductions,\n\ttable,\n\trule,\n\ttape,\n\tnonterminal,\n\tproduction,\n) {\n\tconst shallow_materialize = async (expected) =>\n\t\t_children_next_lazy(eof, productions, table, tape, expected);\n\n\tconst iterator = rmap(shallow_materialize, rule)[Symbol.asyncIterator]();\n\n\treturn {\n\t\ttype: 'node',\n\t\tnonterminal,\n\t\tproduction,\n\t\tchildren: new Children(iterator, rule.length),\n\t};\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/_parse_lazy.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/_parse_lazy.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 113,
+    "__docId__": 117,
     "kind": "function",
     "name": "_parse_lazy",
     "memberof": "src/ll1/_parse_lazy.js",
@@ -1870,10 +1966,10 @@
     "longname": "src/ll1/_parse_lazy.js~_parse_lazy",
     "access": "private",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/_parse_lazy.js",
+    "importPath": "@formal-language/grammar/src/ll1/_parse_lazy.js",
     "importStyle": "_parse_lazy",
     "description": "Table-driven predictive lazy parsing.",
-    "lineNumber": 17,
+    "lineNumber": 18,
     "unknown": [
       {
         "tagName": "@returns",
@@ -1962,18 +2058,18 @@
     }
   },
   {
-    "__docId__": 114,
+    "__docId__": 118,
     "kind": "file",
     "name": "src/ll1/compile.js",
-    "content": "import _compile from './_compile' ;\n\n/**\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Map}\n */\nexport default function compile (productions) {\n\treturn new Map(_compile(productions));\n}\n",
+    "content": "import _compile from './_compile.js';\n\n/**\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Map}\n */\nexport default function compile(productions) {\n\treturn new Map(_compile(productions));\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/compile.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/compile.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 115,
+    "__docId__": 119,
     "kind": "function",
     "name": "compile",
     "memberof": "src/ll1/compile.js",
@@ -1983,7 +2079,7 @@
     "longname": "src/ll1/compile.js~compile",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/compile.js",
+    "importPath": "@formal-language/grammar/src/ll1/compile.js",
     "importStyle": "compile",
     "description": "Compiles the predictive parsing table for a grammar.\nCorresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.",
     "lineNumber": 10,
@@ -2015,81 +2111,18 @@
     }
   },
   {
-    "__docId__": 116,
-    "kind": "file",
-    "name": "src/ll1/first.js",
-    "content": "import { map , filter , any } from '@aureooms/js-itertools' ;\n\nimport { setaddall } from '../util' ;\n\nimport { EW } from '../grammar';\n\n/**\n * Generate FIRST set for any rule given the FIRST sets for the nonterminals.\n *\n * @param {Map} FIRST\n * @param {Array} rule\n * @returns {Set}\n */\nexport default function first ( FIRST , rule ) {\n\n\tconst terminals = new Set();\n\tlet read = true;\n\tfor (const x of rule) {\n\t\tif (!read) break; read = false;\n\t\tif (x.type === 'leaf') {\n\t\t\tterminals.add(x.terminal);\n\t\t\tbreak;\n\t\t}\n\t\tsetaddall(terminals, filter(y => y !== EW, FIRST.get(x.nonterminal)));\n\t\tread |= any(map(y => y === EW, FIRST.get(x.nonterminal)));\n\t}\n\n\tif (read) terminals.add(EW);\n\n\treturn terminals;\n\n}\n\n///**\n// * Computes FIRST table for grammar entire rules. Needed?\n// *\n// * @param _FIRST\n// * @param grammar\n// * @returns {undefined}\n// */\n//function __first ( _FIRST , grammar ) {\n\n\t//const F = [];\n\n\t//for (const unit of grammar) {\n\n\t\t//const forrules = [];\n\n\t\t//for (const rule of unit) {\n\t\t\t//const f = first( _FIRST , rule);\n\t\t\t//forrules.push(f);\n\t\t//}\n\n\t\t//F.push(forrules);\n\t//}\n\n\t//return F;\n\n//}\n\n\n///**\n//* Computes dependency graph for faster updates. Needed?\n//*\n//* @param grammar\n//* @returns {undefined}\n//*/\n//function getfirstgraph ( grammar ) {\n\n\t//const n = grammar.length;\n\n\t//const graph = [];\n\n\t//for (let i = 0; i < n; ++i) graph.push(new Set());\n\n\t//for (let i = 0; i < n; ++i) {\n\t\t//const rules = grammar[i];\n\t\t//for ( const rule of rules ) {\n\t\t\t//for ( const x of rule ) {\n\t\t\t\t//if (typeof x === 'string') break;\n\t\t\t\t//graph[x].add(i);\n\t\t\t//}\n\t\t//}\n\t//}\n\n\t//return graph;\n\n//}\n",
-    "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/first.js",
-    "access": "public",
-    "description": null,
-    "lineNumber": 1
-  },
-  {
-    "__docId__": 117,
-    "kind": "function",
-    "name": "first",
-    "memberof": "src/ll1/first.js",
-    "generator": false,
-    "async": false,
-    "static": true,
-    "longname": "src/ll1/first.js~first",
-    "access": "public",
-    "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/first.js",
-    "importStyle": "first",
-    "description": "Generate FIRST set for any rule given the FIRST sets for the nonterminals.",
-    "lineNumber": 14,
-    "unknown": [
-      {
-        "tagName": "@returns",
-        "tagValue": "{Set}"
-      }
-    ],
-    "params": [
-      {
-        "nullable": null,
-        "types": [
-          "Map"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "FIRST",
-        "description": ""
-      },
-      {
-        "nullable": null,
-        "types": [
-          "Array"
-        ],
-        "spread": false,
-        "optional": false,
-        "name": "rule",
-        "description": ""
-      }
-    ],
-    "return": {
-      "nullable": null,
-      "types": [
-        "Set"
-      ],
-      "spread": false,
-      "description": ""
-    }
-  },
-  {
-    "__docId__": 118,
+    "__docId__": 120,
     "kind": "file",
     "name": "src/ll1/follow.js",
-    "content": "import { reversed } from '@aureooms/js-itertools' ;\nimport first from './first' ;\n\n/**\n * Generate FOLLOW set for any rule given the FOLLOW sets for the nonterminals.\n *\n * @param {Array} FOLLOW\n * @param {Array} rule\n * @returns {Set}\n */\nexport default function follow ( FOLLOW , rule ) {\n\treturn first( FOLLOW , reversed(rule)) ;\n}\n",
+    "content": "import {reversed} from '@iterable-iterator/reversed';\nimport first from './first.js';\n\n/**\n * Generate FOLLOW set for any rule given the FOLLOW sets for the nonterminals.\n *\n * @param {Map} FOLLOW\n * @param {Array} rule\n * @returns {Set}\n */\nexport default function follow(FOLLOW, rule) {\n\treturn first(FOLLOW, reversed(rule));\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/follow.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/follow.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 119,
+    "__docId__": 121,
     "kind": "function",
     "name": "follow",
     "memberof": "src/ll1/follow.js",
@@ -2099,7 +2132,7 @@
     "longname": "src/ll1/follow.js~follow",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/follow.js",
+    "importPath": "@formal-language/grammar/src/ll1/follow.js",
     "importStyle": "follow",
     "description": "Generate FOLLOW set for any rule given the FOLLOW sets for the nonterminals.",
     "lineNumber": 11,
@@ -2113,7 +2146,7 @@
       {
         "nullable": null,
         "types": [
-          "Array"
+          "Map"
         ],
         "spread": false,
         "optional": false,
@@ -2141,18 +2174,18 @@
     }
   },
   {
-    "__docId__": 120,
+    "__docId__": 122,
     "kind": "file",
     "name": "src/ll1/from.js",
-    "content": "import Parser from './Parser' ;\n\nexport default function from ( grammar ) {\n\treturn new Parser( grammar ) ;\n}\n",
+    "content": "import Parser from './Parser.js';\n\nexport default function from(grammar) {\n\treturn new Parser(grammar);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/from.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/from.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 121,
+    "__docId__": 123,
     "kind": "function",
     "name": "from",
     "memberof": "src/ll1/from.js",
@@ -2162,7 +2195,7 @@
     "longname": "src/ll1/from.js~from",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/from.js",
+    "importPath": "@formal-language/grammar/src/ll1/from.js",
     "importStyle": "from",
     "description": null,
     "lineNumber": 3,
@@ -2182,29 +2215,29 @@
     }
   },
   {
-    "__docId__": 122,
+    "__docId__": 124,
     "kind": "file",
     "name": "src/ll1/index.js",
-    "content": "import Parser from './Parser' ;\nimport _children_next_lazy from './_children_next_lazy' ;\nimport _compile from './_compile' ;\nimport _first from './_first' ;\nimport _follow from './_follow' ;\nimport _parse_lazy from './_parse_lazy' ;\nimport compile from './compile' ;\nimport first from './first' ;\nimport follow from './follow' ;\nimport from from './from' ;\nimport is from './is' ;\nimport parse from './parse' ;\n\nexport default {\n\tParser ,\n\t_children_next_lazy ,\n\t_compile ,\n\t_first ,\n\t_follow ,\n\t_parse_lazy ,\n\tcompile ,\n\tfirst ,\n\tfollow ,\n\tfrom ,\n\tis ,\n\tparse ,\n} ;\n\nexport {\n\tParser ,\n\t_children_next_lazy ,\n\t_compile ,\n\t_first ,\n\t_follow ,\n\t_parse_lazy ,\n\tcompile ,\n\tfirst ,\n\tfollow ,\n\tfrom ,\n\tis ,\n\tparse ,\n} ;\n",
+    "content": "import Parser from './Parser.js';\nimport _children_next_lazy from './_children_next_lazy.js';\nimport _compile from './_compile.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport _parse_lazy from './_parse_lazy.js';\nimport compile from './compile.js';\nimport first from './first.js';\nimport follow from './follow.js';\nimport from from './from.js';\nimport is from './is.js';\nimport parse from './parse.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tParser,\n\t_children_next_lazy,\n\t_compile,\n\t_first,\n\t_follow,\n\t_parse_lazy,\n\tcompile,\n\tfirst,\n\tfollow,\n\tfrom,\n\tis,\n\tparse,\n};\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/index.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 123,
+    "__docId__": 125,
     "kind": "file",
     "name": "src/ll1/is.js",
-    "content": "import {\n\tany ,\n\tmap ,\n\tlist ,\n\tchain ,\n\tenumerate ,\n\tnext ,\n\titer ,\n\tfilter ,\n} from '@aureooms/js-itertools' ;\n\nimport _first from './_first' ;\nimport _follow from './_follow' ;\nimport first from './first' ;\nimport { EW } from '../grammar' ;\n\n/**\n * Check if grammar is ll(1).\n *\n * @param {Grammar} grammar\n * @returns {Boolean}\n */\nexport default function is ( { productions } ) {\n\n\tconst phi = _first(productions);\n\n\tconst FIRST = rule => first(phi, rule);\n\n\t// TODO this is stupid\n\tconst containsduplicates = array => (new Set(array)).size !== array.length;\n\n\t// Dragon Book (2006) page 224: For every A, a, b such that A => a | b\n\t// ``... FIRST(a) and FIRST(b) are disjoint sets.''\n\n\tif ( any(\n\t\tmap(\n\t\t\trules => containsduplicates(\n\t\t\t\tlist( chain( map( FIRST , rules.values() ) ) )\n\t\t\t) ,\n\t\t\tproductions.values()\n\t\t)\n\t) ) return false ;\n\n\t//   and ``... if the empty\n\t//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,\n\t//   and likewise if the empty word is in FIRST(a).''\n\n\tconst pho = _follow(phi, productions);\n\n\tconst FOLLOW = A => pho.get(A);\n\n\tconst dflt = {}; // dummy object\n\n\tfor ( const [A, rules] of productions ) {\n\n\t\tconst yieldsEW = next( iter( filter( rule => FIRST(rule).has(EW), rules.values() ) ) , dflt );\n\n\t\tif (yieldsEW === dflt) continue;\n\n\t\tif ( any (\n\t\t\tmap (\n\t\t\t\trule => containsduplicates(\n\t\t\t\t\tlist( chain( [ FIRST(rule) , FOLLOW(A) ] ) )\n\t\t\t\t) ,\n\t\t\t\tfilter(rule => rule !== yieldsEW, rules.values())\n\t\t\t)\n\t\t) ) return false ;\n\n\t}\n\n\treturn true;\n\n}\n",
+    "content": "import {any} from '@iterable-iterator/reduce';\nimport {map} from '@iterable-iterator/map';\nimport {list} from '@iterable-iterator/list';\nimport {_chain} from '@iterable-iterator/chain';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\nimport {filter} from '@iterable-iterator/filter';\n\nimport EW from '../grammar/EW.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport first from './first.js';\n\n/**\n * Check if grammar is ll(1).\n *\n * @param {Grammar} grammar\n * @returns {Boolean}\n */\nexport default function is({productions}) {\n\tconst phi = _first(productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\t// TODO this is stupid\n\tconst containsduplicates = (array) => new Set(array).size !== array.length;\n\n\t// Dragon Book (2006) page 224: For every A, a, b such that A => a | b\n\t// ``... FIRST(a) and FIRST(b) are disjoint sets.''\n\n\tif (\n\t\tany(\n\t\t\tmap(\n\t\t\t\t(rules) => containsduplicates(list(_chain(map(FIRST, rules.values())))),\n\t\t\t\tproductions.values(),\n\t\t\t),\n\t\t)\n\t)\n\t\treturn false;\n\n\t//   And ``... if the empty\n\t//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,\n\t//   and likewise if the empty word is in FIRST(a).''\n\n\tconst pho = _follow(phi, productions);\n\n\tconst FOLLOW = (A) => pho.get(A);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst yieldsEW = next(\n\t\t\t// eslint-disable-next-line new-cap\n\t\t\titer(filter((rule) => FIRST(rule).has(EW), rules.values())),\n\t\t\tdflt,\n\t\t);\n\n\t\tif (yieldsEW === dflt) continue;\n\n\t\tif (\n\t\t\tany(\n\t\t\t\tmap(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\t(rule) => containsduplicates(list(_chain([FIRST(rule), FOLLOW(A)]))),\n\t\t\t\t\tfilter((rule) => rule !== yieldsEW, rules.values()),\n\t\t\t\t),\n\t\t\t)\n\t\t)\n\t\t\treturn false;\n\t}\n\n\treturn true;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/is.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/is.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 124,
+    "__docId__": 126,
     "kind": "function",
     "name": "is",
     "memberof": "src/ll1/is.js",
@@ -2214,10 +2247,10 @@
     "longname": "src/ll1/is.js~is",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/is.js",
+    "importPath": "@formal-language/grammar/src/ll1/is.js",
     "importStyle": "is",
     "description": "Check if grammar is ll(1).",
-    "lineNumber": 23,
+    "lineNumber": 20,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2246,18 +2279,18 @@
     }
   },
   {
-    "__docId__": 125,
+    "__docId__": 127,
     "kind": "file",
     "name": "src/ll1/parse.js",
-    "content": "import _parse_lazy from './_parse_lazy' ;\n\n/**\n * parse\n *\n * @param root\n * @param start\n * @param eof\n * @param productions\n * @param table\n * @param tape\n * @returns {Object}\n */\nexport default function parse ( root , start , eof , productions, table , tape ) {\n\tconst startRule = productions.get(root).get(start) ;\n\treturn _parse_lazy( eof, productions, table , startRule , tape , root , start ) ;\n}\n",
+    "content": "import _parse_lazy from './_parse_lazy.js';\n\n/**\n * Parse\n *\n * @param root\n * @param start\n * @param eof\n * @param productions\n * @param table\n * @param tape\n * @returns {Object}\n */\nexport default function parse(root, start, eof, productions, table, tape) {\n\tconst startRule = productions.get(root).get(start);\n\treturn _parse_lazy(eof, productions, table, startRule, tape, root, start);\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/ll1/parse.js",
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/parse.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 126,
+    "__docId__": 128,
     "kind": "function",
     "name": "parse",
     "memberof": "src/ll1/parse.js",
@@ -2267,9 +2300,9 @@
     "longname": "src/ll1/parse.js~parse",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/ll1/parse.js",
+    "importPath": "@formal-language/grammar/src/ll1/parse.js",
     "importStyle": "parse",
-    "description": "parse",
+    "description": "Parse",
     "lineNumber": 14,
     "unknown": [
       {
@@ -2349,18 +2382,18 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 129,
     "kind": "file",
     "name": "src/util/anyIterator.js",
-    "content": "export default function anyIterator ( object ) {\n\tif ( object[Symbol.asyncIterator] ) return object[Symbol.asyncIterator]() ;\n\telse return object[Symbol.iterator]() ;\n}\n",
+    "content": "import Children from '../ast/Children.js';\n\nexport default function anyIterator(object) {\n\tif (object instanceof Children) return object.iterator;\n\tif (object[Symbol.asyncIterator]) return object[Symbol.asyncIterator]();\n\treturn object[Symbol.iterator]();\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/util/anyIterator.js",
+    "longname": "/home/runner/work/grammar/grammar/src/util/anyIterator.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 128,
+    "__docId__": 130,
     "kind": "function",
     "name": "anyIterator",
     "memberof": "src/util/anyIterator.js",
@@ -2370,10 +2403,10 @@
     "longname": "src/util/anyIterator.js~anyIterator",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/util/anyIterator.js",
+    "importPath": "@formal-language/grammar/src/util/anyIterator.js",
     "importStyle": "anyIterator",
     "description": null,
-    "lineNumber": 1,
+    "lineNumber": 3,
     "undocument": true,
     "params": [
       {
@@ -2390,29 +2423,29 @@
     }
   },
   {
-    "__docId__": 129,
+    "__docId__": 131,
     "kind": "file",
     "name": "src/util/index.js",
-    "content": "import anyIterator from './anyIterator' ;\nimport setadd from './setadd' ;\nimport setaddall from './setaddall' ;\n\nexport default {\n\tanyIterator ,\n\tsetadd ,\n\tsetaddall ,\n} ;\n\nexport {\n\tanyIterator ,\n\tsetadd ,\n\tsetaddall ,\n} ;\n",
+    "content": "import anyIterator from './anyIterator.js';\nimport setadd from './setadd.js';\nimport setaddall from './setaddall.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tanyIterator,\n\tsetadd,\n\tsetaddall,\n};\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/util/index.js",
+    "longname": "/home/runner/work/grammar/grammar/src/util/index.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 130,
+    "__docId__": 132,
     "kind": "file",
     "name": "src/util/setadd.js",
-    "content": "/**\n * Adds an element to a set and returns true if the set has changed.\n *\n * @param {Set} set - The set to add to.\n * @param {Object} element - The element to add to the set.\n * @returns {Boolean} Whether <code>set</code> has changed.\n */\nexport default function setadd ( set , element ) {\n\tif ( set.has(element) ) return false ;\n\tset.add(element);\n\treturn true;\n}\n",
+    "content": "/**\n * Adds an element to a set and returns true if the set has changed.\n *\n * @param {Set<any>} set - The set to add to.\n * @param {any} element - The element to add to the set.\n * @returns {boolean} Whether <code>set</code> has changed.\n */\nexport default function setadd(set, element) {\n\tif (set.has(element)) return false;\n\tset.add(element);\n\treturn true;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/util/setadd.js",
+    "longname": "/home/runner/work/grammar/grammar/src/util/setadd.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 131,
+    "__docId__": 133,
     "kind": "function",
     "name": "setadd",
     "memberof": "src/util/setadd.js",
@@ -2422,21 +2455,21 @@
     "longname": "src/util/setadd.js~setadd",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/util/setadd.js",
+    "importPath": "@formal-language/grammar/src/util/setadd.js",
     "importStyle": "setadd",
     "description": "Adds an element to a set and returns true if the set has changed.",
     "lineNumber": 8,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Boolean} Whether <code>set</code> has changed."
+        "tagValue": "{boolean} Whether <code>set</code> has changed."
       }
     ],
     "params": [
       {
         "nullable": null,
         "types": [
-          "Set"
+          "Set<any>"
         ],
         "spread": false,
         "optional": false,
@@ -2446,7 +2479,7 @@
       {
         "nullable": null,
         "types": [
-          "Object"
+          "any"
         ],
         "spread": false,
         "optional": false,
@@ -2457,25 +2490,25 @@
     "return": {
       "nullable": null,
       "types": [
-        "Boolean"
+        "boolean"
       ],
       "spread": false,
       "description": "Whether <code>set</code> has changed."
     }
   },
   {
-    "__docId__": 132,
+    "__docId__": 134,
     "kind": "file",
     "name": "src/util/setaddall.js",
-    "content": "import setadd from './setadd' ;\n\n/**\n * Adds all elements of an iterable to a set and returns true if the set has\n * changed.\n *\n * @param {Set} set - The set to add to.\n * @param {Iterable} iterable - The iterable of elements to add to the set.\n * @returns {Boolean} Whether <code>set</code> has changed.\n */\nexport default function setaddall ( set , iterable ) {\n\tlet changed = false;\n\tfor (const element of iterable) changed |= setadd(set, element);\n\treturn changed;\n}\n",
+    "content": "import setadd from './setadd.js';\n\n/**\n * Adds all elements of an iterable to a set and returns true if the set has\n * changed.\n *\n * @param {Set<any>} set - The set to add to.\n * @param {Iterable<any>} iterable - The iterable of elements to add to the set.\n * @returns {boolean} Whether <code>set</code> has changed.\n */\nexport default function setaddall(set, iterable) {\n\tlet changed = false;\n\tfor (const element of iterable) {\n\t\tchanged = setadd(set, element) || changed;\n\t}\n\n\treturn changed;\n}\n",
     "static": true,
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/src/util/setaddall.js",
+    "longname": "/home/runner/work/grammar/grammar/src/util/setaddall.js",
     "access": "public",
     "description": null,
     "lineNumber": 1
   },
   {
-    "__docId__": 133,
+    "__docId__": 135,
     "kind": "function",
     "name": "setaddall",
     "memberof": "src/util/setaddall.js",
@@ -2485,21 +2518,21 @@
     "longname": "src/util/setaddall.js~setaddall",
     "access": "public",
     "export": true,
-    "importPath": "@aureooms/js-grammar/src/util/setaddall.js",
+    "importPath": "@formal-language/grammar/src/util/setaddall.js",
     "importStyle": "setaddall",
     "description": "Adds all elements of an iterable to a set and returns true if the set has\nchanged.",
     "lineNumber": 11,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{Boolean} Whether <code>set</code> has changed."
+        "tagValue": "{boolean} Whether <code>set</code> has changed."
       }
     ],
     "params": [
       {
         "nullable": null,
         "types": [
-          "Set"
+          "Set<any>"
         ],
         "spread": false,
         "optional": false,
@@ -2509,7 +2542,7 @@
       {
         "nullable": null,
         "types": [
-          "Iterable"
+          "Iterable<any>"
         ],
         "spread": false,
         "optional": false,
@@ -2520,7 +2553,7 @@
     "return": {
       "nullable": null,
       "types": [
-        "Boolean"
+        "boolean"
       ],
       "spread": false,
       "description": "Whether <code>set</code> has changed."
@@ -2528,16 +2561,16 @@
   },
   {
     "kind": "index",
-    "content": "[@aureooms/js-grammar](https://aureooms.github.io/js-grammar)\n==\n\nGrammar compilation toolkit for JavaScript. Served with asynchronous goodness.\nSee [docs](https://aureooms.github.io/js-grammar/index.html).\n\n> :warning: The code needs a ES2015+ polyfill to work (`regeneratorRuntime`),\n> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).\n\n```js\nconst G = grammar.from( { root , start , eof , productions } ) ;\nconst parser = ll1.from(G);\n```\n\n[![License](https://img.shields.io/github/license/aureooms/js-grammar.svg)](https://raw.githubusercontent.com/aureooms/js-grammar/master/LICENSE)\n[![Version](https://img.shields.io/npm/v/@aureooms/js-grammar.svg)](https://www.npmjs.org/package/@aureooms/js-grammar)\n[![Build](https://img.shields.io/travis/aureooms/js-grammar.svg)](https://travis-ci.org/aureooms/js-grammar)\n[![Dependencies](https://img.shields.io/david/aureooms/js-grammar.svg)](https://david-dm.org/aureooms/js-grammar)\n[![Dev dependencies](https://img.shields.io/david/dev/aureooms/js-grammar.svg)](https://david-dm.org/aureooms/js-grammar?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/aureooms/js-grammar.svg)](https://github.com/aureooms/js-grammar/issues)\n[![Downloads](https://img.shields.io/npm/dm/@aureooms/js-grammar.svg)](https://www.npmjs.org/package/@aureooms/js-grammar)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/github/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/github/aureooms/js-grammar.svg)](https://codecov.io/gh/aureooms/js-grammar)\n[![Code coverage (clim)](https://img.shields.io/codeclimate/coverage-letter/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/test_coverage_new_code)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/aureooms/js-grammar.svg)](https://codeclimate.com/github/aureooms/js-grammar/trends/technical_debt)\n[![Documentation](https://aureooms.github.io/js-grammar/badge.svg)](https://aureooms.github.io/js-grammar/source.html)\n",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/README.md",
+    "content": ":fountain_pen: [@formal-language/grammar](https://formal-language.github.io/grammar)\n==\n\nGrammar compilation toolkit for JavaScript. Served with asynchronous goodness.\nSee [docs](https://formal-language.github.io/grammar/index.html).\n\n> :warning: Depending on your environment, the code may require\n> `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\n```js\nconst G = grammar.from( { root , start , eof , productions } ) ;\nconst parser = ll1.from(G);\n```\n\n[![License](https://img.shields.io/github/license/formal-language/grammar.svg)](https://raw.githubusercontent.com/formal-language/grammar/main/LICENSE)\n[![Version](https://img.shields.io/npm/v/@formal-language/grammar.svg)](https://www.npmjs.org/package/@formal-language/grammar)\n[![Tests](https://img.shields.io/github/workflow/status/formal-language/grammar/ci:test?event=push&label=tests)](https://github.com/formal-language/grammar/actions/workflows/ci:test.yml?query=branch:main)\n[![Dependencies](https://img.shields.io/david/formal-language/grammar.svg)](https://david-dm.org/formal-language/grammar)\n[![Dev dependencies](https://img.shields.io/david/dev/formal-language/grammar.svg)](https://david-dm.org/formal-language/grammar?type=dev)\n[![GitHub issues](https://img.shields.io/github/issues/formal-language/grammar.svg)](https://github.com/formal-language/grammar/issues)\n[![Downloads](https://img.shields.io/npm/dm/@formal-language/grammar.svg)](https://www.npmjs.org/package/@formal-language/grammar)\n\n[![Code issues](https://img.shields.io/codeclimate/issues/formal-language/grammar.svg)](https://codeclimate.com/github/formal-language/grammar/issues)\n[![Code maintainability](https://img.shields.io/codeclimate/maintainability/formal-language/grammar.svg)](https://codeclimate.com/github/formal-language/grammar/trends/churn)\n[![Code coverage (cov)](https://img.shields.io/codecov/c/gh/formal-language/grammar/main.svg)](https://codecov.io/gh/formal-language/grammar)\n[![Code technical debt](https://img.shields.io/codeclimate/tech-debt/formal-language/grammar.svg)](https://codeclimate.com/github/formal-language/grammar/trends/technical_debt)\n[![Documentation](https://formal-language.github.io/grammar/badge.svg)](https://formal-language.github.io/grammar/source.html)\n[![Package size](https://img.shields.io/bundlephobia/minzip/@formal-language/grammar)](https://bundlephobia.com/result?p=@formal-language/grammar)\n",
+    "longname": "/home/runner/work/grammar/grammar/README.md",
     "name": "./README.md",
     "static": true,
     "access": "public"
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@aureooms/js-grammar\",\n  \"description\": \"Grammar compilation toolkit for JavaScript\",\n  \"version\": \"7.0.1\",\n  \"author\": \"aureooms\",\n  \"ava\": {\n    \"require\": [\n      \"@babel/polyfill\",\n      \"@babel/register\"\n    ]\n  },\n  \"babel\": {\n    \"presets\": [\n      \"@babel/preset-env\"\n    ],\n    \"plugins\": [\n      \"@babel/plugin-proposal-async-generator-functions\"\n    ],\n    \"env\": {\n      \"development\": {\n        \"sourceMaps\": \"inline\"\n      }\n    }\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/aureooms/js-grammar/issues\"\n  },\n  \"dependencies\": {\n    \"@aureooms/js-itertools\": \"^3.4.0\"\n  },\n  \"devDependencies\": {\n    \"@aureooms/js-compare\": \"^1.4.5\",\n    \"@aureooms/js-tape\": \"^4.0.1\",\n    \"@babel/cli\": \"^7.0.0-rc.1\",\n    \"@babel/core\": \"^7.0.0-rc.1\",\n    \"@babel/plugin-proposal-async-generator-functions\": \"^7.0.0-rc.1\",\n    \"@babel/polyfill\": \"^7.0.0-rc.1\",\n    \"@babel/preset-env\": \"^7.0.0-rc.1\",\n    \"@babel/register\": \"^7.0.0-rc.1\",\n    \"ava\": \"^1.0.0-beta.1\",\n    \"codeclimate-test-reporter\": \"^0.5.0\",\n    \"coveralls\": \"^3.0.2\",\n    \"esdoc\": \"^1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"^1.0.0\",\n    \"esdoc-inject-script-plugin\": \"^1.0.0\",\n    \"esdoc-inject-style-plugin\": \"^1.0.0\",\n    \"esdoc-standard-plugin\": \"^1.0.0\",\n    \"np\": \"^3.0.4\",\n    \"nyc\": \"^12.0.2\"\n  },\n  \"files\": [\n    \"lib\"\n  ],\n  \"homepage\": \"https://aureooms.github.io/js-grammar\",\n  \"keywords\": [\n    \"compilation\",\n    \"grammar\",\n    \"language\"\n  ],\n  \"license\": \"AGPL-3.0\",\n  \"main\": \"lib/index.js\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/aureooms/js-grammar\"\n  },\n  \"scripts\": {\n    \"build\": \"rm -rf lib && babel src -d lib\",\n    \"cover\": \"nyc --reporter=lcov npm test\",\n    \"esdoc\": \"esdoc\",\n    \"prepare\": \"npm run build\",\n    \"release\": \"np\",\n    \"test\": \"ava ./test/src\"\n  }\n}\n",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/package.json",
+    "content": "{\n  \"name\": \"@formal-language/grammar\",\n  \"description\": \"Grammar compilation toolkit for JavaScript\",\n  \"version\": \"9.0.0\",\n  \"license\": \"AGPL-3.0\",\n  \"author\": \"make-github-pseudonymous-again\",\n  \"homepage\": \"https://formal-language.github.io/grammar\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/formal-language/grammar\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/formal-language/grammar/issues\"\n  },\n  \"keywords\": [\n    \"compilation\",\n    \"grammar\",\n    \"language\"\n  ],\n  \"sideEffects\": false,\n  \"type\": \"module\",\n  \"source\": \"src/index.js\",\n  \"main\": \"dist/index.cjs\",\n  \"module\": \"dist/index.module.js\",\n  \"esmodule\": \"dist/index.modern.js\",\n  \"umd:main\": \"dist/index.umd.js\",\n  \"unpkg\": \"dist/index.umd.js\",\n  \"exports\": {\n    \".\": {\n      \"browser\": \"./dist/index.module.js\",\n      \"umd\": \"./dist/index.umd.js\",\n      \"require\": \"./dist/index.cjs\",\n      \"default\": \"./dist/index.modern.js\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"build\": \"NODE_ENV=production microbundle\",\n    \"build-docs\": \"esdoc\",\n    \"build-gh-pages\": \"npm run build-docs\",\n    \"ci:build\": \"npm run build\",\n    \"ci:test\": \"npm run lint-config && npm run lint && npm run cover\",\n    \"commit-msg\": \"commitlint --edit\",\n    \"cover\": \"NODE_ENV=cover c8 --all --src src --reporter lcov --reporter text-summary --reporter text npm test\",\n    \"debug\": \"NODE_ENV=debug npm run test -- -st --fail-fast\",\n    \"dev\": \"npm run lint-config-and-fix && npm run lint-and-fix && npm run cover -- -- -st --fail-fast\",\n    \"install-hooks\": \"husky install\",\n    \"lint\": \"xo\",\n    \"lint-and-fix\": \"npm run lint -- --fix\",\n    \"lint-config\": \"fixpack --dryRun\",\n    \"lint-config-and-fix\": \"fixpack || fixpack\",\n    \"postinstall\": \"npm run install-hooks\",\n    \"postpublish\": \"pinst --enable\",\n    \"precommit\": \"lint-staged\",\n    \"prepare\": \"npm run build\",\n    \"prepublishOnly\": \"pinst --disable\",\n    \"release\": \"np --message ':hatching_chick: release: Bumping to v%s.'\",\n    \"test\": \"ava\"\n  },\n  \"dependencies\": {\n    \"@iterable-iterator/chain\": \"^2.0.1\",\n    \"@iterable-iterator/filter\": \"^1.0.1\",\n    \"@iterable-iterator/iter\": \"^1.0.1\",\n    \"@iterable-iterator/list\": \"^1.0.1\",\n    \"@iterable-iterator/map\": \"^1.0.1\",\n    \"@iterable-iterator/next\": \"^2.0.1\",\n    \"@iterable-iterator/reduce\": \"^1.0.1\",\n    \"@iterable-iterator/reversed\": \"^1.0.0\",\n    \"@iterable-iterator/zip\": \"^1.0.1\"\n  },\n  \"devDependencies\": {\n    \"@async-abstraction/tape\": \"^8.0.0\",\n    \"@babel/core\": \"7.16.0\",\n    \"@babel/preset-env\": \"7.16.4\",\n    \"@babel/register\": \"7.16.0\",\n    \"@commitlint/cli\": \"15.0.0\",\n    \"@iterable-iterator/range\": \"^2.1.0\",\n    \"@iterable-iterator/repeat\": \"^1.0.1\",\n    \"@iterable-iterator/sorted\": \"^1.0.0\",\n    \"@js-library/commitlint-config\": \"0.0.4\",\n    \"@node-loader/babel\": \"1.1.0\",\n    \"@total-order/primitive\": \"^1.0.1\",\n    \"ava\": \"4.0.0-rc.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.2.0\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"c8\": \"7.10.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"fixpack\": \"4.0.0\",\n    \"husky\": \"7.0.4\",\n    \"lint-staged\": \"12.1.2\",\n    \"microbundle\": \"0.14.2\",\n    \"np\": \"7.6.0\",\n    \"pinst\": \"2.1.6\",\n    \"power-assert\": \"1.6.1\",\n    \"xo\": \"0.46.4\"\n  },\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"nodeArguments\": [\n      \"--experimental-loader=@node-loader/babel\"\n    ],\n    \"timeout\": \"3m\"\n  },\n  \"babel\": {\n    \"sourceMaps\": true,\n    \"presets\": [\n      [\n        \"@babel/preset-env\",\n        {\n          \"bugfixes\": true,\n          \"modules\": false,\n          \"targets\": {\n            \"esmodules\": true\n          }\n        }\n      ]\n    ],\n    \"plugins\": [\n      [\n        \"transform-remove-console\",\n        {\n          \"exclude\": [\n            \"log\",\n            \"error\",\n            \"warn\"\n          ]\n        }\n      ]\n    ],\n    \"env\": {\n      \"debug\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"debug\",\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ]\n      },\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"cover\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ],\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"production\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ]\n        ],\n        \"plugins\": [\n          \"babel-plugin-unassert\"\n        ]\n      }\n    }\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"npm run lint-and-fix\"\n    ],\n    \"package.json\": [\n      \"npm run lint-config-and-fix\"\n    ]\n  },\n  \"prettier\": {\n    \"trailingComma\": \"all\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"unicorn/filename-case\": \"off\",\n      \"camelcase\": \"off\",\n      \"unicorn/prevent-abbreviations\": \"off\",\n      \"no-constant-condition\": \"off\",\n      \"unicorn/prefer-math-trunc\": \"off\",\n      \"unicorn/no-new-array\": \"off\",\n      \"unicorn/prefer-node-protocol\": \"off\",\n      \"no-negated-condition\": \"off\"\n    },\n    \"overrides\": [\n      {\n        \"files\": [\n          \"doc/**\"\n        ],\n        \"env\": \"browser\"\n      }\n    ]\n  }\n}\n",
+    "longname": "/home/runner/work/grammar/grammar/package.json",
     "name": "package.json",
     "static": true,
     "access": "public"
@@ -2552,33 +2585,33 @@
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/doc/manual/overview.md",
+    "longname": "/home/runner/work/grammar/grammar/doc/manual/overview.md",
     "name": "./doc/manual/overview.md",
-    "content": "# Overview\n\n```js\nimport { grammar , ll1 } from '@aureooms/js-grammar' ;\nimport tape from '@aureooms/js-tape' ;\n\nconst root = 'root' ;\nconst start = 'start' ;\nconst eof = '$' ;\nconst productions = { 'root' : { 'start' : [ ... , '=$' ] } , ... } ;\n\nconst G = grammar.from( { root , start , eof , productions } ) ; // Grammar Object\n\nll1.is(G); // true\n\nconst parser = ll1.from(G); // Parser Object\n\nconst replace = async input => {\n\n    const tokens = tape.fromString( ... ) ; // create tokens from string `input`\n\n    const tree = parser.parse( tokens ) ; // root of parsed tree\n\n    const transformed = await ast.transform( tree , ... ) ; // root of transformed tree\n\n    const flattened = ast.flatten( transformed ) ; // async generator of leaves\n\n    const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ; // async generator of strings\n\n    const output = tape.fromAsyncIterable( chunks ) ; // tape of chunks\n\n    return await tape.toString( output ) ; // chunks concatenation\n\n} ;\n\nreplace('010101').then( output => console.log(output) ) ; // 'ababab'\n```\n\n",
+    "content": "# Overview\n\n```js\nimport { grammar , ll1 } from '@formal-language/grammar' ;\nimport * as tape from '@async-abstraction/tape' ;\n\nconst root = 'root' ;\nconst start = 'start' ;\nconst eof = '$' ;\nconst productions = { 'root' : { 'start' : [ ... , '=$' ] } , ... } ;\n\nconst G = grammar.from( { root , start , eof , productions } ) ; // Grammar Object\n\nll1.is(G); // true\n\nconst parser = ll1.from(G); // Parser Object\n\nconst replace = async input => {\n\n    const tokens = tape.fromString( ... ) ; // create tokens from string `input`\n\n    const tree = parser.parse( tokens ) ; // root of parsed tree\n\n    const transformed = await ast.transform( tree , ... ) ; // root of transformed tree\n\n    const flattened = ast.flatten( transformed ) ; // async generator of leaves\n\n    const chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ; // async generator of strings\n\n    const output = tape.fromAsyncIterable( chunks ) ; // tape of chunks\n\n    return await tape.toString( output ) ; // chunks concatenation\n\n} ;\n\nreplace('010101').then( output => console.log(output) ) ; // 'ababab'\n```\n\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/doc/manual/installation.md",
+    "longname": "/home/runner/work/grammar/grammar/doc/manual/installation.md",
     "name": "./doc/manual/installation.md",
-    "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @aureooms/js-grammar\n```\n\n### npm\n```terminal\nnpm install @aureooms/js-grammar --save\n```\n\n### jspm\n```terminal\njspm install npm:@aureooms/js-grammar\n```\n",
+    "content": "# Installation\n\nCan be managed using\n[yarn](https://yarnpkg.com/en/docs),\n[npm](https://docs.npmjs.com),\nor [jspm](https://jspm.org/docs).\n\n\n### yarn\n```terminal\nyarn add @formal-language/grammar\n```\n\n### npm\n```terminal\nnpm install @formal-language/grammar --save\n```\n\n### jspm\n```terminal\njspm install npm:@formal-language/grammar\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/doc/manual/usage.md",
+    "longname": "/home/runner/work/grammar/grammar/doc/manual/usage.md",
     "name": "./doc/manual/usage.md",
-    "content": "# Usage\n\n> :warning: The code needs a ES2015+ polyfill to work (`regeneratorRuntime`),\n> for instance [@babel/polyfill](https://babeljs.io/docs/usage/polyfill).\n\nFirst, require the polyfill at the entry point of your application\n```js\nrequire( '@babel/polyfill' ) ;\n// or\nimport '@babel/polyfill' ;\n```\n\nThen, import the library where needed\n```js\nconst grammarToolkit = require( '@aureooms/js-grammar' ) ;\n// or\nimport { ast , error , grammar , ll1 , util } from '@aureooms/js-grammar' ;\n```\n",
+    "content": "# Usage\n\n> :warning: Depending on your environment, the code may require\n> `regeneratorRuntime` to be defined, for instance by importing\n> [regenerator-runtime/runtime](https://www.npmjs.com/package/regenerator-runtime).\n\nFirst, require the polyfill at the entry point of your application\n```js\nawait import( 'regenerator-runtime/runtime.js' ) ;\n// or\nimport 'regenerator-runtime/runtime.js' ;\n```\n\nThen, import the library where needed\n```js\nconst grammarToolkit = await import( '@formal-language/grammar' ) ;\n// or\nimport { ast , error , grammar , ll1 , util } from '@formal-language/grammar' ;\n```\n",
     "static": true,
     "access": "public"
   },
   {
     "kind": "manual",
-    "longname": "/home/aureooms/dev/js/compilers/js-grammar/doc/manual/example.md",
+    "longname": "/home/runner/work/grammar/grammar/doc/manual/example.md",
     "name": "./doc/manual/example.md",
-    "content": "# Examples\n\n> More examples in [the test files](https://github.com/aureooms/js-grammar/tree/master/test/src).\n\n\n## A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.\n\n```js\nimport { map , enumerate } from '@aureooms/js-itertools' ;\nimport tape , { asyncIterableMap } from '@aureooms/js-tape' ;\nimport { grammar , ll1 , ast } from '@aureooms/js-grammar' ;\n\nconst G = grammar.from( {\n\t\"root\" : \"root\" ,\n\t\"start\" : \"start\" ,\n\t\"eof\" : \"$\" ,\n\t\"productions\" : {\n\t\t\"root\" : {\n\t\t\t\"start\" : [ \"&bits\" , \"=$\" ]\n\t\t} ,\n\t\t\"bits\" : {\n\t\t\t\"add\" : [ \"&bit\" , \"&bits\" ] ,\n\t\t\t\"end\" : [ ] ,\n\t\t} ,\n\t\t\"bit\" : [\n\t\t\t[ \"=0\" ] ,\n\t\t\t[ \"=1\" ] ,\n\t\t] ,\n\t} ,\n} ) ;\n\nconst parser = ll1.from(G);\n\nconst replace = async input => {\n\n\tconst tokens = tape.fromIterable(\n\t\tmap(\n\t\t\t( [ i , a ] ) => ({\n\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\"terminal\" : a ,\n\t\t\t\t\"buffer\" : a ,\n\t\t\t\t\"position\" : i ,\n\t\t\t}) ,\n\t\t\tenumerate( input )\n\t\t)\n\t) ;\n\n\tconst tree = parser.parse(tokens);\n\n\tconst m = ( children , match , ctx ) => ast.cmap( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;\n\n\tconst transform = {\n\t\t\"root\" : {\n\t\t\t\"start\" : ( tree , match ) => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"root\" ,\n\t\t\t\t\"production\" : \"start\" ,\n\t\t\t\t\"children\" : m( tree.children , match ) ,\n\t\t\t}) ,\n\t\t} ,\n\t\t\"bits\" : {\n\t\t\t\"add\" : ( tree , match ) =>  ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letters\" ,\n\t\t\t\t\"production\" : \"yetanotherletter\" ,\n\t\t\t\t\"children\" : m( tree.children , match ) ,\n\t\t\t}) ,\n\t\t\t\"end\" : ( ) =>  ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letters\" ,\n\t\t\t\t\"production\" : \"done\" ,\n\t\t\t\t\"children\" : [ ] ,\n\t\t\t}) ,\n\t\t} ,\n\t\t\"bit\" : [\n\t\t\ttree => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letter\" ,\n\t\t\t\t\"production\" : \"aaa\" ,\n\t\t\t\t\"children\" : ast.cmap( leaf => ({\n\t\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\t\"terminal\" : \"a\" ,\n\t\t\t\t\t\"buffer\" : \"a\" ,\n\t\t\t\t\t\"position\" : leaf.position ,\n\t\t\t\t}) , tree.children ) ,\n\t\t\t}) ,\n\t\t\ttree => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letter\" ,\n\t\t\t\t\"production\" : \"bbb\" ,\n\t\t\t\t\"children\" : ast.cmap( leaf => ({\n\t\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\t\"terminal\" : \"b\" ,\n\t\t\t\t\t\"buffer\" : \"b\" ,\n\t\t\t\t\t\"position\" : leaf.position ,\n\t\t\t\t}) , tree.children ) ,\n\t\t\t}) ,\n\t\t] ,\n\t} ;\n\n\tconst transformed = await ast.transform( tree , transform ) ;\n\n\tconst flattened = ast.flatten( transformed ) ;\n\n\tconst chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ;\n\n\tconst output = tape.fromAsyncIterable( chunks ) ;\n\n\treturn await tape.toString( output ) ;\n\n} ;\n\nreplace('010101').then( output => console.log(output) ) ; // 'ababab'\n\n```\n",
+    "content": "# Examples\n\n> More examples in [the test files](https://github.com/formal-language/grammar/tree/main/test/src).\n\n\n## A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')`.\n\n```js\nimport {map} from '@iterable-iterator/map';\nimport {enumerate} from '@iterable-iterator/zip';\nimport * as tape from '@async-abstraction/tape' ;\nimport {asyncIterableMap} from '@async-abstraction/tape';\nimport { grammar , ll1 , ast } from '@formal-language/grammar' ;\n\nconst G = grammar.from( {\n\t\"root\" : \"root\" ,\n\t\"start\" : \"start\" ,\n\t\"eof\" : \"$\" ,\n\t\"productions\" : {\n\t\t\"root\" : {\n\t\t\t\"start\" : [ \"&bits\" , \"=$\" ]\n\t\t} ,\n\t\t\"bits\" : {\n\t\t\t\"add\" : [ \"&bit\" , \"&bits\" ] ,\n\t\t\t\"end\" : [ ] ,\n\t\t} ,\n\t\t\"bit\" : [\n\t\t\t[ \"=0\" ] ,\n\t\t\t[ \"=1\" ] ,\n\t\t] ,\n\t} ,\n} ) ;\n\nconst parser = ll1.from(G);\n\nconst replace = async input => {\n\n\tconst tokens = tape.fromIterable(\n\t\tmap(\n\t\t\t( [ i , a ] ) => ({\n\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\"terminal\" : a ,\n\t\t\t\t\"buffer\" : a ,\n\t\t\t\t\"position\" : i ,\n\t\t\t}) ,\n\t\t\tenumerate( input )\n\t\t)\n\t) ;\n\n\tconst tree = parser.parse(tokens);\n\n\tconst m = ( children , match , ctx ) => ast.map( async child => child.type === 'leaf' ? child : await ast.transform( child , match , ctx ) , children ) ;\n\n\tconst transform = {\n\t\t\"root\" : {\n\t\t\t\"start\" : ( tree , match ) => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"root\" ,\n\t\t\t\t\"production\" : \"start\" ,\n\t\t\t\t\"children\" : m( tree.children , match ) ,\n\t\t\t}) ,\n\t\t} ,\n\t\t\"bits\" : {\n\t\t\t\"add\" : ( tree , match ) =>  ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letters\" ,\n\t\t\t\t\"production\" : \"yetanotherletter\" ,\n\t\t\t\t\"children\" : m( tree.children , match ) ,\n\t\t\t}) ,\n\t\t\t\"end\" : ( ) =>  ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letters\" ,\n\t\t\t\t\"production\" : \"done\" ,\n\t\t\t\t\"children\" : [ ] ,\n\t\t\t}) ,\n\t\t} ,\n\t\t\"bit\" : [\n\t\t\ttree => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letter\" ,\n\t\t\t\t\"production\" : \"aaa\" ,\n\t\t\t\t\"children\" : ast.map( leaf => ({\n\t\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\t\"terminal\" : \"a\" ,\n\t\t\t\t\t\"buffer\" : \"a\" ,\n\t\t\t\t\t\"position\" : leaf.position ,\n\t\t\t\t}) , tree.children ) ,\n\t\t\t}) ,\n\t\t\ttree => ({\n\t\t\t\t\"type\" : \"node\" ,\n\t\t\t\t\"nonterminal\" : \"letter\" ,\n\t\t\t\t\"production\" : \"bbb\" ,\n\t\t\t\t\"children\" : ast.map( leaf => ({\n\t\t\t\t\t\"type\" : \"leaf\" ,\n\t\t\t\t\t\"terminal\" : \"b\" ,\n\t\t\t\t\t\"buffer\" : \"b\" ,\n\t\t\t\t\t\"position\" : leaf.position ,\n\t\t\t\t}) , tree.children ) ,\n\t\t\t}) ,\n\t\t] ,\n\t} ;\n\n\tconst transformed = await ast.transform( tree , transform ) ;\n\n\tconst flattened = ast.flatten( transformed ) ;\n\n\tconst chunks = asyncIterableMap( leaf => leaf.buffer , flattened ) ;\n\n\tconst output = tape.fromAsyncIterable( chunks ) ;\n\n\treturn await tape.toString( output ) ;\n\n} ;\n\nreplace('010101').then( output => console.log(output) ) ; // 'ababab'\n\n```\n",
     "static": true,
     "access": "public"
   }

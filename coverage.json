@@ -1,24 +1,35 @@
 {
-  "coverage": "31.25%",
-  "expectCount": 48,
-  "actualCount": 15,
+  "coverage": "31.37%",
+  "expectCount": 51,
+  "actualCount": 16,
   "files": {
+    "src/ast/Children.js": {
+      "expectCount": 5,
+      "actualCount": 1,
+      "undocumentLines": [
+        3,
+        9,
+        10,
+        13
+      ]
+    },
     "src/ast/_children_exhaust.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
     },
-    "src/ast/cmap.js": {
+    "src/ast/flatten.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        9
+      ]
+    },
+    "src/ast/map.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
-    },
-    "src/ast/flatten.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        3
-      ]
     },
     "src/ast/materialize.js": {
       "expectCount": 1,
@@ -26,6 +37,11 @@
       "undocumentLines": [
         3
       ]
+    },
+    "src/ast/rmap.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
     },
     "src/ast/transform.js": {
       "expectCount": 1,
@@ -43,11 +59,10 @@
       ]
     },
     "src/error/SyntaxError.js": {
-      "expectCount": 2,
+      "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        2,
-        4
+        1
       ]
     },
     "src/error/UnexpectedEndOfFileError.js": {
@@ -70,13 +85,13 @@
       "actualCount": 0,
       "undocumentLines": [
         4,
+        5,
         6,
         7,
         8,
         9,
         10,
-        11,
-        14
+        13
       ]
     },
     "src/grammar/_expandproduction.js": {
@@ -96,11 +111,9 @@
     },
     "src/grammar/expandobject.js": {
       "expectCount": 3,
-      "actualCount": 0,
+      "actualCount": 2,
       "undocumentLines": [
-        5,
-        9,
-        13
+        29
       ]
     },
     "src/grammar/from.js": {
@@ -110,21 +123,16 @@
         3
       ]
     },
-    "src/grammar/rmap.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
     "src/ll1/Parser.js": {
       "expectCount": 6,
       "actualCount": 0,
       "undocumentLines": [
+        4,
         5,
+        6,
         7,
-        8,
-        9,
-        20,
-        25
+        18,
+        23
       ]
     },
     "src/ll1/_children_next_lazy.js": {
@@ -133,11 +141,6 @@
       "undocumentLines": []
     },
     "src/ll1/_compile.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/ll1/_first.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -153,11 +156,6 @@
       "undocumentLines": []
     },
     "src/ll1/compile.js": {
-      "expectCount": 1,
-      "actualCount": 1,
-      "undocumentLines": []
-    },
-    "src/ll1/first.js": {
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
@@ -188,7 +186,7 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        1
+        3
       ]
     },
     "src/util/setadd.js": {

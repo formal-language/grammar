@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../">
-  <title data-ice="title">Manual | @aureooms/js-grammar</title>
+  <title data-ice="title">Manual | @formal-language/grammar</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
-<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Grammar compilation toolkit for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@aureooms/js-grammar"><meta property="twitter:description" content="Grammar compilation toolkit for JavaScript"></head>
+<link rel="stylesheet" href="./inject/css/0-style.css"><script src="./inject/script/0-header.js"></script><meta name="description" content="Grammar compilation toolkit for JavaScript"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="@formal-language/grammar"><meta property="twitter:description" content="Grammar compilation toolkit for JavaScript"></head>
 <body class="layout-container manual-root manual-index" data-ice="rootContainer">
 
 <header>
@@ -24,7 +24,7 @@
   </span>
     <ul class="search-result"></ul>
   </div>
-<a style="position:relative; top:3px;" href="https://github.com/aureooms/js-grammar"><img width="20px" src="./image/github.png"></a></header>
+<a style="position:relative; top:3px;" href="https://github.com/formal-language/grammar"><img width="20px" src="./image/github.png"></a></header>
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
@@ -68,8 +68,8 @@
     
   <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
-        <div data-ice="card"><h1>Overview</h1><pre><code class="lang-js"><code class="source-code prettyprint">import { grammar , ll1 } from &apos;@aureooms/js-grammar&apos; ;
-import tape from &apos;@aureooms/js-tape&apos; ;
+        <div data-ice="card"><h1>Overview</h1><pre><code class="lang-js"><code class="source-code prettyprint">import { grammar , ll1 } from &apos;@formal-language/grammar&apos; ;
+import * as tape from &apos;@async-abstraction/tape&apos; ;
 
 const root = &apos;root&apos; ;
 const start = &apos;start&apos; ;
@@ -110,9 +110,9 @@ replace(&apos;010101&apos;).then( output =&gt; console.log(output) ) ; // &apos;
         <div data-ice="card"><h1>Installation</h1><p>Can be managed using
 <a href="https://yarnpkg.com/en/docs">yarn</a>,
 <a href="https://docs.npmjs.com">npm</a>,
-or <a href="https://jspm.org/docs">jspm</a>.</p><h3>yarn</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">yarn add @aureooms/js-grammar</code>
-</code></pre><h3>npm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">npm install @aureooms/js-grammar --save</code>
-</code></pre><h3>jspm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">jspm install npm:@aureooms/js-grammar</code>
+or <a href="https://jspm.org/docs">jspm</a>.</p><h3>yarn</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">yarn add @formal-language/grammar</code>
+</code></pre><h3>npm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">npm install @formal-language/grammar --save</code>
+</code></pre><h3>jspm</h3><pre><code class="lang-terminal"><code class="source-code prettyprint">jspm install npm:@formal-language/grammar</code>
 </code></pre></div>
         <a data-ice="link" href="manual/installation.html"></a>
       </div>
@@ -120,14 +120,15 @@ or <a href="https://jspm.org/docs">jspm</a>.</p><h3>yarn</h3><pre><code class="l
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
         <div data-ice="card"><h1>Usage</h1><blockquote>
-<p>:warning: The code needs a ES2015+ polyfill to work (<code>regeneratorRuntime</code>),
-for instance <a href="https://babeljs.io/docs/usage/polyfill">@babel/polyfill</a>.</p>
-</blockquote><p>First, require the polyfill at the entry point of your application</p><pre><code class="lang-js"><code class="source-code prettyprint">require( &apos;@babel/polyfill&apos; ) ;
+<p>:warning: Depending on your environment, the code may require
+<code>regeneratorRuntime</code> to be defined, for instance by importing
+<a href="https://www.npmjs.com/package/regenerator-runtime">regenerator-runtime/runtime</a>.</p>
+</blockquote><p>First, require the polyfill at the entry point of your application</p><pre><code class="lang-js"><code class="source-code prettyprint">await import( &apos;regenerator-runtime/runtime.js&apos; ) ;
 // or
-import &apos;@babel/polyfill&apos; ;</code>
-</code></pre><p>Then, import the library where needed</p><pre><code class="lang-js"><code class="source-code prettyprint">const grammarToolkit = require( &apos;@aureooms/js-grammar&apos; ) ;
+import &apos;regenerator-runtime/runtime.js&apos; ;</code>
+</code></pre><p>Then, import the library where needed</p><pre><code class="lang-js"><code class="source-code prettyprint">const grammarToolkit = await import( &apos;@formal-language/grammar&apos; ) ;
 // or
-import { ast , error , grammar , ll1 , util } from &apos;@aureooms/js-grammar&apos; ;</code>
+import { ast , error , grammar , ll1 , util } from &apos;@formal-language/grammar&apos; ;</code>
 </code></pre></div>
         <a data-ice="link" href="manual/usage.html"></a>
       </div>
@@ -135,10 +136,12 @@ import { ast , error , grammar , ll1 , util } from &apos;@aureooms/js-grammar&ap
 <div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
         <div data-ice="card"><h1>Examples</h1><blockquote>
-<p>More examples in <a href="https://github.com/aureooms/js-grammar/tree/master/test/src">the test files</a>.</p>
-</blockquote><h2>A convoluted <code>&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)</code>.</h2><pre><code class="lang-js"><code class="source-code prettyprint">import { map , enumerate } from &apos;@aureooms/js-itertools&apos; ;
-import tape , { asyncIterableMap } from &apos;@aureooms/js-tape&apos; ;
-import { grammar , ll1 , ast } from &apos;@aureooms/js-grammar&apos; ;
+<p>More examples in <a href="https://github.com/formal-language/grammar/tree/main/test/src">the test files</a>.</p>
+</blockquote><h2>A convoluted <code>&apos;010101&apos;.replace(/0/g, &apos;a&apos;).replace(/1/g, &apos;b&apos;)</code>.</h2><pre><code class="lang-js"><code class="source-code prettyprint">import {map} from &apos;@iterable-iterator/map&apos;;
+import {enumerate} from &apos;@iterable-iterator/zip&apos;;
+import * as tape from &apos;@async-abstraction/tape&apos; ;
+import {asyncIterableMap} from &apos;@async-abstraction/tape&apos;;
+import { grammar , ll1 , ast } from &apos;@formal-language/grammar&apos; ;
 
 const G = grammar.from( {
     &quot;root&quot; : &quot;root&quot; ,
@@ -177,7 +180,7 @@ const replace = async input =&gt; {
 
     const tree = parser.parse(tokens);
 
-    const m = ( children , match , ctx ) =&gt; ast.cmap( async child =&gt; child.type === &apos;leaf&apos; ? child : await ast.transform( child , match , ctx ) , children ) ;
+    const m = ( children , match , ctx ) =&gt; ast.map( async child =&gt; child.type === &apos;leaf&apos; ? child : await ast.transform( child , match , ctx ) , children ) ;
 
     const transform = {
         &quot;root&quot; : {
@@ -207,7 +210,7 @@ const replace = async input =&gt; {
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letter&quot; ,
                 &quot;production&quot; : &quot;aaa&quot; ,
-                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                &quot;children&quot; : ast.map( leaf =&gt; ({
                     &quot;type&quot; : &quot;leaf&quot; ,
                     &quot;terminal&quot; : &quot;a&quot; ,
                     &quot;buffer&quot; : &quot;a&quot; ,
@@ -218,7 +221,7 @@ const replace = async input =&gt; {
                 &quot;type&quot; : &quot;node&quot; ,
                 &quot;nonterminal&quot; : &quot;letter&quot; ,
                 &quot;production&quot; : &quot;bbb&quot; ,
-                &quot;children&quot; : ast.cmap( leaf =&gt; ({
+                &quot;children&quot; : ast.map( leaf =&gt; ({
                     &quot;type&quot; : &quot;leaf&quot; ,
                     &quot;terminal&quot; : &quot;b&quot; ,
                     &quot;buffer&quot; : &quot;b&quot; ,

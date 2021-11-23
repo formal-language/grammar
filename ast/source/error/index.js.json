@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 348,
+  "end": 343,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 16,
+      "line": 11,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 348,
+    "end": 343,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 16,
+        "line": 11,
         "column": 0
       }
     },
@@ -31,7 +31,7 @@
       {
         "type": "ImportDeclaration",
         "start": 0,
-        "end": 63,
+        "end": 65,
         "loc": {
           "start": {
             "line": 1,
@@ -39,7 +39,7 @@
           },
           "end": {
             "line": 1,
-            "column": 63
+            "column": 65
           }
         },
         "specifiers": [
@@ -79,7 +79,7 @@
         "source": {
           "type": "StringLiteral",
           "start": 35,
-          "end": 61,
+          "end": 64,
           "loc": {
             "start": {
               "line": 1,
@@ -87,20 +87,20 @@
             },
             "end": {
               "line": 1,
-              "column": 61
+              "column": 64
             }
           },
           "extra": {
-            "rawValue": "./LookaheadMismatchError",
-            "raw": "'./LookaheadMismatchError'"
+            "rawValue": "./LookaheadMismatchError.js",
+            "raw": "'./LookaheadMismatchError.js'"
           },
-          "value": "./LookaheadMismatchError"
+          "value": "./LookaheadMismatchError.js"
         }
       },
       {
         "type": "ImportDeclaration",
-        "start": 64,
-        "end": 105,
+        "start": 66,
+        "end": 109,
         "loc": {
           "start": {
             "line": 2,
@@ -108,14 +108,14 @@
           },
           "end": {
             "line": 2,
-            "column": 41
+            "column": 43
           }
         },
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
-            "start": 71,
-            "end": 82,
+            "start": 73,
+            "end": 84,
             "loc": {
               "start": {
                 "line": 2,
@@ -128,8 +128,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 71,
-              "end": 82,
+              "start": 73,
+              "end": 84,
               "loc": {
                 "start": {
                   "line": 2,
@@ -147,8 +147,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 88,
-          "end": 103,
+          "start": 90,
+          "end": 108,
           "loc": {
             "start": {
               "line": 2,
@@ -156,20 +156,20 @@
             },
             "end": {
               "line": 2,
-              "column": 39
+              "column": 42
             }
           },
           "extra": {
-            "rawValue": "./SyntaxError",
-            "raw": "'./SyntaxError'"
+            "rawValue": "./SyntaxError.js",
+            "raw": "'./SyntaxError.js'"
           },
-          "value": "./SyntaxError"
+          "value": "./SyntaxError.js"
         }
       },
       {
         "type": "ImportDeclaration",
-        "start": 106,
-        "end": 173,
+        "start": 110,
+        "end": 179,
         "loc": {
           "start": {
             "line": 3,
@@ -177,14 +177,14 @@
           },
           "end": {
             "line": 3,
-            "column": 67
+            "column": 69
           }
         },
         "specifiers": [
           {
             "type": "ImportDefaultSpecifier",
-            "start": 113,
-            "end": 137,
+            "start": 117,
+            "end": 141,
             "loc": {
               "start": {
                 "line": 3,
@@ -197,8 +197,8 @@
             },
             "local": {
               "type": "Identifier",
-              "start": 113,
-              "end": 137,
+              "start": 117,
+              "end": 141,
               "loc": {
                 "start": {
                   "line": 3,
@@ -216,8 +216,8 @@
         ],
         "source": {
           "type": "StringLiteral",
-          "start": 143,
-          "end": 171,
+          "start": 147,
+          "end": 178,
           "loc": {
             "start": {
               "line": 3,
@@ -225,56 +225,74 @@
             },
             "end": {
               "line": 3,
-              "column": 65
+              "column": 68
             }
           },
           "extra": {
-            "rawValue": "./UnexpectedEndOfFileError",
-            "raw": "'./UnexpectedEndOfFileError'"
+            "rawValue": "./UnexpectedEndOfFileError.js",
+            "raw": "'./UnexpectedEndOfFileError.js'"
           },
-          "value": "./UnexpectedEndOfFileError"
-        }
+          "value": "./UnexpectedEndOfFileError.js"
+        },
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": " eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] ",
+            "start": 181,
+            "end": 256,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 75
+              }
+            }
+          }
+        ]
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 175,
-        "end": 264,
+        "start": 257,
+        "end": 342,
         "loc": {
           "start": {
-            "line": 5,
+            "line": 6,
             "column": 0
           },
           "end": {
-            "line": 9,
-            "column": 3
+            "line": 10,
+            "column": 2
           }
         },
         "declaration": {
           "type": "ObjectExpression",
-          "start": 190,
-          "end": 262,
+          "start": 272,
+          "end": 341,
           "loc": {
             "start": {
-              "line": 5,
+              "line": 6,
               "column": 15
             },
             "end": {
-              "line": 9,
+              "line": 10,
               "column": 1
             }
           },
           "properties": [
             {
               "type": "ObjectProperty",
-              "start": 193,
-              "end": 215,
+              "start": 275,
+              "end": 297,
               "loc": {
                 "start": {
-                  "line": 6,
+                  "line": 7,
                   "column": 1
                 },
                 "end": {
-                  "line": 6,
+                  "line": 7,
                   "column": 23
                 }
               },
@@ -283,53 +301,55 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 193,
-                "end": 215,
+                "start": 275,
+                "end": 297,
                 "loc": {
                   "start": {
-                    "line": 6,
+                    "line": 7,
                     "column": 1
                   },
                   "end": {
-                    "line": 6,
+                    "line": 7,
                     "column": 23
                   },
                   "identifierName": "LookaheadMismatchError"
                 },
-                "name": "LookaheadMismatchError"
+                "name": "LookaheadMismatchError",
+                "leadingComments": null
               },
               "value": {
                 "type": "Identifier",
-                "start": 193,
-                "end": 215,
+                "start": 275,
+                "end": 297,
                 "loc": {
                   "start": {
-                    "line": 6,
+                    "line": 7,
                     "column": 1
                   },
                   "end": {
-                    "line": 6,
+                    "line": 7,
                     "column": 23
                   },
                   "identifierName": "LookaheadMismatchError"
                 },
                 "name": "LookaheadMismatchError"
               },
+              "leadingComments": null,
               "extra": {
                 "shorthand": true
               }
             },
             {
               "type": "ObjectProperty",
-              "start": 219,
-              "end": 230,
+              "start": 300,
+              "end": 311,
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 8,
                   "column": 1
                 },
                 "end": {
-                  "line": 7,
+                  "line": 8,
                   "column": 12
                 }
               },
@@ -338,15 +358,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 219,
-                "end": 230,
+                "start": 300,
+                "end": 311,
                 "loc": {
                   "start": {
-                    "line": 7,
+                    "line": 8,
                     "column": 1
                   },
                   "end": {
-                    "line": 7,
+                    "line": 8,
                     "column": 12
                   },
                   "identifierName": "SyntaxError"
@@ -355,15 +375,15 @@
               },
               "value": {
                 "type": "Identifier",
-                "start": 219,
-                "end": 230,
+                "start": 300,
+                "end": 311,
                 "loc": {
                   "start": {
-                    "line": 7,
+                    "line": 8,
                     "column": 1
                   },
                   "end": {
-                    "line": 7,
+                    "line": 8,
                     "column": 12
                   },
                   "identifierName": "SyntaxError"
@@ -376,15 +396,15 @@
             },
             {
               "type": "ObjectProperty",
-              "start": 234,
-              "end": 258,
+              "start": 314,
+              "end": 338,
               "loc": {
                 "start": {
-                  "line": 8,
+                  "line": 9,
                   "column": 1
                 },
                 "end": {
-                  "line": 8,
+                  "line": 9,
                   "column": 25
                 }
               },
@@ -393,15 +413,15 @@
               "computed": false,
               "key": {
                 "type": "Identifier",
-                "start": 234,
-                "end": 258,
+                "start": 314,
+                "end": 338,
                 "loc": {
                   "start": {
-                    "line": 8,
+                    "line": 9,
                     "column": 1
                   },
                   "end": {
-                    "line": 8,
+                    "line": 9,
                     "column": 25
                   },
                   "identifierName": "UnexpectedEndOfFileError"
@@ -410,15 +430,15 @@
               },
               "value": {
                 "type": "Identifier",
-                "start": 234,
-                "end": 258,
+                "start": 314,
+                "end": 338,
                 "loc": {
                   "start": {
-                    "line": 8,
+                    "line": 9,
                     "column": 1
                   },
                   "end": {
-                    "line": 8,
+                    "line": 9,
                     "column": 25
                   },
                   "identifierName": "UnexpectedEndOfFileError"
@@ -430,180 +450,66 @@
               }
             }
           ],
-          "leadingComments": [],
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": " eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] ",
+              "start": 181,
+              "end": 256,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 0
+                },
+                "end": {
+                  "line": 5,
+                  "column": 75
+                }
+              }
+            }
+          ],
           "trailingComments": []
-        }
-      },
-      {
-        "type": "ExportNamedDeclaration",
-        "start": 266,
-        "end": 347,
-        "loc": {
-          "start": {
-            "line": 11,
-            "column": 0
-          },
-          "end": {
-            "line": 15,
-            "column": 3
-          }
         },
-        "declaration": null,
-        "specifiers": [
+        "leadingComments": [
           {
-            "type": "ExportSpecifier",
-            "start": 276,
-            "end": 298,
+            "type": "CommentBlock",
+            "value": " eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] ",
+            "start": 181,
+            "end": 256,
             "loc": {
               "start": {
-                "line": 12,
-                "column": 1
+                "line": 5,
+                "column": 0
               },
               "end": {
-                "line": 12,
-                "column": 23
+                "line": 5,
+                "column": 75
               }
-            },
-            "local": {
-              "type": "Identifier",
-              "start": 276,
-              "end": 298,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 1
-                },
-                "end": {
-                  "line": 12,
-                  "column": 23
-                },
-                "identifierName": "LookaheadMismatchError"
-              },
-              "name": "LookaheadMismatchError"
-            },
-            "exported": {
-              "type": "Identifier",
-              "start": 276,
-              "end": 298,
-              "loc": {
-                "start": {
-                  "line": 12,
-                  "column": 1
-                },
-                "end": {
-                  "line": 12,
-                  "column": 23
-                },
-                "identifierName": "LookaheadMismatchError"
-              },
-              "name": "LookaheadMismatchError"
-            }
-          },
-          {
-            "type": "ExportSpecifier",
-            "start": 302,
-            "end": 313,
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 1
-              },
-              "end": {
-                "line": 13,
-                "column": 12
-              }
-            },
-            "local": {
-              "type": "Identifier",
-              "start": 302,
-              "end": 313,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 1
-                },
-                "end": {
-                  "line": 13,
-                  "column": 12
-                },
-                "identifierName": "SyntaxError"
-              },
-              "name": "SyntaxError"
-            },
-            "exported": {
-              "type": "Identifier",
-              "start": 302,
-              "end": 313,
-              "loc": {
-                "start": {
-                  "line": 13,
-                  "column": 1
-                },
-                "end": {
-                  "line": 13,
-                  "column": 12
-                },
-                "identifierName": "SyntaxError"
-              },
-              "name": "SyntaxError"
-            }
-          },
-          {
-            "type": "ExportSpecifier",
-            "start": 317,
-            "end": 341,
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 1
-              },
-              "end": {
-                "line": 14,
-                "column": 25
-              }
-            },
-            "local": {
-              "type": "Identifier",
-              "start": 317,
-              "end": 341,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 1
-                },
-                "end": {
-                  "line": 14,
-                  "column": 25
-                },
-                "identifierName": "UnexpectedEndOfFileError"
-              },
-              "name": "UnexpectedEndOfFileError"
-            },
-            "exported": {
-              "type": "Identifier",
-              "start": 317,
-              "end": 341,
-              "loc": {
-                "start": {
-                  "line": 14,
-                  "column": 1
-                },
-                "end": {
-                  "line": 14,
-                  "column": 25
-                },
-                "identifierName": "UnexpectedEndOfFileError"
-              },
-              "name": "UnexpectedEndOfFileError"
             }
           }
-        ],
-        "source": null
+        ]
       }
     ],
     "directives": []
   },
-  "comments": [],
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": " eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] ",
+      "start": 181,
+      "end": 256,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 75
+        }
+      }
+    }
+  ],
   "tokens": [
     {
       "type": {
@@ -698,9 +604,9 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./LookaheadMismatchError",
+      "value": "./LookaheadMismatchError.js",
       "start": 35,
-      "end": 61,
+      "end": 64,
       "loc": {
         "start": {
           "line": 1,
@@ -708,7 +614,7 @@
         },
         "end": {
           "line": 1,
-          "column": 61
+          "column": 64
         }
       }
     },
@@ -725,16 +631,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 62,
-      "end": 63,
+      "start": 64,
+      "end": 65,
       "loc": {
         "start": {
           "line": 1,
-          "column": 62
+          "column": 64
         },
         "end": {
           "line": 1,
-          "column": 63
+          "column": 65
         }
       }
     },
@@ -753,8 +659,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 64,
-      "end": 70,
+      "start": 66,
+      "end": 72,
       "loc": {
         "start": {
           "line": 2,
@@ -779,8 +685,8 @@
         "binop": null
       },
       "value": "SyntaxError",
-      "start": 71,
-      "end": 82,
+      "start": 73,
+      "end": 84,
       "loc": {
         "start": {
           "line": 2,
@@ -805,8 +711,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 83,
-      "end": 87,
+      "start": 85,
+      "end": 89,
       "loc": {
         "start": {
           "line": 2,
@@ -831,9 +737,9 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./SyntaxError",
-      "start": 88,
-      "end": 103,
+      "value": "./SyntaxError.js",
+      "start": 90,
+      "end": 108,
       "loc": {
         "start": {
           "line": 2,
@@ -841,7 +747,7 @@
         },
         "end": {
           "line": 2,
-          "column": 39
+          "column": 42
         }
       }
     },
@@ -858,16 +764,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 104,
-      "end": 105,
+      "start": 108,
+      "end": 109,
       "loc": {
         "start": {
           "line": 2,
-          "column": 40
+          "column": 42
         },
         "end": {
           "line": 2,
-          "column": 41
+          "column": 43
         }
       }
     },
@@ -886,8 +792,8 @@
         "updateContext": null
       },
       "value": "import",
-      "start": 106,
-      "end": 112,
+      "start": 110,
+      "end": 116,
       "loc": {
         "start": {
           "line": 3,
@@ -912,8 +818,8 @@
         "binop": null
       },
       "value": "UnexpectedEndOfFileError",
-      "start": 113,
-      "end": 137,
+      "start": 117,
+      "end": 141,
       "loc": {
         "start": {
           "line": 3,
@@ -938,8 +844,8 @@
         "binop": null
       },
       "value": "from",
-      "start": 138,
-      "end": 142,
+      "start": 142,
+      "end": 146,
       "loc": {
         "start": {
           "line": 3,
@@ -964,9 +870,9 @@
         "binop": null,
         "updateContext": null
       },
-      "value": "./UnexpectedEndOfFileError",
-      "start": 143,
-      "end": 171,
+      "value": "./UnexpectedEndOfFileError.js",
+      "start": 147,
+      "end": 178,
       "loc": {
         "start": {
           "line": 3,
@@ -974,7 +880,7 @@
         },
         "end": {
           "line": 3,
-          "column": 65
+          "column": 68
         }
       }
     },
@@ -991,16 +897,32 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 172,
-      "end": 173,
+      "start": 178,
+      "end": 179,
       "loc": {
         "start": {
           "line": 3,
-          "column": 66
+          "column": 68
         },
         "end": {
           "line": 3,
-          "column": 67
+          "column": 69
+        }
+      }
+    },
+    {
+      "type": "CommentBlock",
+      "value": " eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] ",
+      "start": 181,
+      "end": 256,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 75
         }
       }
     },
@@ -1019,15 +941,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 175,
-      "end": 181,
+      "start": 257,
+      "end": 263,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 6
         }
       }
@@ -1047,15 +969,15 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 182,
-      "end": 189,
+      "start": 264,
+      "end": 271,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 7
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 14
         }
       }
@@ -1072,15 +994,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 190,
-      "end": 191,
+      "start": 272,
+      "end": 273,
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 15
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 16
         }
       }
@@ -1098,15 +1020,15 @@
         "binop": null
       },
       "value": "LookaheadMismatchError",
-      "start": 193,
-      "end": 215,
+      "start": 275,
+      "end": 297,
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 1
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 23
         }
       }
@@ -1124,276 +1046,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 216,
-      "end": 217,
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 24
-        },
-        "end": {
-          "line": 6,
-          "column": 25
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "SyntaxError",
-      "start": 219,
-      "end": 230,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 1
-        },
-        "end": {
-          "line": 7,
-          "column": 12
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ",",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 231,
-      "end": 232,
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 13
-        },
-        "end": {
-          "line": 7,
-          "column": 14
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "UnexpectedEndOfFileError",
-      "start": 234,
-      "end": 258,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 1
-        },
-        "end": {
-          "line": 8,
-          "column": 25
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ",",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 259,
-      "end": 260,
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 26
-        },
-        "end": {
-          "line": 8,
-          "column": 27
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "}",
-        "beforeExpr": false,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 261,
-      "end": 262,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 1
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ";",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 263,
-      "end": 264,
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 2
-        },
-        "end": {
-          "line": 9,
-          "column": 3
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "export",
-        "keyword": "export",
-        "beforeExpr": false,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "value": "export",
-      "start": 266,
-      "end": 272,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 0
-        },
-        "end": {
-          "line": 11,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "{",
-        "beforeExpr": true,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "start": 273,
-      "end": 274,
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 7
-        },
-        "end": {
-          "line": 11,
-          "column": 8
-        }
-      }
-    },
-    {
-      "type": {
-        "label": "name",
-        "beforeExpr": false,
-        "startsExpr": true,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null
-      },
-      "value": "LookaheadMismatchError",
-      "start": 276,
+      "start": 297,
       "end": 298,
       "loc": {
         "start": {
-          "line": 12,
-          "column": 1
-        },
-        "end": {
-          "line": 12,
+          "line": 7,
           "column": 23
-        }
-      }
-    },
-    {
-      "type": {
-        "label": ",",
-        "beforeExpr": true,
-        "startsExpr": false,
-        "rightAssociative": false,
-        "isLoop": false,
-        "isAssign": false,
-        "prefix": false,
-        "postfix": false,
-        "binop": null,
-        "updateContext": null
-      },
-      "start": 299,
-      "end": 300,
-      "loc": {
-        "start": {
-          "line": 12,
-          "column": 24
         },
         "end": {
-          "line": 12,
-          "column": 25
+          "line": 7,
+          "column": 24
         }
       }
     },
@@ -1410,15 +1072,15 @@
         "binop": null
       },
       "value": "SyntaxError",
-      "start": 302,
-      "end": 313,
+      "start": 300,
+      "end": 311,
       "loc": {
         "start": {
-          "line": 13,
+          "line": 8,
           "column": 1
         },
         "end": {
-          "line": 13,
+          "line": 8,
           "column": 12
         }
       }
@@ -1436,16 +1098,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 314,
-      "end": 315,
+      "start": 311,
+      "end": 312,
       "loc": {
         "start": {
-          "line": 13,
-          "column": 13
+          "line": 8,
+          "column": 12
         },
         "end": {
-          "line": 13,
-          "column": 14
+          "line": 8,
+          "column": 13
         }
       }
     },
@@ -1462,15 +1124,15 @@
         "binop": null
       },
       "value": "UnexpectedEndOfFileError",
-      "start": 317,
-      "end": 341,
+      "start": 314,
+      "end": 338,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 9,
           "column": 1
         },
         "end": {
-          "line": 14,
+          "line": 9,
           "column": 25
         }
       }
@@ -1488,16 +1150,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 342,
-      "end": 343,
+      "start": 338,
+      "end": 339,
       "loc": {
         "start": {
-          "line": 14,
-          "column": 26
+          "line": 9,
+          "column": 25
         },
         "end": {
-          "line": 14,
-          "column": 27
+          "line": 9,
+          "column": 26
         }
       }
     },
@@ -1513,15 +1175,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 344,
-      "end": 345,
+      "start": 340,
+      "end": 341,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 15,
+          "line": 10,
           "column": 1
         }
       }
@@ -1539,16 +1201,16 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 346,
-      "end": 347,
+      "start": 341,
+      "end": 342,
       "loc": {
         "start": {
-          "line": 15,
-          "column": 2
+          "line": 10,
+          "column": 1
         },
         "end": {
-          "line": 15,
-          "column": 3
+          "line": 10,
+          "column": 2
         }
       }
     },
@@ -1565,15 +1227,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 348,
-      "end": 348,
+      "start": 343,
+      "end": 343,
       "loc": {
         "start": {
-          "line": 16,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 16,
+          "line": 11,
           "column": 0
         }
       }
