@@ -80,7 +80,7 @@
     "@iterable-iterator/repeat": "^1.0.1",
     "@iterable-iterator/sorted": "^1.0.0",
     "@js-library/commitlint-config": "0.0.4",
-    "@node-loader/babel": "2.0.0",
+    "@node-loader/babel": "1.1.0",
     "@total-order/primitive": "^1.0.1",
     "ava": "4.0.0-rc.1",
     "babel-plugin-transform-remove-console": "6.9.4",
@@ -116,7 +116,11 @@
       [
         "@babel/preset-env",
         {
-          "targets": "current node"
+          "bugfixes": true,
+          "modules": false,
+          "targets": {
+            "esmodules": true
+          }
         }
       ]
     ],
