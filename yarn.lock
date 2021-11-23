@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@async-abstraction/tape@^8.0.0":
+"@async-abstraction/tape@8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@async-abstraction/tape/-/tape-8.0.0.tgz#a8eff5fe7857431f60a06c4d49e308d27e4182dd"
   integrity sha512-XuU3AIngWl8BxkB+VANYZ1s03dejT+UUJONPhFUXsU4/vP/Pk88busSYXukpsr1CZpppl8kuVWU9R6Hs9r+6Sw==
@@ -1364,7 +1364,7 @@
   dependencies:
     "@failure-abstraction/error" "^6.0.1"
 
-"@iterable-iterator/range@^2.1.0":
+"@iterable-iterator/range@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@iterable-iterator/range/-/range-2.1.0.tgz#d7cfeee165c612f460c9ea1854a250f4788f1226"
   integrity sha512-3/jhQR2FVpur0RmrHCksePYsahdZcGh7WKukDkI1xq3gwzmCQm3Nv0MwKttMf3viUGq6mV0BUHXybpLLfMCeKA==
@@ -1376,7 +1376,7 @@
   dependencies:
     "@iterable-iterator/iter" "^1.0.1"
 
-"@iterable-iterator/repeat@^1.0.1":
+"@iterable-iterator/repeat@1.0.1", "@iterable-iterator/repeat@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@iterable-iterator/repeat/-/repeat-1.0.1.tgz#7724b993a80c014483c4f0d37c503ee460ac7b6d"
   integrity sha512-xwkIHYQNvxQvA8nMYrev41iCmokXosojMpHEfME8Q8ubzEQlsYS8rSqiydgMYPu/lPg1MyYRVzWazFDAShTwtg==
@@ -1386,7 +1386,7 @@
   resolved "https://registry.yarnpkg.com/@iterable-iterator/reversed/-/reversed-1.0.0.tgz#6e656396b4453e4650c081d571fa4ba7ab3134e8"
   integrity sha512-nCy0OINBy6h1dcj75twbIW0oA5KhJ7Aweif/8kdUdAR86e5gb/byedt0LL72cjHB75VRbQY06f9WxZc8d7uPYA==
 
-"@iterable-iterator/sorted@^1.0.0":
+"@iterable-iterator/sorted@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@iterable-iterator/sorted/-/sorted-1.0.0.tgz#d1b93cb1bb50fe6af2851b4505d2ee2df0d406dc"
   integrity sha512-raMmDjKLp25F51NGnnq3fK4lvkaHZdzB5Pt9AiMKoZKgU8gX0yM+FrdKzMG+RZswtVxre+nrR3Z6E1oGESRfzg==
@@ -1538,7 +1538,7 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@total-order/primitive@^1.0.1":
+"@total-order/primitive@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@total-order/primitive/-/primitive-1.0.1.tgz#7e409d303a2a3b24ed2af30bd9068027d6a4a326"
   integrity sha512-BXCXyXoQIpdwFkplPRTuxFB0I1GHHia4t22bLAEqjdk48DFwQMwSbHq1EdLA81X/eFC/b6RdVxG4Q+WEcfs0aA==
