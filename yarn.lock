@@ -1410,10 +1410,10 @@
   resolved "https://registry.yarnpkg.com/@js-library/commitlint-config/-/commitlint-config-0.0.4.tgz#5243a58b0d4ad36999d4b944c7770c50658c68f5"
   integrity sha512-l6un9f0HmIJZswqGe5H/HGBkENpqBQv1b36bdLZLXhZEZBTlm2Chbv3J1hJ2kNG8ogh+EFV5nUYQnL3MefLSDQ==
 
-"@node-loader/babel@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@node-loader/babel/-/babel-1.1.0.tgz#cfd4fc23304ff8a56790702587c0e9eb1a1a022e"
-  integrity sha512-U2nxEuRh6id3GnyoPQZyVBGmLD2VCc7ppGykroIvMG88iDrCCPketK2aopahxQFlxg/R60I12z9BC4mfBzYCUg==
+"@node-loader/babel@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@node-loader/babel/-/babel-2.0.0.tgz#59d153d0c27737faae22da9368704a46ea93961a"
+  integrity sha512-aEnLPbryL7NCAxMcj8NmRzGID161/2H0hTlhsjtGLuxxuw9w2900CFUmfZEIrw0XkoKOQhHwY4swF/o2WCR3sQ==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
