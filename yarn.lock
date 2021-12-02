@@ -1325,6 +1325,11 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
+"@iterable-iterator/cardinality@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@iterable-iterator/cardinality/-/cardinality-4.0.0.tgz#8f5b369adb61da433afb77777c422247b104b4ec"
+  integrity sha512-xoBm9jtI1ou/3onGqX3rlUXRCPO2qKEEpAsYuJvwOqWz9bWOuize5EE2W/DIIB/E0B8tCR7B0gMt6j2NqZ2QkQ==
+
 "@iterable-iterator/chain@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@iterable-iterator/chain/-/chain-2.0.1.tgz#b02068df99408ac94c446f895b4e985eb0cd1938"
