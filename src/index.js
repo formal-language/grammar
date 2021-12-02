@@ -1,7 +1,5 @@
-import ast from './ast/index.js';
-import error from './error/index.js';
-import grammar from './grammar/index.js';
-import ll1 from './ll1/index.js';
-import util from './util/index.js';
-
-export {ast, error, grammar, ll1, util};
+export {default as ast} from './ast/index.js';
+export {default as error} from './error/index.js';
+export {default as grammar} from './grammar/index.js';
+export {default as ll1} from './ll1/index.js';
+export {default as util} from './util/index.js';
