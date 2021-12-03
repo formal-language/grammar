@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/ast/index.js | @formal-language/grammar</title>
+  <title data-ice="title">src/ll1/audit.js | @formal-language/grammar</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -63,27 +63,110 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/ast/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Children from &apos;./Children.js&apos;;
-import _children_exhaust from &apos;./_children_exhaust.js&apos;;
-import cmap from &apos;./cmap.js&apos;;
-import flatten from &apos;./flatten.js&apos;;
-import map from &apos;./map.js&apos;;
-import materialize from &apos;./materialize.js&apos;;
-import rmap from &apos;./rmap.js&apos;;
-import transform from &apos;./transform.js&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/ll1/audit.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {map} from &apos;@iterable-iterator/map&apos;;
+import {next} from &apos;@iterable-iterator/next&apos;;
+import {iter} from &apos;@iterable-iterator/iter&apos;;
+import {filter} from &apos;@iterable-iterator/filter&apos;;
 
-/* eslint import/no-anonymous-default-export: [2, {&quot;allowObject&quot;: true}] */
-export default {
-	Children,
-	_children_exhaust,
-	cmap,
-	flatten,
-	map,
-	materialize,
-	rmap,
-	transform,
+import EW from &apos;../grammar/EW.js&apos;;
+import _first from &apos;./_first.js&apos;;
+import _follow from &apos;./_follow.js&apos;;
+import first from &apos;./first.js&apos;;
+
+const mapDuplicates = (rules) =&gt; {
+	const candidates = new Map();
+	for (const [key, first] of rules) {
+		for (const f of first) {
+			if (candidates.has(f)) candidates.get(f).push(key);
+			else candidates.set(f, [key]);
+		}
+	}
+
+	return candidates;
 };
+
+const reportDuplicates = function* (collisions) {
+	for (const [f, rules] of collisions.entries()) {
+		if (rules.length &gt;= 2) {
+			yield {f, rules};
+		}
+	}
+};
+
+const duplicates = (rules) =&gt; reportDuplicates(mapDuplicates(rules));
+
+const REASON_FIRST = 0;
+const REASON_FOLLOW = 1;
+
+class Reason {
+	constructor(reason, A, what) {
+		this.reason = reason;
+		this.A = A;
+		this.what = what;
+	}
+}
+
+/**
+ * List all reasons why a given grammar is not ll(1).
+ *
+ * @param {Grammar} grammar
+ * @returns {IterableIterator&lt;any&gt;}
+ */
+export default function* audit({productions}) {
+	const phi = _first(productions);
+
+	const FIRST = (rule) =&gt; first(phi, rule);
+
+	// Dragon Book (2006) page 224: For every A, a, b such that A =&gt; a | b
+	// ``... FIRST(a) and FIRST(b) are disjoint sets.&apos;&apos;
+	for (const [A, rules] of productions.entries()) {
+		const firsts = map(
+			// eslint-disable-next-line new-cap
+			([key, rule]) =&gt; [key, FIRST(rule)],
+			rules.entries(),
+		);
+		for (const hit of duplicates(firsts)) {
+			yield new Reason(REASON_FIRST, A, hit);
+		}
+	}
+
+	//   And ``... if the empty
+	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
+	//   and likewise if the empty word is in FIRST(a).&apos;&apos;
+
+	const pho = _follow(phi, productions);
+
+	const FOLLOW = (A) =&gt; pho.get(A);
+
+	const dflt = {}; // Dummy object
+
+	for (const [A, rules] of productions) {
+		const found = next(
+			// eslint-disable-next-line new-cap
+			iter(filter(([_key, rule]) =&gt; FIRST(rule).has(EW), rules.entries())),
+			dflt,
+		);
+
+		if (found === dflt) continue;
+
+		const [yieldsEWkey, yieldsEW] = found;
+
+		for (const [key, rule] of rules.entries()) {
+			if (rule === yieldsEW) continue;
+
+			const firsts = [
+				// eslint-disable-next-line new-cap
+				[yieldsEWkey, FOLLOW(A)],
+				// eslint-disable-next-line new-cap
+				[key, FIRST(rule)],
+			];
+			for (const hit of duplicates(firsts)) {
+				yield new Reason(REASON_FOLLOW, A, hit);
+			}
+		}
+	}
+}
 </code></pre>
 
 </div>

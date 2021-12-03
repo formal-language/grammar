@@ -50,6 +50,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_compile">_compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_follow">_follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_parse_lazy">_parse_lazy</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-audit">audit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compile">compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-follow">follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
@@ -63,13 +64,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import ast from &apos;./ast/index.js&apos;;
-import error from &apos;./error/index.js&apos;;
-import grammar from &apos;./grammar/index.js&apos;;
-import ll1 from &apos;./ll1/index.js&apos;;
-import util from &apos;./util/index.js&apos;;
-
-export {ast, error, grammar, ll1, util};
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export {default as ast} from &apos;./ast/index.js&apos;;
+export {default as error} from &apos;./error/index.js&apos;;
+export {default as grammar} from &apos;./grammar/index.js&apos;;
+export {default as ll1} from &apos;./ll1/index.js&apos;;
+export {default as util} from &apos;./util/index.js&apos;;
 </code></pre>
 
 </div>

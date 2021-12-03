@@ -1,7 +1,7 @@
 {
-  "coverage": "31.37%",
-  "expectCount": 51,
-  "actualCount": 16,
+  "coverage": "27.41%",
+  "expectCount": 62,
+  "actualCount": 17,
   "files": {
     "src/ast/Children.js": {
       "expectCount": 5,
@@ -154,6 +154,22 @@
       "expectCount": 1,
       "actualCount": 1,
       "undocumentLines": []
+    },
+    "src/ll1/audit.js": {
+      "expectCount": 11,
+      "actualCount": 1,
+      "undocumentLines": [
+        11,
+        23,
+        31,
+        33,
+        34,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
     },
     "src/ll1/compile.js": {
       "expectCount": 1,

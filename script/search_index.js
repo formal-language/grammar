@@ -90,6 +90,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "@formal-language/grammar/src/ll1/audit.js~audit",
+    "function/index.html#static-function-audit",
+    "<span>audit</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/audit.js</span>",
+    "function"
+  ],
+  [
     "@formal-language/grammar/src/ll1/compile.js~compile",
     "function/index.html#static-function-compile",
     "<span>compile</span> <span class=\"search-result-import-path\">@formal-language/grammar/src/ll1/compile.js</span>",
@@ -711,6 +717,12 @@ window.esdocSearchIndex = [
     "src/ll1/_parse_lazy.js",
     "file/src/ll1/_parse_lazy.js.html",
     "src/ll1/_parse_lazy.js",
+    "file"
+  ],
+  [
+    "src/ll1/audit.js",
+    "file/src/ll1/audit.js.html",
+    "src/ll1/audit.js",
     "file"
   ],
   [

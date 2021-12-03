@@ -1606,7 +1606,7 @@
     "__docId__": 101,
     "kind": "file",
     "name": "src/index.js",
-    "content": "import ast from './ast/index.js';\nimport error from './error/index.js';\nimport grammar from './grammar/index.js';\nimport ll1 from './ll1/index.js';\nimport util from './util/index.js';\n\nexport {ast, error, grammar, ll1, util};\n",
+    "content": "export {default as ast} from './ast/index.js';\nexport {default as error} from './error/index.js';\nexport {default as grammar} from './grammar/index.js';\nexport {default as ll1} from './ll1/index.js';\nexport {default as util} from './util/index.js';\n",
     "static": true,
     "longname": "/home/runner/work/grammar/grammar/src/index.js",
     "access": "public",
@@ -1832,7 +1832,7 @@
     "__docId__": 112,
     "kind": "file",
     "name": "src/ll1/_compile.js",
-    "content": "import {map} from '@iterable-iterator/map';\nimport {filter} from '@iterable-iterator/filter';\nimport {_chain} from '@iterable-iterator/chain';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\n\nimport alphabet from '../grammar/alphabet.js';\nimport EW from '../grammar/EW.js';\n\nimport first from './first.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\n\n/**\n * Generates the rows of the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Iterable}\n */\nexport default function* _compile(productions) {\n\tconst abc = alphabet(productions);\n\n\tconst phi = _first(productions);\n\tconst pho = _follow(phi, productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst m = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\titer(filter((r) => rules.get(r).length === 0, rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => pho.get(A).has(a) && !phi.get(A).has(a), abc),\n\t\t);\n\n\t\tconst n = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\titer(filter((r) => FIRST(rules.get(r)).has(a), rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => a !== EW, abc),\n\t\t);\n\n\t\tyield [A, new Map(filter(([_k, v]) => v !== dflt, _chain([m, n])))];\n\t}\n}\n",
+    "content": "import {map} from '@iterable-iterator/map';\nimport {filter} from '@iterable-iterator/filter';\nimport {_chain} from '@iterable-iterator/chain';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\n\nimport alphabet from '../grammar/alphabet.js';\nimport EW from '../grammar/EW.js';\n\nimport first from './first.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\n\n/**\n * Generates the rows of the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Iterable}\n */\nexport default function* _compile(productions) {\n\tconst abc = alphabet(productions);\n\n\tconst phi = _first(productions);\n\tconst pho = _follow(phi, productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst m = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\titer(filter((r) => FIRST(rules.get(r)).has(EW), rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => pho.get(A).has(a) && !phi.get(A).has(a), abc),\n\t\t);\n\n\t\tconst n = map(\n\t\t\t(a) => [\n\t\t\t\ta,\n\t\t\t\tnext(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\titer(filter((r) => FIRST(rules.get(r)).has(a), rules.keys())),\n\t\t\t\t\tdflt,\n\t\t\t\t),\n\t\t\t],\n\t\t\tfilter((a) => a !== EW, abc),\n\t\t);\n\n\t\tyield [A, new Map(filter(([_k, v]) => v !== dflt, _chain([m, n])))];\n\t}\n}\n",
     "static": true,
     "longname": "/home/runner/work/grammar/grammar/src/ll1/_compile.js",
     "access": "public",
@@ -2060,6 +2060,268 @@
   {
     "__docId__": 118,
     "kind": "file",
+    "name": "src/ll1/audit.js",
+    "content": "import {map} from '@iterable-iterator/map';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\nimport {filter} from '@iterable-iterator/filter';\n\nimport EW from '../grammar/EW.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport first from './first.js';\n\nconst mapDuplicates = (rules) => {\n\tconst candidates = new Map();\n\tfor (const [key, first] of rules) {\n\t\tfor (const f of first) {\n\t\t\tif (candidates.has(f)) candidates.get(f).push(key);\n\t\t\telse candidates.set(f, [key]);\n\t\t}\n\t}\n\n\treturn candidates;\n};\n\nconst reportDuplicates = function* (collisions) {\n\tfor (const [f, rules] of collisions.entries()) {\n\t\tif (rules.length >= 2) {\n\t\t\tyield {f, rules};\n\t\t}\n\t}\n};\n\nconst duplicates = (rules) => reportDuplicates(mapDuplicates(rules));\n\nconst REASON_FIRST = 0;\nconst REASON_FOLLOW = 1;\n\nclass Reason {\n\tconstructor(reason, A, what) {\n\t\tthis.reason = reason;\n\t\tthis.A = A;\n\t\tthis.what = what;\n\t}\n}\n\n/**\n * List all reasons why a given grammar is not ll(1).\n *\n * @param {Grammar} grammar\n * @returns {IterableIterator<any>}\n */\nexport default function* audit({productions}) {\n\tconst phi = _first(productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\t// Dragon Book (2006) page 224: For every A, a, b such that A => a | b\n\t// ``... FIRST(a) and FIRST(b) are disjoint sets.''\n\tfor (const [A, rules] of productions.entries()) {\n\t\tconst firsts = map(\n\t\t\t// eslint-disable-next-line new-cap\n\t\t\t([key, rule]) => [key, FIRST(rule)],\n\t\t\trules.entries(),\n\t\t);\n\t\tfor (const hit of duplicates(firsts)) {\n\t\t\tyield new Reason(REASON_FIRST, A, hit);\n\t\t}\n\t}\n\n\t//   And ``... if the empty\n\t//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,\n\t//   and likewise if the empty word is in FIRST(a).''\n\n\tconst pho = _follow(phi, productions);\n\n\tconst FOLLOW = (A) => pho.get(A);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst found = next(\n\t\t\t// eslint-disable-next-line new-cap\n\t\t\titer(filter(([_key, rule]) => FIRST(rule).has(EW), rules.entries())),\n\t\t\tdflt,\n\t\t);\n\n\t\tif (found === dflt) continue;\n\n\t\tconst [yieldsEWkey, yieldsEW] = found;\n\n\t\tfor (const [key, rule] of rules.entries()) {\n\t\t\tif (rule === yieldsEW) continue;\n\n\t\t\tconst firsts = [\n\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t[yieldsEWkey, FOLLOW(A)],\n\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t[key, FIRST(rule)],\n\t\t\t];\n\t\t\tfor (const hit of duplicates(firsts)) {\n\t\t\t\tyield new Reason(REASON_FOLLOW, A, hit);\n\t\t\t}\n\t\t}\n\t}\n}\n",
+    "static": true,
+    "longname": "/home/runner/work/grammar/grammar/src/ll1/audit.js",
+    "access": "public",
+    "description": null,
+    "lineNumber": 1
+  },
+  {
+    "__docId__": 119,
+    "kind": "function",
+    "name": "mapDuplicates",
+    "memberof": "src/ll1/audit.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/audit.js~mapDuplicates",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [
+      {
+        "name": "rules",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "function",
+    "name": "reportDuplicates",
+    "memberof": "src/ll1/audit.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/audit.js~reportDuplicates",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "params": [
+      {
+        "name": "collisions",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 121,
+    "kind": "function",
+    "name": "duplicates",
+    "memberof": "src/ll1/audit.js",
+    "generator": false,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/audit.js~duplicates",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "params": [
+      {
+        "name": "rules",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": null,
+    "ignore": true
+  },
+  {
+    "__docId__": 122,
+    "kind": "variable",
+    "name": "REASON_FIRST",
+    "memberof": "src/ll1/audit.js",
+    "static": true,
+    "longname": "src/ll1/audit.js~REASON_FIRST",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 123,
+    "kind": "variable",
+    "name": "REASON_FOLLOW",
+    "memberof": "src/ll1/audit.js",
+    "static": true,
+    "longname": "src/ll1/audit.js~REASON_FOLLOW",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    },
+    "ignore": true
+  },
+  {
+    "__docId__": 124,
+    "kind": "class",
+    "name": "Reason",
+    "memberof": "src/ll1/audit.js",
+    "static": true,
+    "longname": "src/ll1/audit.js~Reason",
+    "access": "public",
+    "export": false,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "interface": false,
+    "ignore": true
+  },
+  {
+    "__docId__": 125,
+    "kind": "constructor",
+    "name": "constructor",
+    "memberof": "src/ll1/audit.js~Reason",
+    "generator": false,
+    "async": false,
+    "static": false,
+    "longname": "src/ll1/audit.js~Reason#constructor",
+    "access": "public",
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true
+  },
+  {
+    "__docId__": 126,
+    "kind": "member",
+    "name": "reason",
+    "memberof": "src/ll1/audit.js~Reason",
+    "static": false,
+    "longname": "src/ll1/audit.js~Reason#reason",
+    "access": "public",
+    "description": null,
+    "lineNumber": 38,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 127,
+    "kind": "member",
+    "name": "A",
+    "memberof": "src/ll1/audit.js~Reason",
+    "static": false,
+    "longname": "src/ll1/audit.js~Reason#A",
+    "access": "public",
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 128,
+    "kind": "member",
+    "name": "what",
+    "memberof": "src/ll1/audit.js~Reason",
+    "static": false,
+    "longname": "src/ll1/audit.js~Reason#what",
+    "access": "public",
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 129,
+    "kind": "function",
+    "name": "audit",
+    "memberof": "src/ll1/audit.js",
+    "generator": true,
+    "async": false,
+    "static": true,
+    "longname": "src/ll1/audit.js~audit",
+    "access": "public",
+    "export": true,
+    "importPath": "@formal-language/grammar/src/ll1/audit.js",
+    "importStyle": "audit",
+    "description": "List all reasons why a given grammar is not ll(1).",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{IterableIterator<any>}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Grammar"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "grammar",
+        "description": ""
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "IterableIterator<any>"
+      ],
+      "spread": false,
+      "description": ""
+    }
+  },
+  {
+    "__docId__": 130,
+    "kind": "file",
     "name": "src/ll1/compile.js",
     "content": "import _compile from './_compile.js';\n\n/**\n * Compiles the predictive parsing table for a grammar.\n * Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.\n *\n * @param {Map} productions\n * @returns {Map}\n */\nexport default function compile(productions) {\n\treturn new Map(_compile(productions));\n}\n",
     "static": true,
@@ -2069,7 +2331,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 119,
+    "__docId__": 131,
     "kind": "function",
     "name": "compile",
     "memberof": "src/ll1/compile.js",
@@ -2111,7 +2373,7 @@
     }
   },
   {
-    "__docId__": 120,
+    "__docId__": 132,
     "kind": "file",
     "name": "src/ll1/follow.js",
     "content": "import {reversed} from '@iterable-iterator/reversed';\nimport first from './first.js';\n\n/**\n * Generate FOLLOW set for any rule given the FOLLOW sets for the nonterminals.\n *\n * @param {Map} FOLLOW\n * @param {Array} rule\n * @returns {Set}\n */\nexport default function follow(FOLLOW, rule) {\n\treturn first(FOLLOW, reversed(rule));\n}\n",
@@ -2122,7 +2384,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 121,
+    "__docId__": 133,
     "kind": "function",
     "name": "follow",
     "memberof": "src/ll1/follow.js",
@@ -2174,7 +2436,7 @@
     }
   },
   {
-    "__docId__": 122,
+    "__docId__": 134,
     "kind": "file",
     "name": "src/ll1/from.js",
     "content": "import Parser from './Parser.js';\n\nexport default function from(grammar) {\n\treturn new Parser(grammar);\n}\n",
@@ -2185,7 +2447,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 123,
+    "__docId__": 135,
     "kind": "function",
     "name": "from",
     "memberof": "src/ll1/from.js",
@@ -2215,10 +2477,10 @@
     }
   },
   {
-    "__docId__": 124,
+    "__docId__": 136,
     "kind": "file",
     "name": "src/ll1/index.js",
-    "content": "import Parser from './Parser.js';\nimport _children_next_lazy from './_children_next_lazy.js';\nimport _compile from './_compile.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport _parse_lazy from './_parse_lazy.js';\nimport compile from './compile.js';\nimport first from './first.js';\nimport follow from './follow.js';\nimport from from './from.js';\nimport is from './is.js';\nimport parse from './parse.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tParser,\n\t_children_next_lazy,\n\t_compile,\n\t_first,\n\t_follow,\n\t_parse_lazy,\n\tcompile,\n\tfirst,\n\tfollow,\n\tfrom,\n\tis,\n\tparse,\n};\n",
+    "content": "import Parser from './Parser.js';\nimport _children_next_lazy from './_children_next_lazy.js';\nimport _compile from './_compile.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport _parse_lazy from './_parse_lazy.js';\nimport audit from './audit.js';\nimport compile from './compile.js';\nimport first from './first.js';\nimport follow from './follow.js';\nimport from from './from.js';\nimport is from './is.js';\nimport parse from './parse.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tParser,\n\t_children_next_lazy,\n\t_compile,\n\t_first,\n\t_follow,\n\t_parse_lazy,\n\taudit,\n\tcompile,\n\tfirst,\n\tfollow,\n\tfrom,\n\tis,\n\tparse,\n};\n",
     "static": true,
     "longname": "/home/runner/work/grammar/grammar/src/ll1/index.js",
     "access": "public",
@@ -2226,10 +2488,10 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 125,
+    "__docId__": 137,
     "kind": "file",
     "name": "src/ll1/is.js",
-    "content": "import {any} from '@iterable-iterator/reduce';\nimport {map} from '@iterable-iterator/map';\nimport {list} from '@iterable-iterator/list';\nimport {_chain} from '@iterable-iterator/chain';\nimport {next} from '@iterable-iterator/next';\nimport {iter} from '@iterable-iterator/iter';\nimport {filter} from '@iterable-iterator/filter';\n\nimport EW from '../grammar/EW.js';\nimport _first from './_first.js';\nimport _follow from './_follow.js';\nimport first from './first.js';\n\n/**\n * Check if grammar is ll(1).\n *\n * @param {Grammar} grammar\n * @returns {Boolean}\n */\nexport default function is({productions}) {\n\tconst phi = _first(productions);\n\n\tconst FIRST = (rule) => first(phi, rule);\n\n\t// TODO this is stupid\n\tconst containsduplicates = (array) => new Set(array).size !== array.length;\n\n\t// Dragon Book (2006) page 224: For every A, a, b such that A => a | b\n\t// ``... FIRST(a) and FIRST(b) are disjoint sets.''\n\n\tif (\n\t\tany(\n\t\t\tmap(\n\t\t\t\t(rules) => containsduplicates(list(_chain(map(FIRST, rules.values())))),\n\t\t\t\tproductions.values(),\n\t\t\t),\n\t\t)\n\t)\n\t\treturn false;\n\n\t//   And ``... if the empty\n\t//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,\n\t//   and likewise if the empty word is in FIRST(a).''\n\n\tconst pho = _follow(phi, productions);\n\n\tconst FOLLOW = (A) => pho.get(A);\n\n\tconst dflt = {}; // Dummy object\n\n\tfor (const [A, rules] of productions) {\n\t\tconst yieldsEW = next(\n\t\t\t// eslint-disable-next-line new-cap\n\t\t\titer(filter((rule) => FIRST(rule).has(EW), rules.values())),\n\t\t\tdflt,\n\t\t);\n\n\t\tif (yieldsEW === dflt) continue;\n\n\t\tif (\n\t\t\tany(\n\t\t\t\tmap(\n\t\t\t\t\t// eslint-disable-next-line new-cap\n\t\t\t\t\t(rule) => containsduplicates(list(_chain([FIRST(rule), FOLLOW(A)]))),\n\t\t\t\t\tfilter((rule) => rule !== yieldsEW, rules.values()),\n\t\t\t\t),\n\t\t\t)\n\t\t)\n\t\t\treturn false;\n\t}\n\n\treturn true;\n}\n",
+    "content": "import {isEmpty} from '@iterable-iterator/cardinality';\n\nimport audit from './audit.js';\n\n/**\n * Check if grammar is ll(1).\n *\n * @param {Grammar} grammar\n * @returns {Boolean}\n */\nexport default function is(grammar) {\n\treturn isEmpty(audit(grammar));\n}\n",
     "static": true,
     "longname": "/home/runner/work/grammar/grammar/src/ll1/is.js",
     "access": "public",
@@ -2237,7 +2499,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 126,
+    "__docId__": 138,
     "kind": "function",
     "name": "is",
     "memberof": "src/ll1/is.js",
@@ -2250,7 +2512,7 @@
     "importPath": "@formal-language/grammar/src/ll1/is.js",
     "importStyle": "is",
     "description": "Check if grammar is ll(1).",
-    "lineNumber": 20,
+    "lineNumber": 11,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2279,7 +2541,7 @@
     }
   },
   {
-    "__docId__": 127,
+    "__docId__": 139,
     "kind": "file",
     "name": "src/ll1/parse.js",
     "content": "import _parse_lazy from './_parse_lazy.js';\n\n/**\n * Parse\n *\n * @param root\n * @param start\n * @param eof\n * @param productions\n * @param table\n * @param tape\n * @returns {Object}\n */\nexport default function parse(root, start, eof, productions, table, tape) {\n\tconst startRule = productions.get(root).get(start);\n\treturn _parse_lazy(eof, productions, table, startRule, tape, root, start);\n}\n",
@@ -2290,7 +2552,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 128,
+    "__docId__": 140,
     "kind": "function",
     "name": "parse",
     "memberof": "src/ll1/parse.js",
@@ -2382,7 +2644,7 @@
     }
   },
   {
-    "__docId__": 129,
+    "__docId__": 141,
     "kind": "file",
     "name": "src/util/anyIterator.js",
     "content": "import Children from '../ast/Children.js';\n\nexport default function anyIterator(object) {\n\tif (object instanceof Children) return object.iterator;\n\tif (object[Symbol.asyncIterator]) return object[Symbol.asyncIterator]();\n\treturn object[Symbol.iterator]();\n}\n",
@@ -2393,7 +2655,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 130,
+    "__docId__": 142,
     "kind": "function",
     "name": "anyIterator",
     "memberof": "src/util/anyIterator.js",
@@ -2423,7 +2685,7 @@
     }
   },
   {
-    "__docId__": 131,
+    "__docId__": 143,
     "kind": "file",
     "name": "src/util/index.js",
     "content": "import anyIterator from './anyIterator.js';\nimport setadd from './setadd.js';\nimport setaddall from './setaddall.js';\n\n/* eslint import/no-anonymous-default-export: [2, {\"allowObject\": true}] */\nexport default {\n\tanyIterator,\n\tsetadd,\n\tsetaddall,\n};\n",
@@ -2434,7 +2696,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 132,
+    "__docId__": 144,
     "kind": "file",
     "name": "src/util/setadd.js",
     "content": "/**\n * Adds an element to a set and returns true if the set has changed.\n *\n * @param {Set<any>} set - The set to add to.\n * @param {any} element - The element to add to the set.\n * @returns {boolean} Whether <code>set</code> has changed.\n */\nexport default function setadd(set, element) {\n\tif (set.has(element)) return false;\n\tset.add(element);\n\treturn true;\n}\n",
@@ -2445,7 +2707,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 133,
+    "__docId__": 145,
     "kind": "function",
     "name": "setadd",
     "memberof": "src/util/setadd.js",
@@ -2497,7 +2759,7 @@
     }
   },
   {
-    "__docId__": 134,
+    "__docId__": 146,
     "kind": "file",
     "name": "src/util/setaddall.js",
     "content": "import setadd from './setadd.js';\n\n/**\n * Adds all elements of an iterable to a set and returns true if the set has\n * changed.\n *\n * @param {Set<any>} set - The set to add to.\n * @param {Iterable<any>} iterable - The iterable of elements to add to the set.\n * @returns {boolean} Whether <code>set</code> has changed.\n */\nexport default function setaddall(set, iterable) {\n\tlet changed = false;\n\tfor (const element of iterable) {\n\t\tchanged = setadd(set, element) || changed;\n\t}\n\n\treturn changed;\n}\n",
@@ -2508,7 +2770,7 @@
     "lineNumber": 1
   },
   {
-    "__docId__": 135,
+    "__docId__": 147,
     "kind": "function",
     "name": "setaddall",
     "memberof": "src/util/setaddall.js",
@@ -2569,7 +2831,7 @@
   },
   {
     "kind": "packageJSON",
-    "content": "{\n  \"name\": \"@formal-language/grammar\",\n  \"description\": \"Grammar compilation toolkit for JavaScript\",\n  \"version\": \"9.0.0\",\n  \"license\": \"AGPL-3.0\",\n  \"author\": \"make-github-pseudonymous-again\",\n  \"homepage\": \"https://formal-language.github.io/grammar\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/formal-language/grammar\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/formal-language/grammar/issues\"\n  },\n  \"keywords\": [\n    \"compilation\",\n    \"grammar\",\n    \"language\"\n  ],\n  \"sideEffects\": false,\n  \"type\": \"module\",\n  \"source\": \"src/index.js\",\n  \"main\": \"dist/index.cjs\",\n  \"module\": \"dist/index.module.js\",\n  \"esmodule\": \"dist/index.modern.js\",\n  \"umd:main\": \"dist/index.umd.js\",\n  \"unpkg\": \"dist/index.umd.js\",\n  \"exports\": {\n    \".\": {\n      \"browser\": \"./dist/index.module.js\",\n      \"umd\": \"./dist/index.umd.js\",\n      \"require\": \"./dist/index.cjs\",\n      \"default\": \"./dist/index.modern.js\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"build\": \"NODE_ENV=production microbundle\",\n    \"build-docs\": \"esdoc\",\n    \"build-gh-pages\": \"npm run build-docs\",\n    \"ci:build\": \"npm run build\",\n    \"ci:test\": \"npm run lint-config && npm run lint && npm run cover\",\n    \"commit-msg\": \"commitlint --edit\",\n    \"cover\": \"NODE_ENV=cover c8 --all --src src --reporter lcov --reporter text-summary --reporter text npm test\",\n    \"debug\": \"NODE_ENV=debug npm run test -- -st --fail-fast\",\n    \"dev\": \"npm run lint-config-and-fix && npm run lint-and-fix && npm run cover -- -- -st --fail-fast\",\n    \"install-hooks\": \"husky install\",\n    \"lint\": \"xo\",\n    \"lint-and-fix\": \"npm run lint -- --fix\",\n    \"lint-config\": \"fixpack --dryRun\",\n    \"lint-config-and-fix\": \"fixpack || fixpack\",\n    \"postinstall\": \"npm run install-hooks\",\n    \"postpublish\": \"pinst --enable\",\n    \"precommit\": \"lint-staged\",\n    \"prepare\": \"npm run build\",\n    \"prepublishOnly\": \"pinst --disable\",\n    \"release\": \"np --message ':hatching_chick: release: Bumping to v%s.'\",\n    \"test\": \"ava\"\n  },\n  \"dependencies\": {\n    \"@iterable-iterator/chain\": \"^2.0.1\",\n    \"@iterable-iterator/filter\": \"^1.0.1\",\n    \"@iterable-iterator/iter\": \"^1.0.1\",\n    \"@iterable-iterator/list\": \"^1.0.1\",\n    \"@iterable-iterator/map\": \"^1.0.1\",\n    \"@iterable-iterator/next\": \"^2.0.1\",\n    \"@iterable-iterator/reduce\": \"^1.0.1\",\n    \"@iterable-iterator/reversed\": \"^1.0.0\",\n    \"@iterable-iterator/zip\": \"^1.0.1\"\n  },\n  \"devDependencies\": {\n    \"@async-abstraction/tape\": \"^8.0.0\",\n    \"@babel/core\": \"7.16.0\",\n    \"@babel/preset-env\": \"7.16.4\",\n    \"@babel/register\": \"7.16.0\",\n    \"@commitlint/cli\": \"15.0.0\",\n    \"@iterable-iterator/range\": \"^2.1.0\",\n    \"@iterable-iterator/repeat\": \"^1.0.1\",\n    \"@iterable-iterator/sorted\": \"^1.0.0\",\n    \"@js-library/commitlint-config\": \"0.0.4\",\n    \"@node-loader/babel\": \"1.1.0\",\n    \"@total-order/primitive\": \"^1.0.1\",\n    \"ava\": \"4.0.0-rc.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.2.0\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"c8\": \"7.10.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"fixpack\": \"4.0.0\",\n    \"husky\": \"7.0.4\",\n    \"lint-staged\": \"12.1.2\",\n    \"microbundle\": \"0.14.2\",\n    \"np\": \"7.6.0\",\n    \"pinst\": \"2.1.6\",\n    \"power-assert\": \"1.6.1\",\n    \"xo\": \"0.46.4\"\n  },\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"nodeArguments\": [\n      \"--experimental-loader=@node-loader/babel\"\n    ],\n    \"timeout\": \"3m\"\n  },\n  \"babel\": {\n    \"sourceMaps\": true,\n    \"presets\": [\n      [\n        \"@babel/preset-env\",\n        {\n          \"bugfixes\": true,\n          \"modules\": false,\n          \"targets\": {\n            \"esmodules\": true\n          }\n        }\n      ]\n    ],\n    \"plugins\": [\n      [\n        \"transform-remove-console\",\n        {\n          \"exclude\": [\n            \"log\",\n            \"error\",\n            \"warn\"\n          ]\n        }\n      ]\n    ],\n    \"env\": {\n      \"debug\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"debug\",\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ]\n      },\n      \"test\": {\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"cover\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ],\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"production\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ]\n        ],\n        \"plugins\": [\n          \"babel-plugin-unassert\"\n        ]\n      }\n    }\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"npm run lint-and-fix\"\n    ],\n    \"package.json\": [\n      \"npm run lint-config-and-fix\"\n    ]\n  },\n  \"prettier\": {\n    \"trailingComma\": \"all\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"unicorn/filename-case\": \"off\",\n      \"camelcase\": \"off\",\n      \"unicorn/prevent-abbreviations\": \"off\",\n      \"no-constant-condition\": \"off\",\n      \"unicorn/prefer-math-trunc\": \"off\",\n      \"unicorn/no-new-array\": \"off\",\n      \"unicorn/prefer-node-protocol\": \"off\",\n      \"no-negated-condition\": \"off\"\n    },\n    \"overrides\": [\n      {\n        \"files\": [\n          \"doc/**\"\n        ],\n        \"env\": \"browser\"\n      }\n    ]\n  }\n}\n",
+    "content": "{\n  \"name\": \"@formal-language/grammar\",\n  \"description\": \"Grammar compilation toolkit for JavaScript\",\n  \"version\": \"9.1.0\",\n  \"license\": \"AGPL-3.0\",\n  \"author\": \"make-github-pseudonymous-again\",\n  \"homepage\": \"https://formal-language.github.io/grammar\",\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/formal-language/grammar\"\n  },\n  \"bugs\": {\n    \"url\": \"https://github.com/formal-language/grammar/issues\"\n  },\n  \"keywords\": [\n    \"compilation\",\n    \"grammar\",\n    \"language\"\n  ],\n  \"sideEffects\": false,\n  \"type\": \"module\",\n  \"source\": \"src/index.js\",\n  \"main\": \"dist/index.cjs\",\n  \"module\": \"dist/index.module.js\",\n  \"esmodule\": \"dist/index.modern.js\",\n  \"umd:main\": \"dist/index.umd.js\",\n  \"unpkg\": \"dist/index.umd.js\",\n  \"exports\": {\n    \".\": {\n      \"browser\": \"./dist/index.module.js\",\n      \"umd\": \"./dist/index.umd.js\",\n      \"require\": \"./dist/index.cjs\",\n      \"default\": \"./dist/index.modern.js\"\n    }\n  },\n  \"files\": [\n    \"dist\"\n  ],\n  \"scripts\": {\n    \"build\": \"NODE_ENV=production microbundle\",\n    \"build-docs\": \"esdoc\",\n    \"build-gh-pages\": \"npm run build-docs\",\n    \"ci:build\": \"npm run build\",\n    \"ci:test\": \"npm run lint-config && npm run lint && npm run cover\",\n    \"commit-msg\": \"commitlint --edit\",\n    \"cover\": \"NODE_ENV=cover c8 --all --src src --reporter lcov --reporter text-summary --reporter text npm test\",\n    \"debug\": \"NODE_ENV=debug npm run test -- -st --fail-fast\",\n    \"dev\": \"npm run lint-config-and-fix && npm run lint-and-fix && npm run cover -- -- -st --fail-fast\",\n    \"install-hooks\": \"husky install\",\n    \"lint\": \"xo\",\n    \"lint-and-fix\": \"npm run lint -- --fix\",\n    \"lint-config\": \"fixpack --dryRun\",\n    \"lint-config-and-fix\": \"fixpack || fixpack\",\n    \"postinstall\": \"npm run install-hooks\",\n    \"postpublish\": \"pinst --enable\",\n    \"precommit\": \"lint-staged\",\n    \"prepare\": \"npm run build\",\n    \"prepublishOnly\": \"pinst --disable\",\n    \"release\": \"np --message ':hatching_chick: release: Bumping to v%s.'\",\n    \"test\": \"ava\"\n  },\n  \"dependencies\": {\n    \"@iterable-iterator/cardinality\": \"^4.0.0\",\n    \"@iterable-iterator/chain\": \"^2.0.1\",\n    \"@iterable-iterator/filter\": \"^1.0.1\",\n    \"@iterable-iterator/iter\": \"^1.0.1\",\n    \"@iterable-iterator/list\": \"^1.0.1\",\n    \"@iterable-iterator/map\": \"^1.0.1\",\n    \"@iterable-iterator/next\": \"^2.0.1\",\n    \"@iterable-iterator/reduce\": \"^1.0.1\",\n    \"@iterable-iterator/reversed\": \"^1.0.0\",\n    \"@iterable-iterator/zip\": \"^1.0.1\"\n  },\n  \"devDependencies\": {\n    \"@async-abstraction/tape\": \"8.0.0\",\n    \"@babel/core\": \"7.16.0\",\n    \"@babel/preset-env\": \"7.16.4\",\n    \"@babel/register\": \"7.16.0\",\n    \"@commitlint/cli\": \"15.0.0\",\n    \"@iterable-iterator/range\": \"2.1.0\",\n    \"@iterable-iterator/repeat\": \"1.0.1\",\n    \"@iterable-iterator/sorted\": \"1.0.0\",\n    \"@js-library/commitlint-config\": \"0.0.4\",\n    \"@node-loader/babel\": \"2.0.0\",\n    \"@total-order/primitive\": \"1.0.1\",\n    \"ava\": \"4.0.0-rc.1\",\n    \"babel-plugin-transform-remove-console\": \"6.9.4\",\n    \"babel-plugin-unassert\": \"3.2.0\",\n    \"babel-preset-power-assert\": \"3.0.0\",\n    \"c8\": \"7.10.0\",\n    \"esdoc\": \"1.1.0\",\n    \"esdoc-ecmascript-proposal-plugin\": \"1.0.0\",\n    \"esdoc-inject-script-plugin\": \"1.0.0\",\n    \"esdoc-inject-style-plugin\": \"1.0.0\",\n    \"esdoc-standard-plugin\": \"1.0.0\",\n    \"fixpack\": \"4.0.0\",\n    \"husky\": \"7.0.4\",\n    \"lint-staged\": \"12.1.2\",\n    \"microbundle\": \"0.14.2\",\n    \"np\": \"7.6.0\",\n    \"pinst\": \"2.1.6\",\n    \"power-assert\": \"1.6.1\",\n    \"xo\": \"0.47.0\"\n  },\n  \"ava\": {\n    \"files\": [\n      \"test/src/**/*\"\n    ],\n    \"nodeArguments\": [\n      \"--experimental-loader=@node-loader/babel\"\n    ],\n    \"timeout\": \"3m\"\n  },\n  \"babel\": {\n    \"sourceMaps\": true,\n    \"presets\": [\n      [\n        \"@babel/preset-env\",\n        {\n          \"bugfixes\": true,\n          \"modules\": false,\n          \"targets\": {\n            \"esmodules\": true\n          }\n        }\n      ]\n    ],\n    \"plugins\": [\n      [\n        \"transform-remove-console\",\n        {\n          \"exclude\": [\n            \"log\",\n            \"error\",\n            \"warn\"\n          ]\n        }\n      ]\n    ],\n    \"env\": {\n      \"debug\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ],\n        \"plugins\": [\n          [\n            \"transform-remove-console\",\n            {\n              \"exclude\": [\n                \"debug\",\n                \"log\",\n                \"error\",\n                \"warn\"\n              ]\n            }\n          ]\n        ]\n      },\n      \"test\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"cover\": {\n        \"sourceMaps\": \"both\",\n        \"presets\": [\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"development\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ],\n          \"babel-preset-power-assert\"\n        ]\n      },\n      \"production\": {\n        \"presets\": [\n          [\n            \"@babel/preset-env\",\n            {\n              \"targets\": [\n                \"defaults\",\n                \"maintained node versions\"\n              ]\n            }\n          ]\n        ],\n        \"plugins\": [\n          \"babel-plugin-unassert\"\n        ]\n      }\n    }\n  },\n  \"lint-staged\": {\n    \"*.js\": [\n      \"npm run lint-and-fix\"\n    ],\n    \"package.json\": [\n      \"npm run lint-config-and-fix\"\n    ]\n  },\n  \"prettier\": {\n    \"trailingComma\": \"all\"\n  },\n  \"xo\": {\n    \"prettier\": true,\n    \"plugins\": [\n      \"unicorn\"\n    ],\n    \"rules\": {\n      \"unicorn/filename-case\": \"off\",\n      \"camelcase\": \"off\",\n      \"unicorn/prevent-abbreviations\": \"off\",\n      \"no-constant-condition\": \"off\",\n      \"unicorn/prefer-math-trunc\": \"off\",\n      \"unicorn/no-new-array\": \"off\",\n      \"unicorn/prefer-node-protocol\": \"off\",\n      \"no-negated-condition\": \"off\"\n    },\n    \"overrides\": [\n      {\n        \"files\": [\n          \"doc/**\"\n        ],\n        \"env\": \"browser\"\n      }\n    ]\n  }\n}\n",
     "longname": "/home/runner/work/grammar/grammar/package.json",
     "name": "package.json",
     "static": true,

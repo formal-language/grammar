@@ -50,6 +50,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_compile">_compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_follow">_follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_parse_lazy">_parse_lazy</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-audit">audit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compile">compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-follow">follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
@@ -63,18 +64,9 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/ll1/is.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {any} from &apos;@iterable-iterator/reduce&apos;;
-import {map} from &apos;@iterable-iterator/map&apos;;
-import {list} from &apos;@iterable-iterator/list&apos;;
-import {_chain} from &apos;@iterable-iterator/chain&apos;;
-import {next} from &apos;@iterable-iterator/next&apos;;
-import {iter} from &apos;@iterable-iterator/iter&apos;;
-import {filter} from &apos;@iterable-iterator/filter&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {isEmpty} from &apos;@iterable-iterator/cardinality&apos;;
 
-import EW from &apos;../grammar/EW.js&apos;;
-import _first from &apos;./_first.js&apos;;
-import _follow from &apos;./_follow.js&apos;;
-import first from &apos;./first.js&apos;;
+import audit from &apos;./audit.js&apos;;
 
 /**
  * Check if grammar is ll(1).
@@ -82,59 +74,8 @@ import first from &apos;./first.js&apos;;
  * @param {Grammar} grammar
  * @returns {Boolean}
  */
-export default function is({productions}) {
-	const phi = _first(productions);
-
-	const FIRST = (rule) =&gt; first(phi, rule);
-
-	// TODO this is stupid
-	const containsduplicates = (array) =&gt; new Set(array).size !== array.length;
-
-	// Dragon Book (2006) page 224: For every A, a, b such that A =&gt; a | b
-	// ``... FIRST(a) and FIRST(b) are disjoint sets.&apos;&apos;
-
-	if (
-		any(
-			map(
-				(rules) =&gt; containsduplicates(list(_chain(map(FIRST, rules.values())))),
-				productions.values(),
-			),
-		)
-	)
-		return false;
-
-	//   And ``... if the empty
-	//   word is in FIRST(b), then FIRST(a) and FOLLOW(A) are disjoint sets,
-	//   and likewise if the empty word is in FIRST(a).&apos;&apos;
-
-	const pho = _follow(phi, productions);
-
-	const FOLLOW = (A) =&gt; pho.get(A);
-
-	const dflt = {}; // Dummy object
-
-	for (const [A, rules] of productions) {
-		const yieldsEW = next(
-			// eslint-disable-next-line new-cap
-			iter(filter((rule) =&gt; FIRST(rule).has(EW), rules.values())),
-			dflt,
-		);
-
-		if (yieldsEW === dflt) continue;
-
-		if (
-			any(
-				map(
-					// eslint-disable-next-line new-cap
-					(rule) =&gt; containsduplicates(list(_chain([FIRST(rule), FOLLOW(A)]))),
-					filter((rule) =&gt; rule !== yieldsEW, rules.values()),
-				),
-			)
-		)
-			return false;
-	}
-
-	return true;
+export default function is(grammar) {
+	return isEmpty(audit(grammar));
 }
 </code></pre>
 

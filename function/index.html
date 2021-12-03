@@ -50,6 +50,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_compile">_compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_follow">_follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-_parse_lazy">_parse_lazy</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-audit">audit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-compile">compile</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-follow">follow</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-from">from</a></span></span></li>
@@ -116,6 +117,35 @@
         
         
         
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="generator">*</span>
+          <span class="code" data-ice="name"><span><a href="function/index.html#static-function-audit">audit</a></span></span><span class="code" data-ice="signature">(grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>): <span>IterableIterator</span>&lt;<span>any</span>&gt;</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>List all reasons why a given grammar is not ll(1).</p>
+</div>
       </div>
     </td>
     <td>
@@ -851,6 +881,78 @@ changed.</p>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-function-audit">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="generator">*</span>
+    <span class="code" data-ice="name">audit</span><span class="code" data-ice="signature">(grammar: <span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span>): <span>IterableIterator</span>&lt;<span>any</span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/ll1/audit.js.html#lineNumber50">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import audit from &apos;<span><a href="file/src/ll1/audit.js.html#lineNumber50">@formal-language/grammar/src/ll1/audit.js</a></span>&apos;</code></pre></div>
+  
+  
+  <div data-ice="description"><p>List all reasons why a given grammar is not ll(1).</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" class="code" data-depth="0">grammar</td>
+      <td data-ice="type" class="code"><span><a href="class/src/grammar/Grammar.js~Grammar.html">Grammar</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type code" data-ice="returnType"><span>IterableIterator</span>&lt;<span>any</span>&gt;</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-function-compile">
     <span class="access" data-ice="access">public</span>
     
@@ -1285,11 +1387,11 @@ Corresponds to Algorithm 4.31 in Dragon Book (2006) on page 224.</p>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/ll1/is.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/ll1/is.js.html#lineNumber11">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import is from &apos;<span><a href="file/src/ll1/is.js.html#lineNumber20">@formal-language/grammar/src/ll1/is.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import is from &apos;<span><a href="file/src/ll1/is.js.html#lineNumber11">@formal-language/grammar/src/ll1/is.js</a></span>&apos;</code></pre></div>
   
   
   <div data-ice="description"><p>Check if grammar is ll(1).</p>
