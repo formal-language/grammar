@@ -33,7 +33,8 @@ export default function* _compile(productions) {
 			(a) => [
 				a,
 				next(
-					iter(filter((r) => rules.get(r).length === 0, rules.keys())),
+					// eslint-disable-next-line new-cap
+					iter(filter((r) => FIRST(rules.get(r)).has(EW), rules.keys())),
 					dflt,
 				),
 			],
