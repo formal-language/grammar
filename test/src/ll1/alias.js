@@ -6,7 +6,7 @@ import * as tape from '@async-abstraction/tape';
 
 import {grammar, ast, ll1} from '../../../src/index.js';
 
-test('alias', async (t) => {
+test('complete', async (t) => {
 	const G = grammar.from({
 		root: 'root',
 		start: 'start',
@@ -94,3 +94,32 @@ test('alias', async (t) => {
 
 	t.deepEqual(result, expected);
 });
+
+const macro = (t, productions) => {
+	const G = grammar.from({
+		root: 'root',
+		start: 'start',
+		eof: '$',
+		productions: {
+			root: {
+				start: ['&A', '=$'],
+			},
+			...productions,
+		},
+	});
+
+	t.true(ll1.is(G));
+
+	const parser = ll1.from(G);
+
+	const table = parser.table();
+
+	t.true(new Set(table.get('A').keys()).has('$'));
+};
+
+macro.title = (title, productions) =>
+	`auto ${title ?? JSON.stringify(productions)}`;
+
+test('1 - 1 - 0', macro, {A: [['&B']], B: [['&C']], C: [[]]});
+test('1 - 1 - 1 - 0', macro, {A: [['&B']], B: [['&C']], C: [['&D']], D: [[]]});
+test('3 - 0', macro, {A: [['&B', '&C', '&D']], B: [[]], C: [[]], D: [[]]});
