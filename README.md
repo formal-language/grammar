@@ -16,7 +16,7 @@ const parser = ll1.from(G);
 [![License](https://img.shields.io/github/license/formal-language/grammar.svg)](https://raw.githubusercontent.com/formal-language/grammar/main/LICENSE)
 [![Version](https://img.shields.io/npm/v/@formal-language/grammar.svg)](https://www.npmjs.org/package/@formal-language/grammar)
 [![Tests](https://img.shields.io/github/workflow/status/formal-language/grammar/ci?event=push&label=tests)](https://github.com/formal-language/grammar/actions/workflows/ci.yml?query=branch:main)
-[![Dependencies](https://img.shields.io/librariesio/github/formal-language/grammar)](https://github.com/formal-language/grammar/network/dependencies)
+[![Dependencies](https://img.shields.io/librariesio/github/formal-language/grammar.svg)](https://github.com/formal-language/grammar/network/dependencies)
 [![GitHub issues](https://img.shields.io/github/issues/formal-language/grammar.svg)](https://github.com/formal-language/grammar/issues)
 [![Downloads](https://img.shields.io/npm/dm/@formal-language/grammar.svg)](https://www.npmjs.org/package/@formal-language/grammar)
 

@@ -6,8 +6,8 @@
   "author": "make-github-pseudonymous-again",
   "homepage": "https://formal-language.github.io/grammar",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/formal-language/grammar"
+    "url": "https://github.com/formal-language/grammar",
+    "type": "git"
   },
   "bugs": {
     "url": "https://github.com/formal-language/grammar/issues"
@@ -79,7 +79,6 @@
     "@async-abstraction/tape": "9.0.0",
     "@babel/core": "7.16.5",
     "@babel/preset-env": "7.16.5",
-    "@babel/register": "7.16.5",
     "@commitlint/cli": "15.0.0",
     "@iterable-iterator/range": "2.1.0",
     "@iterable-iterator/repeat": "1.0.1",
