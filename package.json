@@ -76,7 +76,7 @@
     "@iterable-iterator/zip": "^1.0.1"
   },
   "devDependencies": {
-    "@async-abstraction/tape": "9.0.0",
+    "@async-abstraction/tape": "10.0.0",
     "@babel/core": "7.16.5",
     "@babel/preset-env": "7.16.5",
     "@commitlint/cli": "15.0.0",
