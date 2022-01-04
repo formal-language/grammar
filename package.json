@@ -84,7 +84,7 @@
     "@iterable-iterator/repeat": "1.0.1",
     "@iterable-iterator/sorted": "1.0.0",
     "@js-library/commitlint-config": "0.0.4",
-    "@node-loader/babel": "2.0.0",
+    "@node-loader/babel": "2.0.1",
     "@node-loader/core": "2.0.0",
     "@node-loader/import-maps": "1.0.3",
     "@total-order/primitive": "1.0.1",
