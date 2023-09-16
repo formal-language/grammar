@@ -77,8 +77,8 @@
   },
   "devDependencies": {
     "@async-abstraction/tape": "10.0.0",
-    "@babel/core": "7.22.19",
-    "@babel/preset-env": "7.22.15",
+    "@babel/core": "7.22.20",
+    "@babel/preset-env": "7.22.20",
     "@commitlint/cli": "17.7.1",
     "@iterable-iterator/range": "2.1.0",
     "@iterable-iterator/repeat": "1.0.1",
