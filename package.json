@@ -79,7 +79,7 @@
     "@async-abstraction/tape": "10.0.0",
     "@babel/core": "7.23.7",
     "@babel/preset-env": "7.23.7",
-    "@commitlint/cli": "18.4.3",
+    "@commitlint/cli": "18.4.4",
     "@iterable-iterator/range": "2.1.0",
     "@iterable-iterator/repeat": "1.0.1",
     "@iterable-iterator/sorted": "1.0.0",
