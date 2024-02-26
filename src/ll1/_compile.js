@@ -1,15 +1,15 @@
-import {map} from '@iterable-iterator/map';
-import {filter} from '@iterable-iterator/filter';
 import {_chain} from '@iterable-iterator/chain';
-import {next} from '@iterable-iterator/next';
+import {filter} from '@iterable-iterator/filter';
 import {iter} from '@iterable-iterator/iter';
+import {map} from '@iterable-iterator/map';
+import {next} from '@iterable-iterator/next';
 
-import alphabet from '../grammar/alphabet.js';
 import EW from '../grammar/EW.js';
+import alphabet from '../grammar/alphabet.js';
 
-import first from './first.js';
 import _first from './_first.js';
 import _follow from './_follow.js';
+import first from './first.js';
 
 /**
  * Generates the rows of the predictive parsing table for a grammar.

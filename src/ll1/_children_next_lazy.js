@@ -1,5 +1,6 @@
 import LookaheadMismatchError from '../error/LookaheadMismatchError.js';
 import UnexpectedEndOfFileError from '../error/UnexpectedEndOfFileError.js';
+
 import _parse_lazy from './_parse_lazy.js';
 
 /**

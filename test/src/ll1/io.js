@@ -1,8 +1,10 @@
 import fs from 'node:fs';
+
 import test from 'ava';
 
 import * as tape from '@async-abstraction/tape';
 import {asyncIterableMap} from '@async-abstraction/tape';
+
 import {grammar, ast, ll1} from '../../../src/index.js';
 
 test("A convoluted `'010101'.replace(/0/g, 'a').replace(/1/g, 'b')` that reads from a file!", async (t) => {

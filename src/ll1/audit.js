@@ -1,9 +1,10 @@
+import {filter} from '@iterable-iterator/filter';
+import {iter} from '@iterable-iterator/iter';
 import {map} from '@iterable-iterator/map';
 import {next} from '@iterable-iterator/next';
-import {iter} from '@iterable-iterator/iter';
-import {filter} from '@iterable-iterator/filter';
 
 import EW from '../grammar/EW.js';
+
 import _first from './_first.js';
 import _follow from './_follow.js';
 import first from './first.js';

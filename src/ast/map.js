@@ -1,4 +1,5 @@
 import assert from 'assert';
+
 import Children from './Children.js';
 import cmap from './cmap.js';
 

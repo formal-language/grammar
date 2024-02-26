@@ -1,5 +1,5 @@
-import expandobject from './expandobject.js';
 import alphabet from './alphabet.js';
+import expandobject from './expandobject.js';
 
 export default class Grammar {
 	constructor({root, start, eof, productions}) {

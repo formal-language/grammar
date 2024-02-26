@@ -1,11 +1,10 @@
-import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
+import {map} from '@iterable-iterator/map';
 import {any} from '@iterable-iterator/reduce';
 
+import EW from '../grammar/EW.js';
 import setadd from '../util/setadd.js';
 import setaddall from '../util/setaddall.js';
-
-import EW from '../grammar/EW.js';
 
 /**
  * Computes FIRST table for grammar nonterminals.

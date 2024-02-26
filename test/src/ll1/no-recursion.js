@@ -1,11 +1,12 @@
 import test from 'ava';
 
-import {map} from '@iterable-iterator/map';
-import {list} from '@iterable-iterator/list';
-import {range} from '@iterable-iterator/range';
-import {nrepeat} from '@iterable-iterator/repeat';
 import * as tape from '@async-abstraction/tape';
 import {asyncIterableMap} from '@async-abstraction/tape';
+import {list} from '@iterable-iterator/list';
+import {map} from '@iterable-iterator/map';
+import {range} from '@iterable-iterator/range';
+import {nrepeat} from '@iterable-iterator/repeat';
+
 import {grammar, ast, ll1} from '../../../src/index.js';
 
 async function flatten(t, n) {

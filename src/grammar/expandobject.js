@@ -8,7 +8,8 @@ import _expandproduction from './_expandproduction.js';
  */
 function* _expandproductions(productions) {
 	for (const key in productions) {
-		if (Object.prototype.hasOwnProperty.call(productions, key)) {
+		// eslint-disable-next-line no-use-extend-native/no-use-extend-native
+		if (Object.hasOwn(productions, key)) {
 			yield [key, list(_expandproduction(productions[key]))];
 		}
 	}
@@ -20,7 +21,8 @@ function* _expandproductions(productions) {
  */
 function* _expandobject(object) {
 	for (const nonterminal in object) {
-		if (Object.prototype.hasOwnProperty.call(object, nonterminal)) {
+		// eslint-disable-next-line no-use-extend-native/no-use-extend-native
+		if (Object.hasOwn(object, nonterminal)) {
 			yield [nonterminal, new Map(_expandproductions(object[nonterminal]))];
 		}
 	}

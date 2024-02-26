@@ -1,10 +1,11 @@
 import test from 'ava';
 
-import {map} from '@iterable-iterator/map';
-import {chain} from '@iterable-iterator/chain';
-import {range} from '@iterable-iterator/range';
 import * as tape from '@async-abstraction/tape';
 import {asyncIterableMap} from '@async-abstraction/tape';
+import {chain} from '@iterable-iterator/chain';
+import {map} from '@iterable-iterator/map';
+import {range} from '@iterable-iterator/range';
+
 import {grammar, ast, ll1} from '../../../src/index.js';
 
 async function throws(t, G, n) {

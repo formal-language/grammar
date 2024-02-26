@@ -6,8 +6,8 @@
     "declaration": true,
     "outDir": "types",
     "checkJs": true,
-    "target": "es2020",
-    "module": "es2020",
+    "target": "es2022",
+    "module": "es2022",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },

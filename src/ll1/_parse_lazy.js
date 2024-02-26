@@ -1,5 +1,5 @@
-import rmap from '../ast/rmap.js';
 import Children from '../ast/Children.js';
+import rmap from '../ast/rmap.js';
 
 import _children_next_lazy from './_children_next_lazy.js';
 

@@ -1,8 +1,8 @@
 import test from 'ava';
 
+import * as tape from '@async-abstraction/tape';
 import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
-import * as tape from '@async-abstraction/tape';
 
 import {grammar, ast, ll1} from '../../../src/index.js';
 

@@ -1,10 +1,10 @@
-import {map} from '@iterable-iterator/map';
 import {filter} from '@iterable-iterator/filter';
+import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
 
+import EW from '../grammar/EW.js';
 import setaddall from '../util/setaddall.js';
 
-import EW from '../grammar/EW.js';
 import first from './first.js';
 
 /**

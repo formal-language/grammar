@@ -3,7 +3,6 @@ import test from 'ava';
 import {list} from '@iterable-iterator/list';
 import {map} from '@iterable-iterator/map';
 import {sorted} from '@iterable-iterator/sorted';
-
 import {increasing} from '@total-order/primitive';
 
 import {grammar, ll1} from '../../../src/index.js';

@@ -1,4 +1,5 @@
 import {reversed} from '@iterable-iterator/reversed';
+
 import first from './first.js';
 
 /**

@@ -1,11 +1,16 @@
 function _makenode(typ, arg) {
 	switch (typ) {
-		case '&':
+		case '&': {
 			return {type: 'node', nonterminal: arg};
-		case '=':
+		}
+
+		case '=': {
 			return {type: 'leaf', terminal: arg};
-		default:
+		}
+
+		default: {
 			throw new Error(`${typ} is not a valid type`);
+		}
 	}
 }
 

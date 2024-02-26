@@ -1,7 +1,6 @@
 import test from 'ava';
 
 import {fromIterable} from '@async-abstraction/tape';
-
 import {map} from '@iterable-iterator/map';
 import {enumerate} from '@iterable-iterator/zip';
 
